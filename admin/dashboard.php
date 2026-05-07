@@ -275,15 +275,61 @@ $adminUser = $_SESSION['admin_user'] ?? 'admin';
             <!-- Gallery Images -->
             <div class="form-group full-width">
               <label>Gallery Images</label>
-              <div class="upload-zone" id="gallery-upload-zone">
-                <input type="file" id="proj-gallery" name="image_gallery[]" accept="image/*" multiple class="upload-input" />
-                <div class="upload-placeholder" id="gallery-upload-placeholder">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                  <span>Click or drag to upload gallery images</span>
-                  <small>Multiple files allowed</small>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <!-- Gallery 1 -->
+                <div class="upload-zone" id="gallery-zone-1">
+                  <input type="file" id="proj-gallery-1" name="image_gallery[]" accept="image/*" class="upload-input" />
+                  <div class="upload-placeholder" id="gallery-placeholder-1" style="padding: 20px 10px;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:10px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span style="font-size:0.85rem;">Upload Image 1</span>
+                  </div>
+                  <div class="upload-preview" id="gallery-preview-1" style="display:none;">
+                    <img id="gallery-img-1" src="" alt="Preview" />
+                    <button type="button" class="upload-remove" onclick="removeGalleryImage(1)">×</button>
+                    <input type="hidden" id="existing-gallery-1" value="" />
+                  </div>
+                </div>
+                <!-- Gallery 2 -->
+                <div class="upload-zone" id="gallery-zone-2">
+                  <input type="file" id="proj-gallery-2" name="image_gallery[]" accept="image/*" class="upload-input" />
+                  <div class="upload-placeholder" id="gallery-placeholder-2" style="padding: 20px 10px;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:10px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span style="font-size:0.85rem;">Upload Image 2</span>
+                  </div>
+                  <div class="upload-preview" id="gallery-preview-2" style="display:none;">
+                    <img id="gallery-img-2" src="" alt="Preview" />
+                    <button type="button" class="upload-remove" onclick="removeGalleryImage(2)">×</button>
+                    <input type="hidden" id="existing-gallery-2" value="" />
+                  </div>
+                </div>
+                <!-- Gallery 3 -->
+                <div class="upload-zone" id="gallery-zone-3">
+                  <input type="file" id="proj-gallery-3" name="image_gallery[]" accept="image/*" class="upload-input" />
+                  <div class="upload-placeholder" id="gallery-placeholder-3" style="padding: 20px 10px;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:10px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span style="font-size:0.85rem;">Upload Image 3</span>
+                  </div>
+                  <div class="upload-preview" id="gallery-preview-3" style="display:none;">
+                    <img id="gallery-img-3" src="" alt="Preview" />
+                    <button type="button" class="upload-remove" onclick="removeGalleryImage(3)">×</button>
+                    <input type="hidden" id="existing-gallery-3" value="" />
+                  </div>
+                </div>
+                <!-- Gallery 4 -->
+                <div class="upload-zone" id="gallery-zone-4">
+                  <input type="file" id="proj-gallery-4" name="image_gallery[]" accept="image/*" class="upload-input" />
+                  <div class="upload-placeholder" id="gallery-placeholder-4" style="padding: 20px 10px;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:10px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span style="font-size:0.85rem;">Upload Image 4</span>
+                  </div>
+                  <div class="upload-preview" id="gallery-preview-4" style="display:none;">
+                    <img id="gallery-img-4" src="" alt="Preview" />
+                    <button type="button" class="upload-remove" onclick="removeGalleryImage(4)">×</button>
+                    <input type="hidden" id="existing-gallery-4" value="" />
+                  </div>
                 </div>
               </div>
-              <div class="gallery-previews" id="gallery-previews"></div>
+              <input type="hidden" id="remove-gallery-input" name="remove_gallery" value="[]" />
             </div>
           </div>
 

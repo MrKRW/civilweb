@@ -216,6 +216,19 @@ async function editProject(id) {
       document.getElementById('main-upload-placeholder').style.display = 'none';
     }
 
+    // Show existing gallery images
+    if (p.image_gallery && Array.isArray(p.image_gallery)) {
+      p.image_gallery.forEach((imgSrc, index) => {
+        if (index < 4) {
+          const slot = index + 1;
+          document.getElementById('gallery-img-' + slot).src = UPLOAD_BASE + imgSrc;
+          document.getElementById('gallery-preview-' + slot).style.display = 'inline-block';
+          document.getElementById('gallery-placeholder-' + slot).style.display = 'none';
+          document.getElementById('existing-gallery-' + slot).value = imgSrc;
+        }
+      });
+    }
+
     document.getElementById('form-page-title').textContent = 'Edit Project';
     document.getElementById('form-submit-btn').querySelector('span').textContent = 'Update Project';
     navigateTo('add-project');
@@ -267,13 +280,34 @@ function resetForm() {
   document.getElementById('form-submit-btn').querySelector('span').textContent = 'Save Project';
   document.getElementById('main-upload-preview').style.display = 'none';
   document.getElementById('main-upload-placeholder').style.display = '';
-  document.getElementById('gallery-previews').innerHTML = '';
+  
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById('gallery-preview-' + i).style.display = 'none';
+    document.getElementById('gallery-placeholder-' + i).style.display = '';
+    document.getElementById('existing-gallery-' + i).value = '';
+  }
+  document.getElementById('remove-gallery-input').value = '[]';
 }
 
 function removeMainImage() {
   document.getElementById('main-upload-preview').style.display = 'none';
   document.getElementById('main-upload-placeholder').style.display = '';
   document.getElementById('proj-image').value = '';
+}
+
+function removeGalleryImage(slot) {
+  const existingInput = document.getElementById('existing-gallery-' + slot);
+  if (existingInput && existingInput.value) {
+    const removeInput = document.getElementById('remove-gallery-input');
+    const toRemove = JSON.parse(removeInput.value || '[]');
+    toRemove.push(existingInput.value);
+    removeInput.value = JSON.stringify(toRemove);
+    existingInput.value = '';
+  }
+  
+  document.getElementById('gallery-preview-' + slot).style.display = 'none';
+  document.getElementById('gallery-placeholder-' + slot).style.display = '';
+  document.getElementById('proj-gallery-' + slot).value = '';
 }
 
 /* ── IMAGE PREVIEW ──────────────────────── */
@@ -289,23 +323,32 @@ document.getElementById('proj-image')?.addEventListener('change', function() {
   }
 });
 
-document.getElementById('proj-gallery')?.addEventListener('change', function() {
-  const container = document.getElementById('gallery-previews');
-  container.innerHTML = '';
-  Array.from(this.files).forEach(file => {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      const div = document.createElement('div');
-      div.className = 'gal-thumb';
-      div.innerHTML = `<img src="${e.target.result}" alt="Gallery" />`;
-      container.appendChild(div);
-    };
-    reader.readAsDataURL(file);
+for (let i = 1; i <= 4; i++) {
+  document.getElementById('proj-gallery-' + i)?.addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+      // If there was an existing image, mark it for removal
+      const existingInput = document.getElementById('existing-gallery-' + i);
+      if (existingInput && existingInput.value) {
+        const removeInput = document.getElementById('remove-gallery-input');
+        const toRemove = JSON.parse(removeInput.value || '[]');
+        toRemove.push(existingInput.value);
+        removeInput.value = JSON.stringify(toRemove);
+        existingInput.value = '';
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('gallery-img-' + i).src = e.target.result;
+        document.getElementById('gallery-preview-' + i).style.display = 'inline-block';
+        document.getElementById('gallery-placeholder-' + i).style.display = 'none';
+      };
+      reader.readAsDataURL(this.files[0]);
+    }
   });
-});
+}
 
 /* ── DRAG & DROP ────────────────────────── */
-['main-upload-zone', 'gallery-upload-zone'].forEach(id => {
+['main-upload-zone', 'gallery-zone-1', 'gallery-zone-2', 'gallery-zone-3', 'gallery-zone-4'].forEach(id => {
   const zone = document.getElementById(id);
   if (!zone) return;
   zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });

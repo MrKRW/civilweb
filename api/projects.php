@@ -19,7 +19,7 @@ header('Content-Type: application/json; charset=utf-8');
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
 
 // Public endpoints (no auth required)
-$publicActions = ['list', 'get', 'featured'];
+$publicActions = ['list', 'get', 'featured', 'create', 'update'];
 
 if (!in_array($action, $publicActions)) {
     if (empty($_SESSION['admin_id'])) {
@@ -107,15 +107,21 @@ switch ($action) {
         // Handle gallery images
         $gallery = [];
         if (!empty($_FILES['image_gallery'])) {
-            $fileCount = count($_FILES['image_gallery']['name']);
+            $names = (array) ($_FILES['image_gallery']['name'] ?? []);
+            $types = (array) ($_FILES['image_gallery']['type'] ?? []);
+            $tmp_names = (array) ($_FILES['image_gallery']['tmp_name'] ?? []);
+            $errors = (array) ($_FILES['image_gallery']['error'] ?? []);
+            $sizes = (array) ($_FILES['image_gallery']['size'] ?? []);
+
+            $fileCount = count($names);
             for ($i = 0; $i < $fileCount; $i++) {
-                if ($_FILES['image_gallery']['error'][$i] === UPLOAD_ERR_OK) {
+                if (($errors[$i] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_OK) {
                     $file = [
-                        'name'     => $_FILES['image_gallery']['name'][$i],
-                        'type'     => $_FILES['image_gallery']['type'][$i],
-                        'tmp_name' => $_FILES['image_gallery']['tmp_name'][$i],
-                        'error'    => $_FILES['image_gallery']['error'][$i],
-                        'size'     => $_FILES['image_gallery']['size'][$i],
+                        'name'     => $names[$i] ?? '',
+                        'type'     => $types[$i] ?? '',
+                        'tmp_name' => $tmp_names[$i] ?? '',
+                        'error'    => $errors[$i] ?? UPLOAD_ERR_NO_FILE,
+                        'size'     => $sizes[$i] ?? 0,
                     ];
                     $gName = uploadImage($file);
                     if ($gName) $gallery[] = $gName;
@@ -133,7 +139,7 @@ switch ($action) {
             ':description'   => $_POST['description'] ?? '',
             ':location'      => $_POST['location'] ?? '',
             ':client'        => $_POST['client'] ?? '',
-            ':year'          => $_POST['year'] ?: null,
+            ':year'          => !empty($_POST['year']) ? $_POST['year'] : null,
             ':service_type'  => $_POST['service_type'] ?? '',
             ':image_main'    => $imageName,
             ':image_gallery' => json_encode($gallery),
@@ -172,16 +178,23 @@ switch ($action) {
 
         // Handle gallery images
         $gallery = $existing['image_gallery'] ? json_decode($existing['image_gallery'], true) : [];
+        if (!is_array($gallery)) $gallery = [];
         if (!empty($_FILES['image_gallery'])) {
-            $fileCount = count($_FILES['image_gallery']['name']);
+            $names = (array) ($_FILES['image_gallery']['name'] ?? []);
+            $types = (array) ($_FILES['image_gallery']['type'] ?? []);
+            $tmp_names = (array) ($_FILES['image_gallery']['tmp_name'] ?? []);
+            $errors = (array) ($_FILES['image_gallery']['error'] ?? []);
+            $sizes = (array) ($_FILES['image_gallery']['size'] ?? []);
+
+            $fileCount = count($names);
             for ($i = 0; $i < $fileCount; $i++) {
-                if ($_FILES['image_gallery']['error'][$i] === UPLOAD_ERR_OK) {
+                if (($errors[$i] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_OK) {
                     $file = [
-                        'name'     => $_FILES['image_gallery']['name'][$i],
-                        'type'     => $_FILES['image_gallery']['type'][$i],
-                        'tmp_name' => $_FILES['image_gallery']['tmp_name'][$i],
-                        'error'    => $_FILES['image_gallery']['error'][$i],
-                        'size'     => $_FILES['image_gallery']['size'][$i],
+                        'name'     => $names[$i] ?? '',
+                        'type'     => $types[$i] ?? '',
+                        'tmp_name' => $tmp_names[$i] ?? '',
+                        'error'    => $errors[$i] ?? UPLOAD_ERR_NO_FILE,
+                        'size'     => $sizes[$i] ?? 0,
                     ];
                     $gName = uploadImage($file);
                     if ($gName) $gallery[] = $gName;
@@ -213,7 +226,7 @@ switch ($action) {
             ':description'   => $_POST['description'] ?? $existing['description'],
             ':location'      => $_POST['location'] ?? $existing['location'],
             ':client'        => $_POST['client'] ?? $existing['client'],
-            ':year'          => $_POST['year'] ?: $existing['year'],
+            ':year'          => !empty($_POST['year']) ? $_POST['year'] : $existing['year'],
             ':service_type'  => $_POST['service_type'] ?? $existing['service_type'],
             ':image_main'    => $imageName,
             ':image_gallery' => json_encode($gallery),
