@@ -47,34 +47,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function setQuote(index) {
     if (!quoteText || !quoteAuthor) return;
+    
     quoteText.style.opacity = '0';
+    quoteText.style.transform = 'translateY(10px)';
     quoteAuthor.style.opacity = '0';
+    quoteAuthor.style.transform = 'translateY(10px)';
 
     setTimeout(() => {
       quoteText.textContent = quotes[index].text;
       quoteAuthor.textContent = quotes[index].author;
+      
       quoteText.style.opacity = '1';
+      quoteText.style.transform = 'translateY(0)';
       quoteAuthor.style.opacity = '1';
-    }, 280);
+      quoteAuthor.style.transform = 'translateY(0)';
+    }, 400); // Slightly longer delay to match the 0.5s transition
 
     dots.forEach((d, i) => d.classList.toggle('active', i === index));
     currentQuote = index;
   }
 
   dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => setQuote(i));
+    dot.addEventListener('click', () => {
+      setQuote(i);
+      resetQuoteInterval();
+    });
   });
 
-  if (quoteText) {
-    quoteText.style.transition = 'opacity 0.3s ease';
-    quoteAuthor.style.transition = 'opacity 0.3s ease';
-  }
-
-  // Auto-cycle quotes every 5 seconds
-  setInterval(() => {
+  // Auto-cycle quotes every 6 seconds (longer than gallery)
+  let quoteInterval = setInterval(() => {
     const next = (currentQuote + 1) % quotes.length;
     setQuote(next);
-  }, 5000);
+  }, 6000);
+
+  function resetQuoteInterval() {
+    clearInterval(quoteInterval);
+    quoteInterval = setInterval(() => {
+      const next = (currentQuote + 1) % quotes.length;
+      setQuote(next);
+    }, 6000);
+  }
 
   /* -------------------------------------------------------
      INFINITE CIRCULAR SLIDER GALLERY
@@ -107,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     galNext.addEventListener('click', () => {
       if (isAnimating) return;
       isAnimating = true;
+      resetAutoplay(); // Reset timer on manual click
 
       const firstItem = slider.children[0];
       const secondItem = slider.children[1];
@@ -118,7 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
       slider.style.transition = 'transform 2s cubic-bezier(0.25, 1, 0.5, 1)';
       slider.style.transform = `translateX(-${itemWidth}px)`;
 
-      slider.addEventListener('transitionend', function onNextEnd() {
+      slider.addEventListener('transitionend', function onNextEnd(e) {
+        if (e.target !== slider) return;
         slider.removeEventListener('transitionend', onNextEnd);
         
         // Move the first item to the end
@@ -138,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     galPrev.addEventListener('click', () => {
       if (isAnimating) return;
       isAnimating = true;
+      resetAutoplay(); // Reset timer on manual click
 
       const firstItem = slider.children[0];
       const lastItem = slider.children[slider.children.length - 1];
@@ -158,7 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
       slider.style.transition = 'transform 2s cubic-bezier(0.25, 1, 0.5, 1)';
       slider.style.transform = 'translateX(0)';
 
-      slider.addEventListener('transitionend', function onPrevEnd() {
+      slider.addEventListener('transitionend', function onPrevEnd(e) {
+        if (e.target !== slider) return;
         slider.removeEventListener('transitionend', onPrevEnd);
         isAnimating = false;
       });
@@ -171,7 +187,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Auto-play functionality
     let autoplayInterval = setInterval(() => {
       galNext.click();
-    }, 4000); // Change image every 4 seconds (2s animation + 2s pause)
+    }, 5000); // Increased to 5s for better pacing
+
+    function resetAutoplay() {
+      clearInterval(autoplayInterval);
+      autoplayInterval = setInterval(() => {
+        galNext.click();
+      }, 5000);
+    }
 
     // Pause on hover
     const galleryWrapper = document.querySelector('.hs-gallery-wrapper');

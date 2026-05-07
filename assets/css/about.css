@@ -314,18 +314,19 @@
 
 .hs-gallery-slider {
   display: flex;
-  align-items: flex-start;
+  align-items: center; /* Center items vertically */
   gap: 16px;
   transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1);
   will-change: transform;
+  height: 360px; /* Fixed height for the entire slider */
 }
 
 .hs-gallery-item {
   flex: 0 0 400px;
-  height: 210px;
+  height: 360px; /* All items are now the same height */
   overflow: hidden;
   position: relative;
-  transition: all 2s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: flex 2s cubic-bezier(0.25, 1, 0.5, 1); /* Only animate width */
 }
 
 .hs-gallery-item img {
@@ -338,11 +339,11 @@
 
 .hs-gallery-item.active {
   flex: 0 0 720px;
-  height: 360px;
+  /* height remains 360px */
 }
 
 .hs-gallery-item.active img {
-  transform: scale(1.1);
+  transform: scale(1.05); /* Slightly reduced scale to avoid blurriness */
 }
 
 .hs-gallery-controls {
@@ -415,6 +416,7 @@
   margin: 0 auto;
   padding: 0 60px;
   text-align: center;
+  backface-visibility: hidden; /* GPU optimization */
 }
 
 .hs-quote-text {
@@ -425,6 +427,8 @@
   line-height: 1.65;
   letter-spacing: -0.01em;
   margin-bottom: 36px;
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Longer, smoother transition */
+  will-change: opacity, transform;
 }
 
 .hs-quote-author {
@@ -435,6 +439,8 @@
   text-transform: uppercase;
   color: #888;
   margin-bottom: 28px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: opacity, transform;
 }
 
 .hs-quote-dots {
@@ -979,8 +985,12 @@
     height: auto;
   }
 
+  .hs-gallery-slider {
+    height: 360px;
+  }
+
   .hs-gallery-item {
-    height: 260px;
+    height: 360px;
   }
 
   .hs-quote-inner {
