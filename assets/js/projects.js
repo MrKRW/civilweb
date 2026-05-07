@@ -114,17 +114,19 @@
       }
 
       return `
-        <article class="pj-card">
-          <div class="pj-card-img">
-            <img src="${imgSrc}" alt="${escAttr(p.title)}" loading="lazy" />
-            <span class="pj-card-badge ${badgeClass}">${p.category}</span>
-            ${starHtml}
-          </div>
-          <div class="pj-card-info">
-            <h3 class="pj-card-title">${escHtml(p.title)}</h3>
-            <div class="pj-card-meta">${metaParts.join('')}</div>
-          </div>
-        </article>`;
+        <a href="project-details.html?id=${p.id}" style="text-decoration:none; color:inherit; display:block;">
+          <article class="pj-card">
+            <div class="pj-card-img">
+              <img src="${imgSrc}" alt="${escAttr(p.title)}" loading="lazy" />
+              <span class="pj-card-badge ${badgeClass}">${p.category}</span>
+              ${starHtml}
+            </div>
+            <div class="pj-card-info">
+              <h3 class="pj-card-title">${escHtml(p.title)}</h3>
+              <div class="pj-card-meta">${metaParts.join('')}</div>
+            </div>
+          </article>
+        </a>`;
     }).join('');
   }
 
