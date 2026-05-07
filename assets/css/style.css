@@ -317,15 +317,7 @@ p {
   justify-content: space-between;
   padding: 0 40px;
   height: 60px;
-  transform: translateY(-100%);
-  opacity: 0;
   transition: transform 0.4s var(--ease), opacity 0.4s var(--ease);
-  pointer-events: none;
-}
-
-#sticky-header.visible {
-  transform: translateY(0);
-  opacity: 1;
   pointer-events: all;
 }
 

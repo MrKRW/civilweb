@@ -38,8 +38,8 @@ window.addEventListener('scroll', () => {
   // Toggle hero-state elements
   if (topBar) topBar.classList.toggle('hidden', pastHero);
 
-  // Toggle sticky header
-  if (stickyHeader) stickyHeader.classList.toggle('visible', pastHero);
+  // Toggle sticky header (standardized to be always visible)
+  // if (stickyHeader) stickyHeader.classList.toggle('visible', pastHero);
 
   // Back-to-top
   if (backTop) backTop.classList.toggle('show', window.scrollY > 400);

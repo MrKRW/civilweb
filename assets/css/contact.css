@@ -7,48 +7,12 @@
 /* ----------------------------------------
    PAGE-LEVEL HEADER (always visible, white)
 ---------------------------------------- */
-#ct-page-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+/* ----------------------------------------
+   PAGE-LEVEL HEADER (standardized)
+---------------------------------------- */
+#sticky-header {
   background: var(--white);
   border-bottom: 1px solid var(--gray-light);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 60px;
-  height: 64px;
-}
-
-.ct-nav-logo img {
-  height: 48px;
-  width: auto;
-  display: block;
-}
-
-.ct-nav-links {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  list-style: none;
-}
-
-.ct-nav-links li a {
-  font-family: var(--font-h);
-  font-size: 0.8125rem;
-  font-weight: 300;
-  letter-spacing: 0.04em;
-  color: rgba(0, 0, 0, 0.55);
-  padding: 0 22px;
-  text-transform: lowercase;
-  text-decoration: none;
-  transition: color 0.25s var(--ease);
-  white-space: nowrap;
-}
-
-.ct-nav-links li a:hover,
-.ct-nav-links li.active a {
-  color: var(--black);
 }
 
 /* ----------------------------------------
