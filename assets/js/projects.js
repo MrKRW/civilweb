@@ -20,6 +20,13 @@
 
     if (!grid) return;
 
+    // Handle initial filter from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter');
+    if (filterParam && ['local', 'international'].includes(filterParam.toLowerCase())) {
+      activeLocation = filterParam.toLowerCase();
+    }
+
     initFilters();
     loadProjects();
   });
@@ -126,6 +133,13 @@
     // Location filters (first bar)
     const locationBar = document.querySelector('.pj-filters-inner:not(.pj-type-filters)');
     if (locationBar) {
+      // Set initial active button based on activeLocation
+      const initialBtn = locationBar.querySelector(`.pj-filter-btn[data-filter="${activeLocation}"]`);
+      if (initialBtn) {
+        locationBar.querySelectorAll('.pj-filter-btn').forEach(b => b.classList.remove('active'));
+        initialBtn.classList.add('active');
+      }
+
       locationBar.addEventListener('click', (e) => {
         const btn = e.target.closest('.pj-filter-btn');
         if (!btn) return;
