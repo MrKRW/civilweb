@@ -33,24 +33,25 @@ switch ($action) {
 
     /* ── LIST ─────────────────────────────────────── */
     case 'list':
-        $where  = [];
+        $where = [];
         $params = [];
 
         if (!empty($_GET['category'])) {
-            $where[]  = 'category = :cat';
+            $where[] = 'category = :cat';
             $params[':cat'] = $_GET['category'];
         }
         if (!empty($_GET['status'])) {
-            $where[]  = 'status = :st';
+            $where[] = 'status = :st';
             $params[':st'] = $_GET['status'];
         }
         if (isset($_GET['featured']) && $_GET['featured'] !== '') {
-            $where[]  = 'featured = :feat';
+            $where[] = 'featured = :feat';
             $params[':feat'] = (int) $_GET['featured'];
         }
 
         $sql = 'SELECT * FROM projects';
-        if ($where) $sql .= ' WHERE ' . implode(' AND ', $where);
+        if ($where)
+            $sql .= ' WHERE ' . implode(' AND ', $where);
         $sql .= ' ORDER BY sort_order ASC, created_at DESC';
 
         $stmt = $db->prepare($sql);
@@ -67,11 +68,12 @@ switch ($action) {
 
     /* ── GET SINGLE ──────────────────────────────── */
     case 'get':
-        $id   = (int) ($_GET['id'] ?? 0);
+        $id = (int) ($_GET['id'] ?? 0);
         $stmt = $db->prepare('SELECT * FROM projects WHERE id = :id');
         $stmt->execute([':id' => $id]);
         $project = $stmt->fetch();
-        if (!$project) jsonResponse(['error' => 'Not found'], 404);
+        if (!$project)
+            jsonResponse(['error' => 'Not found'], 404);
 
         $project['image_gallery'] = $project['image_gallery'] ? json_decode($project['image_gallery'], true) : [];
         jsonResponse(['project' => $project]);
@@ -92,16 +94,19 @@ switch ($action) {
 
     /* ── CREATE ───────────────────────────────────── */
     case 'create':
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') jsonResponse(['error' => 'POST required'], 405);
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST')
+            jsonResponse(['error' => 'POST required'], 405);
 
         $title = trim($_POST['title'] ?? '');
-        if ($title === '') jsonResponse(['error' => 'Title is required'], 400);
+        if ($title === '')
+            jsonResponse(['error' => 'Title is required'], 400);
 
         // Handle main image upload
         $imageName = '';
         if (!empty($_FILES['image_main']['name'])) {
             $imageName = uploadImage($_FILES['image_main']);
-            if (!$imageName) jsonResponse(['error' => 'Image upload failed'], 400);
+            if (!$imageName)
+                jsonResponse(['error' => 'Image upload failed'], 400);
         }
 
         // Handle gallery images
@@ -117,14 +122,15 @@ switch ($action) {
             for ($i = 0; $i < $fileCount; $i++) {
                 if (($errors[$i] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_OK) {
                     $file = [
-                        'name'     => $names[$i] ?? '',
-                        'type'     => $types[$i] ?? '',
+                        'name' => $names[$i] ?? '',
+                        'type' => $types[$i] ?? '',
                         'tmp_name' => $tmp_names[$i] ?? '',
-                        'error'    => $errors[$i] ?? UPLOAD_ERR_NO_FILE,
-                        'size'     => $sizes[$i] ?? 0,
+                        'error' => $errors[$i] ?? UPLOAD_ERR_NO_FILE,
+                        'size' => $sizes[$i] ?? 0,
                     ];
                     $gName = uploadImage($file);
-                    if ($gName) $gallery[] = $gName;
+                    if ($gName)
+                        $gallery[] = $gName;
                 }
             }
         }
@@ -134,18 +140,18 @@ switch ($action) {
             VALUES (:title, :category, :description, :location, :client, :year, :service_type, :image_main, :image_gallery, :featured, :status, :sort_order)
         ");
         $stmt->execute([
-            ':title'         => $title,
-            ':category'      => $_POST['category'] ?? 'local',
-            ':description'   => $_POST['description'] ?? '',
-            ':location'      => $_POST['location'] ?? '',
-            ':client'        => $_POST['client'] ?? '',
-            ':year'          => !empty($_POST['year']) ? $_POST['year'] : null,
-            ':service_type'  => $_POST['service_type'] ?? '',
-            ':image_main'    => $imageName,
+            ':title' => $title,
+            ':category' => $_POST['category'] ?? 'local',
+            ':description' => $_POST['description'] ?? '',
+            ':location' => $_POST['location'] ?? '',
+            ':client' => $_POST['client'] ?? '',
+            ':year' => !empty($_POST['year']) ? $_POST['year'] : null,
+            ':service_type' => $_POST['service_type'] ?? '',
+            ':image_main' => $imageName,
             ':image_gallery' => json_encode($gallery),
-            ':featured'      => (int) ($_POST['featured'] ?? 0),
-            ':status'        => $_POST['status'] ?? 'published',
-            ':sort_order'    => (int) ($_POST['sort_order'] ?? 0),
+            ':featured' => (int) ($_POST['featured'] ?? 0),
+            ':status' => $_POST['status'] ?? 'published',
+            ':sort_order' => (int) ($_POST['sort_order'] ?? 0),
         ]);
 
         $newId = $db->lastInsertId();
@@ -154,16 +160,19 @@ switch ($action) {
 
     /* ── UPDATE ───────────────────────────────────── */
     case 'update':
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') jsonResponse(['error' => 'POST required'], 405);
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST')
+            jsonResponse(['error' => 'POST required'], 405);
 
         $id = (int) ($_GET['id'] ?? $_POST['id'] ?? 0);
-        if (!$id) jsonResponse(['error' => 'ID required'], 400);
+        if (!$id)
+            jsonResponse(['error' => 'ID required'], 400);
 
         // Fetch existing
         $stmt = $db->prepare('SELECT * FROM projects WHERE id = :id');
         $stmt->execute([':id' => $id]);
         $existing = $stmt->fetch();
-        if (!$existing) jsonResponse(['error' => 'Not found'], 404);
+        if (!$existing)
+            jsonResponse(['error' => 'Not found'], 404);
 
         // Handle main image
         $imageName = $existing['image_main'];
@@ -178,7 +187,8 @@ switch ($action) {
 
         // Handle gallery images
         $gallery = $existing['image_gallery'] ? json_decode($existing['image_gallery'], true) : [];
-        if (!is_array($gallery)) $gallery = [];
+        if (!is_array($gallery))
+            $gallery = [];
         if (!empty($_FILES['image_gallery'])) {
             $names = (array) ($_FILES['image_gallery']['name'] ?? []);
             $types = (array) ($_FILES['image_gallery']['type'] ?? []);
@@ -190,14 +200,15 @@ switch ($action) {
             for ($i = 0; $i < $fileCount; $i++) {
                 if (($errors[$i] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_OK) {
                     $file = [
-                        'name'     => $names[$i] ?? '',
-                        'type'     => $types[$i] ?? '',
+                        'name' => $names[$i] ?? '',
+                        'type' => $types[$i] ?? '',
                         'tmp_name' => $tmp_names[$i] ?? '',
-                        'error'    => $errors[$i] ?? UPLOAD_ERR_NO_FILE,
-                        'size'     => $sizes[$i] ?? 0,
+                        'error' => $errors[$i] ?? UPLOAD_ERR_NO_FILE,
+                        'size' => $sizes[$i] ?? 0,
                     ];
                     $gName = uploadImage($file);
-                    if ($gName) $gallery[] = $gName;
+                    if ($gName)
+                        $gallery[] = $gName;
                 }
             }
         }
@@ -221,19 +232,19 @@ switch ($action) {
             WHERE id = :id
         ");
         $stmt->execute([
-            ':title'         => $_POST['title'] ?? $existing['title'],
-            ':category'      => $_POST['category'] ?? $existing['category'],
-            ':description'   => $_POST['description'] ?? $existing['description'],
-            ':location'      => $_POST['location'] ?? $existing['location'],
-            ':client'        => $_POST['client'] ?? $existing['client'],
-            ':year'          => !empty($_POST['year']) ? $_POST['year'] : $existing['year'],
-            ':service_type'  => $_POST['service_type'] ?? $existing['service_type'],
-            ':image_main'    => $imageName,
+            ':title' => $_POST['title'] ?? $existing['title'],
+            ':category' => $_POST['category'] ?? $existing['category'],
+            ':description' => $_POST['description'] ?? $existing['description'],
+            ':location' => $_POST['location'] ?? $existing['location'],
+            ':client' => $_POST['client'] ?? $existing['client'],
+            ':year' => !empty($_POST['year']) ? $_POST['year'] : $existing['year'],
+            ':service_type' => $_POST['service_type'] ?? $existing['service_type'],
+            ':image_main' => $imageName,
             ':image_gallery' => json_encode($gallery),
-            ':featured'      => (int) ($_POST['featured'] ?? $existing['featured']),
-            ':status'        => $_POST['status'] ?? $existing['status'],
-            ':sort_order'    => (int) ($_POST['sort_order'] ?? $existing['sort_order']),
-            ':id'            => $id,
+            ':featured' => (int) ($_POST['featured'] ?? $existing['featured']),
+            ':status' => $_POST['status'] ?? $existing['status'],
+            ':sort_order' => (int) ($_POST['sort_order'] ?? $existing['sort_order']),
+            ':id' => $id,
         ]);
 
         jsonResponse(['success' => true]);
@@ -241,16 +252,19 @@ switch ($action) {
 
     /* ── DELETE ───────────────────────────────────── */
     case 'delete':
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') jsonResponse(['error' => 'POST required'], 405);
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST')
+            jsonResponse(['error' => 'POST required'], 405);
 
         $id = (int) ($_GET['id'] ?? $_POST['id'] ?? 0);
-        if (!$id) jsonResponse(['error' => 'ID required'], 400);
+        if (!$id)
+            jsonResponse(['error' => 'ID required'], 400);
 
         // Fetch to delete images
         $stmt = $db->prepare('SELECT * FROM projects WHERE id = :id');
         $stmt->execute([':id' => $id]);
         $project = $stmt->fetch();
-        if (!$project) jsonResponse(['error' => 'Not found'], 404);
+        if (!$project)
+            jsonResponse(['error' => 'Not found'], 404);
 
         // Remove images
         deleteImage($project['image_main']);
@@ -267,7 +281,8 @@ switch ($action) {
 
     /* ── TOGGLE FEATURED ─────────────────────────── */
     case 'toggle_featured':
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') jsonResponse(['error' => 'POST required'], 405);
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST')
+            jsonResponse(['error' => 'POST required'], 405);
 
         $id = (int) ($_GET['id'] ?? $_POST['id'] ?? 0);
         $stmt = $db->prepare('UPDATE projects SET featured = NOT featured WHERE id = :id');
@@ -278,7 +293,8 @@ switch ($action) {
 
     /* ── TOGGLE STATUS ───────────────────────────── */
     case 'toggle_status':
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') jsonResponse(['error' => 'POST required'], 405);
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST')
+            jsonResponse(['error' => 'POST required'], 405);
 
         $id = (int) ($_GET['id'] ?? $_POST['id'] ?? 0);
         $stmt = $db->prepare("UPDATE projects SET status = IF(status='published','draft','published') WHERE id = :id");
@@ -293,20 +309,24 @@ switch ($action) {
 
 /* ── IMAGE HELPERS ───────────────────────────────── */
 
-function uploadImage(array $file): string {
+function uploadImage(array $file): string
+{
     $allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
     $maxSize = 10 * 1024 * 1024; // 10 MB
 
-    if ($file['error'] !== UPLOAD_ERR_OK) return '';
-    if (!in_array($file['type'], $allowed)) return '';
-    if ($file['size'] > $maxSize) return '';
+    if ($file['error'] !== UPLOAD_ERR_OK)
+        return '';
+    if (!in_array($file['type'], $allowed))
+        return '';
+    if ($file['size'] > $maxSize)
+        return '';
 
     $uploadDir = __DIR__ . '/../uploads/projects/';
     if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0755, true);
     }
 
-    $ext  = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
     $name = uniqid('proj_', true) . '.' . $ext;
     $dest = $uploadDir . $name;
 
@@ -316,8 +336,10 @@ function uploadImage(array $file): string {
     return '';
 }
 
-function deleteImage(string $filename): void {
-    if (empty($filename)) return;
+function deleteImage(string $filename): void
+{
+    if (empty($filename))
+        return;
     $path = __DIR__ . '/../uploads/projects/' . $filename;
     if (file_exists($path)) {
         @unlink($path);
