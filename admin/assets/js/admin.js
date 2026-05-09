@@ -479,15 +479,27 @@ async function editShopItem(id) {
     document.getElementById('shop-original-price').value = p.original_price || '';
     document.getElementById('shop-category').value = p.category || '';
     document.getElementById('shop-status').value = p.status;
+    document.getElementById('shop-sort').value = p.sort_order || 0;
     document.getElementById('shop-desc').value = p.description || '';
 
+    // Main image
     if (p.image) {
-      const preview = document.getElementById('shop-upload-preview');
-      const img = document.getElementById('shop-preview-img');
-      img.src = SHOP_UPLOAD_BASE + p.image;
-      preview.style.display = 'inline-block';
+      document.getElementById('shop-preview-img').src = SHOP_UPLOAD_BASE + p.image;
+      document.getElementById('shop-upload-preview').style.display = 'inline-block';
       document.getElementById('shop-upload-placeholder').style.display = 'none';
     }
+
+    // Gallery images
+    const gallery = Array.isArray(p.gallery_images) ? p.gallery_images : [];
+    gallery.forEach((imgSrc, index) => {
+      if (index < 4) {
+        const slot = index + 1;
+        document.getElementById('shop-gallery-img-' + slot).src = SHOP_UPLOAD_BASE + imgSrc;
+        document.getElementById('shop-gallery-preview-' + slot).style.display = 'inline-block';
+        document.getElementById('shop-gallery-placeholder-' + slot).style.display = 'none';
+        document.getElementById('shop-existing-gallery-' + slot).value = imgSrc;
+      }
+    });
 
     document.getElementById('shop-form-page-title').textContent = 'Edit Shop Item';
     document.getElementById('shop-form-submit-btn').querySelector('span').textContent = 'Update Item';
@@ -523,12 +535,33 @@ function resetShopForm() {
   document.getElementById('shop-form-submit-btn').querySelector('span').textContent = 'Save Item';
   document.getElementById('shop-upload-preview').style.display = 'none';
   document.getElementById('shop-upload-placeholder').style.display = '';
+  // Clear gallery slots
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById('shop-gallery-preview-' + i).style.display = 'none';
+    document.getElementById('shop-gallery-placeholder-' + i).style.display = '';
+    document.getElementById('shop-existing-gallery-' + i).value = '';
+  }
+  document.getElementById('remove-shop-gallery-input').value = '[]';
 }
 
 function removeShopImage() {
   document.getElementById('shop-upload-preview').style.display = 'none';
   document.getElementById('shop-upload-placeholder').style.display = '';
   document.getElementById('shop-image').value = '';
+}
+
+function removeShopGalleryImage(slot) {
+  const existingInput = document.getElementById('shop-existing-gallery-' + slot);
+  if (existingInput && existingInput.value) {
+    const removeInput = document.getElementById('remove-shop-gallery-input');
+    const toRemove = JSON.parse(removeInput.value || '[]');
+    toRemove.push(existingInput.value);
+    removeInput.value = JSON.stringify(toRemove);
+    existingInput.value = '';
+  }
+  document.getElementById('shop-gallery-preview-' + slot).style.display = 'none';
+  document.getElementById('shop-gallery-placeholder-' + slot).style.display = '';
+  document.getElementById('shop-gallery-' + slot).value = '';
 }
 
 document.getElementById('shop-image')?.addEventListener('change', function() {
@@ -541,6 +574,39 @@ document.getElementById('shop-image')?.addEventListener('change', function() {
     };
     reader.readAsDataURL(this.files[0]);
   }
+});
+
+// Shop gallery file-change previews
+for (let i = 1; i <= 4; i++) {
+  document.getElementById('shop-gallery-' + i)?.addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+      // If replacing an existing gallery image, mark the old one for removal
+      const existingInput = document.getElementById('shop-existing-gallery-' + i);
+      if (existingInput && existingInput.value) {
+        const removeInput = document.getElementById('remove-shop-gallery-input');
+        const toRemove = JSON.parse(removeInput.value || '[]');
+        toRemove.push(existingInput.value);
+        removeInput.value = JSON.stringify(toRemove);
+        existingInput.value = '';
+      }
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('shop-gallery-img-' + i).src = e.target.result;
+        document.getElementById('shop-gallery-preview-' + i).style.display = 'inline-block';
+        document.getElementById('shop-gallery-placeholder-' + i).style.display = 'none';
+      };
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+}
+
+// Shop gallery drag-and-drop
+['shop-upload-zone', 'shop-gallery-zone-1', 'shop-gallery-zone-2', 'shop-gallery-zone-3', 'shop-gallery-zone-4'].forEach(id => {
+  const zone = document.getElementById(id);
+  if (!zone) return;
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag-over'); });
 });
 
 /* ── INIT ───────────────────────────────── */

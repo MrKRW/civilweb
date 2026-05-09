@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Civilanka — Bar Lightning</title>
+  <title>Civilanka — Shop</title>
   <meta name="description" content="Shop curated design materials and products by Civilanka." />
 
   <!-- Fonts -->
@@ -19,6 +19,59 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    /* ── Loading / Error states ───────────────── */
+    .product-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      gap: 16px;
+      color: var(--text-muted, #888);
+      font-family: var(--font-h, 'Jost', sans-serif);
+    }
+    .product-loading .spinner {
+      width: 36px; height: 36px;
+      border: 2px solid #ddd;
+      border-top-color: #111;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .product-not-found {
+      text-align: center;
+      padding: 80px 20px;
+      font-family: var(--font-h, 'Jost', sans-serif);
+    }
+    .product-not-found h2 { font-size: 1.5rem; margin-bottom: 12px; }
+    .product-not-found a { color: inherit; text-decoration: underline; }
+
+    /* ── Thumbnail active state ───────────────── */
+    .product-thumbnails img {
+      cursor: pointer;
+      transition: opacity 0.2s, outline 0.2s;
+      outline: 2px solid transparent;
+    }
+    .product-thumbnails img.active,
+    .product-thumbnails img:hover {
+      opacity: 1;
+      outline: 2px solid #111;
+    }
+    .product-thumbnails img:not(.active) {
+      opacity: 0.55;
+    }
+
+    /* ── Main image transition ────────────────── */
+    .product-main-image img {
+      transition: opacity 0.25s ease;
+    }
+    .product-main-image img.fading {
+      opacity: 0;
+    }
+  </style>
 </head>
 
 <body>
@@ -66,150 +119,12 @@
   <!-- MAIN PRODUCT SECTION -->
   <main id="single-product-main" style="padding-top: 140px; padding-bottom: 100px;">
     <div class="container">
-      
-      <!-- Breadcrumb -->
-      <div class="shop-breadcrumb" style="margin-bottom: 60px;">
-        <a href="index.html">Home</a> <span class="sep">/</span> <a href="shop.html">Shop</a> <span class="sep">/</span> <a href="#">2 bedrooms apartment</a> <span class="sep">/</span> <span class="current">Bar Lightning</span>
-      </div>
 
-      <!-- Product Top (Gallery + Info) -->
-      <div class="product-single-container">
-        <!-- Gallery -->
-        <div class="product-gallery">
-          <div class="product-thumbnails">
-            <img src="Project images/1 (4).png" alt="Thumb 1" class="active">
-            <img src="Project images/A (10).png" alt="Thumb 2">
-            <img src="Project images/WIN_Facility6.jpg" alt="Thumb 3">
-            <img src="Project images/hero_exterior.png" alt="Thumb 4">
-          </div>
-          <div class="product-main-image">
-            <img src="Project images/2023-11-07.jpg" alt="Bar Lightning Main Image">
-          </div>
-        </div>
-
-        <!-- Info -->
-        <div class="product-summary">
-          <h1 class="product-single-title">Bar Lightning</h1>
-          <p class="product-single-price">$40.00</p>
-          
-          <div class="product-rating">
-            <span class="stars">★★★★★</span>
-            <span class="review-count">(1 customer review)</span>
-          </div>
-
-          <div class="product-short-desc">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae ex vitae risus varius malesuada. Nullam congue egestas lectus, in vulputate leo pretium sed. Sed accumsan risus sed pulvinar sodales.</p>
-          </div>
-
-          <form class="product-cart-form">
-            <div class="quantity-selector">
-              <input type="number" id="qty" value="1" min="1">
-              <div class="qty-btns">
-                <button type="button" class="qty-btn plus">+</button>
-                <button type="button" class="qty-btn minus">-</button>
-              </div>
-            </div>
-            <button type="button" class="btn btn-dark add-to-cart-btn"><span>add to cart</span></button>
-          </form>
-
-          <div class="product-meta">
-            <div class="meta-row"><span class="meta-label">SKU</span> <span class="meta-value">002</span></div>
-            <div class="meta-row"><span class="meta-label">CATEGORY</span> <span class="meta-value">2 BEDROOMS APARTMENT</span></div>
-            <div class="meta-row"><span class="meta-label">TAG</span> <span class="meta-value"><a href="#" class="tag-pill">light</a></span></div>
-          </div>
-          
-          <div class="product-share">
-            <a href="#" aria-label="Share">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product Tabs -->
-      <div class="product-tabs-section">
-        <div class="product-tabs-nav">
-          <button class="tab-link active" data-tab="desc">Description</button>
-          <button class="tab-link" data-tab="info">Additional information</button>
-          <button class="tab-link" data-tab="reviews">Reviews (1)</button>
-        </div>
-        
-        <div class="product-tabs-content">
-          <div id="tab-desc" class="tab-pane active">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae ex vitae risus varius malesuada. Nullam congue egestas lectus, in vulputate leo pretium sed. Sed accumsan risus sed pulvinar sodales. Donec sagittis sed nisi vel molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vehicula est vitae rutrum finibus. Mauris imperdiet volutpat orci porta vehicula. Morbi pulvinar aliquet efficitur. Ut ultricies non eros eget facilisis. Suspendisse id massa velit. Integer vestibulum nibh et enim venenatis, non aliquet augue tincidunt. Sed nisi felis, interdum egestas lacus.</p>
-          </div>
-          <div id="tab-info" class="tab-pane">
-            <p>Weight: 1.5 kg<br>Dimensions: 30 x 30 x 45 cm</p>
-          </div>
-          <div id="tab-reviews" class="tab-pane">
-            <p>1 review for Bar Lightning...</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Related Products -->
-      <div class="related-products-section">
-        <div class="related-header">
-          <h2>Related products</h2>
-          <div class="related-nav">
-            <button class="related-prev"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="11"/><path d="M14 8l-4 4 4 4"/></svg></button>
-            <button class="related-next"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="11"/><path d="M10 8l4 4-4 4"/></svg></button>
-          </div>
-        </div>
-        
-        <div class="shop-grid">
-          <!-- Rel 1 -->
-          <div class="product-card">
-            <div class="product-image">
-               <img src="Project images/1 (4).png" alt="Q Tile-Roofing">
-               <div class="product-overlay">
-                 <button class="add-to-cart">+ add to cart</button>
-               </div>
-            </div>
-            <div class="product-info">
-               <h4 class="product-title"><a href="#">Q Tile-Roofing</a></h4>
-               <p class="product-price"><span>$17.00</span></p>
-            </div>
-          </div>
-          <!-- Rel 2 -->
-          <div class="product-card">
-            <div class="product-image">
-               <img src="Project images/A (10).png" alt="Ground Lamp">
-               <div class="product-overlay">
-                 <button class="add-to-cart">+ add to cart</button>
-               </div>
-            </div>
-            <div class="product-info">
-               <h4 class="product-title"><a href="#">Ground Lamp</a></h4>
-               <p class="product-price"><span>$47.00</span></p>
-            </div>
-          </div>
-          <!-- Rel 3 -->
-          <div class="product-card">
-            <div class="product-image">
-               <img src="Project images/WIN_Facility6.jpg" alt="Rare Porcelain">
-               <div class="product-overlay">
-                 <button class="add-to-cart">+ add to cart</button>
-               </div>
-            </div>
-            <div class="product-info">
-               <h4 class="product-title"><a href="#">Rare Porcelain</a></h4>
-               <p class="product-price"><span>$16.00</span></p>
-            </div>
-          </div>
-          <!-- Rel 4 -->
-          <div class="product-card">
-            <div class="product-image">
-               <img src="Project images/hero_exterior.png" alt="Rare Marble">
-               <div class="product-overlay">
-                 <button class="add-to-cart">+ add to cart</button>
-               </div>
-            </div>
-            <div class="product-info">
-               <h4 class="product-title"><a href="#">Rare Marble</a></h4>
-               <p class="product-price"><span>$20.00</span></p>
-            </div>
-          </div>
+      <!-- Dynamic content injected here -->
+      <div id="product-content">
+        <div class="product-loading">
+          <div class="spinner"></div>
+          <span>Loading product…</span>
         </div>
       </div>
 
@@ -263,24 +178,313 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
-    // Simple tab switching logic for product page
-    document.querySelectorAll('.tab-link').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-link').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-      });
-    });
+  (function () {
+    'use strict';
 
-    // Quantity selector logic
-    const qtyInput = document.getElementById('qty');
-    document.querySelector('.qty-btn.plus').addEventListener('click', () => {
-      qtyInput.value = parseInt(qtyInput.value) + 1;
-    });
-    document.querySelector('.qty-btn.minus').addEventListener('click', () => {
-      if(parseInt(qtyInput.value) > 1) qtyInput.value = parseInt(qtyInput.value) - 1;
-    });
+    const SHOP_API   = 'api/shop.php';
+    const UPLOAD_BASE = 'uploads/shop/';
+
+    /* ── Helpers ──────────────────────────────── */
+    function escHtml(str) {
+      if (!str) return '';
+      const d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    function getParam(name) {
+      return new URLSearchParams(window.location.search).get(name);
+    }
+
+    /* ── Image src helper ─────────────────────── */
+    function imgSrc(filename) {
+      return filename ? UPLOAD_BASE + filename : 'Project images/placeholder.png';
+    }
+
+    /* ── Switch main image with fade ─────────── */
+    function switchMainImage(src) {
+      const mainImg = document.getElementById('main-product-img');
+      if (!mainImg) return;
+      mainImg.classList.add('fading');
+      setTimeout(() => {
+        mainImg.src = src;
+        mainImg.classList.remove('fading');
+      }, 220);
+    }
+
+    /* ── Build the product HTML ───────────────── */
+    function buildProductHTML(item) {
+      // All images: main + gallery
+      const allImages = [];
+      if (item.image) allImages.push(item.image);
+      if (Array.isArray(item.gallery_images)) {
+        item.gallery_images.forEach(g => { if (g) allImages.push(g); });
+      }
+
+      // Thumbnails
+      const thumbsHTML = allImages.map((img, i) => `
+        <img
+          src="${imgSrc(img)}"
+          alt="View ${i + 1}"
+          class="${i === 0 ? 'active' : ''}"
+          data-src="${imgSrc(img)}"
+        />
+      `).join('');
+
+      // Main display image (first available)
+      const mainImageSrc = allImages.length > 0 ? imgSrc(allImages[0]) : 'Project images/placeholder.png';
+
+      // Price
+      let priceHTML = '';
+      if (item.original_price && parseFloat(item.original_price) > parseFloat(item.price)) {
+        priceHTML = `<p class="product-single-price"><del style="color:#aaa;font-weight:300;margin-right:8px;">$${Number(item.original_price).toFixed(2)}</del> $${Number(item.price).toFixed(2)}</p>`;
+      } else {
+        priceHTML = `<p class="product-single-price">$${Number(item.price).toFixed(2)}</p>`;
+      }
+
+      // Short description (first ~200 chars of description)
+      const shortDesc = item.description
+        ? item.description.substring(0, 240) + (item.description.length > 240 ? '…' : '')
+        : '';
+
+      // SKU from ID
+      const sku = String(item.id).padStart(3, '0');
+
+      return `
+        <!-- Breadcrumb -->
+        <div class="shop-breadcrumb" style="margin-bottom: 60px;">
+          <a href="index.html">Home</a>
+          <span class="sep">/</span>
+          <a href="shop.html">Shop</a>
+          ${item.category ? `<span class="sep">/</span> <a href="shop.html">${escHtml(item.category)}</a>` : ''}
+          <span class="sep">/</span>
+          <span class="current">${escHtml(item.title)}</span>
+        </div>
+
+        <!-- Product Top (Gallery + Info) -->
+        <div class="product-single-container">
+
+          <!-- Gallery -->
+          <div class="product-gallery">
+            <div class="product-thumbnails" id="product-thumbnails">
+              ${thumbsHTML || `<img src="${mainImageSrc}" alt="${escHtml(item.title)}" class="active" data-src="${mainImageSrc}" />`}
+            </div>
+            <div class="product-main-image">
+              <img id="main-product-img" src="${mainImageSrc}" alt="${escHtml(item.title)}" />
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="product-summary">
+            <h1 class="product-single-title">${escHtml(item.title)}</h1>
+            ${priceHTML}
+
+            <div class="product-rating">
+              <span class="stars">★★★★★</span>
+              <span class="review-count">(Customer reviews)</span>
+            </div>
+
+            ${shortDesc ? `<div class="product-short-desc"><p>${escHtml(shortDesc)}</p></div>` : ''}
+
+            <form class="product-cart-form">
+              <div class="quantity-selector">
+                <input type="number" id="qty" value="1" min="1">
+                <div class="qty-btns">
+                  <button type="button" class="qty-btn plus">+</button>
+                  <button type="button" class="qty-btn minus">-</button>
+                </div>
+              </div>
+              <button type="button" class="btn btn-dark add-to-cart-btn"><span>add to cart</span></button>
+            </form>
+
+            <div class="product-meta">
+              <div class="meta-row"><span class="meta-label">SKU</span> <span class="meta-value">${sku}</span></div>
+              ${item.category ? `<div class="meta-row"><span class="meta-label">CATEGORY</span> <span class="meta-value">${escHtml(item.category.toUpperCase())}</span></div>` : ''}
+            </div>
+
+            <div class="product-share">
+              <a href="#" aria-label="Share">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Tabs -->
+        <div class="product-tabs-section">
+          <div class="product-tabs-nav">
+            <button class="tab-link active" data-tab="desc">Description</button>
+            <button class="tab-link" data-tab="info">Additional information</button>
+          </div>
+          <div class="product-tabs-content">
+            <div id="tab-desc" class="tab-pane active">
+              ${item.description
+                ? `<p>${escHtml(item.description).replace(/\n/g, '<br>')}</p>`
+                : '<p>No description available.</p>'}
+            </div>
+            <div id="tab-info" class="tab-pane">
+              <p>
+                ${item.category ? `Category: ${escHtml(item.category)}<br>` : ''}
+                SKU: ${sku}<br>
+                Price: $${Number(item.price).toFixed(2)}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related Products -->
+        <div class="related-products-section">
+          <div class="related-header">
+            <h2>Related products</h2>
+            <div class="related-nav">
+              <button class="related-prev">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="11"/><path d="M14 8l-4 4 4 4"/></svg>
+              </button>
+              <button class="related-next">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="11"/><path d="M10 8l4 4-4 4"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="shop-grid" id="related-products-grid">
+            <p style="color:#888;font-family:var(--font-h);">Loading related products…</p>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ── Build related product card ───────────── */
+    function buildRelatedCard(item) {
+      const src = imgSrc(item.image);
+      let priceHTML = '';
+      if (item.original_price && parseFloat(item.original_price) > parseFloat(item.price)) {
+        priceHTML = `<p class="product-price"><del>$${Number(item.original_price).toFixed(2)}</del> <span>$${Number(item.price).toFixed(2)}</span></p>`;
+      } else {
+        priceHTML = `<p class="product-price"><span>$${Number(item.price).toFixed(2)}</span></p>`;
+      }
+      return `
+        <div class="product-card">
+          <div class="product-image">
+            <img src="${src}" alt="${escHtml(item.title)}" loading="lazy" />
+            <div class="product-overlay">
+              <button class="add-to-cart">+ add to cart</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h4 class="product-title"><a href="shop-product.html?id=${item.id}">${escHtml(item.title)}</a></h4>
+            <div class="price-wrap">${priceHTML}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ── Attach tab + qty events ──────────────── */
+    function attachInteractivity() {
+      // Tabs
+      document.querySelectorAll('.tab-link').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.tab-link').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          const pane = document.getElementById('tab-' + btn.dataset.tab);
+          if (pane) pane.classList.add('active');
+        });
+      });
+
+      // Quantity
+      const qtyInput = document.getElementById('qty');
+      if (qtyInput) {
+        document.querySelector('.qty-btn.plus')?.addEventListener('click', () => {
+          qtyInput.value = parseInt(qtyInput.value) + 1;
+        });
+        document.querySelector('.qty-btn.minus')?.addEventListener('click', () => {
+          if (parseInt(qtyInput.value) > 1) qtyInput.value = parseInt(qtyInput.value) - 1;
+        });
+      }
+
+      // Thumbnail click → switch main image
+      document.querySelectorAll('#product-thumbnails img').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          document.querySelectorAll('#product-thumbnails img').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+          switchMainImage(thumb.dataset.src);
+        });
+      });
+    }
+
+    /* ── Load related products ────────────────── */
+    async function loadRelated(currentId) {
+      const grid = document.getElementById('related-products-grid');
+      if (!grid) return;
+      try {
+        const res  = await fetch(SHOP_API + '?action=list');
+        const data = await res.json();
+        const others = (data.items || [])
+          .filter(i => i.status === 'published' && parseInt(i.id) !== parseInt(currentId))
+          .slice(0, 4);
+
+        if (others.length === 0) {
+          grid.innerHTML = '<p style="color:#888;font-family:var(--font-h);grid-column:1/-1;">No related products found.</p>';
+          return;
+        }
+        grid.innerHTML = others.map(buildRelatedCard).join('');
+      } catch {
+        grid.innerHTML = '<p style="color:#888;font-family:var(--font-h);">Could not load related products.</p>';
+      }
+    }
+
+    /* ── Main boot ────────────────────────────── */
+    async function init() {
+      const id = getParam('id');
+      const container = document.getElementById('product-content');
+
+      if (!id) {
+        container.innerHTML = `
+          <div class="product-not-found">
+            <h2>Product not found</h2>
+            <p>No product ID was specified. <a href="shop.html">Browse the shop →</a></p>
+          </div>`;
+        return;
+      }
+
+      try {
+        const res  = await fetch(`${SHOP_API}?action=get&id=${encodeURIComponent(id)}`);
+        const data = await res.json();
+
+        if (!data.item || data.error) {
+          container.innerHTML = `
+            <div class="product-not-found">
+              <h2>Product not found</h2>
+              <p>This product may have been removed or does not exist. <a href="shop.html">Browse the shop →</a></p>
+            </div>`;
+          return;
+        }
+
+        const item = data.item;
+
+        // Update page title + meta
+        document.title = `Civilanka — ${item.title}`;
+
+        // Render product
+        container.innerHTML = buildProductHTML(item);
+
+        // Attach events
+        attachInteractivity();
+
+        // Load related products
+        loadRelated(id);
+
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = `
+          <div class="product-not-found">
+            <h2>Failed to load product</h2>
+            <p>Please try again later. <a href="shop.html">Browse the shop →</a></p>
+          </div>`;
+      }
+    }
+
+    init();
+  })();
   </script>
 </body>
 

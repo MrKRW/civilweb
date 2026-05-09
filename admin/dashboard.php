@@ -407,18 +407,24 @@ $adminUser = $_SESSION['admin_user'] ?? 'admin';
               </select>
             </div>
 
+            <div class="form-group">
+              <label for="shop-sort">Sort Order</label>
+              <input type="number" id="shop-sort" name="sort_order" value="0" min="0" />
+            </div>
+
             <div class="form-group full-width">
               <label for="shop-desc">Description</label>
               <textarea id="shop-desc" name="description" rows="4" placeholder="Describe the item…"></textarea>
             </div>
 
+            <!-- Main Image -->
             <div class="form-group full-width">
-              <label>Item Image</label>
+              <label>Main Image <span class="req">*</span></label>
               <div class="upload-zone" id="shop-upload-zone">
                 <input type="file" id="shop-image" name="image" accept="image/*" class="upload-input" />
                 <div class="upload-placeholder" id="shop-upload-placeholder">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                  <span>Click or drag to upload item image</span>
+                  <span>Click or drag to upload main item image</span>
                   <small>JPEG, PNG, WebP — max 10 MB</small>
                 </div>
                 <div class="upload-preview" id="shop-upload-preview" style="display:none;">
@@ -427,6 +433,72 @@ $adminUser = $_SESSION['admin_user'] ?? 'admin';
                 </div>
               </div>
             </div>
+
+            <!-- Gallery Images (up to 4) -->
+            <div class="form-group full-width">
+              <label>Gallery Images <small style="font-weight:400;color:var(--text-muted);">(shown in product detail page — up to 4)</small></label>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+
+                <!-- Shop Gallery 1 -->
+                <div class="upload-zone" id="shop-gallery-zone-1">
+                  <input type="file" id="shop-gallery-1" name="gallery_images[]" accept="image/*" class="upload-input" />
+                  <div class="upload-placeholder" id="shop-gallery-placeholder-1" style="padding: 20px 10px;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:10px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span style="font-size:0.85rem;">Gallery Image 1</span>
+                  </div>
+                  <div class="upload-preview" id="shop-gallery-preview-1" style="display:none;">
+                    <img id="shop-gallery-img-1" src="" alt="Preview" />
+                    <button type="button" class="upload-remove" onclick="removeShopGalleryImage(1)">×</button>
+                    <input type="hidden" id="shop-existing-gallery-1" value="" />
+                  </div>
+                </div>
+
+                <!-- Shop Gallery 2 -->
+                <div class="upload-zone" id="shop-gallery-zone-2">
+                  <input type="file" id="shop-gallery-2" name="gallery_images[]" accept="image/*" class="upload-input" />
+                  <div class="upload-placeholder" id="shop-gallery-placeholder-2" style="padding: 20px 10px;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:10px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span style="font-size:0.85rem;">Gallery Image 2</span>
+                  </div>
+                  <div class="upload-preview" id="shop-gallery-preview-2" style="display:none;">
+                    <img id="shop-gallery-img-2" src="" alt="Preview" />
+                    <button type="button" class="upload-remove" onclick="removeShopGalleryImage(2)">×</button>
+                    <input type="hidden" id="shop-existing-gallery-2" value="" />
+                  </div>
+                </div>
+
+                <!-- Shop Gallery 3 -->
+                <div class="upload-zone" id="shop-gallery-zone-3">
+                  <input type="file" id="shop-gallery-3" name="gallery_images[]" accept="image/*" class="upload-input" />
+                  <div class="upload-placeholder" id="shop-gallery-placeholder-3" style="padding: 20px 10px;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:10px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span style="font-size:0.85rem;">Gallery Image 3</span>
+                  </div>
+                  <div class="upload-preview" id="shop-gallery-preview-3" style="display:none;">
+                    <img id="shop-gallery-img-3" src="" alt="Preview" />
+                    <button type="button" class="upload-remove" onclick="removeShopGalleryImage(3)">×</button>
+                    <input type="hidden" id="shop-existing-gallery-3" value="" />
+                  </div>
+                </div>
+
+                <!-- Shop Gallery 4 -->
+                <div class="upload-zone" id="shop-gallery-zone-4">
+                  <input type="file" id="shop-gallery-4" name="gallery_images[]" accept="image/*" class="upload-input" />
+                  <div class="upload-placeholder" id="shop-gallery-placeholder-4" style="padding: 20px 10px;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:10px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span style="font-size:0.85rem;">Gallery Image 4</span>
+                  </div>
+                  <div class="upload-preview" id="shop-gallery-preview-4" style="display:none;">
+                    <img id="shop-gallery-img-4" src="" alt="Preview" />
+                    <button type="button" class="upload-remove" onclick="removeShopGalleryImage(4)">×</button>
+                    <input type="hidden" id="shop-existing-gallery-4" value="" />
+                  </div>
+                </div>
+
+              </div>
+              <input type="hidden" id="remove-shop-gallery-input" name="remove_gallery" value="[]" />
+            </div>
+
           </div>
 
           <div class="form-actions">
