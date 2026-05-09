@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Civilanka — Shop</title>
+  <meta name="description" content="Shop curated design materials and products by Civilanka." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+
+  <!-- STICKY HEADER -->
+  <header id="sticky-header" class="visible" role="banner" aria-label="Sticky Navigation">
+    <a href="index.html" class="sticky-logo" aria-label="Civilanka Home">
+      <img src="Logos/trans.PNG" alt="Civilanka Architects" class="logo-img logo-img--sticky" />
+    </a>
+    <ul class="sticky-nav" role="list">
+      <li><a href="index.html">home</a></li>
+      <li><a href="about.html">about</a></li>
+      <li><a href="index.html#services">pages</a></li>
+      <li><a href="projects.html">projects</a></li>
+      <li><a href="blog.html">blog</a></li>
+      <li class="active"><a href="shop.html">shop</a></li>
+      <li><a href="contact.html">contact</a></li>
+    </ul>
+
+    <div class="header-right-actions" style="display: flex; align-items: center; gap: 15px;">
+      <a href="#" class="cart-text"
+        style="font-family: var(--font-h); font-size: 0.8125rem; font-weight: 300; letter-spacing: 0.04em; color: var(--black); display: flex; align-items: center; gap: 5px;">
+        cart <span class="cart-count">0</span>
+      </a>
+      <button class="sticky-circle" aria-label="Action button" style="display: flex !important; position: static;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV OVERLAY -->
+  <nav id="mobile-nav" role="navigation" aria-label="Mobile Navigation">
+    <button id="mobile-nav-close" aria-label="Close menu">&#x2715;</button>
+    <a href="index.html">home</a>
+    <a href="about.html">about</a>
+    <a href="index.html#services">pages</a>
+    <a href="projects.html">projects</a>
+    <a href="blog.html">blog</a>
+    <a href="shop.html">shop</a>
+    <a href="contact.html">contact</a>
+  </nav>
+
+  <!-- MAIN SHOP SECTION -->
+  <main id="shop-main" style="padding-top: 140px; padding-bottom: 100px;">
+    <div class="container">
+
+      <div class="shop-breadcrumb">
+        <a href="index.html">Home</a> <span class="sep">/</span> <span class="current">Shop</span>
+      </div>
+
+      <div class="shop-layout">
+        <!-- SIDEBAR -->
+        <aside class="shop-sidebar">
+
+          <!-- Categories -->
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Categories</h3>
+            <ul class="widget-list">
+              <li><a href="#">1 BEDROOM APARTMENT</a></li>
+              <li><a href="#">2 BEDROOMS APARTMENT</a></li>
+              <li><a href="#">3 BEDROOMS APARTMENT</a></li>
+              <li><a href="#">CHAIR</a></li>
+              <li><a href="#">FURNITURE</a></li>
+              <li><a href="#">TILES</a></li>
+            </ul>
+          </div>
+
+          <!-- Tags -->
+          <div class="sidebar-widget">
+            <h3 class="widget-title">Tags</h3>
+            <div class="widget-tags">
+              <a href="#" class="tag-pill">design</a>
+              <a href="#" class="tag-pill">materials</a>
+              <a href="#" class="tag-pill">technology</a>
+            </div>
+
+            <div class="price-slider-placeholder">
+              <div class="slider-track">
+                <div class="slider-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search -->
+          <div class="sidebar-widget widget-search">
+            <form class="shop-search" action="#">
+              <input type="text" placeholder="SEARCH" />
+              <button type="submit" aria-label="Search">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- Banner -->
+          <div class="sidebar-banner">
+            <img src="Project images/A (10).png" alt="Promo banner">
+            <div class="banner-overlay">
+              <h4>Up to 40%<br>Off All<br>Products</h4>
+              <a href="#" class="banner-link">shop now</a>
+            </div>
+          </div>
+
+        </aside>
+
+        <!-- MAIN GRID -->
+        <div class="shop-content">
+          <div class="shop-topbar">
+            <p class="result-count">SHOWING 1-12 OF 56 RESULTS</p>
+            <div class="sort-dropdown">
+              <select>
+                <option>Default sorting</option>
+                <option>Sort by popularity</option>
+                <option>Sort by average rating</option>
+                <option>Sort by latest</option>
+                <option>Sort by price: low to high</option>
+                <option>Sort by price: high to low</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="shop-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+              <div class="product-image">
+                <span class="sale-badge">SALE</span>
+                <img src="Project images/1 (4).png" alt="Atomic Light">
+                <div class="product-overlay">
+                  <button class="add-to-cart">+ add to cart</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h4 class="product-title">Atomic Light</h4>
+                <div class="price-wrap">
+                  <p class="product-price"><del>$60.00</del> <span>$38.00</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="Project images/2023-11-07.jpg" alt="Bar Lightning">
+                <div class="product-overlay">
+                  <button class="add-to-cart">+ add to cart</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h4 class="product-title">Bar Lightning</h4>
+                <div class="price-wrap">
+                  <p class="product-price"><span>$40.00</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="Project images/A (10).png" alt="Barca Armchair">
+                <div class="product-overlay">
+                  <button class="add-to-cart">+ add to cart</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h4 class="product-title">Barca Armchair</h4>
+                <div class="price-wrap">
+                  <p class="product-price"><span>$160.00</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="Project images/WIN_Facility6.jpg" alt="Cesco Lamp">
+                <div class="product-overlay">
+                  <button class="add-to-cart">+ add to cart</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h4 class="product-title">Cesco Lamp</h4>
+                <div class="price-wrap">
+                  <p class="product-price"><span>$10.00</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="team images/29.png" alt="Desk for Office">
+                <div class="product-overlay">
+                  <button class="add-to-cart">+ add to cart</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h4 class="product-title">Desk for Office</h4>
+                <div class="price-wrap">
+                  <p class="product-price"><span>$50.00</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="team images/30.png" alt="Elegant Chandelier">
+                <div class="product-overlay">
+                  <button class="add-to-cart">+ add to cart</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h4 class="product-title">Elegant Chandelier</h4>
+                <div class="price-wrap">
+                  <p class="product-price"><span>$26.00</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="team images/32.png" alt="Fancy Lamps">
+                <div class="product-overlay">
+                  <button class="add-to-cart">+ add to cart</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h4 class="product-title">Fancy Lamps</h4>
+                <div class="price-wrap">
+                  <p class="product-price"><span>$35.00</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="team images/33.png" alt="Ground Lamp">
+                <div class="product-overlay">
+                  <button class="add-to-cart">+ add to cart</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h4 class="product-title">Ground Lamp</h4>
+                <div class="price-wrap">
+                  <p class="product-price"><span>$47.00</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 9 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="Project images/1 (4).png" alt="Hash Chair">
+                <div class="product-overlay">
+                  <button class="add-to-cart">+ add to cart</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h4 class="product-title">Hash Chair</h4>
+                <div class="price-wrap">
+                  <p class="product-price"><span>$60.00</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 10 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="Project images/2023-11-07.jpg" alt="Iconic Vase">
+                <div class="product-overlay">
+                  <button class="add-to-cart">+ add to cart</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h4 class="product-title">Iconic Vase</h4>
+                <div class="price-wrap">
+                  <p class="product-price"><span>$42.00</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 11 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="Project images/A (10).png" alt="Just Neon">
+                <div class="product-overlay">
+                  <button class="add-to-cart">+ add to cart</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h4 class="product-title">Just Neon</h4>
+                <div class="price-wrap">
+                  <p class="product-price"><span>$13.00</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 12 -->
+            <div class="product-card">
+              <div class="product-image">
+                <img src="Project images/WIN_Facility6.jpg" alt="Kitchen Lighting">
+                <div class="product-overlay">
+                  <button class="add-to-cart">+ add to cart</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <h4 class="product-title">Kitchen Lighting</h4>
+                <div class="price-wrap">
+                  <p class="product-price"><span>$80.00</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="shop-pagination">
+            <div class="pagination-links">
+              <a href="#" class="page-num active">1</a>
+              <a href="#" class="page-num">2</a>
+              <a href="#" class="page-num">3</a>
+            </div>
+            <a href="#" class="page-next">
+              <svg width="24" height="10" viewBox="0 0 24 10" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M0 5h22M18 1l4 4-4 4" />
+              </svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-body">
+        <div class="footer-brand">
+          <a href="index.html" aria-label="Civilanka Home" class="footer-brand-link">
+            <img src="Logos/trans.PNG" alt="Civilanka Architects" class="logo-img logo-img--footer" />
+          </a>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4 class="footer-col-label">Social</h4>
+            <ul>
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">Behance</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="blog.html">Journal</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-col-label">Contact</h4>
+            <address>
+              <a href="#">24 Studio Lane, Colombo</a><br />
+              <a href="tel:+94112345678">+94 11 234 5678</a><br />
+              <a href="mailto:hello@civilweb.com">hello@civilweb.com</a>
+            </address>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Civilanka Architecture Studio</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-top" aria-label="Back to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 18 H18 V6" stroke="#111" stroke-width="1.5" />
+      <polygon points="14,8 22,8 18,2" fill="#111" />
+    </svg>
+  </button>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
