@@ -2,8 +2,10 @@
  * CivilLanka Admin – Client-side Logic
  */
 const API = '../api/projects.php';
+const SHOP_API = '../api/shop.php';
 const AUTH = '../api/auth.php';
 const UPLOAD_BASE = '../uploads/projects/';
+const SHOP_UPLOAD_BASE = '../uploads/shop/';
 
 /* ── NAVIGATION ─────────────────────────── */
 document.querySelectorAll('.nav-item[data-page]').forEach(item => {
@@ -27,9 +29,12 @@ function navigateTo(page) {
   // Load data when switching pages
   if (page === 'dashboard') loadDashboard();
   if (page === 'projects') loadProjects();
+  if (page === 'shop') loadShopItems();
   if (page === 'add-project') {
-    // If not editing, reset
     if (!document.getElementById('edit-id').value) resetForm();
+  }
+  if (page === 'add-shop-item') {
+    if (!document.getElementById('shop-edit-id').value) resetShopForm();
   }
 }
 
@@ -379,6 +384,162 @@ document.getElementById('settings-form')?.addEventListener('submit', async (e) =
     }
   } catch {
     showToast('Network error', 'error');
+  }
+});
+
+/* ── SHOP LOGIC ─────────────────────────── */
+
+async function loadShopItems() {
+  try {
+    const res = await fetch(SHOP_API + '?action=list');
+    const data = await res.json();
+    const items = data.items || [];
+
+    document.getElementById('shop-items-table').innerHTML = items.length
+      ? buildShopTable(items)
+      : '<p class="empty-state">No shop items found.</p>';
+  } catch {
+    document.getElementById('shop-items-table').innerHTML = '<p class="empty-state">Failed to load shop items.</p>';
+  }
+}
+
+function buildShopTable(items) {
+  let html = `<table class="data-table">
+    <thead><tr>
+      <th>Image</th><th>Name</th><th>Price</th><th>Category</th><th>Status</th><th>Actions</th>
+    </tr></thead><tbody>`;
+
+  items.forEach(p => {
+    const thumb = p.image
+      ? `<img src="${SHOP_UPLOAD_BASE}${p.image}" class="project-thumb" alt="" />`
+      : `<div class="project-thumb" style="background:var(--bg-hover);"></div>`;
+    const statusBadge = `<span class="badge badge--${p.status}">${p.status}</span>`;
+
+    html += `<tr>
+      <td>${thumb}</td>
+      <td><strong>${escHtml(p.title)}</strong></td>
+      <td>$${p.price}</td>
+      <td>${p.category || '—'}</td>
+      <td>${statusBadge}</td>
+      <td><div class="action-btns">
+        <button class="action-btn action-btn--edit" onclick="editShopItem(${p.id})" title="Edit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </button>
+        <button class="action-btn action-btn--delete" onclick="deleteShopItem(${p.id}, '${escHtml(p.title)}')" title="Delete">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+        </button>
+      </div></td>
+    </tr>`;
+  });
+
+  html += '</tbody></table>';
+  return html;
+}
+
+document.getElementById('shop-form')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const editId = document.getElementById('shop-edit-id').value;
+  const isEdit = !!editId;
+  const btn = document.getElementById('shop-form-submit-btn');
+  btn.querySelector('span').textContent = 'Saving…';
+  btn.disabled = true;
+
+  const fd = new FormData(e.target);
+  let url = SHOP_API + '?action=' + (isEdit ? 'update&id=' + editId : 'create');
+
+  try {
+    const res = await fetch(url, { method: 'POST', body: fd });
+    const data = await res.json();
+
+    if (data.success) {
+      showToast(isEdit ? 'Item updated!' : 'Item created!', 'success');
+      resetShopForm();
+      navigateTo('shop');
+    } else {
+      showToast(data.error || 'Save failed', 'error');
+    }
+  } catch {
+    showToast('Network error', 'error');
+  }
+
+  btn.querySelector('span').textContent = 'Save Item';
+  btn.disabled = false;
+});
+
+async function editShopItem(id) {
+  try {
+    const res = await fetch(SHOP_API + '?action=get&id=' + id);
+    const data = await res.json();
+    if (!data.item) { showToast('Item not found', 'error'); return; }
+
+    const p = data.item;
+    document.getElementById('shop-edit-id').value = p.id;
+    document.getElementById('shop-title').value = p.title;
+    document.getElementById('shop-price').value = p.price;
+    document.getElementById('shop-original-price').value = p.original_price || '';
+    document.getElementById('shop-category').value = p.category || '';
+    document.getElementById('shop-status').value = p.status;
+    document.getElementById('shop-desc').value = p.description || '';
+
+    if (p.image) {
+      const preview = document.getElementById('shop-upload-preview');
+      const img = document.getElementById('shop-preview-img');
+      img.src = SHOP_UPLOAD_BASE + p.image;
+      preview.style.display = 'inline-block';
+      document.getElementById('shop-upload-placeholder').style.display = 'none';
+    }
+
+    document.getElementById('shop-form-page-title').textContent = 'Edit Shop Item';
+    document.getElementById('shop-form-submit-btn').querySelector('span').textContent = 'Update Item';
+    navigateTo('add-shop-item');
+  } catch {
+    showToast('Failed to load item', 'error');
+  }
+}
+
+async function deleteShopItem(id, title) {
+  if (!confirm(`Delete "${title}"? This cannot be undone.`)) return;
+
+  try {
+    const fd = new FormData();
+    fd.append('id', id);
+    const res = await fetch(SHOP_API + '?action=delete&id=' + id, { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      showToast('Item deleted', 'success');
+      loadShopItems();
+    } else {
+      showToast(data.error || 'Delete failed', 'error');
+    }
+  } catch {
+    showToast('Network error', 'error');
+  }
+}
+
+function resetShopForm() {
+  document.getElementById('shop-form').reset();
+  document.getElementById('shop-edit-id').value = '';
+  document.getElementById('shop-form-page-title').textContent = 'Add New Shop Item';
+  document.getElementById('shop-form-submit-btn').querySelector('span').textContent = 'Save Item';
+  document.getElementById('shop-upload-preview').style.display = 'none';
+  document.getElementById('shop-upload-placeholder').style.display = '';
+}
+
+function removeShopImage() {
+  document.getElementById('shop-upload-preview').style.display = 'none';
+  document.getElementById('shop-upload-placeholder').style.display = '';
+  document.getElementById('shop-image').value = '';
+}
+
+document.getElementById('shop-image')?.addEventListener('change', function() {
+  if (this.files && this.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('shop-preview-img').src = e.target.result;
+      document.getElementById('shop-upload-preview').style.display = 'inline-block';
+      document.getElementById('shop-upload-placeholder').style.display = 'none';
+    };
+    reader.readAsDataURL(this.files[0]);
   }
 });
 
