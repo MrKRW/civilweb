@@ -21,11 +21,12 @@ if (!empty($_SESSION['admin_id'])) {
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #0a0a0a;
+      background: #f8f9fa;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      color: #1a1a1a;
     }
 
     /* ── Animated background ─────────────────── */
@@ -34,8 +35,8 @@ if (!empty($_SESSION['admin_id'])) {
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse at 20% 50%, rgba(30,30,30,0.6) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(50,45,40,0.4) 0%, transparent 50%);
+        radial-gradient(ellipse at 20% 50%, rgba(200,169,126,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(230,230,230,0.5) 0%, transparent 50%);
       z-index: 0;
       animation: bgPulse 8s ease-in-out infinite alternate;
     }
@@ -51,15 +52,15 @@ if (!empty($_SESSION['admin_id'])) {
       z-index: 1;
       width: 420px;
       max-width: 92vw;
-      background: rgba(18, 18, 18, 0.85);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0,0,0,0.05);
       border-radius: 20px;
       padding: 48px 40px;
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       box-shadow:
-        0 0 80px rgba(0,0,0,0.5),
-        inset 0 0 0 1px rgba(255,255,255,0.03);
+        0 20px 60px rgba(0,0,0,0.05),
+        inset 0 0 0 1px rgba(255,255,255,0.5);
       animation: cardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
@@ -76,8 +77,7 @@ if (!empty($_SESSION['admin_id'])) {
 
     .login-logo img {
       height: 60px;
-      filter: brightness(0) invert(1);
-      opacity: 0.9;
+      opacity: 0.95;
     }
 
     .login-subtitle {
@@ -85,7 +85,7 @@ if (!empty($_SESSION['admin_id'])) {
       font-size: 0.7rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: #999;
       margin-bottom: 40px;
     }
 
@@ -98,10 +98,10 @@ if (!empty($_SESSION['admin_id'])) {
     .form-group input {
       width: 100%;
       padding: 16px 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: #fff;
+      border: 1px solid #e2e8f0;
       border-radius: 12px;
-      color: #fff;
+      color: #1a1a1a;
       font-size: 0.95rem;
       font-family: 'Inter', sans-serif;
       outline: none;
@@ -109,14 +109,14 @@ if (!empty($_SESSION['admin_id'])) {
     }
 
     .form-group input::placeholder {
-      color: rgba(255,255,255,0.25);
-      font-weight: 300;
+      color: #94a3b8;
+      font-weight: 400;
     }
 
     .form-group input:focus {
-      border-color: rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.06);
-      box-shadow: 0 0 0 3px rgba(255,255,255,0.04);
+      border-color: #c8a97e;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(200,169,126,0.1);
     }
 
     /* ── Submit button ───────────────────────── */
@@ -125,8 +125,8 @@ if (!empty($_SESSION['admin_id'])) {
       padding: 16px;
       border: none;
       border-radius: 12px;
-      background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
-      color: #0a0a0a;
+      background: linear-gradient(135deg, #c8a97e 0%, #a8875c 100%);
+      color: #fff;
       font-size: 0.85rem;
       font-weight: 600;
       font-family: 'Inter', sans-serif;
@@ -139,7 +139,7 @@ if (!empty($_SESSION['admin_id'])) {
 
     .login-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(255,255,255,0.1);
+      box-shadow: 0 8px 30px rgba(200,169,126,0.25);
     }
 
     .login-btn:active {
@@ -148,12 +148,12 @@ if (!empty($_SESSION['admin_id'])) {
 
     /* ── Error message ───────────────────────── */
     .login-error {
-      background: rgba(220, 50, 50, 0.12);
-      border: 1px solid rgba(220, 50, 50, 0.25);
+      background: #fef2f2;
+      border: 1px solid #fee2e2;
       border-radius: 10px;
       padding: 12px 16px;
       margin-bottom: 20px;
-      color: #ff6b6b;
+      color: #ef4444;
       font-size: 0.82rem;
       display: none;
       animation: shake 0.4s ease;
@@ -172,13 +172,13 @@ if (!empty($_SESSION['admin_id'])) {
       display: block;
       text-align: center;
       margin-top: 28px;
-      color: rgba(255,255,255,0.25);
+      color: #94a3b8;
       font-size: 0.75rem;
       text-decoration: none;
       letter-spacing: 0.06em;
       transition: color 0.3s;
     }
-    .back-link:hover { color: rgba(255,255,255,0.5); }
+    .back-link:hover { color: #64748b; }
   </style>
 </head>
 <body>
