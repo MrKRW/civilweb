@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Civilanka — Bar Lightning</title>
+  <meta name="description" content="Shop curated design materials and products by Civilanka." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+
+  <!-- STICKY HEADER -->
+  <header id="sticky-header" class="visible" role="banner" aria-label="Sticky Navigation">
+    <a href="index.html" class="sticky-logo" aria-label="Civilanka Home">
+      <img src="Logos/trans.PNG" alt="Civilanka Architects" class="logo-img logo-img--sticky" />
+    </a>
+    <ul class="sticky-nav" role="list">
+      <li><a href="index.html">home</a></li>
+      <li><a href="about.html">about</a></li>
+      <li><a href="index.html#services">pages</a></li>
+      <li><a href="projects.html">projects</a></li>
+      <li><a href="blog.html">blog</a></li>
+      <li class="active"><a href="shop.html">shop</a></li>
+      <li><a href="contact.html">contact</a></li>
+    </ul>
+
+    <div class="header-right-actions" style="display: flex; align-items: center; gap: 15px;">
+      <a href="#" class="cart-text"
+        style="font-family: var(--font-h); font-size: 0.8125rem; font-weight: 300; letter-spacing: 0.04em; color: var(--black); display: flex; align-items: center; gap: 5px;">
+        cart <span class="cart-count">0</span>
+      </a>
+      <button class="sticky-circle" aria-label="Action button" style="display: flex !important; position: static;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV OVERLAY -->
+  <nav id="mobile-nav" role="navigation" aria-label="Mobile Navigation">
+    <button id="mobile-nav-close" aria-label="Close menu">&#x2715;</button>
+    <a href="index.html">home</a>
+    <a href="about.html">about</a>
+    <a href="index.html#services">pages</a>
+    <a href="projects.html">projects</a>
+    <a href="blog.html">blog</a>
+    <a href="shop.html">shop</a>
+    <a href="contact.html">contact</a>
+  </nav>
+
+  <!-- MAIN PRODUCT SECTION -->
+  <main id="single-product-main" style="padding-top: 140px; padding-bottom: 100px;">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <div class="shop-breadcrumb" style="margin-bottom: 60px;">
+        <a href="index.html">Home</a> <span class="sep">/</span> <a href="shop.html">Shop</a> <span class="sep">/</span> <a href="#">2 bedrooms apartment</a> <span class="sep">/</span> <span class="current">Bar Lightning</span>
+      </div>
+
+      <!-- Product Top (Gallery + Info) -->
+      <div class="product-single-container">
+        <!-- Gallery -->
+        <div class="product-gallery">
+          <div class="product-thumbnails">
+            <img src="Project images/1 (4).png" alt="Thumb 1" class="active">
+            <img src="Project images/A (10).png" alt="Thumb 2">
+            <img src="Project images/WIN_Facility6.jpg" alt="Thumb 3">
+            <img src="Project images/hero_exterior.png" alt="Thumb 4">
+          </div>
+          <div class="product-main-image">
+            <img src="Project images/2023-11-07.jpg" alt="Bar Lightning Main Image">
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="product-summary">
+          <h1 class="product-single-title">Bar Lightning</h1>
+          <p class="product-single-price">$40.00</p>
+          
+          <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span class="review-count">(1 customer review)</span>
+          </div>
+
+          <div class="product-short-desc">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae ex vitae risus varius malesuada. Nullam congue egestas lectus, in vulputate leo pretium sed. Sed accumsan risus sed pulvinar sodales.</p>
+          </div>
+
+          <form class="product-cart-form">
+            <div class="quantity-selector">
+              <input type="number" id="qty" value="1" min="1">
+              <div class="qty-btns">
+                <button type="button" class="qty-btn plus">+</button>
+                <button type="button" class="qty-btn minus">-</button>
+              </div>
+            </div>
+            <button type="button" class="btn btn-dark add-to-cart-btn"><span>add to cart</span></button>
+          </form>
+
+          <div class="product-meta">
+            <div class="meta-row"><span class="meta-label">SKU</span> <span class="meta-value">002</span></div>
+            <div class="meta-row"><span class="meta-label">CATEGORY</span> <span class="meta-value">2 BEDROOMS APARTMENT</span></div>
+            <div class="meta-row"><span class="meta-label">TAG</span> <span class="meta-value"><a href="#" class="tag-pill">light</a></span></div>
+          </div>
+          
+          <div class="product-share">
+            <a href="#" aria-label="Share">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Tabs -->
+      <div class="product-tabs-section">
+        <div class="product-tabs-nav">
+          <button class="tab-link active" data-tab="desc">Description</button>
+          <button class="tab-link" data-tab="info">Additional information</button>
+          <button class="tab-link" data-tab="reviews">Reviews (1)</button>
+        </div>
+        
+        <div class="product-tabs-content">
+          <div id="tab-desc" class="tab-pane active">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae ex vitae risus varius malesuada. Nullam congue egestas lectus, in vulputate leo pretium sed. Sed accumsan risus sed pulvinar sodales. Donec sagittis sed nisi vel molestie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vehicula est vitae rutrum finibus. Mauris imperdiet volutpat orci porta vehicula. Morbi pulvinar aliquet efficitur. Ut ultricies non eros eget facilisis. Suspendisse id massa velit. Integer vestibulum nibh et enim venenatis, non aliquet augue tincidunt. Sed nisi felis, interdum egestas lacus.</p>
+          </div>
+          <div id="tab-info" class="tab-pane">
+            <p>Weight: 1.5 kg<br>Dimensions: 30 x 30 x 45 cm</p>
+          </div>
+          <div id="tab-reviews" class="tab-pane">
+            <p>1 review for Bar Lightning...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Products -->
+      <div class="related-products-section">
+        <div class="related-header">
+          <h2>Related products</h2>
+          <div class="related-nav">
+            <button class="related-prev"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="11"/><path d="M14 8l-4 4 4 4"/></svg></button>
+            <button class="related-next"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="11"/><path d="M10 8l4 4-4 4"/></svg></button>
+          </div>
+        </div>
+        
+        <div class="shop-grid">
+          <!-- Rel 1 -->
+          <div class="product-card">
+            <div class="product-image">
+               <img src="Project images/1 (4).png" alt="Q Tile-Roofing">
+               <div class="product-overlay">
+                 <button class="add-to-cart">+ add to cart</button>
+               </div>
+            </div>
+            <div class="product-info">
+               <h4 class="product-title"><a href="#">Q Tile-Roofing</a></h4>
+               <p class="product-price"><span>$17.00</span></p>
+            </div>
+          </div>
+          <!-- Rel 2 -->
+          <div class="product-card">
+            <div class="product-image">
+               <img src="Project images/A (10).png" alt="Ground Lamp">
+               <div class="product-overlay">
+                 <button class="add-to-cart">+ add to cart</button>
+               </div>
+            </div>
+            <div class="product-info">
+               <h4 class="product-title"><a href="#">Ground Lamp</a></h4>
+               <p class="product-price"><span>$47.00</span></p>
+            </div>
+          </div>
+          <!-- Rel 3 -->
+          <div class="product-card">
+            <div class="product-image">
+               <img src="Project images/WIN_Facility6.jpg" alt="Rare Porcelain">
+               <div class="product-overlay">
+                 <button class="add-to-cart">+ add to cart</button>
+               </div>
+            </div>
+            <div class="product-info">
+               <h4 class="product-title"><a href="#">Rare Porcelain</a></h4>
+               <p class="product-price"><span>$16.00</span></p>
+            </div>
+          </div>
+          <!-- Rel 4 -->
+          <div class="product-card">
+            <div class="product-image">
+               <img src="Project images/hero_exterior.png" alt="Rare Marble">
+               <div class="product-overlay">
+                 <button class="add-to-cart">+ add to cart</button>
+               </div>
+            </div>
+            <div class="product-info">
+               <h4 class="product-title"><a href="#">Rare Marble</a></h4>
+               <p class="product-price"><span>$20.00</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-body">
+        <div class="footer-brand">
+          <a href="index.html" aria-label="Civilanka Home" class="footer-brand-link">
+            <img src="Logos/trans.PNG" alt="Civilanka Architects" class="logo-img logo-img--footer" />
+          </a>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4 class="footer-col-label">Social</h4>
+            <ul>
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">Behance</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="blog.html">Journal</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-col-label">Contact</h4>
+            <address>
+              <a href="#">24 Studio Lane, Colombo</a><br />
+              <a href="tel:+94112345678">+94 11 234 5678</a><br />
+              <a href="mailto:hello@civilweb.com">hello@civilweb.com</a>
+            </address>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Civilanka Architecture Studio</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-top" aria-label="Back to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 18 H18 V6" stroke="#111" stroke-width="1.5" />
+      <polygon points="14,8 22,8 18,2" fill="#111" />
+    </svg>
+  </button>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Simple tab switching logic for product page
+    document.querySelectorAll('.tab-link').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-link').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Quantity selector logic
+    const qtyInput = document.getElementById('qty');
+    document.querySelector('.qty-btn.plus').addEventListener('click', () => {
+      qtyInput.value = parseInt(qtyInput.value) + 1;
+    });
+    document.querySelector('.qty-btn.minus').addEventListener('click', () => {
+      if(parseInt(qtyInput.value) > 1) qtyInput.value = parseInt(qtyInput.value) - 1;
+    });
+  </script>
+</body>
+
+</html>
