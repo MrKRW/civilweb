@@ -301,7 +301,7 @@ p {
 }
 
 /* ===========================
-   STICKY HEADER — scrolled state
+   STICKY HEADER — unified across all pages
    Layout: [Logo LEFT] [Nav CENTER] [Circle RIGHT]
 =========================== */
 #sticky-header {
@@ -316,9 +316,19 @@ p {
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
-  height: 60px;
-  transition: transform 0.4s var(--ease), opacity 0.4s var(--ease);
+  height: 64px;
+  /* Slide-up/slide-down + fade transition */
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.45s var(--ease), opacity 0.45s var(--ease);
   pointer-events: all;
+}
+
+/* Hidden state — used by JS on home & about pages at page-top */
+#sticky-header.nav-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Sticky logo (left) */
@@ -329,6 +339,8 @@ p {
   color: var(--black);
   line-height: 1;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 
 .sticky-logo strong {
@@ -339,7 +351,7 @@ p {
   font-weight: 300;
 }
 
-/* Sticky nav (center) */
+/* Sticky nav (center) — absolutely centred so it never shifts with logo/circle */
 .sticky-nav {
   display: flex;
   align-items: center;
@@ -347,6 +359,7 @@ p {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  pointer-events: all;
 }
 
 .sticky-nav li {
@@ -354,27 +367,34 @@ p {
   align-items: center;
 }
 
-/* Pipe before the active item only */
-.sticky-nav li.active::before {
-  content: '|';
-  color: var(--black);
-  font-size: 0.8rem;
-  margin-right: 6px;
-  font-weight: 300;
-  line-height: 1;
+/* Vertical pipe separator rendered before EVERY item to match reference */
+.sticky-nav li::before {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background: rgba(0,0,0,0.2);
+  flex-shrink: 0;
+  margin-right: 0;
+}
+
+/* First item — no leading pipe */
+.sticky-nav li:first-child::before {
+  display: none;
 }
 
 .sticky-nav li a {
   font-family: var(--font-h);
   font-size: 0.8125rem;
-  /* 13px */
   font-weight: 300;
   letter-spacing: 0.04em;
-  color: rgba(0, 0, 0, 0.55);
-  padding: 0 20px;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 0 18px;
   transition: color 0.25s var(--ease);
   text-transform: lowercase;
   white-space: nowrap;
+  line-height: 64px;
+  display: block;
 }
 
 .sticky-nav li.active a {
@@ -386,7 +406,7 @@ p {
   color: var(--black);
 }
 
-/* Sticky circle btn (right) */
+/* Circle button — right slot, matches reference image */
 .sticky-circle {
   width: 34px;
   height: 34px;
@@ -396,7 +416,7 @@ p {
   cursor: pointer;
   flex-shrink: 0;
   transition: border-color 0.3s, transform 0.3s;
-  display: none !important;
+  display: flex !important; /* visible on desktop */
   align-items: center;
   justify-content: center;
 }
@@ -406,7 +426,7 @@ p {
   transform: scale(1.1);
 }
 
-/* Sticky Action Button (Right) */
+/* Sticky Action Button (Right) — kept for pages that use it */
 .sticky-btn {
   font-family: var(--font-h);
   font-size: 0.7rem;
@@ -430,7 +450,7 @@ p {
 
 @media (max-width: 600px) {
   .sticky-btn {
-    display: none; /* Hide on mobile to save space, already in mobile nav */
+    display: none;
   }
 }
 
@@ -2734,7 +2754,7 @@ p {
    a fully responsive experience across all pages.
 =================================================== */
 
-/* ── STICKY HEADER — hide nav, show hamburger ─── */
+/* ── STICKY HEADER — hide nav, show hamburger on mobile ─── */
 @media (max-width: 768px) {
   #sticky-header {
     padding: 0 20px;
@@ -2742,14 +2762,18 @@ p {
   }
 
   .sticky-nav {
-    display: none; /* Hide desktop nav — use mobile overlay instead */
+    display: none !important; /* Hide desktop nav — use mobile overlay */
   }
 
   .logo-img--sticky {
     height: 40px;
   }
 
-  /* Hide any right-side inline actions on mobile except hamburger */
+  /* Hide circle and right actions on mobile */
+  .sticky-circle {
+    display: none !important;
+  }
+
   .header-right-actions .sticky-circle {
     display: none !important;
   }

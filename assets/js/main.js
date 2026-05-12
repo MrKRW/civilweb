@@ -4,10 +4,9 @@
 
 const topBar = document.getElementById('top-bar');
 const stickyHeader = document.getElementById('sticky-header');
-const hero = document.getElementById('hero');
 const backTop = document.getElementById('back-top');
 
-// Section→nav-label mapping (for active highlight)
+// Section→nav-label mapping (for active highlight on home page)
 const sectionMap = [
   { id: 'hero', label: 'home' },
   { id: 'about', label: 'about' },
@@ -26,26 +25,48 @@ function getActiveSection() {
 }
 
 function updateNavActive(label) {
-  // sticky-nav
+  if (!stickyHeader) return;
   stickyHeader.querySelectorAll('.sticky-nav li').forEach(li => {
-    li.classList.toggle('active', li.querySelector('a').textContent.trim() === label);
+    const a = li.querySelector('a');
+    if (a) li.classList.toggle('active', a.textContent.trim() === label);
   });
 }
 
+// ============================
+// SCROLL-REVEAL NAV (home + about pages)
+// On these pages the nav is HIDDEN at page-top and slides in on scroll.
+// On all other pages it is always visible.
+// ============================
+const isScrollRevealPage =
+  document.body.classList.contains('about-page') ||
+  document.getElementById('hero') !== null;
+
+if (isScrollRevealPage && stickyHeader) {
+  stickyHeader.classList.add('nav-hidden');
+}
+
+const REVEAL_THRESHOLD = 80; // px
+
 window.addEventListener('scroll', () => {
-  const pastHero = window.scrollY > 50;
+  const scrolled = window.scrollY;
 
-  // Toggle hero-state elements
-  if (topBar) topBar.classList.toggle('hidden', pastHero);
+  // Hide/show hero top-bar
+  if (topBar) topBar.classList.toggle('hidden', scrolled > 50);
 
-  // Toggle sticky header (standardized to be always visible)
-  // if (stickyHeader) stickyHeader.classList.toggle('visible', pastHero);
+  if (stickyHeader) {
+    // Scroll-reveal on home & about
+    if (isScrollRevealPage) {
+      stickyHeader.classList.toggle('nav-hidden', scrolled < REVEAL_THRESHOLD);
+    }
 
-  // Back-to-top
-  if (backTop) backTop.classList.toggle('show', window.scrollY > 400);
+    // Back-to-top button
+    if (backTop) backTop.classList.toggle('show', scrolled > 400);
 
-  // Active nav item
-  if (stickyHeader) updateNavActive(getActiveSection());
+    // Active nav highlight (home page only)
+    if (document.getElementById('hero')) {
+      updateNavActive(getActiveSection());
+    }
+  }
 });
 
 // ============================

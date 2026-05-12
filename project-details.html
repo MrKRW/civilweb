@@ -205,7 +205,7 @@
   <!-- ============================================================
      PAGE HEADER
   ============================================================ -->
-  <header id="sticky-header" class="visible" role="banner" aria-label="Sticky Navigation">
+  <header id="sticky-header" role="banner" aria-label="Sticky Navigation">
     <a href="index.html" class="sticky-logo" aria-label="Civilanka Home">
       <img src="Logos/trans.PNG" alt="Civilanka Architects" class="logo-img logo-img--sticky" />
     </a>
@@ -218,7 +218,29 @@
       <li><a href="shop.html">shop</a></li>
       <li><a href="contact.html">contact</a></li>
     </ul>
+    <!-- Circle button (right) -->
+    <button class="sticky-circle" aria-label="Menu">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+    <!-- Hamburger (mobile only) -->
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="Open navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </header>
+
+  <!-- MOBILE NAV OVERLAY -->
+  <nav id="mobile-nav" role="navigation" aria-label="Mobile Navigation">
+    <button id="mobile-nav-close" aria-label="Close menu">&#x2715;</button>
+    <a href="index.html">home</a>
+    <a href="about.html">about</a>
+    <a href="index.html#services">pages</a>
+    <a href="projects.html">projects</a>
+    <a href="blog.html">blog</a>
+    <a href="shop.html">shop</a>
+    <a href="contact.html">contact</a>
+  </nav>
 
   <!-- ============================================================
      MAIN SPLIT CONTENT

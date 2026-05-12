@@ -97,7 +97,7 @@ body.blog-page {
    BREADCRUMBS
 ---------------------------------------- */
 .breadcrumb-container {
-  padding: 40px 0 20px;
+  padding: 104px 0 20px; /* 64px header + 40px spacing */
 }
 
 .breadcrumbs {

@@ -11,7 +11,7 @@
 }
 
 .ct-page-title {
-  padding: 60px 0 0 !important;
+  padding: 124px 0 0 !important; /* 64px header + 60px spacing */
 }
 
 .ct-title {
