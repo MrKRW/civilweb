@@ -1046,3 +1046,140 @@
     padding: 18px 30px;
   }
 }
+
+/* ============================================================
+   MOBILE — 480px and below (phones)
+============================================================ */
+@media (max-width: 480px) {
+  .hs-hero {
+    min-height: 100svh;
+  }
+
+  .hs-hero-title {
+    font-size: 2.6rem;
+  }
+
+  .hs-hero-content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .hs-hero-footer {
+    left: 20px;
+    bottom: 30px;
+  }
+
+  .hs-intro-inner {
+    padding: 0 20px;
+    gap: 24px;
+  }
+
+  .hs-intro-heading {
+    font-size: 1.5rem;
+  }
+
+  .hs-approach-inner {
+    padding: 0 20px;
+    gap: 28px;
+  }
+
+  .hs-gallery-item,
+  .hs-gallery-item.active {
+    flex: 0 0 240px;
+    height: 200px;
+  }
+
+  .hs-gallery-slider {
+    height: 200px;
+  }
+
+  .hs-gallery-wrapper {
+    padding: 0 16px;
+  }
+
+  .hs-gallery-controls {
+    padding: 0 16px;
+  }
+
+  .hs-quote-inner {
+    padding: 0 20px;
+  }
+
+  .hs-quote-text {
+    font-size: 1rem;
+  }
+
+  .hs-banner-content {
+    padding: 0 20px 32px;
+  }
+
+  .hs-banner-quote {
+    font-size: 1.1rem;
+  }
+
+  .hs-stats-inner {
+    padding: 20px;
+  }
+
+  .hs-stat-item {
+    flex: 0 0 100%;
+    padding: 12px 0;
+  }
+
+  .hs-founders-inner {
+    padding: 40px 20px;
+    gap: 28px;
+  }
+
+  .hs-founders-heading {
+    font-size: 1.8rem;
+  }
+
+  .hs-founder-photo {
+    height: 180px;
+  }
+
+  .hs-founders-photos {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hs-team-grid {
+    padding: 0 20px;
+  }
+
+  .hs-team-card {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .hs-tc-photo {
+    flex: none;
+    width: 100%;
+    height: 200px;
+  }
+
+  .hs-tc-info {
+    padding: 18px 16px;
+  }
+
+  .hs-tc-name {
+    font-size: 1.1rem;
+  }
+
+  .hs-cta-inner {
+    padding: 0 20px;
+    gap: 20px;
+  }
+
+  .hs-cta-text {
+    font-size: 0.9rem;
+  }
+
+  .hs-footer-inner {
+    padding: 40px 20px 28px;
+  }
+
+  .hs-footer-bottom {
+    padding: 16px 20px;
+  }
+}

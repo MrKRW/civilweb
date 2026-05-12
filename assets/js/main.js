@@ -49,19 +49,22 @@ window.addEventListener('scroll', () => {
 });
 
 // ============================
-// MOBILE NAV (both circle buttons open it)
+// MOBILE NAV (hamburger + close button)
 // ============================
 const mobileNav = document.getElementById('mobile-nav');
 const mobileClose = document.getElementById('mobile-nav-close');
+const hamburgerBtn = document.getElementById('hamburger-btn');
 
-function openMenu() { mobileNav.classList.add('open'); }
-function closeMenu() { mobileNav.classList.remove('open'); }
-mobileClose.addEventListener('click', closeMenu);
-mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+function openMenu() { if (mobileNav) mobileNav.classList.add('open'); }
+function closeMenu() { if (mobileNav) mobileNav.classList.remove('open'); }
+
+if (hamburgerBtn) hamburgerBtn.addEventListener('click', openMenu);
+if (mobileClose) mobileClose.addEventListener('click', closeMenu);
+if (mobileNav) mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 // ============================
 // BACK TO TOP
 // ============================
-backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+if (backTop) backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 // ============================
 // OLD HERO SWIPER REMOVED

@@ -1931,51 +1931,39 @@ p {
 }
 
 /* ===========================
-   MOBILE NAV OVERLAY
+   HAMBURGER MENU BUTTON
 =========================== */
-#mobile-nav {
-  position: fixed;
-  inset: 0;
-  background: var(--black);
-  z-index: 2000;
-  display: flex;
+.hamburger-btn {
+  display: none;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 36px;
-  transform: translateX(100%);
-  transition: transform 0.5s var(--ease);
-}
-
-#mobile-nav.open {
-  transform: translateX(0);
-}
-
-#mobile-nav a {
-  font-family: var(--font-h);
-  font-size: 2rem;
-  font-weight: 300;
-  color: var(--white);
-  letter-spacing: 0.05em;
-}
-
-#mobile-nav a:hover {
-  color: var(--accent);
-}
-
-#mobile-nav-close {
-  position: absolute;
-  top: 32px;
-  right: 32px;
-  color: var(--white);
-  font-size: 1.8rem;
-  cursor: pointer;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
   background: none;
   border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 4px;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--black);
+  transition: all 0.3s var(--ease);
+}
+
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: flex;
+  }
 }
 
 /* ===========================
-   MOBILE NAV OVERLAY (replaces old mobile nav)
+   MOBILE NAV OVERLAY
 =========================== */
 #mobile-nav {
   position: fixed;
@@ -2737,5 +2725,577 @@ p {
   }
   .tab-link::after {
     display: none;
+  }
+}
+
+/* ===================================================
+   COMPREHENSIVE MOBILE RESPONSIVENESS OVERRIDES
+   Applied on top of existing breakpoints to ensure
+   a fully responsive experience across all pages.
+=================================================== */
+
+/* ── STICKY HEADER — hide nav, show hamburger ─── */
+@media (max-width: 768px) {
+  #sticky-header {
+    padding: 0 20px;
+    height: 56px;
+  }
+
+  .sticky-nav {
+    display: none; /* Hide desktop nav — use mobile overlay instead */
+  }
+
+  .logo-img--sticky {
+    height: 40px;
+  }
+
+  /* Hide any right-side inline actions on mobile except hamburger */
+  .header-right-actions .sticky-circle {
+    display: none !important;
+  }
+}
+
+/* ── HERO SPLIT SCREEN ─── */
+@media (max-width: 768px) {
+  #hero.split-view {
+    flex-direction: column;
+    min-height: 100svh;
+  }
+
+  .vert-text {
+    display: none;
+  }
+
+  .center-logo-img {
+    max-width: 180px;
+  }
+
+  .hero-custom-pagination {
+    bottom: 20px;
+    left: 20px;
+  }
+}
+
+/* ── ABOUT SECTION ─── */
+@media (max-width: 900px) {
+  #about {
+    padding: 60px 0;
+    background-size: 80%;
+  }
+
+  .new-about-top {
+    flex-direction: column;
+    gap: 36px;
+    margin-bottom: 36px;
+  }
+
+  .new-about-text {
+    padding-right: 0;
+  }
+
+  .about-slideshow {
+    flex: none;
+    width: 100%;
+    height: 240px;
+  }
+
+  .new-about-bottom {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .new-about-links {
+    flex: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-slideshow {
+    height: 200px;
+  }
+
+  .new-about-heading {
+    font-size: 1.4rem;
+  }
+}
+
+/* ── OUR WORK SLIDER (PROJECTS SECTION) ─── */
+@media (max-width: 768px) {
+  #projects {
+    padding: 60px 0;
+  }
+
+  .our-work-container {
+    flex-direction: column;
+    height: auto;
+    min-height: unset;
+    max-height: unset;
+  }
+
+  .our-work-left {
+    flex: none;
+    padding: 0 24px;
+    margin-bottom: 24px;
+  }
+
+  .our-work-label {
+    margin-top: 0;
+  }
+
+  .our-work-right {
+    min-height: 260px;
+  }
+
+  .our-work-swiper {
+    height: 220px;
+  }
+
+  .our-work-slide {
+    width: 80%;
+  }
+
+  .our-work-nav {
+    padding-right: 5%;
+  }
+}
+
+/* ── ACCORDION (SERVICES) ─── */
+@media (max-width: 768px) {
+  .accordion-section {
+    padding: 60px 0;
+  }
+
+  /* Convert horizontal accordion to vertical stacked layout */
+  .acc-container {
+    flex-direction: column;
+    height: auto;
+    width: 95%;
+    gap: 2px;
+  }
+
+  .acc-item {
+    flex: none !important;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .acc-item.active {
+    flex: none !important;
+  }
+
+  .acc-header {
+    width: 100%;
+    min-width: unset;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .acc-title {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    transform: none;
+    font-size: 1.25rem;
+    padding: 0;
+    flex: none;
+  }
+
+  .acc-title::after {
+    display: none;
+  }
+
+  .acc-icon {
+    font-size: 1.4rem;
+    order: 2;
+  }
+
+  .acc-content {
+    flex-direction: column;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .acc-item.active .acc-content {
+    max-height: 600px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .acc-img-wrap {
+    flex: none;
+    height: 220px;
+    width: 100%;
+  }
+
+  .acc-text-wrap {
+    padding: 32px 24px;
+  }
+
+  .acc-close {
+    top: 16px;
+    right: 16px;
+  }
+}
+
+/* ── QUOTE BANNER ─── */
+@media (max-width: 480px) {
+  #quote-banner {
+    height: 50vh;
+    min-height: 300px;
+  }
+
+  .quote-banner-content h2 {
+    font-size: 1.25rem;
+    padding: 0 16px;
+  }
+}
+
+/* ── TEAM SECTION ─── */
+@media (max-width: 480px) {
+  #team {
+    padding: 60px 0;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-cell.team-info {
+    padding: 24px 20px;
+    min-height: 160px;
+  }
+}
+
+/* ── TESTIMONIALS ─── */
+@media (max-width: 600px) {
+  #testimonials {
+    padding: 60px 0;
+  }
+
+  .testimonials-inner {
+    padding: 0 4px;
+  }
+
+  .testimonial-text {
+    font-size: 1.1rem;
+  }
+}
+
+/* ── REF JOURNAL / BLOG CARDS ─── */
+@media (max-width: 768px) {
+  #ref-journal {
+    padding: 60px 0 80px;
+  }
+
+  #ref-journal .container {
+    padding: 0 20px;
+  }
+
+  .ref-journal-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ref-journal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── CTA BANNER ─── */
+@media (max-width: 768px) {
+  #cta-banner {
+    padding: 80px 0;
+  }
+
+  .cta-inner h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #cta-banner {
+    padding: 60px 0;
+  }
+
+  .cta-inner p {
+    font-size: 0.9rem;
+  }
+}
+
+/* ── FOOTER ─── */
+@media (max-width: 480px) {
+  .footer-inner {
+    padding: 0 20px;
+  }
+
+  .footer-body {
+    padding: 48px 0 32px;
+  }
+
+  .logo-img--footer {
+    height: 100px;
+  }
+}
+
+/* ── CONTAINER — universal padding ─── */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .section-pad {
+    padding: 60px 0;
+  }
+}
+
+/* ── SHOP PAGE ─── */
+@media (max-width: 480px) {
+  .shop-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .shop-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+/* ── PRODUCT SINGLE PAGE ─── */
+@media (max-width: 600px) {
+  .product-single-title {
+    font-size: 1.8rem;
+  }
+
+  .product-cart-form {
+    flex-wrap: wrap;
+  }
+
+  .add-to-cart-btn {
+    width: 100%;
+    padding: 0 20px;
+    justify-content: center;
+  }
+}
+
+/* ── BLOG PAGE ─── */
+@media (max-width: 600px) {
+  .post-title {
+    font-size: 1.6rem;
+  }
+
+  .quote-text {
+    font-size: 1.3rem;
+  }
+
+  .quote-text-wrap {
+    padding: 28px 20px;
+  }
+
+  .post-list-content {
+    padding: 24px 20px;
+  }
+}
+
+/* ── PROJECTS PAGE ─── */
+@media (max-width: 480px) {
+  .pj-filters-inner {
+    gap: 12px;
+    padding: 24px 16px 16px;
+  }
+
+  .pj-filter-btn,
+  .pj-type-btn {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+
+  .ct-page-title-inner {
+    padding: 0 20px;
+  }
+}
+
+/* ── CONTACT PAGE ─── */
+@media (max-width: 480px) {
+  .ct-page-title {
+    padding: 48px 0 20px;
+  }
+
+  .ct-title {
+    font-size: 2.4rem !important;
+  }
+
+  .ct-body-inner {
+    padding: 0 20px;
+    gap: 36px;
+  }
+
+  .ct-form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* ── ABOUT PAGE ─── */
+@media (max-width: 768px) {
+  .hs-hero-content {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .hs-hero-footer {
+    left: 24px;
+    bottom: 40px;
+  }
+
+  .hs-intro-inner {
+    grid-template-columns: 1fr;
+    padding: 0 24px;
+    gap: 32px;
+  }
+
+  .hs-approach-inner {
+    grid-template-columns: 1fr;
+    padding: 0 24px;
+  }
+
+  .hs-founders-inner {
+    grid-template-columns: 1fr;
+    padding: 60px 24px;
+    gap: 40px;
+  }
+
+  .hs-founder-photo {
+    height: 280px;
+  }
+
+  .hs-founders-photos {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .hs-team-grid {
+    padding: 0 24px;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .hs-team-card {
+    height: auto;
+    min-height: 160px;
+  }
+
+  .hs-tc-photo {
+    flex: 0 0 140px;
+  }
+
+  .hs-tc-info {
+    padding: 20px 18px;
+  }
+
+  .hs-cta-inner {
+    flex-direction: column;
+    padding: 0 24px;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .hs-footer-inner {
+    flex-direction: column;
+    padding: 48px 24px 32px;
+    gap: 36px;
+  }
+
+  .hs-footer-cols {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .hs-footer-bottom {
+    padding: 16px 24px;
+  }
+
+  .hs-gallery-item {
+    flex: 0 0 280px;
+    height: 260px;
+  }
+
+  .hs-gallery-slider {
+    height: 260px;
+  }
+
+  .hs-gallery-item.active {
+    flex: 0 0 280px;
+  }
+
+  .hs-stats-inner {
+    flex-wrap: wrap;
+    padding: 20px 24px;
+    gap: 0;
+  }
+
+  .hs-stat-item {
+    flex: 0 0 45%;
+    padding: 16px 12px 16px 0;
+  }
+
+  .hs-stat-divider {
+    display: none;
+  }
+
+  .hs-banner-content {
+    padding: 0 24px 40px;
+  }
+
+  .hs-quote-inner {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hs-hero-title {
+    font-size: 2.8rem;
+  }
+
+  .hs-founders-inner {
+    padding: 48px 20px;
+  }
+
+  .hs-founder-photo {
+    height: 220px;
+  }
+
+  .hs-team-card {
+    flex-direction: column;
+  }
+
+  .hs-tc-photo {
+    flex: none;
+    height: 200px;
+    width: 100%;
+  }
+}
+
+/* ── PREVENT HORIZONTAL OVERFLOW GLOBALLY ─── */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  * {
+    max-width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
