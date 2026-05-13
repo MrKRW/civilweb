@@ -416,7 +416,7 @@ p {
   cursor: pointer;
   flex-shrink: 0;
   transition: border-color 0.3s, transform 0.3s;
-  display: flex !important; /* visible on desktop */
+  display: none !important; /* hidden everywhere */
   align-items: center;
   justify-content: center;
 }
