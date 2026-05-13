@@ -365,21 +365,11 @@ p {
 .sticky-nav li {
   display: flex;
   align-items: center;
+  /* No divider lines */
 }
 
-/* Vertical pipe separator rendered before EVERY item to match reference */
+/* Remove all pipe separators */
 .sticky-nav li::before {
-  content: '';
-  display: inline-block;
-  width: 1px;
-  height: 14px;
-  background: rgba(0, 0, 0, 0.2);
-  flex-shrink: 0;
-  margin-right: 0;
-}
-
-/* First item — no leading pipe */
-.sticky-nav li:first-child::before {
   display: none;
 }
 
@@ -395,6 +385,28 @@ p {
   white-space: nowrap;
   line-height: 64px;
   display: block;
+  position: relative;
+}
+
+/* Left-side indicator bar (Active & Hover) */
+.sticky-nav li a::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  /* Positioned to the left of the text within the padding */
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 1.5px;
+  height: 12px;
+  background: var(--black);
+  transform-origin: center;
+  transition: transform 0.25s var(--ease);
+}
+
+/* Show indicator for active item or on hover */
+.sticky-nav li.active a::after,
+.sticky-nav li a:hover::after {
+  transform: translateY(-50%) scaleY(1);
 }
 
 .sticky-nav li.active a {
@@ -544,7 +556,7 @@ p {
 
 .vert-right {
   right: 40px;
-  top: 55% !important;
+  top: 48% !important;
   /* Force the position to 75% down */
   transform: translate(50%, -50%) rotate(90deg) !important;
   transform-origin: center center !important;
@@ -575,39 +587,9 @@ p {
   #hero.split-view {
     flex-direction: column;
   }
-
-  .vert-text {
-    display: none;
-  }
 }
 
-/* Custom Hero Pagination Dashes */
-.hero-custom-pagination {
-  position: absolute;
-  bottom: 50px;
-  left: 60px;
-  z-index: 100;
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
 
-.hero-custom-pagination .dash {
-  width: 30px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.4);
-  transition: width 0.3s ease, background 0.3s ease;
-  cursor: pointer;
-}
-
-.hero-custom-pagination .dash.active {
-  width: 60px;
-  background: var(--white);
-}
-
-.hero-custom-pagination .dash:hover {
-  background: var(--white);
-}
 
 /* ===========================
    ABOUT / INTRO
@@ -2886,8 +2868,31 @@ p {
     min-height: 100svh;
   }
 
+  /* Show local at top, international at bottom of each stacked panel */
   .vert-text {
-    display: none;
+    display: inline-block;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* LOCAL — top-centre of the left (top) panel */
+  .vert-left {
+    left: 50%;
+    top: 18px !important;
+    bottom: auto;
+    transform: translateX(-50%) rotate(0deg) !important;
+    transform-origin: center center !important;
+  }
+
+  /* INTERNATIONAL — bottom-centre of the right (bottom) panel */
+  .vert-right {
+    right: auto !important;
+    left: 50%;
+    top: auto !important;
+    bottom: 18px;
+    transform: translateX(-50%) rotate(0deg) !important;
+    transform-origin: center center !important;
   }
 
   .center-logo-img {
