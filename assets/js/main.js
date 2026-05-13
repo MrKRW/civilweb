@@ -46,6 +46,11 @@ if (isScrollRevealPage && stickyHeader) {
 
 const REVEAL_THRESHOLD = 80; // px
 
+// Set initial active nav highlight on page load
+if (document.getElementById('hero')) {
+  updateNavActive('home');
+}
+
 window.addEventListener('scroll', () => {
   const scrolled = window.scrollY;
 
@@ -61,9 +66,9 @@ window.addEventListener('scroll', () => {
     // Back-to-top button
     if (backTop) backTop.classList.toggle('show', scrolled > 400);
 
-    // Active nav highlight (home page only)
+    // Active nav highlight (home page only) — always keep "home" active
     if (document.getElementById('hero')) {
-      updateNavActive(getActiveSection());
+      updateNavActive('home');
     }
   }
 });
