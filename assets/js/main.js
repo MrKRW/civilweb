@@ -101,23 +101,38 @@ if (backTop) backTop.addEventListener('click', () => window.scrollTo({ top: 0, b
 const ourWorkTitle = document.querySelector('.our-work-title');
 const ourWorkCat = document.querySelector('.our-work-cat');
 
+// Helper: fade-update the left-panel text smoothly
+function updateOurWorkInfo(title, cat) {
+  if (!ourWorkTitle || !ourWorkCat) return;
+
+  // Fade out
+  ourWorkTitle.style.opacity = '0';
+  ourWorkCat.style.opacity = '0';
+
+  // After fade-out completes, swap text and fade back in
+  setTimeout(() => {
+    ourWorkTitle.textContent = title || '';
+    ourWorkCat.textContent = cat || '';
+    ourWorkTitle.style.opacity = '1';
+    ourWorkCat.style.opacity = '1';
+  }, 280); // matches CSS transition duration
+}
+
 const ourWorkSwiper = new Swiper('.our-work-swiper', {
   loop: true,
-  speed: 800,
+  speed: 700,
   grabCursor: true,
+  centeredSlides: false,
   autoplay: {
-    delay: 2000,
-    disableOnInteraction: false
+    delay: 3500,
+    disableOnInteraction: false,
+    pauseOnMouseEnter: true
   },
   slidesPerView: 'auto',
   spaceBetween: 30,
   breakpoints: {
-    768: {
-      spaceBetween: 30
-    },
-    1024: {
-      spaceBetween: 30
-    }
+    768: { spaceBetween: 30 },
+    1024: { spaceBetween: 30 }
   },
   navigation: {
     prevEl: '.our-work-prev',
@@ -127,11 +142,11 @@ const ourWorkSwiper = new Swiper('.our-work-swiper', {
   observeParents: true,
   on: {
     slideChange() {
-      // Use realIndex for loop mode to get the correct data attributes
-      const activeSlide = this.slides[this.activeIndex];
-      if (activeSlide && ourWorkTitle && ourWorkCat) {
-        ourWorkTitle.textContent = activeSlide.dataset.title || '';
-        ourWorkCat.textContent = activeSlide.dataset.cat || '';
+      // realIndex always points to the original (non-cloned) slide in loop mode
+      const realSlides = this.slides.filter(s => !s.classList.contains('swiper-slide-duplicate'));
+      const realSlide = realSlides[this.realIndex];
+      if (realSlide) {
+        updateOurWorkInfo(realSlide.dataset.title, realSlide.dataset.cat);
       }
     }
   }

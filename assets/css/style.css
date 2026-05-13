@@ -908,6 +908,9 @@ p {
   line-height: 1.1;
   color: #fff;
   letter-spacing: -0.02em;
+  opacity: 1;
+  transition: opacity 0.28s ease;
+  will-change: opacity;
 }
 
 .our-work-cat {
@@ -917,6 +920,9 @@ p {
   letter-spacing: 0.22em;
   color: #bbb;
   text-transform: uppercase;
+  opacity: 1;
+  transition: opacity 0.28s ease;
+  will-change: opacity;
 }
 
 .our-work-right {
