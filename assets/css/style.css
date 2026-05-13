@@ -583,6 +583,26 @@ p {
   opacity: 1;
 }
 
+.hero-topleft-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  pointer-events: all;
+}
+
+.hero-topleft-logo-img {
+  height: 50px;
+  width: auto;
+  filter: brightness(0) invert(92%) sepia(10%) saturate(400%) hue-rotate(30deg);
+}
+
+@media (max-width: 768px) {
+  .hero-topleft-logo-img {
+    height: 30px;
+  }
+}
+
 @media (max-width: 900px) {
   #hero.split-view {
     flex-direction: column;
