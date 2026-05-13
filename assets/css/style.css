@@ -598,8 +598,8 @@ p {
 }
 
 @media (max-width: 768px) {
-  .hero-topleft-logo-img {
-    height: 30px;
+  .hero-topleft-brand {
+    display: none;
   }
 }
 

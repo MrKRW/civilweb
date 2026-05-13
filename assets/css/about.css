@@ -992,6 +992,9 @@
 }
 
 @media (max-width: 768px) {
+  .hs-hero-logo {
+    display: none;
+  }
   .hs-hero-content {
     padding-left: 40px;
   }
