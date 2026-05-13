@@ -10,7 +10,6 @@ const backTop = document.getElementById('back-top');
 const sectionMap = [
   { id: 'hero', label: 'home' },
   { id: 'about', label: 'about' },
-  { id: 'services', label: 'pages' },
   { id: 'projects', label: 'projects' },
   { id: 'footer', label: 'contact' },
 ];
