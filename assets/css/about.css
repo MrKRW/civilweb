@@ -9,8 +9,8 @@
 .hs-hero {
   position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 600px;
+  height: 75vh;
+  min-height: 500px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: brightness(0.45);
+  filter: brightness(0.65);
   /* Darker for better contrast */
   transform: none !important;
   transition: none !important;
@@ -101,6 +101,33 @@
   color: #fff;
 }
 
+/* Circle Button (Top Right) */
+.hs-hero-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.hs-hero-circle:hover {
+  border-color: #fff;
+  transform: scale(1.1);
+}
+
+.hs-hero-circle svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2px;
+}
+
 .hs-hero-content {
   position: relative;
   z-index: 2;
@@ -114,7 +141,7 @@
   /* Much larger architectural font */
   font-weight: 300;
   color: #ffffff;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   line-height: 1;
   margin: 0;
 }
@@ -122,15 +149,15 @@
 /* Hero Footer / Tag */
 .hs-hero-footer {
   position: absolute;
-  bottom: 60px;
+  bottom: 45px;
   left: 80px;
   z-index: 10;
 }
 
 .hs-hero-tag {
   font-family: var(--font-b);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.8);
   display: flex;
