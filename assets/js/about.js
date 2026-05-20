@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (slider && slider.children.length > 0 && galPrev && galNext) {
     let isAnimating = false;
-    const itemWidth = 416; // 400px inactive item width + 16px gap
+    const itemWidth = 496; // 480px inactive item width + 16px gap
     
     // Assign original indices for the counter
     Array.from(slider.children).forEach((item, index) => {

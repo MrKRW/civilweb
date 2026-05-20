@@ -305,7 +305,7 @@ p {
 
 /* ===========================
    STICKY HEADER — unified across all pages
-   Layout: [Logo LEFT] [Nav CENTER] [Circle RIGHT]
+   Layout: [Logo LEFT] [Nav LEFT] [Circle RIGHT]
 =========================== */
 #sticky-header {
   position: fixed;
@@ -351,18 +351,9 @@ p {
   display: flex;
   align-items: center;
   gap: 0;
+  margin-right: 60px;
 }
 
-/* Logo | nav separator (matches home reference) */
-.sticky-logo::after {
-  content: '';
-  display: block;
-  width: 1px;
-  height: 16px;
-  background: rgba(0, 0, 0, 0.22);
-  margin-left: 28px;
-  flex-shrink: 0;
-}
 
 .sticky-logo strong {
   font-weight: 700;
@@ -372,13 +363,12 @@ p {
   font-weight: 300;
 }
 
-/* Sticky nav (center) — absolutely centred so it never shifts with logo/circle */
+/* Sticky nav — sits left, directly after logo separator */
 .sticky-nav {
   display: flex;
   align-items: center;
   gap: 0;
   pointer-events: all;
-  margin-left: auto;
 }
 
 .sticky-nav li {
@@ -394,11 +384,11 @@ p {
 
 .sticky-nav li a {
   font-family: var(--font-h);
-  font-size: 0.9375rem;
-  font-weight: 300;
+  font-size: 1.1rem;
+  font-weight: 400;
   letter-spacing: 0.03em;
   color: rgba(0, 0, 0, 0.55);
-  padding: 0 18px 0 24px;
+  padding: 0 24px 0 32px;
   transition: color 0.25s var(--ease);
   text-transform: lowercase;
   white-space: nowrap;
@@ -434,7 +424,7 @@ p {
 
 .sticky-nav li.active a {
   color: var(--black);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .sticky-nav li a:hover {
@@ -1515,15 +1505,7 @@ p {
 }
 
 /* Hiroshi main-home proportions: compact hero + team visible above fold */
-body.home-page #sticky-header.nav-hidden {
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: all;
-}
 
-body.home-page #top-bar {
-  display: none;
-}
 
 body.home-page #quote-banner {
   height: var(--home-hero-height);
@@ -2982,10 +2964,6 @@ body.home-page .team-role {
     /* Hide desktop nav — use mobile overlay */
   }
 
-  .sticky-logo::after {
-    height: 14px;
-    margin-left: 16px;
-  }
 
   #sticky-header .hamburger-btn {
     margin-left: auto;
@@ -3603,10 +3581,6 @@ body.home-page .team-role {
     height: 44px;
   }
 
-  body.home-page .sticky-logo::after {
-    height: 14px;
-    margin-left: 18px;
-  }
 
   body.home-page .sticky-nav {
     display: none !important;
