@@ -172,7 +172,7 @@
   border-radius: 50%;
 }
 
-/* Hide Global Top Bar on About Page (using hs-hero-header instead) */
+/* Hide home-page top bar if present */
 .about-page #top-bar {
   display: none !important;
 }

@@ -10,17 +10,13 @@
 /* ----------------------------------------
    PAGE-LEVEL HEADER (standardized)
 ---------------------------------------- */
-#sticky-header {
-  background: var(--white);
-  border-bottom: 1px solid var(--gray-light);
-}
 
 /* ----------------------------------------
    PAGE TITLE — "Contact Us" on white
 ---------------------------------------- */
 .ct-page-title {
   background: var(--white);
-  padding: 124px 0 30px; /* 64px header + 60px spacing */
+  padding: calc(var(--header-height) + 60px) 0 30px;
 }
 
 .ct-page-title-inner {
@@ -410,7 +406,6 @@
    RESPONSIVE
 ---------------------------------------- */
 @media (max-width: 1024px) {
-  #ct-page-header,
   .ct-page-title-inner,
   .ct-body-inner {
     padding-left: 40px;
@@ -424,12 +419,9 @@
 }
 
 @media (max-width: 768px) {
-  #ct-page-header {
-    padding: 0 24px;
-    height: 56px;
+  .ct-page-title {
+    padding-top: calc(var(--header-height-mobile) + 40px);
   }
-
-  .ct-nav-links { display: none; }
 
   .ct-page-title-inner,
   .ct-body-inner {

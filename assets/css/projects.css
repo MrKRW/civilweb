@@ -11,7 +11,13 @@
 }
 
 .ct-page-title {
-  padding: 124px 0 0 !important; /* 64px header + 60px spacing */
+  padding: calc(var(--header-height) + 60px) 0 0 !important;
+}
+
+@media (max-width: 768px) {
+  .ct-page-title {
+    padding-top: calc(var(--header-height-mobile) + 40px) !important;
+  }
 }
 
 .ct-title {

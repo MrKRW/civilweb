@@ -37,7 +37,7 @@
       flex: 1 1 30%;
       min-width: 300px;
       position: sticky;
-      top: 100px;
+      top: calc(var(--header-height) + 12px);
       align-self: flex-start;
     }
 
@@ -203,8 +203,8 @@
 <body class="project-details-page">
 
   <!-- ============================================================
-     PAGE HEADER
-  ============================================================ -->
+     STICKY HEADER
+============================================================ -->
   <header id="sticky-header" role="banner" aria-label="Sticky Navigation">
     <a href="index.html" class="sticky-logo" aria-label="Civilanka Home">
       <img src="Logos/trans.PNG" alt="Civilanka Architects" class="logo-img logo-img--sticky" />

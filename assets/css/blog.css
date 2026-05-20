@@ -14,90 +14,16 @@ body.blog-page {
 }
 
 /* ----------------------------------------
-   HEADER
----------------------------------------- */
-#site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: var(--white);
-  border-bottom: 1px solid var(--gray-light);
-  height: 80px;
-  display: flex;
-  align-items: center;
-}
-
-.header-inner {
-  max-width: 1320px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  display: block;
-}
-
-.logo-img {
-  height: 52px;
-  width: auto;
-  display: block;
-}
-
-.main-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 40px;
-}
-
-.main-nav ul li a {
-  font-family: var(--font-h);
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: var(--black);
-  text-transform: lowercase;
-  transition: opacity 0.3s;
-}
-
-.main-nav ul li a:hover {
-  opacity: 0.6;
-}
-
-.main-nav ul li.active {
-  display: flex;
-  align-items: center;
-}
-
-.main-nav ul li.active::before {
-  content: '|';
-  margin-right: 15px;
-  font-weight: 300;
-  opacity: 0.3;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-}
-
-.search-trigger {
-  color: var(--black);
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-}
-
-/* ----------------------------------------
    BREADCRUMBS
 ---------------------------------------- */
 .breadcrumb-container {
-  padding: 104px 0 20px; /* 64px header + 40px spacing */
+  padding: calc(var(--header-height) + 40px) 0 20px;
+}
+
+@media (max-width: 768px) {
+  .breadcrumb-container {
+    padding-top: calc(var(--header-height-mobile) + 32px);
+  }
 }
 
 .breadcrumbs {
@@ -572,14 +498,6 @@ body.blog-page {
 }
 
 @media (max-width: 768px) {
-  .header-inner {
-    padding: 0 20px;
-  }
-
-  .main-nav {
-    display: none;
-  }
-
   .post-title {
     font-size: 2rem;
   }
@@ -624,10 +542,6 @@ body.blog-page {
    MOBILE — 480px and below
 ---------------------------------------- */
 @media (max-width: 480px) {
-  .header-inner {
-    padding: 0 16px;
-  }
-
   .blog-main-layout {
     padding-bottom: 60px;
   }
@@ -680,15 +594,5 @@ body.blog-page {
   .footer-cols {
     flex-direction: column;
     gap: 30px;
-  }
-}
-
-/* ----------------------------------------
-   STICKY HEADER — reuse style.css hamburger
-   (The blog uses #sticky-header like other pages)
----------------------------------------- */
-@media (max-width: 768px) {
-  #sticky-header .sticky-nav {
-    display: none;
   }
 }

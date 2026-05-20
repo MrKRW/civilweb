@@ -14,6 +14,8 @@
   --font-h: 'Jost', sans-serif;
   --font-b: 'Inter', sans-serif;
   --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --header-height: 88px;
+  --header-height-mobile: 56px;
 }
 
 /* ===========================
@@ -259,7 +261,7 @@ p {
 }
 
 .logo-img--sticky {
-  height: 52px;
+  height: 72px;
 }
 
 /* Circle button — floats over hero, hides when sticky header appears */
@@ -314,14 +316,20 @@ p {
   border-bottom: 1px solid var(--gray-light);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 0;
   padding: 0 40px;
-  height: 64px;
+  height: var(--header-height);
   /* Slide-up/slide-down + fade transition */
   transform: translateY(0);
   opacity: 1;
-  transition: transform 0.45s var(--ease), opacity 0.45s var(--ease);
+  transition: transform 0.45s var(--ease), opacity 0.45s var(--ease), border-color 0.3s var(--ease);
   pointer-events: all;
+}
+
+/* Hide bottom border when at the very top of the page */
+#sticky-header.nav-at-top {
+  border-bottom-color: transparent;
 }
 
 /* Hidden state — used by JS on home & about pages at page-top */
@@ -341,6 +349,18 @@ p {
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  gap: 0;
+}
+
+/* Logo | nav separator (matches home reference) */
+.sticky-logo::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 16px;
+  background: rgba(0, 0, 0, 0.22);
+  margin-left: 28px;
+  flex-shrink: 0;
 }
 
 .sticky-logo strong {
@@ -356,9 +376,6 @@ p {
   display: flex;
   align-items: center;
   gap: 0;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   pointer-events: all;
 }
 
@@ -375,38 +392,42 @@ p {
 
 .sticky-nav li a {
   font-family: var(--font-h);
-  font-size: 0.8125rem;
+  font-size: 1.0625rem;
   font-weight: 300;
-  letter-spacing: 0.04em;
-  color: rgba(0, 0, 0, 0.5);
-  padding: 0 18px;
+  letter-spacing: 0.03em;
+  color: rgba(0, 0, 0, 0.6);
+  padding: 0 20px 0 28px;
   transition: color 0.25s var(--ease);
   text-transform: lowercase;
   white-space: nowrap;
-  line-height: 64px;
+  line-height: var(--header-height);
   display: block;
   position: relative;
 }
 
-/* Left-side indicator bar (Active & Hover) */
-.sticky-nav li a::after {
+/* Left-side indicator bar — short centered pipe, animates bottom-to-top */
+.sticky-nav li a::before {
   content: '';
   position: absolute;
-  left: 6px;
-  /* Positioned to the left of the text within the padding */
+  left: 8px;
   top: 50%;
-  transform: translateY(-50%) scaleY(0);
-  width: 1.5px;
-  height: 12px;
+  height: 16px;
+  width: 1px;
   background: var(--black);
-  transform-origin: center;
-  transition: transform 0.25s var(--ease);
+  transform: translateY(-50%) scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s var(--ease);
 }
 
 /* Show indicator for active item or on hover */
-.sticky-nav li.active a::after,
-.sticky-nav li a:hover::after {
+.sticky-nav li.active a::before,
+.sticky-nav li a:hover::before {
   transform: translateY(-50%) scaleY(1);
+}
+
+/* Remove old ::after indicator */
+.sticky-nav li a::after {
+  display: none;
 }
 
 .sticky-nav li.active a {
@@ -416,6 +437,11 @@ p {
 
 .sticky-nav li a:hover {
   color: var(--black);
+}
+
+/* Main content offset below fixed header (inner pages) */
+.main-below-header {
+  padding-top: calc(var(--header-height) + 52px);
 }
 
 /* Circle button — right slot, matches reference image */
@@ -1621,12 +1647,18 @@ p {
   text-transform: uppercase;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .ref-journal-meta-sep {
-  margin: 0 20px;
+  margin: 0 10px;
   color: #aaa;
   font-weight: 300;
+}
+
+.ref-journal-meta span:last-child {
+  width: 100%;
+  margin-top: 6px;
 }
 
 /* Specific heights for the asymmetric look — making them taller/larger */
@@ -2024,8 +2056,13 @@ p {
   letter-spacing: 0.05em;
 }
 
-#mobile-nav a:hover {
+#mobile-nav a:hover,
+#mobile-nav a.active {
   color: var(--accent);
+}
+
+#mobile-nav a.active {
+  font-weight: 500;
 }
 
 #mobile-nav-close {
@@ -2859,7 +2896,7 @@ p {
 @media (max-width: 768px) {
   #sticky-header {
     padding: 0 20px;
-    height: 56px;
+    height: var(--header-height-mobile);
   }
 
   .sticky-nav {
@@ -2867,8 +2904,21 @@ p {
     /* Hide desktop nav — use mobile overlay */
   }
 
+  .sticky-logo::after {
+    height: 14px;
+    margin-left: 16px;
+  }
+
+  #sticky-header .hamburger-btn {
+    margin-left: auto;
+  }
+
   .logo-img--sticky {
     height: 40px;
+  }
+
+  .main-below-header {
+    padding-top: calc(var(--header-height-mobile) + 40px);
   }
 
   /* Hide circle and right actions on mobile */

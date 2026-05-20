@@ -31,17 +31,43 @@ function updateNavActive(label) {
   });
 }
 
+function setActiveNavFromPath() {
+  if (!stickyHeader || document.getElementById('hero')) return;
+
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  const pageKey = page === '' || page === 'index.html' ? 'home' : page.replace('.html', '');
+
+  stickyHeader.querySelectorAll('.sticky-nav li').forEach(li => {
+    const a = li.querySelector('a');
+    if (!a) return;
+    const href = a.getAttribute('href') || '';
+    const linkKey = href === 'index.html' ? 'home' : href.replace('.html', '');
+    li.classList.toggle('active', linkKey === pageKey);
+  });
+
+  if (mobileNav) {
+    mobileNav.querySelectorAll('a').forEach(a => {
+      const href = a.getAttribute('href') || '';
+      const linkKey = href === 'index.html' ? 'home' : href.replace('.html', '');
+      a.classList.toggle('active', linkKey === pageKey);
+    });
+  }
+}
+
 // ============================
-// SCROLL-REVEAL NAV (home + about pages)
-// On these pages the nav is HIDDEN at page-top and slides in on scroll.
+// SCROLL-REVEAL NAV (home page only)
+// On the home page the nav is hidden at page-top and slides in on scroll.
 // On all other pages it is always visible.
 // ============================
-const isScrollRevealPage =
-  document.body.classList.contains('about-page') ||
-  document.getElementById('hero') !== null;
+const isScrollRevealPage = document.getElementById('hero') !== null;
 
 if (isScrollRevealPage && stickyHeader) {
   stickyHeader.classList.add('nav-hidden');
+}
+
+// Apply border-hidden class on load if already at top
+if (stickyHeader) {
+  stickyHeader.classList.toggle('nav-at-top', window.scrollY === 0);
 }
 
 const REVEAL_THRESHOLD = 80; // px
@@ -49,6 +75,8 @@ const REVEAL_THRESHOLD = 80; // px
 // Set initial active nav highlight on page load
 if (document.getElementById('hero')) {
   updateNavActive('home');
+} else {
+  setActiveNavFromPath();
 }
 
 window.addEventListener('scroll', () => {
@@ -62,6 +90,9 @@ window.addEventListener('scroll', () => {
     if (isScrollRevealPage) {
       stickyHeader.classList.toggle('nav-hidden', scrolled < REVEAL_THRESHOLD);
     }
+
+    // Hide bottom border at page-top, show when scrolled
+    stickyHeader.classList.toggle('nav-at-top', scrolled === 0);
 
     // Back-to-top button
     if (backTop) backTop.classList.toggle('show', scrolled > 400);
