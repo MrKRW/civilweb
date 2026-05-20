@@ -59,7 +59,7 @@ function setActiveNavFromPath() {
 // On the home page the nav is hidden at page-top and slides in on scroll.
 // On all other pages it is always visible.
 // ============================
-const isScrollRevealPage = document.getElementById('hero') !== null;
+const isScrollRevealPage = document.getElementById('hero') !== null && !document.body.classList.contains('home-page');
 
 if (isScrollRevealPage && stickyHeader) {
   stickyHeader.classList.add('nav-hidden');
@@ -89,6 +89,8 @@ window.addEventListener('scroll', () => {
     // Scroll-reveal on home & about
     if (isScrollRevealPage) {
       stickyHeader.classList.toggle('nav-hidden', scrolled < REVEAL_THRESHOLD);
+    } else if (document.body.classList.contains('home-page') && stickyHeader) {
+      stickyHeader.classList.remove('nav-hidden');
     }
 
     // Hide bottom border at page-top, show when scrolled

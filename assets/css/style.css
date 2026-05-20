@@ -14,8 +14,9 @@
   --font-h: 'Jost', sans-serif;
   --font-b: 'Inter', sans-serif;
   --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --header-height: 88px;
-  --header-height-mobile: 56px;
+  --header-height: 70px;
+  --header-height-mobile: 52px;
+  --home-hero-height: clamp(400px, 52vh, 560px);
 }
 
 /* ===========================
@@ -261,7 +262,7 @@ p {
 }
 
 .logo-img--sticky {
-  height: 72px;
+  height: 56px;
 }
 
 /* Circle button — floats over hero, hides when sticky header appears */
@@ -318,7 +319,7 @@ p {
   align-items: center;
   justify-content: flex-start;
   gap: 0;
-  padding: 0 40px;
+  padding: 0 48px;
   height: var(--header-height);
   /* Slide-up/slide-down + fade transition */
   transform: translateY(0);
@@ -377,6 +378,7 @@ p {
   align-items: center;
   gap: 0;
   pointer-events: all;
+  margin-left: auto;
 }
 
 .sticky-nav li {
@@ -392,11 +394,11 @@ p {
 
 .sticky-nav li a {
   font-family: var(--font-h);
-  font-size: 1.0625rem;
+  font-size: 0.9375rem;
   font-weight: 300;
   letter-spacing: 0.03em;
-  color: rgba(0, 0, 0, 0.6);
-  padding: 0 20px 0 28px;
+  color: rgba(0, 0, 0, 0.55);
+  padding: 0 18px 0 24px;
   transition: color 0.25s var(--ease);
   text-transform: lowercase;
   white-space: nowrap;
@@ -1305,7 +1307,9 @@ p {
 }
 
 .team-cell.team-photo img {
-  display: none;
+  display: block;
+  filter: grayscale(100%);
+  object-fit: cover;
 }
 
 .team-cell.team-photo:hover img {
@@ -1473,42 +1477,116 @@ p {
    QUOTE BANNER SECTION
 =========================== */
 #quote-banner {
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 70%), url('../../Project%20images/WIN_Facility6.jpg');
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.08) 45%, rgba(0, 0, 0, 0) 70%),
+    url('../../Project%20images/WIN_Facility6.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 85vh;
-  min-height: 500px;
-  max-height: 800px;
+  height: var(--home-hero-height);
+  min-height: 400px;
+  max-height: 560px;
   display: flex;
-  align-items: flex-end;
-  padding-bottom: 60px;
+  align-items: center;
+  padding: 0;
   width: 100%;
 }
 
 .quote-banner-content {
   width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
+.quote-banner-content.container {
+  padding: 0 48px;
 }
 
 .quote-banner-content h2 {
   color: var(--white);
   font-family: var(--font-b);
-  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-size: clamp(1.125rem, 1.65vw, 1.375rem);
   font-weight: 300;
-  max-width: 900px;
-  line-height: 1.4;
+  max-width: 420px;
+  line-height: 1.55;
   margin: 0;
-  padding: 0 40px;
+  padding: 0;
+  letter-spacing: 0.01em;
+}
+
+/* Hiroshi main-home proportions: compact hero + team visible above fold */
+body.home-page #sticky-header.nav-hidden {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+body.home-page #top-bar {
+  display: none;
+}
+
+body.home-page #quote-banner {
+  height: var(--home-hero-height);
+}
+
+body.home-page #team {
+  padding: 0;
+}
+
+body.home-page .team-grid {
+  grid-template-rows: 200px 200px;
+}
+
+body.home-page .team-cell.team-photo,
+body.home-page .team-cell.team-info,
+body.home-page .team-cell.team-empty {
+  aspect-ratio: unset;
+  height: 200px;
+}
+
+body.home-page .team-cell.team-jobs {
+  min-height: 400px;
+  height: auto;
+}
+
+body.home-page .team-cell.team-info {
+  padding: 28px 32px;
+}
+
+body.home-page .team-name {
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  margin-bottom: 4px;
+}
+
+body.home-page .team-role {
+  font-size: 0.625rem;
+  margin-bottom: 0;
 }
 
 @media (max-width: 900px) {
   #quote-banner {
-    height: 60vh;
-    padding-bottom: 40px;
+    height: clamp(360px, 48vh, 480px);
+    min-height: 360px;
+    max-height: 480px;
+  }
+
+  .quote-banner-content.container {
+    padding: 0 28px;
   }
 
   .quote-banner-content h2 {
-    padding: 0 20px;
+    max-width: 320px;
+    font-size: 1.0625rem;
+  }
+
+  body.home-page .team-grid {
+    grid-template-rows: auto;
+  }
+
+  body.home-page .team-cell.team-photo,
+  body.home-page .team-cell.team-info,
+  body.home-page .team-cell.team-empty {
+    height: auto;
   }
 }
 
@@ -3144,13 +3222,18 @@ p {
 /* ── QUOTE BANNER ─── */
 @media (max-width: 480px) {
   #quote-banner {
-    height: 50vh;
-    min-height: 300px;
+    height: clamp(320px, 45vh, 420px);
+    min-height: 320px;
+    max-height: 420px;
+  }
+
+  .quote-banner-content.container {
+    padding: 0 20px;
   }
 
   .quote-banner-content h2 {
-    font-size: 1.25rem;
-    padding: 0 16px;
+    font-size: 1rem;
+    max-width: 280px;
   }
 }
 
@@ -3496,5 +3579,522 @@ p {
   img {
     max-width: 100%;
     height: auto;
+  }
+}
+
+/* ===================================================
+   HOME PAGE — 67% ZOOM PORTRAIT LAYOUT
+   Compact Hiroshi / L-ARCHITECTS proportions in portrait.
+   Sizing & positions only — no content changes.
+=================================================== */
+@media (orientation: portrait) {
+  body.home-page {
+    --home-hero-height: clamp(300px, 38vh, 420px);
+    --header-height: 56px;
+  }
+
+  /* Header — logo left, menu right (reference) */
+  body.home-page #sticky-header {
+    padding: 0 28px;
+    height: var(--header-height);
+  }
+
+  body.home-page .logo-img--sticky {
+    height: 44px;
+  }
+
+  body.home-page .sticky-logo::after {
+    height: 14px;
+    margin-left: 18px;
+  }
+
+  body.home-page .sticky-nav {
+    display: none !important;
+  }
+
+  body.home-page .hamburger-btn {
+    display: flex;
+    margin-left: auto;
+  }
+
+  /* Hero — compact stacked split, not full viewport */
+  body.home-page #hero.split-view {
+    height: clamp(360px, 48vh, 500px);
+    min-height: 0;
+    flex-direction: column;
+  }
+
+  body.home-page .split-half {
+    flex: 1;
+    min-height: 0;
+  }
+
+  body.home-page .center-logo-img {
+    max-width: 150px;
+  }
+
+  body.home-page .vert-text {
+    font-size: 0.8rem;
+  }
+
+  /* About — image above heading, centered */
+  body.home-page #about {
+    padding: 56px 0 48px;
+    background-size: 55%;
+    background-position: 50% 85%;
+  }
+
+  body.home-page .new-about-top {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 36px;
+  }
+
+  body.home-page .about-slideshow {
+    order: -1;
+    flex: none;
+    width: 82%;
+    max-width: 480px;
+    height: clamp(190px, 26vw, 260px);
+    margin: 0 auto;
+  }
+
+  body.home-page .new-about-text {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  body.home-page .new-section-label {
+    font-size: 0.6rem;
+    margin-bottom: 0.9rem;
+  }
+
+  body.home-page .new-about-heading {
+    font-size: clamp(1.3rem, 4.2vw, 1.75rem);
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+    max-width: 100%;
+  }
+
+  body.home-page .new-read-more {
+    font-size: 0.78rem;
+  }
+
+  body.home-page .new-about-bottom {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 28px 20px;
+  }
+
+  body.home-page .new-about-links {
+    flex: 1 1 100%;
+    gap: 14px;
+  }
+
+  body.home-page .new-about-links a {
+    font-size: 0.92rem;
+  }
+
+  body.home-page .new-about-col {
+    flex: 1 1 calc(50% - 10px);
+    min-width: 0;
+  }
+
+  body.home-page .new-about-col h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.8rem;
+  }
+
+  body.home-page .new-about-col p {
+    font-size: 0.82rem;
+    max-width: none;
+    line-height: 1.55;
+  }
+
+  /* Projects — compact dark band */
+  body.home-page #projects {
+    padding: 52px 0;
+  }
+
+  body.home-page .our-work-container {
+    height: clamp(320px, 40vh, 440px);
+    min-height: 320px;
+    max-height: 440px;
+  }
+
+  body.home-page .our-work-left {
+    flex: 0 0 30%;
+    padding: 0 24px 0 32px;
+  }
+
+  body.home-page .our-work-label {
+    font-size: 0.65rem;
+    margin-top: 16px;
+  }
+
+  body.home-page .our-work-title {
+    font-size: clamp(1.45rem, 3.8vw, 2rem);
+  }
+
+  body.home-page .our-work-cat {
+    font-size: 0.65rem;
+  }
+
+  body.home-page .our-work-swiper {
+    height: 100%;
+  }
+
+  body.home-page .our-work-slide {
+    width: 88%;
+  }
+
+  /* Services — keep horizontal accordion (reference layout) */
+  body.home-page .accordion-section {
+    padding: 52px 0;
+  }
+
+  body.home-page .acc-container {
+    flex-direction: row;
+    height: clamp(340px, 42vh, 460px);
+    width: 94%;
+  }
+
+  body.home-page .acc-item {
+    flex: 0 0 68px !important;
+    flex-direction: row;
+    width: auto;
+  }
+
+  body.home-page .acc-item.active {
+    flex: 1 !important;
+  }
+
+  body.home-page .acc-header {
+    width: 68px;
+    min-width: 68px;
+    flex-direction: column;
+    padding: 24px 0;
+    border-bottom: none;
+  }
+
+  body.home-page .acc-title {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    padding: 20px 0;
+  }
+
+  body.home-page .acc-title::after {
+    display: block;
+  }
+
+  body.home-page .acc-icon {
+    font-size: 1.2rem;
+  }
+
+  body.home-page .acc-content {
+    flex-direction: row;
+    max-height: none;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  body.home-page .acc-item.active .acc-content {
+    max-height: none;
+    opacity: 1;
+  }
+
+  body.home-page .acc-img-wrap {
+    flex: 0 0 42%;
+    height: 100%;
+    width: auto;
+  }
+
+  body.home-page .acc-text-wrap {
+    padding: 28px 32px;
+  }
+
+  body.home-page .acc-text-wrap p {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+
+  body.home-page .acc-close {
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+  }
+
+  /* Quote banner — compact hero band */
+  body.home-page #quote-banner {
+    height: var(--home-hero-height);
+    min-height: 300px;
+    max-height: 420px;
+  }
+
+  body.home-page .quote-banner-content.container {
+    padding: 0 32px;
+  }
+
+  body.home-page .quote-banner-content h2 {
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    max-width: 340px;
+    line-height: 1.5;
+  }
+
+  /* Team — compact checkerboard grid */
+  body.home-page #team {
+    padding: 0;
+  }
+
+  body.home-page .team-grid {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 180px 180px;
+  }
+
+  body.home-page .team-cell.team-photo,
+  body.home-page .team-cell.team-info,
+  body.home-page .team-cell.team-empty {
+    height: 180px;
+    aspect-ratio: unset;
+  }
+
+  body.home-page .team-cell.team-jobs {
+    min-height: 360px;
+    height: auto;
+  }
+
+  body.home-page .team-cell.team-info {
+    padding: 22px 24px;
+  }
+
+  body.home-page .team-name {
+    font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+    margin-bottom: 3px;
+  }
+
+  body.home-page .team-role {
+    font-size: 0.58rem;
+    margin-bottom: 0;
+  }
+
+  body.home-page .team-jobs-link {
+    font-size: 0.75rem;
+  }
+
+  /* Testimonials */
+  body.home-page #testimonials.section-pad {
+    padding: 56px 0;
+  }
+
+  body.home-page .testimonial-text {
+    font-size: clamp(1rem, 2.4vw, 1.3rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.55;
+  }
+
+  body.home-page .testimonial-author {
+    font-size: 0.72rem;
+  }
+
+  body.home-page .test-pagination {
+    margin-top: 28px;
+  }
+
+  /* Journal — 2×2 grid, tight gaps */
+  body.home-page #ref-journal {
+    padding: 52px 0 68px;
+  }
+
+  body.home-page #ref-journal .container {
+    padding: 0 28px;
+  }
+
+  body.home-page .ref-journal-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 12px;
+  }
+
+  body.home-page .ref-journal-title {
+    font-size: 0.92rem;
+    margin-bottom: 8px;
+  }
+
+  body.home-page .ref-journal-meta {
+    font-size: 0.6rem;
+  }
+
+  /* CTA */
+  body.home-page #cta-banner {
+    padding: 64px 0;
+  }
+
+  body.home-page .cta-inner h2 {
+    font-size: clamp(1.4rem, 3.8vw, 1.85rem);
+    margin-bottom: 0.75rem;
+  }
+
+  body.home-page .cta-inner p {
+    font-size: 0.88rem;
+    margin-bottom: 1.75rem;
+  }
+
+  body.home-page .btn {
+    padding: 12px 28px;
+    font-size: 0.72rem;
+  }
+
+  /* Footer */
+  body.home-page .footer-inner {
+    padding: 0 32px;
+  }
+
+  body.home-page .footer-body {
+    padding: 52px 0 36px;
+    gap: 36px;
+  }
+
+  body.home-page .logo-img--footer {
+    height: 96px;
+  }
+
+  body.home-page .footer-cols {
+    gap: 36px;
+  }
+
+  body.home-page .footer-col-label {
+    font-size: 0.6rem;
+    margin-bottom: 16px;
+  }
+
+  body.home-page .footer-col ul li a,
+  body.home-page .footer-col address a {
+    font-size: 0.82rem;
+  }
+
+  /* Global section spacing */
+  body.home-page .section-pad {
+    padding: 56px 0;
+  }
+
+  body.home-page .container {
+    padding: 0 32px;
+  }
+}
+
+/* Portrait + narrow: 2-col team checkerboard */
+@media (orientation: portrait) and (max-width: 900px) {
+  body.home-page .team-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  body.home-page .team-cell.team-jobs {
+    grid-column: 1 / -1;
+    min-height: 120px;
+    aspect-ratio: unset;
+  }
+
+  body.home-page .team-cell.team-empty {
+    display: none;
+  }
+
+  body.home-page .team-cell.team-photo,
+  body.home-page .team-cell.team-info {
+    height: 170px;
+    min-height: 170px;
+  }
+}
+
+/* Portrait + very narrow refinements */
+@media (orientation: portrait) and (max-width: 600px) {
+  body.home-page .our-work-container {
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  body.home-page .our-work-left {
+    flex: none;
+    padding: 0 24px;
+    margin-bottom: 20px;
+  }
+
+  body.home-page .our-work-right {
+    min-height: 220px;
+  }
+
+  body.home-page .our-work-swiper {
+    height: 200px;
+  }
+
+  body.home-page .our-work-slide {
+    width: 82%;
+  }
+
+  body.home-page .new-about-col {
+    flex: 1 1 100%;
+  }
+
+  body.home-page .acc-container {
+    height: clamp(300px, 38vh, 400px);
+  }
+
+  body.home-page .acc-item {
+    flex: 0 0 56px !important;
+  }
+
+  body.home-page .acc-header {
+    width: 56px;
+    min-width: 56px;
+    padding: 18px 0;
+  }
+
+  body.home-page .acc-title {
+    font-size: 0.95rem;
+  }
+
+  body.home-page .acc-text-wrap {
+    padding: 20px 18px;
+  }
+
+  body.home-page .team-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  body.home-page .team-cell.team-photo,
+  body.home-page .team-cell.team-info {
+    height: 150px;
+    min-height: 150px;
+  }
+
+  body.home-page .quote-banner-content h2 {
+    max-width: 260px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (orientation: portrait) and (max-width: 480px) {
+  body.home-page .container,
+  body.home-page #ref-journal .container,
+  body.home-page .footer-inner {
+    padding: 0 20px;
+  }
+
+  body.home-page #sticky-header {
+    padding: 0 20px;
+  }
+
+  body.home-page .about-slideshow {
+    width: 90%;
+    height: 190px;
+  }
+
+  body.home-page .ref-journal-grid {
+    gap: 28px 10px;
   }
 }
