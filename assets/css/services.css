@@ -523,7 +523,7 @@
 }
 
 /* ============================================================
-   NAVBAR DROPDOWN — Services
+   NAVBAR DROPDOWN — Services (reference-image style)
 ============================================================ */
 .sticky-nav li.nav-has-dropdown {
   position: relative;
@@ -532,34 +532,47 @@
 .nav-dropdown-trigger {
   display: flex !important;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
 }
 
 .nav-arrow {
-  font-size: 1rem;
+  font-size: 0.75rem;
   transition: transform 0.3s ease;
   display: inline-block;
   line-height: 1;
-  margin-top: 2px;
+  opacity: 0.5;
 }
 
 .nav-has-dropdown:hover .nav-arrow {
   transform: rotate(180deg);
+  opacity: 1;
 }
 
+/* ── The panel itself ── */
 .nav-dropdown {
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: calc(100% + 0px);
+  left: -28px;                    /* align with nav item */
   background: #fff;
-  border: 1px solid #e8e6e1;
-  min-width: 240px;
+  min-width: 280px;
+  padding: 20px 0;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(8px);
-  transition: opacity 0.28s ease, transform 0.28s ease;
+  transform: translateY(10px);
+  transition: opacity 0.3s cubic-bezier(0.22,1,0.36,1),
+              transform 0.3s cubic-bezier(0.22,1,0.36,1);
   z-index: 2000;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.04);
+  border: none;
+}
+
+/* Thin top border accent */
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: #111;
 }
 
 .nav-has-dropdown:hover .nav-dropdown {
@@ -568,38 +581,49 @@
   transform: translateY(0);
 }
 
+/* ── Each link item ── */
 .nav-dropdown-item {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  padding: 18px 22px;
+  display: block;
+  padding: 14px 30px;
   text-decoration: none;
   color: #111;
-  transition: background 0.2s ease;
-  border-bottom: 1px solid #f0eeea;
-}
-
-.nav-dropdown-item:last-child {
+  position: relative;
+  transition: color 0.2s ease;
   border-bottom: none;
 }
 
-.nav-dropdown-item:hover {
-  background: #f9f8f6;
-}
-
+/* ── Link label text with left-to-right underline indicator ── */
 .nav-dropdown-label {
   font-family: 'Nunito Sans', sans-serif;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #111;
-  letter-spacing: 0.02em;
+  font-size: 1rem;
+  font-weight: 400;
+  color: inherit;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  display: inline-block;
+  position: relative;
 }
 
+.nav-dropdown-label::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #111;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-dropdown-item:hover .nav-dropdown-label::after {
+  transform: scaleX(1);
+}
+
+/* Hide the sub-description — reference image shows clean list only */
 .nav-dropdown-desc {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  color: #999;
-  font-weight: 300;
+  display: none;
 }
 
 .nav-dropdown-divider {

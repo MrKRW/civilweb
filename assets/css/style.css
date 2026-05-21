@@ -397,24 +397,9 @@ p {
   position: relative;
 }
 
-/* Left-side indicator bar — short centered pipe, animates bottom-to-top */
+/* Left-side indicator bar — removed as requested */
 .sticky-nav li a::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  height: 16px;
-  width: 1px;
-  background: var(--black);
-  transform: translateY(-50%) scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.3s var(--ease);
-}
-
-/* Show indicator for active item or on hover */
-.sticky-nav li.active a::before,
-.sticky-nav li a:hover::before {
-  transform: translateY(-50%) scaleY(1);
+  display: none;
 }
 
 /* Remove old ::after indicator */

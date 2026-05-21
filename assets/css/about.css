@@ -81,11 +81,7 @@
 }
 
 .hs-hero-nav li.active::before {
-  content: '';
-  width: 1px;
-  height: 20px;
-  background: #fff;
-  margin-right: 15px;
+  display: none;
 }
 
 .hs-hero-nav a {
@@ -254,11 +250,7 @@
 }
 
 .about-hero-nav ul li.active::before {
-  content: '';
-  width: 1px;
-  height: 18px;
-  background: rgba(255, 255, 255, 0.5);
-  display: inline-block;
+  display: none;
 }
 
 @media (max-width: 768px) {
