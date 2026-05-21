@@ -5,6 +5,27 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* -------------------------------------------------------
+     STICKY HEADER — hidden until user scrolls past hero
+  ------------------------------------------------------- */
+  const stickyHeader = document.getElementById('sticky-header');
+  const aboutHero   = document.getElementById('about-hero');
+
+  if (stickyHeader && aboutHero) {
+    const showHeader = () => {
+      const heroBottom = aboutHero.getBoundingClientRect().bottom;
+      if (heroBottom <= 0) {
+        stickyHeader.classList.add('scrolled-in');
+      } else {
+        stickyHeader.classList.remove('scrolled-in');
+      }
+    };
+
+    // Run immediately in case page is loaded already scrolled
+    showHeader();
+    window.addEventListener('scroll', showHeader, { passive: true });
+  }
+
+  /* -------------------------------------------------------
      SCROLL REVEAL (reuse classes from main style.css)
   ------------------------------------------------------- */
   const revealEls = document.querySelectorAll(
@@ -99,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (slider && slider.children.length > 0 && galPrev && galNext) {
     let isAnimating = false;
-    const itemWidth = 400; // 380px item width + 20px gap
+    const itemWidth = 369; // 349px item width + 20px gap
     
     // Assign original indices for the counter
     Array.from(slider.children).forEach((item, index) => {
@@ -187,13 +208,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Auto-play functionality
     let autoplayInterval = setInterval(() => {
       galNext.click();
-    }, 5000); // Increased to 5s for better pacing
+    }, 3000);
 
     function resetAutoplay() {
       clearInterval(autoplayInterval);
       autoplayInterval = setInterval(() => {
         galNext.click();
-      }, 5000);
+      }, 3000);
     }
 
     // Pause on hover
@@ -203,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
       galleryWrapper.addEventListener('mouseleave', () => {
         autoplayInterval = setInterval(() => {
           galNext.click();
-        }, 4000);
+        }, 3000);
       });
     }
   }

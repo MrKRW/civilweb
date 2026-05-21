@@ -9,12 +9,11 @@
 .hs-hero {
   position: relative;
   width: 100%;
-  height: 75vh;
-  min-height: 500px;
+  height: 100vh;
+  min-height: 600px;
   overflow: hidden;
   display: flex;
   align-items: center;
-  /* Vertically center content */
   padding: 0;
 }
 
@@ -31,7 +30,9 @@
   transition: none !important;
 }
 
-.hs-hero-content, .hs-hero-title, .hs-hero-tag {
+.hs-hero-content,
+.hs-hero-title,
+.hs-hero-tag {
   opacity: 1 !important;
   transform: none !important;
   transition: none !important;
@@ -137,11 +138,10 @@
 
 .hs-hero-title {
   font-family: var(--font-h);
-  font-size: 2.2rem;
-  /* Much larger architectural font */
+  font-size: clamp(2.8rem, 4.5vw, 4.2rem);
   font-weight: 400;
   color: #ffffff;
-  letter-spacing: 0;
+  letter-spacing: -0.02em;
   line-height: 1;
   margin: 0;
 }
@@ -176,6 +176,114 @@
 /* Hide home-page top bar if present */
 .about-page #top-bar {
   display: none !important;
+}
+
+/* ============================================================
+   ABOUT PAGE — STICKY HEADER: hidden until scrolled past hero
+============================================================ */
+.about-page #sticky-header {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.about-page #sticky-header.scrolled-in {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   ABOUT HERO NAVBAR (lives inside the hero section)
+============================================================ */
+.about-hero-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 36px 40px;
+  z-index: 20;
+  background: transparent;
+}
+
+.about-hero-nav .hero-logo {
+  text-decoration: none;
+  margin-right: 60px;
+  flex-shrink: 0;
+}
+
+.about-hero-nav .hero-logo img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  /* force white */
+}
+
+.about-hero-nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 36px;
+  align-items: center;
+}
+
+.about-hero-nav ul li a {
+  font-family: var(--font-b);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  transition: color 0.25s ease;
+}
+
+.about-hero-nav ul li a:hover,
+.about-hero-nav ul li.active a {
+  color: #ffffff;
+}
+
+.about-hero-nav ul li.active {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.about-hero-nav ul li.active::before {
+  content: '';
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.5);
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .about-hero-nav {
+    padding: 24px 30px;
+  }
+
+  .about-hero-nav ul {
+    gap: 20px;
+  }
+
+  .about-hero-nav ul li a {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero-nav ul {
+    display: none;
+  }
+
+  .about-hero-nav {
+    justify-content: flex-start;
+    padding: 20px 24px;
+  }
 }
 
 
@@ -328,14 +436,14 @@
 ============================================================ */
 .hs-gallery {
   background: #ffffff;
-  padding: 80px 5%;
+  padding: 80px 100px;
   overflow: hidden;
   position: relative;
 }
 
 .hs-gallery-wrapper {
-  max-width: 1200px;
-  width: 90%;
+  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
   padding: 0;
   overflow: hidden;
@@ -343,16 +451,16 @@
 
 .hs-gallery-slider {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
   transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1);
   will-change: transform;
-  height: 420px;
+  height: 362px;
 }
 
 .hs-gallery-item {
-  flex: 0 0 380px;
-  height: 380px;
+  flex: 0 0 349px;
+  height: 238px;
   overflow: hidden;
   position: relative;
   transition: all 2s cubic-bezier(0.25, 1, 0.5, 1);
@@ -368,8 +476,8 @@
 }
 
 .hs-gallery-item.active {
-  flex: 0 0 380px;
-  height: 380px;
+  flex: 0 0 322px;
+  height: 362px;
 }
 
 .hs-gallery-item.active img {
@@ -379,8 +487,8 @@
 
 .hs-gallery-controls {
   max-width: 1400px;
-  margin: 30px auto 0;
-  padding: 0 40px;
+  margin: 17px auto 0;
+  padding: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -391,24 +499,24 @@
   content: '';
   position: absolute;
   bottom: -20px;
-  left: 40px;
-  right: 40px;
+  left: 0;
+  right: 0;
   height: 1px;
   background: #e8e6e1;
 }
 
 .hs-gallery-counter {
-  font-family: var(--font-h);
-  font-size: 1.1rem;
-  color: #fff;
-  background: #000;
+  font-family: var(--font-b);
+  font-size: 1.15rem;
+  color: #000000;
+  background: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 8px;
+  padding: 0;
   gap: 0;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-weight: 300;
+  letter-spacing: 0;
 }
 
 .hs-gallery-nav {
@@ -447,7 +555,8 @@
   margin: 0 auto;
   padding: 0 60px;
   text-align: center;
-  backface-visibility: hidden; /* GPU optimization */
+  backface-visibility: hidden;
+  /* GPU optimization */
 }
 
 .hs-quote-text {
@@ -458,7 +567,8 @@
   line-height: 1.65;
   letter-spacing: -0.01em;
   margin-bottom: 36px;
-  transition: opacity 0.5s ease, transform 0.5s ease; /* Longer, smoother transition */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  /* Longer, smoother transition */
   will-change: opacity, transform;
 }
 
@@ -881,6 +991,7 @@
   .hs-hero-logo {
     display: none;
   }
+
   .hs-hero-content {
     padding-left: 40px;
   }
