@@ -646,6 +646,7 @@ p {
   z-index: 3;
   margin-right: 0;
   margin-top: 0;
+  overflow: hidden;
 }
 
 .about-slide {
@@ -656,7 +657,8 @@ p {
   height: 100%;
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+  background: transparent;
+  will-change: opacity;
 }
 
 .about-slide.active {
@@ -875,6 +877,9 @@ p {
   background: #000000;
   padding: 100px 0;
   overflow: hidden;
+  isolation: isolate;
+  position: relative;
+  z-index: 1;
 }
 
 .our-work-container {
