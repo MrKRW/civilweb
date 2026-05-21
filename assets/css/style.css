@@ -559,10 +559,9 @@ p {
 
 .vert-right {
   right: 40px;
-  top: 48% !important;
-  /* Force the position to 75% down */
-  transform: translate(50%, -50%) rotate(90deg) !important;
-  transform-origin: center center !important;
+  top: 50%;
+  transform: translate(50%, -50%) rotate(90deg);
+  transform-origin: center center;
 }
 
 
@@ -1003,7 +1002,8 @@ p {
   width: 90%;
   max-width: 1400px;
   margin: 0 auto;
-  height: 600px;
+  height: 550px;
+  align-items: flex-end;
 }
 
 .acc-item {
@@ -1012,6 +1012,7 @@ p {
   transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   overflow: hidden;
   background: var(--white);
+  align-items: flex-end;
 }
 
 .acc-item.active {
@@ -1021,11 +1022,14 @@ p {
 .acc-header {
   width: 100px;
   min-width: 100px;
+  height: 403px;
+  min-height: 403px;
+  max-height: 403px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 0;
+  padding: 20px 0 0 0;
   cursor: pointer;
   background: var(--white);
   transition: background 0.3s;
@@ -1065,8 +1069,10 @@ p {
   white-space: nowrap;
   flex: 1;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
-  padding: 30px 0;
+  padding: 0 0 20px 0;
   text-transform: capitalize;
   position: relative;
 }
@@ -1074,10 +1080,8 @@ p {
 .acc-title::after {
   content: '';
   position: absolute;
-  top: 30px;
-  /* Aligns with the start of text (matches padding-top of acc-title) */
+  top: 0;
   right: -12px;
-  /* Position it parallel to the vertical text */
   width: 1px;
   height: 0;
   background-color: var(--black);
@@ -1085,13 +1089,12 @@ p {
 }
 
 .acc-header:hover .acc-title::after {
-  height: calc(100% - 30px);
-  /* Extends up to the icon (100% minus the 30px starting offset) */
+  height: 100%;
 }
 
 /* If active, keep the line visible */
 .acc-item.active .acc-title::after {
-  height: calc(100% - 30px);
+  height: 100%;
 }
 
 .acc-content {
@@ -1109,8 +1112,15 @@ p {
 }
 
 .acc-img-wrap {
-  flex: 0 0 45%;
-  height: 100%;
+  flex: 0 0 209px;
+  width: 209px;
+  height: 403px;
+  min-width: 209px;
+  max-width: 209px;
+  min-height: 403px;
+  max-height: 403px;
+  overflow: hidden;
+  align-self: flex-end;
 }
 
 .acc-img-wrap img {
@@ -4056,7 +4066,7 @@ body.home-page .team-role {
     text-orientation: mixed;
     transform: rotate(180deg);
     font-size: clamp(1rem, 1.8vw, 1.35rem);
-    padding: 20px 0;
+    padding: 0 0 20px 0;
   }
 
   body.home-page .acc-title::after {
@@ -4080,9 +4090,13 @@ body.home-page .team-role {
   }
 
   body.home-page .acc-img-wrap {
-    flex: 0 0 42%;
-    height: 100%;
-    width: auto;
+    flex: 0 0 209px;
+    width: 209px;
+    height: 403px;
+    min-width: 209px;
+    max-width: 209px;
+    min-height: 403px;
+    max-height: 403px;
   }
 
   body.home-page .acc-text-wrap {
