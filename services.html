@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Civilanka Architecture & Engineering</title>
+  <meta name="description"
+    content="Explore Civilanka's full range of architectural, structural, MEP, and construction services for both local and international projects in Sri Lanka." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=DM+Sans:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/services.css" />
+</head>
+
+<body class="services-page">
+
+  <!-- ============================================================
+     STICKY HEADER
+  ============================================================ -->
+  <header id="sticky-header" role="banner" aria-label="Sticky Navigation">
+    <a href="index.html" class="sticky-logo" aria-label="Civilanka Home">
+      <img src="Logos/trans.PNG" alt="Civilanka Architects" class="logo-img logo-img--sticky" />
+    </a>
+
+    <ul class="sticky-nav" role="list">
+      <li><a href="index.html">home</a></li>
+      <li><a href="about.html">about</a></li>
+      <li class="nav-has-dropdown active">
+        <a href="services.html" class="nav-dropdown-trigger">services <span class="nav-arrow">&#8964;</span></a>
+        <div class="nav-dropdown">
+          <a href="services.html#local-services" class="nav-dropdown-item">
+            <span class="nav-dropdown-label">Local Services</span>
+            <span class="nav-dropdown-desc">Projects within Sri Lanka</span>
+          </a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="services.html#international-services" class="nav-dropdown-item">
+            <span class="nav-dropdown-label">International Services</span>
+            <span class="nav-dropdown-desc">Global project delivery</span>
+          </a>
+        </div>
+      </li>
+      <li><a href="projects.html">projects</a></li>
+      <li><a href="blog.html">blog</a></li>
+      <li><a href="contact.html">contact</a></li>
+    </ul>
+
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="Open navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- Mobile Nav -->
+  <nav id="mobile-nav" role="navigation" aria-label="Mobile Navigation">
+    <button id="mobile-nav-close" aria-label="Close menu">&#x2715;</button>
+    <a href="index.html">home</a>
+    <a href="about.html">about</a>
+    <a href="services.html">services</a>
+    <a href="services.html#local-services" style="padding-left:2rem;font-size:0.9rem;opacity:0.7;">— Local Services</a>
+    <a href="services.html#international-services" style="padding-left:2rem;font-size:0.9rem;opacity:0.7;">— International Services</a>
+    <a href="projects.html">projects</a>
+    <a href="blog.html">blog</a>
+    <a href="contact.html">contact</a>
+  </nav>
+
+  <!-- ============================================================
+     PAGE HERO / TITLE
+  ============================================================ -->
+  <section class="services-hero">
+    <div class="services-hero-inner">
+      <span class="new-section-label">• &nbsp;WHAT WE OFFER</span>
+      <h1 class="services-hero-title">Our Services</h1>
+      <p class="services-hero-sub">Comprehensive architecture, engineering & construction solutions — delivered locally and internationally with precision and creativity.</p>
+    </div>
+    <!-- scroll indicator -->
+    <div class="services-scroll-hint">
+      <span>scroll</span>
+      <div class="services-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     LOCAL SERVICES SECTION
+  ============================================================ -->
+  <section id="local-services" class="services-section services-section--local">
+
+    <!-- Section Header -->
+    <div class="srv-section-header reveal-up">
+      <div class="srv-section-badge">Local Services</div>
+      <h2 class="srv-section-title">Serving Sri Lanka with <em>Excellence</em></h2>
+      <p class="srv-section-desc">From concept to completion, we deliver world-class design and engineering solutions across Sri Lanka.</p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="srv-grid">
+
+      <!-- Card 1: Architectural Services -->
+      <div class="srv-card reveal-up" style="--delay: 0.0s;">
+        <div class="srv-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 40L24 8L40 40H8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M14 32H34" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="srv-card-number">01</div>
+        <h3 class="srv-card-title">Architectural Services</h3>
+        <ul class="srv-card-list">
+          <li>Architectural Housing &amp; Commercial Designs</li>
+          <li>3D Modeling, Rendering &amp; Visualization</li>
+          <li>Landscape Designing</li>
+          <li>Measured Drawings</li>
+          <li>Interior Designing</li>
+        </ul>
+        <div class="srv-card-img">
+          <img src="Project images/A (10).png" alt="Architectural Services" />
+        </div>
+      </div>
+
+      <!-- Card 2: Structural Engineering -->
+      <div class="srv-card reveal-up" style="--delay: 0.1s;">
+        <div class="srv-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="16" width="32" height="24" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 16L24 8L40 16" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M20 40V28H28V40" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="srv-card-number">02</div>
+        <h3 class="srv-card-title">Structural Engineering</h3>
+        <ul class="srv-card-list">
+          <li>Structural Designs and Drawings</li>
+          <li>Soil Investigation Tests</li>
+          <li>Design / Peer Review Certification</li>
+          <li>Chartered Engineer &amp; Council Approval</li>
+        </ul>
+        <div class="srv-card-img">
+          <img src="Project images/1 (4).png" alt="Structural Engineering" />
+        </div>
+      </div>
+
+      <!-- Card 3: Building Services Engineering -->
+      <div class="srv-card reveal-up" style="--delay: 0.2s;">
+        <div class="srv-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M24 8V14M24 34V40M8 24H14M34 24H40" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="srv-card-number">03</div>
+        <h3 class="srv-card-title">Building Services Engineering</h3>
+        <p class="srv-card-sub">Mechanical, Electrical, Plumbing &amp; HVAC</p>
+        <ul class="srv-card-list">
+          <li>Electrical Wiring</li>
+          <li>All kinds of Plumbing Works</li>
+          <li>Automated Door &amp; Lighting Systems</li>
+          <li>Installation of Solar Panels</li>
+          <li>Smart House Planning</li>
+          <li>Air Conditioners &amp; CCTV</li>
+        </ul>
+        <div class="srv-card-img">
+          <img src="Project images/WIN_Facility6.jpg" alt="Building Services Engineering" />
+        </div>
+      </div>
+
+      <!-- Card 4: Road Construction -->
+      <div class="srv-card reveal-up" style="--delay: 0.3s;">
+        <div class="srv-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 40L16 8H32L44 40H4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M18 40L20 28H28L30 40" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10 24H38" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="srv-card-number">04</div>
+        <h3 class="srv-card-title">Road Construction</h3>
+        <ul class="srv-card-list">
+          <li>Concrete Road Construction</li>
+          <li>Tar Road Construction</li>
+          <li>Asphalt Road Construction</li>
+          <li>Drainages</li>
+        </ul>
+        <div class="srv-card-img">
+          <img src="Project images/2023-11-07.jpg" alt="Road Construction" />
+        </div>
+      </div>
+
+      <!-- Card 5: Consultation & Project Management -->
+      <div class="srv-card reveal-up" style="--delay: 0.0s;">
+        <div class="srv-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="10" width="32" height="28" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M16 18H32M16 24H28M16 30H24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="srv-card-number">05</div>
+        <h3 class="srv-card-title">Consultation &amp; Project Management</h3>
+        <ul class="srv-card-list">
+          <li>Green Building Consultancy</li>
+          <li>Project Planning</li>
+          <li>Project Progress Monitoring &amp; Reporting</li>
+          <li>Engineering Research Consultation</li>
+        </ul>
+        <div class="srv-card-img">
+          <img src="Project images/A (10).png" alt="Consultation & Project Management" />
+        </div>
+      </div>
+
+      <!-- Card 6: Housing & Commercial Construction -->
+      <div class="srv-card reveal-up" style="--delay: 0.1s;">
+        <div class="srv-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 22L24 6L42 22V42H30V30H18V42H6V22Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="srv-card-number">06</div>
+        <h3 class="srv-card-title">Housing &amp; Commercial Building Construction</h3>
+        <ul class="srv-card-list">
+          <li>All kinds of Housing &amp; Commercial Constructions</li>
+          <li>All kinds of Finishing Works</li>
+          <li>Renovations</li>
+        </ul>
+        <div class="srv-card-img">
+          <img src="Project images/1 (4).png" alt="Housing & Commercial Construction" />
+        </div>
+      </div>
+
+      <!-- Card 7: Quantity Surveying -->
+      <div class="srv-card reveal-up" style="--delay: 0.2s;">
+        <div class="srv-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 40V8L36 8V40" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M18 16H30M18 24H30M18 32H24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M8 40H40" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="srv-card-number">07</div>
+        <h3 class="srv-card-title">Quantity Surveying</h3>
+        <ul class="srv-card-list">
+          <li>Preparation of Detailed BOQ's</li>
+          <li>Cost Estimates</li>
+          <li>Financial Monitoring &amp; Reporting</li>
+        </ul>
+        <div class="srv-card-img">
+          <img src="Project images/WIN_Facility6.jpg" alt="Quantity Surveying" />
+        </div>
+      </div>
+
+      <!-- Card 8: Pipe Laying -->
+      <div class="srv-card reveal-up" style="--delay: 0.3s;">
+        <div class="srv-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 24C8 24 16 16 24 24C32 32 40 24 40 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M8 32C8 32 16 24 24 32C32 40 40 32 40 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="srv-card-number">08</div>
+        <h3 class="srv-card-title">Pipe Laying</h3>
+        <ul class="srv-card-list">
+          <li>Pipe Laying</li>
+          <li>Culvert Crossings</li>
+          <li>Valve Chamber Construction</li>
+        </ul>
+        <div class="srv-card-img">
+          <img src="Project images/2023-11-07.jpg" alt="Pipe Laying" />
+        </div>
+      </div>
+
+      <!-- Card 9: Swimming Pool & Landscaping -->
+      <div class="srv-card srv-card--wide reveal-up" style="--delay: 0.0s;">
+        <div class="srv-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 32C6 32 14 24 22 32C30 40 38 32 38 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="8" y="14" width="32" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M18 22H30M24 18V26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="srv-card-number">09</div>
+        <h3 class="srv-card-title">Swimming Pool Construction &amp; Landscaping</h3>
+        <ul class="srv-card-list">
+          <li>Swimming Pools</li>
+          <li>Interlocking</li>
+          <li>Driveways, Walkways &amp; Fences</li>
+          <li>Turfing &amp; Floral Planting</li>
+        </ul>
+        <div class="srv-card-img">
+          <img src="Project images/A (10).png" alt="Swimming Pool Construction & Landscaping" />
+        </div>
+      </div>
+
+    </div><!-- /.srv-grid -->
+  </section>
+
+  <!-- ============================================================
+     DIVIDER / TRANSITION
+  ============================================================ -->
+  <div class="services-divider reveal-up">
+    <div class="services-divider-line"></div>
+    <span class="services-divider-text">International Reach</span>
+    <div class="services-divider-line"></div>
+  </div>
+
+  <!-- ============================================================
+     INTERNATIONAL SERVICES SECTION
+  ============================================================ -->
+  <section id="international-services" class="services-section services-section--international">
+
+    <!-- Section Header -->
+    <div class="srv-section-header reveal-up">
+      <div class="srv-section-badge srv-section-badge--dark">International Services</div>
+      <h2 class="srv-section-title">Global <em>Expertise,</em> Local Understanding</h2>
+      <p class="srv-section-desc">We extend our full suite of services to international clients, bringing Sri Lankan craftsmanship and innovative design to projects worldwide.</p>
+    </div>
+
+    <!-- International Feature Layout (reference-image style) -->
+    <div class="srv-intl-layout">
+
+      <!-- Featured Block: Architecture -->
+      <div class="srv-intl-featured reveal-left">
+        <div class="srv-intl-featured-img">
+          <img src="Project images/A (10).png" alt="International Architectural Services" />
+          <div class="srv-intl-img-overlay">
+            <span class="srv-intl-img-label">Architecture</span>
+          </div>
+        </div>
+        <div class="srv-intl-featured-content">
+          <span class="srv-intl-num">01</span>
+          <h3>Architectural Services</h3>
+          <ul class="srv-card-list">
+            <li>Architectural Housing &amp; Commercial Designs</li>
+            <li>3D Modeling, Rendering &amp; Visualization</li>
+            <li>Landscape Designing</li>
+            <li>Measured Drawings</li>
+            <li>Interior Designing</li>
+          </ul>
+          <a href="contact.html" class="srv-intl-link">Enquire about this service →</a>
+        </div>
+      </div>
+
+      <!-- Featured Block: Structural -->
+      <div class="srv-intl-featured srv-intl-featured--reverse reveal-right">
+        <div class="srv-intl-featured-img">
+          <img src="Project images/1 (4).png" alt="International Structural Engineering" />
+          <div class="srv-intl-img-overlay">
+            <span class="srv-intl-img-label">Structural Engineering</span>
+          </div>
+        </div>
+        <div class="srv-intl-featured-content">
+          <span class="srv-intl-num">02</span>
+          <h3>Structural Engineering</h3>
+          <ul class="srv-card-list">
+            <li>Structural Designs and Drawings</li>
+            <li>Soil Investigation Tests</li>
+            <li>Design / Peer Review Certification</li>
+            <li>Chartered Engineer &amp; Council Approval</li>
+          </ul>
+          <a href="contact.html" class="srv-intl-link">Enquire about this service →</a>
+        </div>
+      </div>
+
+      <!-- Cards grid for remaining international services -->
+      <div class="srv-intl-grid reveal-up">
+
+        <div class="srv-intl-card">
+          <div class="srv-intl-card-top">
+            <span class="srv-intl-card-num">03</span>
+            <h4>Building Services Engineering</h4>
+            <p class="srv-card-sub">MEP &amp; HVAC</p>
+          </div>
+          <ul class="srv-card-list">
+            <li>Electrical Wiring</li>
+            <li>Plumbing Works</li>
+            <li>Solar Panels</li>
+            <li>Smart House Planning</li>
+            <li>Air Conditioners &amp; CCTV</li>
+          </ul>
+        </div>
+
+        <div class="srv-intl-card">
+          <div class="srv-intl-card-top">
+            <span class="srv-intl-card-num">04</span>
+            <h4>Consultation &amp; Project Management</h4>
+          </div>
+          <ul class="srv-card-list">
+            <li>Green Building Consultancy</li>
+            <li>Project Planning</li>
+            <li>Progress Monitoring &amp; Reporting</li>
+            <li>Engineering Research</li>
+          </ul>
+        </div>
+
+        <div class="srv-intl-card">
+          <div class="srv-intl-card-top">
+            <span class="srv-intl-card-num">05</span>
+            <h4>Housing &amp; Commercial Construction</h4>
+          </div>
+          <ul class="srv-card-list">
+            <li>Housing &amp; Commercial Constructions</li>
+            <li>All Finishing Works</li>
+            <li>Renovations</li>
+          </ul>
+        </div>
+
+        <div class="srv-intl-card">
+          <div class="srv-intl-card-top">
+            <span class="srv-intl-card-num">06</span>
+            <h4>Quantity Surveying</h4>
+          </div>
+          <ul class="srv-card-list">
+            <li>Detailed BOQ Preparation</li>
+            <li>Cost Estimates</li>
+            <li>Financial Monitoring &amp; Reporting</li>
+          </ul>
+        </div>
+
+        <div class="srv-intl-card">
+          <div class="srv-intl-card-top">
+            <span class="srv-intl-card-num">07</span>
+            <h4>Swimming Pool Construction &amp; Landscaping</h4>
+          </div>
+          <ul class="srv-card-list">
+            <li>Swimming Pools</li>
+            <li>Interlocking</li>
+            <li>Driveways, Walkways &amp; Fences</li>
+            <li>Turfing &amp; Floral Planting</li>
+          </ul>
+        </div>
+
+        <div class="srv-intl-card srv-intl-card--cta">
+          <h4>Ready to start your international project?</h4>
+          <p>Our team is experienced in delivering cross-border projects with world-class standards and cultural sensitivity.</p>
+          <a href="contact.html" class="srv-cta-btn">Get in touch →</a>
+        </div>
+
+      </div><!-- /.srv-intl-grid -->
+
+    </div><!-- /.srv-intl-layout -->
+  </section>
+
+  <!-- ============================================================
+     CTA BANNER
+  ============================================================ -->
+  <section id="cta-banner">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <h2>Let's Build Something<br />Remarkable Together.</h2>
+        <p>Whether a private home or a city block — bring us your vision. We'll shape it into something that lasts.</p>
+        <a href="contact.html" class="btn btn-dark btn-arrow"><span>Contact us now</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+     FOOTER
+  ============================================================ -->
+  <footer id="footer" role="contentinfo">
+    <div class="hs-footer-inner">
+      <div class="hs-footer-brand">
+        <a href="index.html" class="hs-footer-logo">
+          <img src="Logos/trans.PNG" alt="Civilanka Architects" class="logo-img logo-img--footer" />
+        </a>
+      </div>
+
+      <div class="hs-footer-cols">
+        <div class="hs-footer-col">
+          <span class="hs-footer-col-label">Navigate</span>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="blog.html">Journal</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="hs-footer-col">
+          <span class="hs-footer-col-label">Services</span>
+          <ul>
+            <li><a href="services.html#local-services">Local Services</a></li>
+            <li><a href="services.html#international-services">International Services</a></li>
+            <li><a href="services.html">Architectural Design</a></li>
+            <li><a href="services.html">Structural Engineering</a></li>
+          </ul>
+        </div>
+
+        <div class="hs-footer-col">
+          <span class="hs-footer-col-label">Contact</span>
+          <address>
+            <span>24 Studio Lane</span>
+            <span>Colombo 03, Sri Lanka</span>
+            <a href="tel:+94112345678">+94 11 234 5678</a>
+            <a href="mailto:hello@civilweb.com">hello@civilweb.com</a>
+          </address>
+        </div>
+      </div>
+    </div>
+
+    <div class="hs-footer-bottom">
+      <p>&copy; 2025 Civilanka Architecture Studio. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="back-top" aria-label="Back to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 18 H18 V6" stroke="#111" stroke-width="1.5" />
+      <polygon points="14,8 22,8 18,2" fill="#111" />
+    </svg>
+  </button>
+
+  <!-- Main JS -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/services.js"></script>
+</body>
+
+</html>
