@@ -349,7 +349,7 @@ p {
   display: flex;
   align-items: center;
   gap: 0;
-  margin-right: 60px;
+  margin-right: 24px;
 }
 
 
@@ -395,9 +395,24 @@ p {
   position: relative;
 }
 
-/* Left-side indicator bar — removed as requested */
+/* Left-side indicator bar with down-to-up animation */
 .sticky-nav li a::before {
-  display: none;
+  content: '';
+  position: absolute;
+  left: 12px;
+  bottom: calc(50% - 7px);
+  width: 1.5px;
+  height: 14px;
+  background-color: var(--black);
+  transform: translateY(10px);
+  opacity: 0;
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.sticky-nav li.active a::before,
+.sticky-nav li a:hover::before {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /* Remove old ::after indicator */
@@ -4304,7 +4319,7 @@ body.home-page .team-role {
 /* Portrait + narrow: 2-col team checkerboard */
 @media (orientation: portrait) and (max-width: 900px) {
   body.home-page .team-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: auto;
   }
 
@@ -4318,10 +4333,15 @@ body.home-page .team-role {
     display: none;
   }
 
-  body.home-page .team-cell.team-photo,
+  body.home-page .team-cell.team-photo {
+    height: 350px;
+    min-height: 350px;
+  }
+
   body.home-page .team-cell.team-info {
-    height: 170px;
-    min-height: 170px;
+    height: auto;
+    min-height: auto;
+    padding: 24px 20px 40px;
   }
 }
 
@@ -4439,13 +4459,18 @@ body.home-page .team-role {
   }
 
   body.home-page .team-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
-  body.home-page .team-cell.team-photo,
+  body.home-page .team-cell.team-photo {
+    height: 300px;
+    min-height: 300px;
+  }
+  
   body.home-page .team-cell.team-info {
-    height: 150px;
-    min-height: 150px;
+    height: auto;
+    min-height: auto;
+    padding: 20px 16px 36px;
   }
 
   body.home-page .quote-banner-content h2 {
