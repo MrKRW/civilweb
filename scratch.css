@@ -1,0 +1,8 @@
+.hs-footer-inner {
+  display: grid;
+  grid-template-columns: 5fr 2fr 2fr 3fr;
+  gap: 20px;
+  align-items: flex-start;
+}
+.hs-footer-logo { margin-top: -40px; }
+.hs-footer-cols { display: contents; }

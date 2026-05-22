@@ -1822,13 +1822,11 @@ body.home-page .team-role {
 }
 
 .hs-footer-inner {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
   padding: 70px 80px 50px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 80px;
 }
 
 .hs-footer-logo {
@@ -1843,7 +1841,6 @@ body.home-page .team-role {
 .hs-footer-cols {
   display: flex;
   gap: 80px;
-  align-items: flex-start;
 }
 
 .hs-footer-col {
@@ -1852,8 +1849,8 @@ body.home-page .team-role {
 
 .hs-footer-col-label {
   display: block;
-  font-family: var(--font-h);
-  font-size: 0.62rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -1871,8 +1868,8 @@ body.home-page .team-role {
 }
 
 .hs-footer-col ul li a {
-  font-family: var(--font-b);
-  font-size: 0.875rem;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 15px;
   color: #333;
   text-decoration: none;
   transition: opacity 0.25s;
@@ -1891,8 +1888,8 @@ body.home-page .team-role {
 
 .hs-footer-col address span,
 .hs-footer-col address a {
-  font-family: var(--font-b);
-  font-size: 0.875rem;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 15px;
   color: #333;
   text-decoration: none;
   transition: opacity 0.25s;
@@ -1913,8 +1910,7 @@ body.home-page .team-role {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #aaa;
-  max-width: 1200px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 /* Responsive Footer */
@@ -4840,5 +4836,25 @@ body.home-page .team-role {
 
   .services-hero-title {
     font-size: 2.2rem;
+  }
+}
+
+/* ===========================
+   FOOTER RESPONSIVE OVERRIDES
+=========================== */
+@media (max-width: 1024px) {
+  .hs-footer-inner {
+    display: flex !important;
+  }
+  .hs-footer-cols {
+    display: flex !important;
+    gap: 40px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hs-footer-cols {
+    flex-direction: column !important;
+    gap: 32px !important;
   }
 }
