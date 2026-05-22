@@ -5,6 +5,9 @@
 const topBar = document.getElementById('top-bar');
 const stickyHeader = document.getElementById('sticky-header');
 const backTop = document.getElementById('back-top');
+const mobileNav = document.getElementById('mobile-nav');
+const mobileClose = document.getElementById('mobile-nav-close');
+const hamburgerBtn = document.getElementById('hamburger-btn');
 
 // Section→nav-label mapping (for active highlight on home page)
 const sectionMap = [
@@ -110,9 +113,6 @@ window.addEventListener('scroll', () => {
 // ============================
 // MOBILE NAV (hamburger + close button)
 // ============================
-const mobileNav = document.getElementById('mobile-nav');
-const mobileClose = document.getElementById('mobile-nav-close');
-const hamburgerBtn = document.getElementById('hamburger-btn');
 
 function openMenu() { if (mobileNav) mobileNav.classList.add('open'); }
 function closeMenu() { if (mobileNav) mobileNav.classList.remove('open'); }

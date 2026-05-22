@@ -253,9 +253,7 @@ p {
   display: block;
 }
 
-.logo-img--hero {
-  /* filter: brightness(0); Removed to show natural logo colors */
-}
+/* .logo-img--hero { filter: brightness(0); } Removed to show natural logo colors */
 
 .logo-img--footer {
   height: 160px;
@@ -2962,7 +2960,7 @@ body.home-page .team-role {
   body {
     overflow-x: hidden;
   }
-  img {1`1
+  img {
     max-width: 100%;
   }
 }
