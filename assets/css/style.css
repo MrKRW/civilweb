@@ -1075,7 +1075,7 @@ p {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   padding: 0 0 20px 0;
   text-transform: capitalize;
@@ -1472,13 +1472,14 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: var(--home-hero-height);
-  min-height: 400px;
-  max-height: 560px;
+  height: 549px;
+  min-height: 549px;
+  max-height: 549px;
+  width: 100%;  /* was 1361px — caused horizontal overflow on mobile */
   display: flex;
   align-items: center;
   padding: 0;
-  width: 100%;
+  overflow: hidden;
 }
 
 .quote-banner-content {
@@ -1507,7 +1508,10 @@ p {
 
 
 body.home-page #quote-banner {
-  height: var(--home-hero-height);
+  height: 549px;
+  min-height: 549px;
+  max-height: 549px;
+  width: 100%;  /* was 1361px — caused horizontal overflow on mobile */
 }
 
 body.home-page #team {
@@ -1547,9 +1551,10 @@ body.home-page .team-role {
 
 @media (max-width: 900px) {
   #quote-banner {
-    height: clamp(360px, 48vh, 480px);
-    min-height: 360px;
-    max-height: 480px;
+    height: 549px;
+    min-height: 549px;
+    max-height: 549px;
+    width: 100%; /* overflow fix */
   }
 
   .quote-banner-content.container {
@@ -2044,16 +2049,15 @@ body.home-page .team-role {
 .hamburger-btn {
   display: none;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  width: 36px;
-  height: 36px;
-  background: none;
+  justify-content: space-between;
+  width: 32px;
+  height: 20px;
+  background: transparent;
   border: none;
   cursor: pointer;
-  flex-shrink: 0;
-  padding: 4px;
+  padding: 0;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
 }
 
 .hamburger-btn span {
@@ -2065,8 +2069,26 @@ body.home-page .team-role {
 }
 
 @media (max-width: 768px) {
+  /* Show hamburger on ALL pages at mobile widths */
   .hamburger-btn {
     display: flex;
+    margin-left: auto; /* push it to the right of the header */
+  }
+
+  /* Hide desktop nav links on mobile for ALL pages */
+  #sticky-header .sticky-nav {
+    display: none !important;
+  }
+
+  /* Tighten header padding on mobile and enforce clickability */
+  #sticky-header {
+    padding: 0 20px;
+    pointer-events: auto !important;
+  }
+
+  /* Reduce logo margin so it doesn't eat header space */
+  .sticky-logo {
+    margin-right: 0;
   }
 }
 
@@ -3063,9 +3085,10 @@ body.home-page .team-role {
 
   /* Quote banner */
   #quote-banner {
-    height: clamp(360px, 48vh, 480px);
-    min-height: 360px;
-    max-height: 480px;
+    height: 549px;
+    min-height: 549px;
+    max-height: 549px;
+    width: 100%; /* overflow fix */
   }
 
   .quote-banner-content.container {
@@ -3599,9 +3622,10 @@ body.home-page .team-role {
 
   /* Quote banner */
   #quote-banner {
-    height: clamp(300px, 45vh, 400px);
-    min-height: 300px;
-    max-height: 400px;
+    height: 549px;
+    min-height: 549px;
+    max-height: 549px;
+    width: 100%; /* overflow fix */
   }
 
   .quote-banner-content.container {
@@ -4122,9 +4146,10 @@ body.home-page .team-role {
 
   /* Quote banner — compact hero band */
   body.home-page #quote-banner {
-    height: var(--home-hero-height);
-    min-height: 300px;
-    max-height: 420px;
+    height: 549px;
+    min-height: 549px;
+    max-height: 549px;
+    width: 100%;
   }
 
   body.home-page .quote-banner-content.container {
@@ -4333,26 +4358,86 @@ body.home-page .team-role {
     flex: 1 1 100%;
   }
 
+  /* Switch to vertical stacked accordion on narrow phones */
   body.home-page .acc-container {
-    height: clamp(300px, 38vh, 400px);
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    gap: 0;
+    padding: 0 16px;
+    box-sizing: border-box;
   }
 
   body.home-page .acc-item {
-    flex: 0 0 56px !important;
+    flex: none !important;
+    flex-direction: column;
+    width: 100%;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  body.home-page .acc-item.active {
+    flex: none !important;
   }
 
   body.home-page .acc-header {
-    width: 56px;
-    min-width: 56px;
-    padding: 18px 0;
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    min-height: unset;
+    max-height: unset;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 16px;
+    border-bottom: none;
   }
 
   body.home-page .acc-title {
-    font-size: 0.95rem;
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    transform: none;
+    font-size: 1.1rem;
+    flex: none;
+    padding: 0;
+  }
+
+  body.home-page .acc-title::after {
+    display: none;
+  }
+
+  body.home-page .acc-icon {
+    font-size: 1.3rem;
+    order: 2;
+    opacity: 1 !important;
+  }
+
+  body.home-page .acc-content {
+    flex-direction: column;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  body.home-page .acc-item.active .acc-content {
+    max-height: 600px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  body.home-page .acc-img-wrap {
+    flex: none;
+    width: 100%;
+    height: 200px;
+    min-width: unset;
+    max-width: unset;
+    min-height: unset;
+    max-height: unset;
   }
 
   body.home-page .acc-text-wrap {
-    padding: 20px 18px;
+    padding: 20px 16px;
   }
 
   body.home-page .team-grid {
@@ -4390,5 +4475,347 @@ body.home-page .team-role {
 
   body.home-page .ref-journal-grid {
     gap: 28px 10px;
+  }
+}
+
+/* =============================================================
+   GLOBAL INNER-PAGE MOBILE RESPONSIVENESS
+   These rules apply to ALL pages at ≤768px while leaving the
+   desktop view (>768px) untouched.
+============================================================= */
+
+@media (max-width: 768px) {
+
+  /* ── GENERAL ── */
+  .container {
+    padding: 0 20px;
+  }
+
+  .section-pad {
+    padding: 60px 0;
+  }
+
+  /* ── FOOTER ── */
+  .hs-footer-inner {
+    flex-direction: column;
+    padding: 40px 20px 28px;
+    gap: 32px;
+  }
+
+  .hs-footer-cols {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .hs-footer-bottom {
+    padding: 16px 20px;
+  }
+
+  .logo-img--footer {
+    height: 80px;
+  }
+
+  /* ── CTA BANNER ── */
+  #cta-banner {
+    padding: 60px 0;
+  }
+
+  .cta-inner h2 {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+
+  /* ── SERVICES HERO (services.html) ── */
+  .services-hero-title {
+    font-size: clamp(2.4rem, 8vw, 4rem);
+  }
+
+  /* ── SERVICES GRID ── */
+  .srv-grid {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+
+  .srv-card--wide {
+    grid-column: span 1;
+  }
+
+  .srv-intl-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .srv-intl-featured {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .srv-intl-featured--reverse {
+    direction: ltr;
+  }
+
+  .srv-section-header {
+    padding: 0 20px;
+    margin-bottom: 36px;
+  }
+
+  .srv-intl-layout {
+    padding: 0 20px;
+  }
+
+  .services-divider {
+    padding: 0 20px;
+  }
+
+  .services-section {
+    padding: 60px 0;
+  }
+
+  .services-section--international {
+    padding-top: 40px;
+  }
+
+  /* ── ABOUT PAGE SECTIONS ── */
+  .hs-intro {
+    padding-top: 100px;
+    padding-bottom: 30px;
+  }
+
+  .hs-intro-inner {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+    gap: 24px;
+  }
+
+  .hs-intro-img-wrap {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .hs-approach-inner {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+    gap: 28px;
+  }
+
+  .hs-approach {
+    padding-bottom: 60px;
+  }
+
+  .hs-gallery {
+    padding: 40px 16px;
+  }
+
+  .hs-gallery-item,
+  .hs-gallery-item.active {
+    flex: 0 0 260px;
+    height: 300px;
+  }
+
+  .hs-gallery-slider {
+    height: 300px;
+  }
+
+  .hs-quote {
+    padding: 60px 0;
+  }
+
+  .hs-quote-inner {
+    padding: 0 20px;
+  }
+
+  .hs-quote-text {
+    font-size: 1.05rem;
+  }
+
+  .hs-banner {
+    height: 320px;
+  }
+
+  .hs-banner-content {
+    padding: 0 20px 32px;
+  }
+
+  .hs-banner-quote {
+    font-size: 1.1rem;
+  }
+
+  .hs-stats-inner {
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+
+  .hs-stat-item {
+    flex: 0 0 45%;
+    padding: 12px 0;
+  }
+
+  .hs-stat-divider {
+    display: none;
+  }
+
+  .hs-founders {
+    padding: 60px 0;
+  }
+
+  .hs-founders-inner {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+    gap: 28px;
+  }
+
+  .hs-founders-heading {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+
+  .hs-founder-photo {
+    height: 220px;
+  }
+
+  .hs-founders-photos {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hs-team {
+    padding: 60px 0;
+  }
+
+  .hs-team-grid {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+    gap: 0;
+  }
+
+  .hs-team-card {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .hs-tc-photo {
+    flex: none;
+    width: 100%;
+    height: 220px;
+  }
+
+  .hs-tc-info {
+    padding: 16px 20px;
+  }
+
+  .hs-cta-inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 20px;
+    gap: 20px;
+  }
+
+  /* ── CONTACT PAGE ── */
+  .ct-page-title {
+    padding-top: calc(var(--header-height-mobile) + 40px);
+  }
+
+  .ct-page-title-inner,
+  .ct-body-inner {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .ct-body-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .ct-form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .ct-info-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .ct-title {
+    font-size: clamp(2.2rem, 10vw, 4rem);
+  }
+
+  /* ── PROJECTS PAGE ── */
+  .pj-filters-inner {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 20px;
+  }
+
+  .pj-filter-btn,
+  .pj-type-btn {
+    font-size: 0.72rem;
+  }
+
+  /* ── BLOG PAGE ── */
+  .blog-layout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-sidebar {
+    display: none; /* hide sidebar on mobile for blog */
+  }
+
+  .breadcrumb-container {
+    padding-top: calc(var(--header-height) + 10px);
+  }
+
+  /* ── SHOP PAGE ── */
+  .shop-layout {
+    flex-direction: column;
+  }
+
+  .shop-sidebar {
+    width: 100%;
+  }
+
+  .sidebar-banner {
+    aspect-ratio: 16 / 6;
+    margin-top: 20px;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonial-text {
+    font-size: clamp(1rem, 4vw, 1.4rem);
+  }
+
+  /* ── REF JOURNAL (home page section) ── */
+  .ref-journal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── BACK TO TOP ── */
+  #back-top {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+/* Very narrow phones */
+@media (max-width: 420px) {
+  .sticky-logo .logo-img--sticky {
+    height: 36px;
+  }
+
+  #sticky-header {
+    height: var(--header-height-mobile);
+  }
+
+  .hs-stat-item {
+    flex: 0 0 100%;
+  }
+
+  .hs-founders-photos {
+    grid-template-columns: 1fr;
+  }
+
+  .hs-founder-photo {
+    height: 260px;
+  }
+
+  .services-hero-title {
+    font-size: 2.2rem;
   }
 }

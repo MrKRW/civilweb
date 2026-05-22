@@ -190,6 +190,19 @@
   transform: translateY(0);
 }
 
+/* On mobile the hero nav is hidden — always show sticky header so hamburger is reachable */
+@media (max-width: 768px) {
+  .about-page #sticky-header {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+
+  .about-hero-nav {
+    display: none !important;
+  }
+}
+
 /* ============================================================
    ABOUT HERO NAVBAR (lives inside the hero section)
 ============================================================ */
@@ -275,6 +288,24 @@
   .about-hero-nav {
     justify-content: flex-start;
     padding: 20px 24px;
+  }
+}
+
+/* Adjust about hero content when sticky header is always-on at mobile */
+@media (max-width: 768px) {
+  .hs-hero-content {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: calc(var(--header-height) + 20px);
+  }
+
+  .hs-hero-footer {
+    left: 24px;
+    bottom: 28px;
+  }
+
+  .hs-hero-title {
+    font-size: clamp(2rem, 8vw, 3.2rem);
   }
 }
 

@@ -152,55 +152,61 @@ function updateOurWorkInfo(title, cat) {
   }, 280); // matches CSS transition duration
 }
 
-const ourWorkSwiper = new Swiper('.our-work-swiper', {
-  loop: true,
-  speed: 700,
-  grabCursor: true,
-  centeredSlides: false,
-  autoplay: {
-    delay: 3500,
-    disableOnInteraction: false,
-    pauseOnMouseEnter: true
-  },
-  slidesPerView: 'auto',
-  spaceBetween: 30,
-  breakpoints: {
-    768: { spaceBetween: 30 },
-    1024: { spaceBetween: 30 }
-  },
-  navigation: {
-    prevEl: '.our-work-prev',
-    nextEl: '.our-work-next'
-  },
-  observer: true,
-  observeParents: true,
-  on: {
-    slideChange() {
-      // realIndex always points to the original (non-cloned) slide in loop mode
-      const realSlides = this.slides.filter(s => !s.classList.contains('swiper-slide-duplicate'));
-      const realSlide = realSlides[this.realIndex];
-      if (realSlide) {
-        updateOurWorkInfo(realSlide.dataset.title, realSlide.dataset.cat);
+let ourWorkSwiper;
+if (typeof Swiper !== 'undefined' && document.querySelector('.our-work-swiper')) {
+  ourWorkSwiper = new Swiper('.our-work-swiper', {
+    loop: true,
+    speed: 700,
+    grabCursor: true,
+    centeredSlides: false,
+    autoplay: {
+      delay: 3500,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true
+    },
+    slidesPerView: 'auto',
+    spaceBetween: 30,
+    breakpoints: {
+      768: { spaceBetween: 30 },
+      1024: { spaceBetween: 30 }
+    },
+    navigation: {
+      prevEl: '.our-work-prev',
+      nextEl: '.our-work-next'
+    },
+    observer: true,
+    observeParents: true,
+    on: {
+      slideChange() {
+        // realIndex always points to the original (non-cloned) slide in loop mode
+        const realSlides = this.slides.filter(s => !s.classList.contains('swiper-slide-duplicate'));
+        const realSlide = realSlides[this.realIndex];
+        if (realSlide) {
+          updateOurWorkInfo(realSlide.dataset.title, realSlide.dataset.cat);
+        }
       }
     }
-  }
-});
+  });
+}
 
 // ============================
 // TESTIMONIALS SWIPER
 // ============================
-const testSwiper = new Swiper('.test-swiper', {
-  loop: true,
-  speed: 900,
-  // Use horizontal slide animation (default)
-  direction: 'horizontal',
-  // Removed fade effect for slide transition
-  autoplay: { delay: 6000, disableOnInteraction: false },
-  pagination: {
-    el: '.test-pagination',
-    clickable: true,
-  }
-});
+let testSwiper;
+if (typeof Swiper !== 'undefined' && document.querySelector('.test-swiper')) {
+  testSwiper = new Swiper('.test-swiper', {
+    loop: true,
+    speed: 900,
+    // Use horizontal slide animation (default)
+    direction: 'horizontal',
+    // Removed fade effect for slide transition
+    autoplay: { delay: 6000, disableOnInteraction: false },
+    pagination: {
+      el: '.test-pagination',
+      clickable: true,
+    }
+  });
+}
 
 // ============================
 // HORIZONTAL ACCORDION
