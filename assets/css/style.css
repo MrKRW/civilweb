@@ -256,7 +256,7 @@ p {
 /* .logo-img--hero { filter: brightness(0); } Removed to show natural logo colors */
 
 .logo-img--footer {
-  height: 160px;
+  height: 120px;
 }
 
 .logo-img--sticky {
@@ -395,24 +395,24 @@ p {
   position: relative;
 }
 
-/* Left-side indicator bar with down-to-up animation */
+/* Indicator on the left (vertical line drawn bottom to top) */
 .sticky-nav li a::before {
   content: '';
   position: absolute;
   left: 12px;
-  bottom: calc(50% - 7px);
+  top: 50%;
+  margin-top: -8px;
   width: 1.5px;
-  height: 14px;
+  height: 16px;
   background-color: var(--black);
-  transform: translateY(10px);
-  opacity: 0;
-  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .sticky-nav li.active a::before,
 .sticky-nav li a:hover::before {
-  transform: translateY(0);
-  opacity: 1;
+  transform: scaleY(1);
 }
 
 /* Remove old ::after indicator */
