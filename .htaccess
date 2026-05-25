@@ -1,0 +1,9 @@
+Options -Indexes
+RewriteEngine On
+
+# Allow direct access to existing files and directories (assets, uploads, Logos, etc.)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Route everything else through the front controller
+RewriteRule ^(.*)$ index.php [QSA,L]

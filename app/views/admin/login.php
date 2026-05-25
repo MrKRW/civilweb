@@ -1,9 +1,5 @@
 <?php
-session_start();
-if (!empty($_SESSION['admin_id'])) {
-    header('Location: dashboard.php');
-    exit;
-}
+$BASE = '/civilweb';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -185,7 +181,7 @@ if (!empty($_SESSION['admin_id'])) {
 
   <div class="login-card">
     <div class="login-logo">
-      <img src="../Logos/trans.PNG" alt="CivilLanka" />
+      <img src="<?= $BASE ?>/Logos/trans.PNG" alt="CivilLanka" />
     </div>
     <p class="login-subtitle">Admin Panel</p>
 
@@ -201,7 +197,7 @@ if (!empty($_SESSION['admin_id'])) {
       <button type="submit" class="login-btn" id="login-submit">Sign In</button>
     </form>
 
-    <a href="../index.html" class="back-link">← Back to website</a>
+    <a href="<?= $BASE ?>/" class="back-link">← Back to website</a>
   </div>
 
   <script>
@@ -218,11 +214,11 @@ if (!empty($_SESSION['admin_id'])) {
       const fd = new FormData(form);
 
       try {
-        const res  = await fetch('../api/auth.php?action=login', { method: 'POST', body: fd });
+        const res  = await fetch('<?= $BASE ?>/api/auth?action=login', { method: 'POST', body: fd });
         const data = await res.json();
 
         if (data.success) {
-          window.location.href = 'dashboard.php';
+          window.location.href = '<?= $BASE ?>/admin';
         } else {
           errBox.textContent = data.error || 'Login failed';
           errBox.classList.add('show');
@@ -230,7 +226,7 @@ if (!empty($_SESSION['admin_id'])) {
           btn.disabled = false;
         }
       } catch (err) {
-        errBox.textContent = 'Network error – is XAMPP running?';
+        errBox.textContent = 'Network error';
         errBox.classList.add('show');
         btn.textContent = 'Sign In';
         btn.disabled = false;

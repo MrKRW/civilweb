@@ -1,11 +1,7 @@
 <?php
-session_start();
-if (empty($_SESSION['admin_id'])) {
-    header('Location: login.php');
-    exit;
-}
-$adminName = $_SESSION['admin_name'] ?? 'Admin';
-$adminUser = $_SESSION['admin_user'] ?? 'admin';
+$BASE = '/civilweb';
+$adminName = $adminName ?? 'Admin';
+$adminUser = $adminUser ?? 'admin';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +12,11 @@ $adminUser = $_SESSION['admin_user'] ?? 'admin';
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/admin.css?v=1.1" />
+  <link rel="stylesheet" href="<?= $BASE ?>/assets/css/admin.css?v=1.1" />
+  <script>
+    // Make BASE available to admin.js
+    const API_BASE = "<?= $BASE ?>";
+  </script>
 </head>
 <body>
 
@@ -25,8 +25,8 @@ $adminUser = $_SESSION['admin_user'] ?? 'admin';
   ═══════════════════════════════════════════ -->
   <aside id="sidebar">
     <div class="sidebar-top">
-      <a href="../index.html" class="sidebar-logo" target="_blank">
-        <img src="../Logos/trans.PNG" alt="CivilLanka" />
+      <a href="<?= $BASE ?>/" class="sidebar-logo" target="_blank">
+        <img src="<?= $BASE ?>/Logos/trans.PNG" alt="CivilLanka" />
       </a>
       <span class="sidebar-badge">Admin</span>
     </div>
@@ -66,7 +66,7 @@ $adminUser = $_SESSION['admin_user'] ?? 'admin';
           <p class="sidebar-user-role"><?php echo htmlspecialchars($adminUser); ?></p>
         </div>
       </div>
-      <a href="#" id="logout-btn" class="nav-item nav-item--logout">
+      <a href="<?= $BASE ?>/admin/logout" id="logout-btn" class="nav-item nav-item--logout">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
         <span>Logout</span>
       </a>
@@ -544,6 +544,6 @@ $adminUser = $_SESSION['admin_user'] ?? 'admin';
   <!-- Toast container -->
   <div id="toast-container"></div>
 
-  <script src="assets/js/admin.js?v=2"></script>
+  <script src="<?= $BASE ?>/assets/js/admin.js?v=2"></script>
 </body>
 </html>

@@ -1,11 +1,12 @@
 /**
  * CivilLanka Admin – Client-side Logic
  */
-const API = '../api/projects.php';
-const SHOP_API = '../api/shop.php';
-const AUTH = '../api/auth.php';
-const UPLOAD_BASE = '../uploads/projects/';
-const SHOP_UPLOAD_BASE = '../uploads/shop/';
+const API = (typeof API_BASE !== 'undefined' ? API_BASE : '/civilweb') + '/api/projects';
+const SHOP_API = (typeof API_BASE !== 'undefined' ? API_BASE : '/civilweb') + '/api/shop';
+const AUTH = (typeof API_BASE !== 'undefined' ? API_BASE : '/civilweb') + '/api/auth';
+const SETTINGS_API = (typeof API_BASE !== 'undefined' ? API_BASE : '/civilweb') + '/api/settings';
+const UPLOAD_BASE = (typeof API_BASE !== 'undefined' ? API_BASE : '/civilweb') + '/uploads/projects/';
+const SHOP_UPLOAD_BASE = (typeof API_BASE !== 'undefined' ? API_BASE : '/civilweb') + '/uploads/shop/';
 
 /* ── NAVIGATION ─────────────────────────── */
 document.querySelectorAll('.nav-item[data-page]').forEach(item => {
@@ -374,7 +375,7 @@ document.getElementById('settings-form')?.addEventListener('submit', async (e) =
 
   const fd = new FormData(e.target);
   try {
-    const res = await fetch('../api/settings.php', { method: 'POST', body: fd });
+    const res = await fetch(SETTINGS_API, { method: 'POST', body: fd });
     const data = await res.json();
     if (data.success) {
       showToast('Password updated!', 'success');

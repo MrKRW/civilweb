@@ -4,8 +4,8 @@
  * in a filterable masonry-style grid.
  */
 (function () {
-  const API = 'api/projects.php';
-  const UPLOAD = 'uploads/projects/';
+  const API = '/civilweb/api/projects';
+  const UPLOAD = '/civilweb/uploads/projects/';
   
   let grid, emptyState, countText;
   let allProjects = [];
@@ -114,7 +114,7 @@
       }
 
       return `
-        <a href="project-details.html?id=${p.id}" style="text-decoration:none; color:inherit; display:block;">
+        <a href="/civilweb/projects/${p.id}" style="text-decoration:none; color:inherit; display:block;">
           <article class="pj-card">
             <div class="pj-card-img">
               <img src="${imgSrc}" alt="${escAttr(p.title)}" loading="lazy" />
