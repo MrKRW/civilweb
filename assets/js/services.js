@@ -26,8 +26,15 @@ function highlightServicesNav() {
     if (li) li.classList.remove('active');
   });
 
-  const servicesLi = document.querySelector('.sticky-nav li.nav-has-dropdown');
-  if (servicesLi) servicesLi.classList.add('active');
+  // Find the services nav item and make it active
+  const servicesLink = Array.from(navLinks).find(a => {
+    const href = a.getAttribute('href') || '';
+    return href.includes('services.html');
+  });
+  if (servicesLink) {
+    const li = servicesLink.closest('li');
+    if (li) li.classList.add('active');
+  }
 }
 
 highlightServicesNav();
