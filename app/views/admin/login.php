@@ -1,5 +1,5 @@
 <?php
-$BASE = '';
+$BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',['localhost','127.0.0.1','::1'])?'/civilweb':'');
 ?>
 <!DOCTYPE html>
 <html lang="en">

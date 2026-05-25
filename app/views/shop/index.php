@@ -4,7 +4,7 @@ $meta      = 'Browse the Civilanka shop — architectural materials, design prod
 $pageClass = 'shop-page';
 $activeNav = 'shop';
 $extraJs   = ['shop.js'];
-$BASE      = '';
+$BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',['localhost','127.0.0.1','::1'])?'/civilweb':'');
 ?>
 
   <!-- MAIN SHOP SECTION -->

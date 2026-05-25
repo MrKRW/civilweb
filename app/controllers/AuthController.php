@@ -20,7 +20,7 @@ class AuthController extends Controller
     public function loginPage(): void
     {
         if (!empty($_SESSION['admin_id'])) {
-            $this->redirect('/admin');
+            $this->redirect(BASE_PATH . '/admin');
         }
         $this->render('admin/login', [], null); // no layout (standalone page)
     }
@@ -29,7 +29,7 @@ class AuthController extends Controller
     public function logout(): void
     {
         session_destroy();
-        $this->redirect('/admin/login');
+        $this->redirect(BASE_PATH . '/admin/login');
     }
 
     /** /api/auth – JSON API (replaces api/auth.php) */

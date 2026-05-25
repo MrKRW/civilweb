@@ -4,8 +4,8 @@
  * in a filterable masonry-style grid.
  */
 (function () {
-  const API = '/api/projects';
-  const UPLOAD = '/uploads/projects/';
+  const API = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/projects';
+  const UPLOAD = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/projects/';
   
   let grid, emptyState, countText;
   let allProjects = [];

@@ -4,7 +4,7 @@ $meta      = 'Civilanka is a premier architecture and design studio in Sri Lanka
 $pageClass = 'home-page';
 $activeNav = 'home';
 $extraJs   = ['main.js'];
-$BASE      = '';
+$BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',['localhost','127.0.0.1','::1'])?'/civilweb':'');
 ?>
 
   <!-- HERO TOP BAR -->
@@ -237,7 +237,7 @@ $BASE      = '';
   <script>
     (async function loadFeaturedProjects() {
       try {
-        const res = await fetch('/api/projects?action=featured');
+        const res = await fetch((typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/projects?action=featured');
         const data = await res.json();
         const projects = data.projects;
         if (!projects || projects.length === 0) return;
@@ -245,7 +245,7 @@ $BASE      = '';
         if (!wrapper) return;
         wrapper.innerHTML = '';
         projects.forEach(p => {
-          const imgSrc = p.image_main ? '/uploads/projects/' + p.image_main : '/Project%20images/2023-11-07.jpg';
+          const imgSrc = p.image_main ? (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/projects/' + p.image_main : (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/Project%20images/2023-11-07.jpg';
           const slide = document.createElement('div');
           slide.className = 'swiper-slide our-work-slide';
           slide.setAttribute('data-title', p.title);

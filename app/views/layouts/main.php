@@ -14,13 +14,14 @@ $meta      = $meta      ?? 'Civilanka is a premier architecture and design studi
 $extraCss  = $extraCss  ?? [];
 $extraJs   = $extraJs   ?? [];
 $activeNav = $activeNav ?? '';
-$BASE      = '';
+$BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',['localhost','127.0.0.1','::1'])?'/civilweb':'');
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><?= htmlspecialchars($title) ?></title>
+  <script>const API_BASE = '<?= $BASE ?>';</script>
   <meta name="description" content="<?= htmlspecialchars($meta) ?>" />
 
   <!-- Fonts -->

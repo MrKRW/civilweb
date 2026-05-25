@@ -13,7 +13,7 @@ async function loadShopItems(container) {
   try {
     container.innerHTML = '<p class="loading-text" style="grid-column: 1 / -1; text-align: center;">Loading shop items...</p>';
 
-    const res = await fetch('/api/shop?action=list');
+    const res = await fetch((typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/shop?action=list');
     const data = await res.json();
     const items = data.items || [];
 

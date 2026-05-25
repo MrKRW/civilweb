@@ -4,10 +4,11 @@
  * Uses PDO for secure, prepared-statement queries.
  */
 
-define('DB_HOST', 'localhost'); // Usually 'localhost' on Hostinger
-define('DB_NAME', 'YOUR_HOSTINGER_DB_NAME'); // e.g. u123456789_civillanka_db
-define('DB_USER', 'YOUR_HOSTINGER_DB_USER'); // e.g. u123456789_user
-define('DB_PASS', 'YOUR_HOSTINGER_DB_PASSWORD'); // Set this to your DB password
+define('IS_LOCAL', in_array($_SERVER['HTTP_HOST'] ?? '', ['localhost', '127.0.0.1', '::1']));
+define('DB_HOST', 'localhost');
+define('DB_NAME', IS_LOCAL ? 'civillanka_db' : 'YOUR_HOSTINGER_DB_NAME');
+define('DB_USER', IS_LOCAL ? 'root' : 'YOUR_HOSTINGER_DB_USER');
+define('DB_PASS', IS_LOCAL ? '' : 'YOUR_HOSTINGER_DB_PASSWORD');
 define('DB_CHARSET', 'utf8mb4');
 
 function getDB(): PDO {
@@ -41,5 +42,5 @@ function jsonResponse(array $data, int $code = 200): void {
 /** Base URL helper */
 function baseUrl(): string {
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-    return $protocol . '://' . $_SERVER['HTTP_HOST'];
+    return $protocol . '://' . $_SERVER['HTTP_HOST'] . (IS_LOCAL ? '/civilweb' : '');
 }

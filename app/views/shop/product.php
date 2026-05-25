@@ -3,7 +3,7 @@ $title     = htmlspecialchars(($item['title'] ?? 'Product') . ' — Civilanka Sh
 $meta      = htmlspecialchars($item['description'] ?? 'Shop product from Civilanka Architecture Studio.');
 $pageClass = 'shop-product-page';
 $activeNav = 'shop';
-$BASE      = '';
+$BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',['localhost','127.0.0.1','::1'])?'/civilweb':'');
 
 $imgSrc = !empty($item['image'])
     ? $BASE . '/uploads/shop/' . $item['image']

@@ -48,7 +48,7 @@ abstract class Controller
             session_start();
         }
         if (empty($_SESSION['admin_id'])) {
-            $this->redirect('/admin/login');
+            $this->redirect(BASE_PATH . '/admin/login');
         }
     }
 }
