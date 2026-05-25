@@ -20,7 +20,7 @@ class AuthController extends Controller
     public function loginPage(): void
     {
         if (!empty($_SESSION['admin_id'])) {
-            $this->redirect('/civilweb/admin');
+            $this->redirect('/admin');
         }
         $this->render('admin/login', [], null); // no layout (standalone page)
     }
@@ -29,7 +29,7 @@ class AuthController extends Controller
     public function logout(): void
     {
         session_destroy();
-        $this->redirect('/civilweb/admin/login');
+        $this->redirect('/admin/login');
     }
 
     /** /api/auth – JSON API (replaces api/auth.php) */

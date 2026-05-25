@@ -5,7 +5,7 @@ $pageClass = 'contact-page';
 $activeNav = 'contact';
 $extraCss  = ['contact.css'];
 $extraJs   = ['contact.js'];
-$BASE      = '/civilweb';
+$BASE      = '';
 ?>
 
   <!-- PAGE TITLE -->

@@ -4,7 +4,7 @@ $meta      = 'Insights and stories from Civilanka Architecture Studio.';
 $pageClass = 'blog-page';
 $activeNav = 'blog';
 $extraCss  = ['blog.css'];
-$BASE      = '/civilweb';
+$BASE      = '';
 ?>
 
   <!-- Breadcrumbs -->

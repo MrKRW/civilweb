@@ -1,5 +1,5 @@
 <?php
-$BASE = '/civilweb';
+$BASE = '';
 $project = $project ?? [];
 $title = htmlspecialchars(($project['title'] ?? 'Project') . ' — Civilanka Architecture');
 $meta  = htmlspecialchars($project['description'] ?? 'Project detail — Civilanka Architecture Studio.');

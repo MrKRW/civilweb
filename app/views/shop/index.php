@@ -4,7 +4,7 @@ $meta      = 'Browse the Civilanka shop — architectural materials, design prod
 $pageClass = 'shop-page';
 $activeNav = 'shop';
 $extraJs   = ['shop.js'];
-$BASE      = '/civilweb';
+$BASE      = '';
 ?>
 
   <!-- MAIN SHOP SECTION -->

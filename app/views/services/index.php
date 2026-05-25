@@ -4,7 +4,7 @@ $meta      = "Explore Civilanka's full range of architectural, structural, MEP, 
 $pageClass = 'services-page';
 $activeNav = 'services';
 $extraJs   = ['services.js'];
-$BASE      = '/civilweb';
+$BASE      = '';
 ?>
 
   <!-- PAGE HERO -->

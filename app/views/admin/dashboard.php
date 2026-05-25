@@ -1,5 +1,5 @@
 <?php
-$BASE = '/civilweb';
+$BASE = '';
 $adminName = $adminName ?? 'Admin';
 $adminUser = $adminUser ?? 'admin';
 ?>

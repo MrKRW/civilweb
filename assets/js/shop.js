@@ -13,7 +13,7 @@ async function loadShopItems(container) {
   try {
     container.innerHTML = '<p class="loading-text" style="grid-column: 1 / -1; text-align: center;">Loading shop items...</p>';
 
-    const res = await fetch('/civilweb/api/shop?action=list');
+    const res = await fetch('/api/shop?action=list');
     const data = await res.json();
     const items = data.items || [];
 
@@ -35,7 +35,7 @@ async function loadShopItems(container) {
     }
 
     container.innerHTML = published.map(item => {
-      const imgPath = item.image ? `/civilweb/uploads/shop/${item.image}` : '/civilweb/Project images/placeholder.png';
+      const imgPath = item.image ? `/civilweb/uploads/shop/${item.image}` : '/Project images/placeholder.png';
 
       // Handle pricing
       let priceHtml = '';
@@ -61,7 +61,7 @@ async function loadShopItems(container) {
             </div>
           </div>
           <div class="product-info">
-            <h4 class="product-title"><a href="/civilweb/shop/product/${item.id}">${escapeHtml(item.title)}</a></h4>
+            <h4 class="product-title"><a href="/shop/product/${item.id}">${escapeHtml(item.title)}</a></h4>
             <div class="price-wrap">
               ${priceHtml}
             </div>

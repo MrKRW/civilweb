@@ -5,7 +5,7 @@ $pageClass = 'projects-page';
 $activeNav = 'projects';
 $extraCss  = ['contact.css', 'projects.css'];
 $extraJs   = ['projects.js'];
-$BASE      = '/civilweb';
+$BASE      = '';
 ?>
 
   <!-- PAGE TITLE -->

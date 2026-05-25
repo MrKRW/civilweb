@@ -14,7 +14,7 @@ $meta      = $meta      ?? 'Civilanka is a premier architecture and design studi
 $extraCss  = $extraCss  ?? [];
 $extraJs   = $extraJs   ?? [];
 $activeNav = $activeNav ?? '';
-$BASE      = '/civilweb';
+$BASE      = '';
 ?><!DOCTYPE html>
 <html lang="en">
 <head>

@@ -84,7 +84,7 @@ class Router
 
         // 3. 404
         http_response_code(404);
-        echo '<!DOCTYPE html><html><body><h1>404 – Page Not Found</h1><p><a href="/civilweb/">Back to home</a></p></body></html>';
+        echo '<!DOCTYPE html><html><body><h1>404 – Page Not Found</h1><p><a href="/">Back to home</a></p></body></html>';
     }
 
     /**

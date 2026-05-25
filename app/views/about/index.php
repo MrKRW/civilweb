@@ -5,7 +5,7 @@ $pageClass = 'about-page';
 $activeNav = 'about';
 $extraCss  = ['about.css'];
 $extraJs   = ['about.js'];
-$BASE      = '/civilweb';
+$BASE      = '';
 ?>
 
   <!-- HERO -->

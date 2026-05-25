@@ -4,7 +4,7 @@
  * All HTTP requests are routed through here via .htaccess.
  */
 
-define('BASE_PATH', '/civilweb');
+define('BASE_PATH', '');
 define('ROOT_DIR', __DIR__);
 
 require_once __DIR__ . '/app/core/Router.php';

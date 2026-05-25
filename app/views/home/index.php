@@ -4,7 +4,7 @@ $meta      = 'Civilanka is a premier architecture and design studio in Sri Lanka
 $pageClass = 'home-page';
 $activeNav = 'home';
 $extraJs   = ['main.js'];
-$BASE      = '/civilweb';
+$BASE      = '';
 ?>
 
   <!-- HERO TOP BAR -->
@@ -237,7 +237,7 @@ $BASE      = '/civilweb';
   <script>
     (async function loadFeaturedProjects() {
       try {
-        const res = await fetch('/civilweb/api/projects?action=featured');
+        const res = await fetch('/api/projects?action=featured');
         const data = await res.json();
         const projects = data.projects;
         if (!projects || projects.length === 0) return;
@@ -245,7 +245,7 @@ $BASE      = '/civilweb';
         if (!wrapper) return;
         wrapper.innerHTML = '';
         projects.forEach(p => {
-          const imgSrc = p.image_main ? '/civilweb/uploads/projects/' + p.image_main : '/civilweb/Project%20images/2023-11-07.jpg';
+          const imgSrc = p.image_main ? '/uploads/projects/' + p.image_main : '/Project%20images/2023-11-07.jpg';
           const slide = document.createElement('div');
           slide.className = 'swiper-slide our-work-slide';
           slide.setAttribute('data-title', p.title);

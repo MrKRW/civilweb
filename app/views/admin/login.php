@@ -1,5 +1,5 @@
 <?php
-$BASE = '/civilweb';
+$BASE = '';
 ?>
 <!DOCTYPE html>
 <html lang="en">

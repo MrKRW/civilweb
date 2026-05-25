@@ -83,7 +83,7 @@ try {
     echo "\n══════════════════════════════════════════\n";
     echo "  ✅ SETUP COMPLETE!\n";
     echo "══════════════════════════════════════════\n\n";
-    echo "  Admin Panel: <a href='/civilweb/admin/' style='color:#0ff'>http://localhost/civilweb/admin/</a>\n";
+    echo "  Admin Panel: <a href='/admin/' style='color:#0ff'>http://localhost/civilweb/admin/</a>\n";
     echo "  Username:    admin\n";
     echo "  Password:    admin123\n\n";
     echo "  ⚠️  DELETE this setup.php file after use!\n";

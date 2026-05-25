@@ -4,10 +4,10 @@
  * Uses PDO for secure, prepared-statement queries.
  */
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'civillanka_db');
-define('DB_USER', 'root');
-define('DB_PASS', '');          // default XAMPP password
+define('DB_HOST', 'localhost'); // Usually 'localhost' on Hostinger
+define('DB_NAME', 'YOUR_HOSTINGER_DB_NAME'); // e.g. u123456789_civillanka_db
+define('DB_USER', 'YOUR_HOSTINGER_DB_USER'); // e.g. u123456789_user
+define('DB_PASS', 'YOUR_HOSTINGER_DB_PASSWORD'); // Set this to your DB password
 define('DB_CHARSET', 'utf8mb4');
 
 function getDB(): PDO {
@@ -41,5 +41,5 @@ function jsonResponse(array $data, int $code = 200): void {
 /** Base URL helper */
 function baseUrl(): string {
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-    return $protocol . '://' . $_SERVER['HTTP_HOST'] . '/civilweb';
+    return $protocol . '://' . $_SERVER['HTTP_HOST'];
 }

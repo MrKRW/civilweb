@@ -1,12 +1,12 @@
 /**
  * CivilLanka Admin – Client-side Logic
  */
-const API = (typeof API_BASE !== 'undefined' ? API_BASE : '/civilweb') + '/api/projects';
-const SHOP_API = (typeof API_BASE !== 'undefined' ? API_BASE : '/civilweb') + '/api/shop';
-const AUTH = (typeof API_BASE !== 'undefined' ? API_BASE : '/civilweb') + '/api/auth';
-const SETTINGS_API = (typeof API_BASE !== 'undefined' ? API_BASE : '/civilweb') + '/api/settings';
-const UPLOAD_BASE = (typeof API_BASE !== 'undefined' ? API_BASE : '/civilweb') + '/uploads/projects/';
-const SHOP_UPLOAD_BASE = (typeof API_BASE !== 'undefined' ? API_BASE : '/civilweb') + '/uploads/shop/';
+const API = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/projects';
+const SHOP_API = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/shop';
+const AUTH = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/auth';
+const SETTINGS_API = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/settings';
+const UPLOAD_BASE = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/projects/';
+const SHOP_UPLOAD_BASE = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/shop/';
 
 /* ── NAVIGATION ─────────────────────────── */
 document.querySelectorAll('.nav-item[data-page]').forEach(item => {
