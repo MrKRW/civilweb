@@ -185,7 +185,8 @@ document.getElementById('project-form')?.addEventListener('submit', async (e) =>
     } else {
       showToast(data.error || 'Save failed', 'error');
     }
-  } catch {
+  } catch (err) {
+    console.error('Project save error:', err);
     showToast('Network error', 'error');
   }
 
@@ -259,7 +260,8 @@ async function deleteProject(id, title) {
     } else {
       showToast(data.error || 'Delete failed', 'error');
     }
-  } catch {
+  } catch (err) {
+    console.error('Project delete error:', err);
     showToast('Network error', 'error');
   }
 }
@@ -383,7 +385,8 @@ document.getElementById('settings-form')?.addEventListener('submit', async (e) =
     } else {
       showToast(data.error || 'Update failed', 'error');
     }
-  } catch {
+  } catch (err) {
+    console.error('Settings update error:', err);
     showToast('Network error', 'error');
   }
 });
@@ -459,7 +462,8 @@ document.getElementById('shop-form')?.addEventListener('submit', async (e) => {
     } else {
       showToast(data.error || 'Save failed', 'error');
     }
-  } catch {
+  } catch (err) {
+    console.error('Shop item save error:', err);
     showToast('Network error', 'error');
   }
 
@@ -524,7 +528,8 @@ async function deleteShopItem(id, title) {
     } else {
       showToast(data.error || 'Delete failed', 'error');
     }
-  } catch {
+  } catch (err) {
+    console.error('Shop item delete error:', err);
     showToast('Network error', 'error');
   }
 }

@@ -226,6 +226,7 @@ $BASE = '/civilweb';
           btn.disabled = false;
         }
       } catch (err) {
+        console.error('Login request failed:', err);
         errBox.textContent = 'Network error';
         errBox.classList.add('show');
         btn.textContent = 'Sign In';

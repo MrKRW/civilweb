@@ -12,7 +12,7 @@ $adminUser = $adminUser ?? 'admin';
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="<?= $BASE ?>/assets/css/admin.css?v=1.1" />
+  <link rel="stylesheet" href="<?= $BASE ?>/admin/assets/css/admin.css?v=1.1" />
   <script>
     // Make BASE available to admin.js
     const API_BASE = "<?= $BASE ?>";
@@ -544,6 +544,6 @@ $adminUser = $adminUser ?? 'admin';
   <!-- Toast container -->
   <div id="toast-container"></div>
 
-  <script src="<?= $BASE ?>/assets/js/admin.js?v=2"></script>
+  <script src="<?= $BASE ?>/admin/assets/js/admin.js?v=2"></script>
 </body>
 </html>
