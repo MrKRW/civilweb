@@ -4,11 +4,13 @@
  * Uses PDO for secure, prepared-statement queries.
  */
 
-define('IS_LOCAL', in_array($_SERVER['HTTP_HOST'] ?? '', ['localhost', '127.0.0.1', '::1']));
+if (!defined('IS_LOCAL')) {
+    define('IS_LOCAL', in_array($_SERVER['HTTP_HOST'] ?? '', ['localhost', '127.0.0.1', '::1']));
+}
 define('DB_HOST', 'localhost');
-define('DB_NAME', IS_LOCAL ? 'civillanka_db' : 'YOUR_HOSTINGER_DB_NAME');
-define('DB_USER', IS_LOCAL ? 'root' : 'YOUR_HOSTINGER_DB_USER');
-define('DB_PASS', IS_LOCAL ? '' : 'YOUR_HOSTINGER_DB_PASSWORD');
+define('DB_NAME', IS_LOCAL ? 'civillanka_db' : 'u828029692_civilankadb');
+define('DB_USER', IS_LOCAL ? 'root' : 'u828029692_civilankausr');
+define('DB_PASS', IS_LOCAL ? '' : 'RootFh@21$');
 define('DB_CHARSET', 'utf8mb4');
 
 function getDB(): PDO {
