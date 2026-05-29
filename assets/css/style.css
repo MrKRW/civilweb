@@ -1028,7 +1028,16 @@ p {
 =========================== */
 .accordion-section {
   background: var(--white);
-  padding: 100px 0;
+  padding: 130px 0 247px 0;
+}
+
+.accordion-section::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--gray-light);
+  margin-bottom: 68px;
 }
 
 .acc-container {
@@ -1036,7 +1045,7 @@ p {
   width: 90%;
   max-width: 1400px;
   margin: 0 auto;
-  height: 550px;
+  height: 403px;
   align-items: flex-end;
 }
 
@@ -1224,6 +1233,9 @@ p {
 @media (max-width: 900px) {
   .our-work-container {
     flex-direction: column;
+    height: auto;
+    min-height: auto;
+    max-height: none;
   }
 
   .our-work-left {
@@ -1240,10 +1252,16 @@ p {
 
   .our-work-right {
     padding-left: 0;
+    height: auto;
+  }
+
+  .our-work-swiper {
+    height: 214px;
   }
 
   .our-work-slide {
-    width: 90%;
+    width: 375px;
+    height: 214px;
   }
 }
 
