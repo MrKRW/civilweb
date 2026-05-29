@@ -632,9 +632,15 @@ p {
 #about {
   background: var(--white) url('../images/sketch-bg.png') no-repeat 65% center;
   background-size: 45%;
-  background-blend-mode: multiply;
   overflow: hidden;
   padding: 80px 0;
+}
+
+/* Make the about section fill full screen width like the reference site */
+#about .container {
+  max-width: 100%;
+  width: 100%;
+  padding: 0 6vw;
 }
 
 .new-about-top {
@@ -653,13 +659,23 @@ p {
 }
 
 .about-slideshow {
-  flex: 0 0 540px;
-  height: 320px;
+  flex: 0 0 433px;
+  width: 433px;
+  height: 217px;
   position: relative;
   z-index: 3;
   margin-right: 0;
   margin-top: 0;
   overflow: hidden;
+}
+
+/* Zoomed out (90%–50%): viewport CSS pixels grow, use larger fixed size */
+@media (min-width: 1800px) {
+  .about-slideshow {
+    flex: 0 0 558px;
+    width: 558px;
+    height: 280px;
+  }
 }
 
 .about-slide {
@@ -699,13 +715,13 @@ p {
 
 .new-about-heading {
   font-family: var(--font-b);
-  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+  font-size: clamp(1.6rem, 3.2vw, 3.2rem);
   font-weight: 300;
-  line-height: 1.1;
+  line-height: 1.15;
   color: var(--black);
   margin-bottom: 1.8rem;
   letter-spacing: -0.03em;
-  max-width: 95%;
+  max-width: 100%;
 }
 
 .new-read-more {
@@ -749,7 +765,7 @@ p {
 .new-about-col h3 {
   font-family: var(--font-b);
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 1.2rem;
   letter-spacing: -0.01em;
 }
