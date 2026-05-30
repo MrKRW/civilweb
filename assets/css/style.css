@@ -1080,7 +1080,7 @@ p {
 }
 
 .acc-header:hover {
-  background: #fcfcfc;
+  background: transparent;
 }
 
 /* Remove the old header line logic to replace with title underline */
@@ -1276,7 +1276,8 @@ p {
 .team-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: auto auto;
+  /* Each row height = 1 column width = 100vw / 5 = 20vw */
+  grid-auto-rows: 20vw;
   gap: 0;
 }
 
@@ -1334,29 +1335,32 @@ p {
   transition-delay: 0.58s;
 }
 
-/* Photo cells — dark square with B&W portrait */
+/* Photo cells — square frames, image fills entirely, face centered */
 .team-cell.team-photo {
-  background: #E4E7D5;
-  aspect-ratio: 1 / 1;
+  background: #1a1a1a;
   overflow: hidden;
   position: relative;
 }
 
 .team-cell.team-photo img {
   display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
   filter: grayscale(100%);
-  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .team-cell.team-photo:hover img {
   filter: grayscale(60%) contrast(1.05);
-  transform: scale(1.04);
 }
 
 /* Info cells — cream background with name / role / social */
 .team-cell.team-info {
   background: #E4E7D5;
-  aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1464,7 +1468,6 @@ p {
 /* Empty offset cell — matches Hiroshi's row-2 shift */
 .team-cell.team-empty {
   background: #E4E7D5;
-  aspect-ratio: 1 / 1;
 }
 
 /* Responsive: stack to 2-col on tablet, 1-col on mobile */
@@ -1566,21 +1569,6 @@ body.home-page #team {
   padding-bottom: 168px;
 }
 
-body.home-page .team-grid {
-  grid-template-rows: 200px 200px;
-}
-
-body.home-page .team-cell.team-photo,
-body.home-page .team-cell.team-info,
-body.home-page .team-cell.team-empty {
-  aspect-ratio: unset;
-  height: 200px;
-}
-
-body.home-page .team-cell.team-jobs {
-  min-height: 400px;
-  height: auto;
-}
 
 body.home-page .team-cell.team-info {
   padding: 28px 32px;
@@ -4128,6 +4116,9 @@ body.home-page .team-role {
   body.home-page .acc-header {
     width: 68px;
     min-width: 68px;
+    height: 100%;
+    min-height: unset;
+    max-height: unset;
     flex-direction: column;
     padding: 24px 0;
     border-bottom: none;
