@@ -1087,10 +1087,14 @@
 
   .hs-founders-inner {
     padding: 0 30px;
+    display: flex;
+    flex-direction: column-reverse;
   }
 
   .hs-founders-photos {
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
   }
 
   .hs-team-grid {
@@ -1186,6 +1190,8 @@
   .hs-founders-inner {
     padding: 40px 20px;
     gap: 28px;
+    display: flex;
+    flex-direction: column-reverse;
   }
 
   .hs-founders-heading {
@@ -1193,11 +1199,15 @@
   }
 
   .hs-founder-photo {
-    height: 180px;
+    width: 204px;
+    height: 346px;
+    flex: 0 0 auto;
   }
 
   .hs-founders-photos {
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
   }
 
   .hs-team-grid {

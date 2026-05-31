@@ -35,7 +35,8 @@ async function loadShopItems(container) {
     }
 
     container.innerHTML = published.map(item => {
-      const imgPath = item.image ? `/civilweb/uploads/shop/${item.image}` : '/Project images/placeholder.png';
+      const base = (typeof API_BASE !== 'undefined' ? API_BASE : '');
+      const imgPath = item.image ? `${base}/uploads/shop/${item.image}` : `${base}/Project images/placeholder.png`;
 
       // Handle pricing
       let priceHtml = '';
@@ -61,7 +62,7 @@ async function loadShopItems(container) {
             </div>
           </div>
           <div class="product-info">
-            <h4 class="product-title"><a href="/shop/product/${item.id}">${escapeHtml(item.title)}</a></h4>
+            <h4 class="product-title"><a href="${base}/shop/product/${item.id}">${escapeHtml(item.title)}</a></h4>
             <div class="price-wrap">
               ${priceHtml}
             </div>

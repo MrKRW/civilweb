@@ -36,7 +36,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <!-- Core styles -->
-  <link rel="stylesheet" href="<?= $BASE ?>/assets/css/style.css" />
+  <link rel="stylesheet" href="<?= $BASE ?>/assets/css/style.css?v=<?= time() ?>" />
   <link rel="stylesheet" href="<?= $BASE ?>/assets/css/services.css" />
 
   <!-- Page-specific styles -->
@@ -139,7 +139,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
 
   <!-- Page-specific JS -->
   <?php foreach ($extraJs as $js): ?>
-  <script src="<?= $BASE . '/assets/js/' . htmlspecialchars($js) ?>"></script>
+  <script src="<?= $BASE . '/assets/js/' . htmlspecialchars($js) ?>?v=<?= time() ?>"></script>
   <?php endforeach; ?>
 </body>
 </html>

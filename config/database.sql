@@ -49,3 +49,17 @@ CREATE TABLE IF NOT EXISTS `admin_users` (
 INSERT INTO `admin_users` (`username`, `password`, `full_name`)
 VALUES ('admin', '$2y$10$RkVHNEaaKixPN0XuEEPXru0E49gzv6FOTzxXktFGJraGZ99RXprpu', 'Administrator')
 ON DUPLICATE KEY UPDATE `username` = `username`;
+
+-- ------------------------------------------------------------
+--  PRODUCT REVIEWS TABLE
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `product_reviews` (
+  `id`             INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `product_id`     INT UNSIGNED NOT NULL,
+  `reviewer_name`  VARCHAR(100) NOT NULL,
+  `reviewer_email` VARCHAR(150) NOT NULL,
+  `rating`         TINYINT UNSIGNED NOT NULL DEFAULT 5,
+  `review_text`    TEXT NOT NULL,
+  `created_at`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX `idx_product` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

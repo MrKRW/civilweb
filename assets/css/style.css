@@ -1256,12 +1256,18 @@ p {
   }
 
   .our-work-swiper {
-    height: 214px;
+    height: 220px;
   }
 
   .our-work-slide {
-    width: 375px;
-    height: 214px;
+    width: 379px !important;
+    height: 220px !important;
+  }
+
+  .our-work-slide img {
+    object-fit: contain !important;
+    width: 100% !important;
+    height: 100% !important;
   }
 }
 
@@ -1470,45 +1476,86 @@ p {
   background: #E4E7D5;
 }
 
-/* Responsive: stack to 2-col on tablet, 1-col on mobile */
+/* Responsive: stack to single-col on mobile */
 @media (max-width: 900px) {
   .team-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
+    display: block;   /* drop grid entirely — simple vertical stack */
+    width: 100%;
+    overflow: hidden;
   }
 
-  .team-cell.team-jobs {
-    grid-column: auto;
-    grid-row: auto;
-    aspect-ratio: unset;
-    min-height: 160px;
+  /* Reset all grid placement so cells flow naturally */
+  .team-cell {
+    grid-column: unset !important;
+    grid-row: unset !important;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
+  /* -------------------------------------------------------
+     PHOTO CELLS: Fit image naturally without borders or cutouts
+  ------------------------------------------------------- */
+  .team-cell.team-photo {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 444px !important;
+    height: auto !important; /* Let height adjust to image to prevent cutouts & borders */
+    margin: 0 auto; /* Center horizontally */
+    overflow: hidden !important;
+    background: transparent !important; /* Remove black borders */
+  }
+
+  /* Image: Natural flow, full width, preserve aspect ratio */
+  .team-cell.team-photo img {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    filter: grayscale(100%);
+  }
+
+  /* Info cells — comfortable padding, auto height */
   .team-cell.team-info {
     aspect-ratio: unset;
-    min-height: 200px;
-    padding: 28px 24px;
+    min-height: unset;
+    padding: 28px 24px 36px;
   }
 
-  .team-cell.team-photo {
-    aspect-ratio: 1 / 1;
+  /* Jobs cell — full-width, centred, generous height */
+  .team-cell.team-jobs {
+    aspect-ratio: unset;
+    min-height: 180px;
+    grid-column: unset;
+    grid-row: unset;
+    padding: 48px 32px;
   }
 
-  /* Hide empty offset cell on tablet/mobile */
+  .team-cell.team-jobs::after {
+    display: none;
+  }
+
+  /* Hide empty offset cell — not needed in stacked layout */
   .team-cell.team-empty {
     display: none;
   }
-}
 
-@media (max-width: 600px) {
-  .team-grid {
-    grid-template-columns: 1fr;
+  /* Larger name & role text for readability on mobile */
+  .team-name {
+    font-size: 1.25rem !important;
+    margin-bottom: 6px;
   }
 
-  .team-cell.team-photo,
-  .team-cell.team-info {
-    aspect-ratio: unset;
-    min-height: 180px;
+  .team-role {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.14em;
+  }
+
+  .team-jobs-link {
+    font-size: 1rem;
+    letter-spacing: 0.06em;
   }
 }
 
@@ -1597,14 +1644,22 @@ body.home-page .team-role {
   }
 
   .quote-banner-content h2 {
-    max-width: 320px;
-    font-size: 1.0625rem;
+    font-size: 30px;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    line-height: normal;
+    font-style: normal;
+    margin-top: 120px;
+    max-width: none;
   }
 
-  body.home-page .team-grid {
-    grid-template-rows: auto;
+  /* Reduce section padding on mobile so team stays compact */
+  body.home-page #team {
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
+  /* These are now block elements, height auto is default — kept for safety */
   body.home-page .team-cell.team-photo,
   body.home-page .team-cell.team-info,
   body.home-page .team-cell.team-empty {
@@ -1781,11 +1836,27 @@ body.home-page .team-role {
 /* Responsive */
 @media (max-width: 1024px) {
   .ref-journal-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    gap: 60px;
   }
-}
 
-@media (max-width: 768px) {
+  /* Mobile dimensions for images (446px wide x 344px high) */
+  .ref-journal-card .ref-journal-img-wrap {
+    width: 100%;
+    max-width: 446px !important;
+    height: 344px !important;
+    aspect-ratio: unset !important;
+    margin: 0 0 20px 0; /* Left aligned, not centered, to match ref image better? Actually, the reference has them left-aligned with text */
+  }
+
+  /* Ensure the image fills the 446x344 box perfectly */
+  .ref-journal-card .ref-journal-img-wrap img {
+    filter: none; /* Remove monochrome look */
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
   .ref-journal-header {
     flex-direction: column;
     align-items: flex-start;
@@ -1797,13 +1868,6 @@ body.home-page .team-role {
     gap: 20px;
   }
 }
-
-@media (max-width: 500px) {
-  .ref-journal-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* ===========================
    CTA BANNER
 =========================== */
@@ -3127,8 +3191,13 @@ body.home-page .team-role {
   }
 
   .quote-banner-content h2 {
-    max-width: 320px;
-    font-size: 1.0625rem;
+    font-size: 30px;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    line-height: normal;
+    font-style: normal;
+    margin-top: 120px;
+    max-width: none;
   }
 
   /* Team grid — 2 columns */
@@ -3420,17 +3489,21 @@ body.home-page .team-role {
   }
 
   .hs-founders-inner {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column-reverse;
     padding: 60px 24px;
     gap: 40px;
   }
 
   .hs-founder-photo {
-    height: 280px;
+    width: 204px;
+    height: 346px;
+    flex: 0 0 auto;
   }
 
   .hs-founders-photos {
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: center;
     gap: 8px;
   }
 
@@ -3664,8 +3737,13 @@ body.home-page .team-role {
   }
 
   .quote-banner-content h2 {
-    font-size: 0.95rem;
-    max-width: 260px;
+    font-size: 30px;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    line-height: normal;
+    font-style: normal;
+    margin-top: 120px;
+    max-width: none;
   }
 
   /* Team */
@@ -4191,9 +4269,13 @@ body.home-page .team-role {
   }
 
   body.home-page .quote-banner-content h2 {
-    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
-    max-width: 340px;
-    line-height: 1.5;
+    font-size: 30px;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    line-height: normal;
+    font-style: normal;
+    margin-top: 120px;
+    max-width: none;
   }
 
   /* Team — compact checkerboard grid */
@@ -4495,8 +4577,13 @@ body.home-page .team-role {
   }
 
   body.home-page .quote-banner-content h2 {
-    max-width: 260px;
-    font-size: 0.9rem;
+    font-size: 30px;
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    line-height: normal;
+    font-style: normal;
+    margin-top: 120px;
+    max-width: none;
   }
 }
 
@@ -4702,7 +4789,8 @@ body.home-page .team-role {
   }
 
   .hs-founders-inner {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column-reverse;
     padding: 0 20px;
     gap: 28px;
   }
@@ -4712,11 +4800,15 @@ body.home-page .team-role {
   }
 
   .hs-founder-photo {
-    height: 220px;
+    width: 204px;
+    height: 346px;
+    flex: 0 0 auto;
   }
 
   .hs-founders-photos {
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
   }
 
   .hs-team {

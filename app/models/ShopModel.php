@@ -173,4 +173,57 @@ class ShopModel extends Model
         $path = $this->uploadDir . $filename;
         if (file_exists($path)) @unlink($path);
     }
+
+    // ── Reviews ────────────────────────────────────────────────────
+
+    /** Get all reviews for a product, newest first. */
+    public function getReviews(int $productId): array
+    {
+        $stmt = $this->db()->prepare(
+            'SELECT id, reviewer_name, rating, review_text, created_at
+             FROM product_reviews
+             WHERE product_id = :pid
+             ORDER BY created_at DESC'
+        );
+        $stmt->execute([':pid' => $productId]);
+        return $stmt->fetchAll();
+    }
+
+    /** Count reviews for a product. */
+    public function getReviewCount(int $productId): int
+    {
+        $stmt = $this->db()->prepare(
+            'SELECT COUNT(*) FROM product_reviews WHERE product_id = :pid'
+        );
+        $stmt->execute([':pid' => $productId]);
+        return (int) $stmt->fetchColumn();
+    }
+
+    /** Average rating for a product (0 if none). */
+    public function getAverageRating(int $productId): float
+    {
+        $stmt = $this->db()->prepare(
+            'SELECT AVG(rating) FROM product_reviews WHERE product_id = :pid'
+        );
+        $stmt->execute([':pid' => $productId]);
+        return round((float) $stmt->fetchColumn(), 1);
+    }
+
+    /** Insert a new review. Returns the new review ID. */
+    public function addReview(int $productId, string $name, string $email, int $rating, string $text): int
+    {
+        $rating = max(1, min(5, $rating));
+        $stmt = $this->db()->prepare(
+            'INSERT INTO product_reviews (product_id, reviewer_name, reviewer_email, rating, review_text)
+             VALUES (:pid, :name, :email, :rating, :text)'
+        );
+        $stmt->execute([
+            ':pid'    => $productId,
+            ':name'   => $name,
+            ':email'  => $email,
+            ':rating' => $rating,
+            ':text'   => $text,
+        ]);
+        return (int) $this->db()->lastInsertId();
+    }
 }
