@@ -165,10 +165,11 @@ if (typeof Swiper !== 'undefined' && document.querySelector('.our-work-swiper'))
       pauseOnMouseEnter: true
     },
     slidesPerView: 'auto',
-    spaceBetween: 30,
+    spaceBetween: 4,
     breakpoints: {
-      768: { spaceBetween: 30 },
-      1024: { spaceBetween: 30 }
+      0:    { spaceBetween: 4 },
+      768:  { spaceBetween: 4 },
+      1024: { spaceBetween: 4 }
     },
     navigation: {
       prevEl: '.our-work-prev',

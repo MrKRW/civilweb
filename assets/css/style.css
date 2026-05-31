@@ -1256,16 +1256,19 @@ p {
   }
 
   .our-work-swiper {
-    height: 220px;
+    height: 306px;
   }
 
   .our-work-slide {
-    width: 379px !important;
-    height: 220px !important;
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+    height: 306px !important;
+    flex-shrink: 0 !important;
   }
 
   .our-work-slide img {
-    object-fit: contain !important;
+    object-fit: cover !important;
     width: 100% !important;
     height: 100% !important;
   }
