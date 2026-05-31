@@ -54,8 +54,8 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
           <div class="ct-info-panel">
             <span class="ct-info-label">DIRECT CONTACT</span>
             <address class="ct-info-address">
-              <p>24 Studio Lane, Colombo</p>
-              <p><a href="tel:+94112345678">+94 11 234 5678</a></p>
+              <p>374, Peradeniya Road, Kandy</p>
+              <p><a href="tel:+94812345678">+94 81 234 5678</a></p>
               <p><a href="mailto:hello@civilweb.com">hello@civilweb.com</a></p>
             </address>
           </div>
@@ -67,25 +67,6 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
             </div>
           </div>
         </div>
-        <hr class="ct-info-divider" />
-        <div class="ct-info-row">
-          <div class="ct-info-panel">
-            <span class="ct-info-label">COLOMBO</span>
-            <address class="ct-info-address">
-              <p>24 Studio Lane Colombo 03</p>
-              <p><a href="tel:+94112345678">+94 11 234 5678</a></p>
-              <p><a href="mailto:hello@civilweb.com">hello@civilweb.com</a></p>
-            </address>
-          </div>
-          <div class="ct-info-panel">
-            <span class="ct-info-label">KANDY</span>
-            <address class="ct-info-address">
-              <p>12 Hill Street Kandy, Sri Lanka</p>
-              <p><a href="tel:+94812345678">+94 81 234 5678</a></p>
-              <p><a href="mailto:kandy@civilweb.com">kandy@civilweb.com</a></p>
-            </address>
-          </div>
-        </div>
       </div>
 
     </div>
@@ -95,7 +76,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <section class="ct-map-section">
     <div class="ct-map-inner">
       <div class="ct-map-embed">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63371.80388554756!2d79.8211526!3d6.9270786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae253d10f7a7003%3A0x320b2e4d32d3838d!2sColombo%2C%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1699900000000!5m2!1sen!2slk"
+        <iframe src="https://maps.google.com/maps?q=374%2C%20Peradeniya%20Road%2C%20Kandy&t=&z=15&ie=UTF8&iwloc=&output=embed"
           width="100%" height="420" style="border:0;" allowfullscreen="" loading="lazy"
           referrerpolicy="no-referrer-when-downgrade" title="Civilanka Office Location">
         </iframe>

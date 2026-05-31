@@ -111,9 +111,9 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
         <div class="hs-footer-col">
           <span class="hs-footer-col-label">Contact</span>
           <address>
-            <span>24 Studio Lane</span>
-            <span>Colombo 03, Sri Lanka</span>
-            <a href="tel:+94112345678">+94 11 234 5678</a>
+            <span>374, Peradeniya Road</span>
+            <span>Kandy, Sri Lanka</span>
+            <a href="tel:0812387235">0812 387 235</a>
             <a href="mailto:hello@civilweb.com">hello@civilweb.com</a>
           </address>
         </div>
