@@ -1055,11 +1055,14 @@
   }
 
   .hs-gallery-slider {
-    height: 450px;
+    height: 193px;
+    gap: 8px;
   }
 
-  .hs-gallery-item {
-    height: 450px;
+  .hs-gallery-item,
+  .hs-gallery-item.active {
+    flex: 0 0 288px;
+    height: 193px;
   }
 
   .hs-quote-inner {
@@ -1146,12 +1149,13 @@
 
   .hs-gallery-item,
   .hs-gallery-item.active {
-    flex: 0 0 260px;
-    height: 350px;
+    flex: 0 0 288px;
+    height: 193px;
   }
 
   .hs-gallery-slider {
-    height: 350px;
+    height: 193px;
+    gap: 8px;
   }
 
   .hs-gallery-wrapper {

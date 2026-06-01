@@ -120,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (slider && slider.children.length > 0 && galPrev && galNext) {
     let isAnimating = false;
-    const itemWidth = 369; // 349px item width + 20px gap
     
     // Assign original indices for the counter
     Array.from(slider.children).forEach((item, index) => {
@@ -144,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const firstItem = slider.children[0];
       const secondItem = slider.children[1];
+      const itemWidth = secondItem.offsetWidth + (parseFloat(window.getComputedStyle(slider).gap) || 0);
 
       firstItem.classList.remove('active');
       secondItem.classList.add('active');
@@ -177,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const firstItem = slider.children[0];
       const lastItem = slider.children[slider.children.length - 1];
+      const itemWidth = lastItem.offsetWidth + (parseFloat(window.getComputedStyle(slider).gap) || 0);
 
       firstItem.classList.remove('active');
       lastItem.classList.add('active');
