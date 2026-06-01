@@ -1250,3 +1250,67 @@
     padding: 16px 20px;
   }
 }
+
+/* ── GALLERY: reduce side padding on 769–1100px tablets ── */
+@media (max-width: 1100px) and (min-width: 769px) {
+  .hs-gallery {
+    padding: 60px 40px;
+  }
+}
+
+/* ── GALLERY: tight padding on mobile ── */
+@media (max-width: 768px) {
+  .hs-gallery {
+    padding: 40px 0;
+    overflow: hidden;
+  }
+}
+
+/* ── INTRO: fluid second column on 1025–1100px ── */
+@media (max-width: 1100px) and (min-width: 1025px) {
+  .hs-intro-inner {
+    grid-template-columns: 1fr 420px;
+    padding: 0 50px;
+    gap: 60px;
+  }
+  .hs-intro-img-wrap {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* ── STATS: wrap items properly on mid tablets ── */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .hs-stats-inner {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .hs-stat-item {
+    flex: 0 0 45%;
+    padding: 20px 16px 20px 0;
+  }
+  .hs-stat-divider {
+    display: none;
+  }
+}
+
+/* ── CTA: tighter padding on mid tablets ── */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .hs-cta-inner {
+    padding: 0 40px;
+    gap: 40px;
+  }
+}
+
+/* ── FOUNDERS PHOTOS: don't overflow ── */
+@media (max-width: 1024px) {
+  .hs-founders-photos {
+    overflow: hidden;
+  }
+  .hs-founder-photo {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+}

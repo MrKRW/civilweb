@@ -721,3 +721,31 @@
     min-width: 100%;
   }
 }
+
+/* ── MID TABLET: 769–1100px ── */
+@media (max-width: 1100px) and (min-width: 769px) {
+  .services-hero {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: calc(var(--header-height) + 60px);
+  }
+  .srv-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 40px;
+  }
+  .srv-card--wide {
+    grid-column: span 2;
+  }
+  .srv-section-header {
+    padding: 0 40px;
+  }
+  .srv-intl-layout {
+    padding: 0 40px;
+  }
+  .services-divider {
+    padding: 0 40px;
+  }
+  .srv-intl-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -4978,3 +4978,1088 @@ body.home-page .team-role {
     gap: 32px !important;
   }
 }
+
+/* ===================================================
+   RESPONSIVE GAP-FILLERS
+   Fill remaining holes across all breakpoints.
+   IMAGE SIZES / STYLING NOT CHANGED.
+=================================================== */
+
+/* ── STICKY NAV: shrink font + padding on 1024–769px so items never overflow ── */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .sticky-nav li a {
+    font-size: 14px;
+    padding: 0 14px;
+  }
+  #sticky-header {
+    padding: 0 24px;
+  }
+}
+
+/* ── ABOUT SLIDESHOW: never wider than its container ── */
+@media (max-width: 1100px) and (min-width: 901px) {
+  .about-slideshow {
+    flex: 0 0 360px;
+    width: 360px;
+    height: 180px;
+  }
+}
+
+/* ── ABOUT SECTION col max-width unclamped on narrow ── */
+@media (max-width: 900px) {
+  .new-about-col p {
+    max-width: 100%;
+  }
+}
+
+/* ── ACCORDION mid-tablet (769–900px): keep vertical stacked ── */
+@media (max-width: 900px) and (min-width: 769px) {
+  .acc-container {
+    flex-direction: column;
+    height: auto;
+    width: 95%;
+    gap: 2px;
+  }
+  .acc-item {
+    flex: none !important;
+    flex-direction: column;
+    width: 100%;
+  }
+  .acc-item.active {
+    flex: none !important;
+  }
+  .acc-header {
+    width: 100%;
+    min-width: unset;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--gray-light);
+    height: auto;
+    min-height: unset;
+    max-height: unset;
+  }
+  .acc-title {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    transform: none;
+    font-size: 1.2rem;
+    padding: 0;
+    flex: none;
+  }
+  .acc-title::after {
+    display: none;
+  }
+  .acc-icon {
+    font-size: 1.4rem;
+    order: 2;
+  }
+  .acc-content {
+    flex-direction: column;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+    pointer-events: none;
+  }
+  .acc-item.active .acc-content {
+    max-height: 700px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .acc-img-wrap {
+    flex: none;
+    height: 220px;
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
+    min-height: unset;
+    max-height: unset;
+  }
+  .acc-text-wrap {
+    padding: 28px 20px;
+  }
+  .acc-close {
+    top: 16px;
+    right: 16px;
+  }
+}
+
+/* ── OUR WORK NAV: remove the fixed 28% padding on non-large screens ── */
+@media (max-width: 1100px) {
+  .our-work-nav {
+    padding-right: 8%;
+  }
+}
+
+/* ── ABOUT INTRO inner grid: don't lock second column to 606px ── */
+@media (max-width: 1100px) and (min-width: 1025px) {
+  .hs-intro-inner {
+    grid-template-columns: 1fr 460px;
+    gap: 60px;
+  }
+  .hs-intro-img-wrap {
+    width: 460px;
+    height: auto;
+    aspect-ratio: 2 / 1;
+  }
+}
+
+/* ── FOUNDERS inner: fix right panel overflow on 1025–1200px ── */
+@media (max-width: 1200px) and (min-width: 1025px) {
+  .hs-founders-inner {
+    padding: 0 60px;
+    gap: 50px;
+  }
+}
+
+/* ── CONTAINER: ensure side padding never causes x-overflow ── */
+@media (max-width: 480px) {
+  .container,
+  #ref-journal .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* ── HERO SPLIT: center-brand logo on extra-small phones ── */
+@media (max-width: 380px) {
+  .center-logo-img {
+    max-width: 120px;
+  }
+  .vert-text {
+    font-size: 0.72rem;
+  }
+}
+
+/* ── STICKY NAV: no horizontal scroll on very narrow ── */
+@media (max-width: 420px) {
+  #sticky-header {
+    padding: 0 16px;
+  }
+  .logo-img--sticky {
+    height: 36px;
+  }
+}
+
+/* ── QUOTE BANNER: scale text on very small phones ── */
+@media (max-width: 380px) {
+  .quote-banner-content h2 {
+    font-size: 22px !important;
+    margin-top: 80px !important;
+  }
+}
+
+/* ── PROJECTS PAGE: ensure filter bar wraps on mobile ── */
+@media (max-width: 600px) {
+  .pj-filters-inner {
+    gap: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .pj-cta-inner {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* ── BLOG: quote text-wrap padding on small phones ── */
+@media (max-width: 380px) {
+  .quote-text-wrap {
+    padding: 20px 14px;
+  }
+  .quote-text {
+    font-size: 1rem;
+  }
+}
+
+/* ── SHOP SINGLE PRODUCT: qty + add-to-cart stack on narrow ── */
+@media (max-width: 420px) {
+  .product-cart-form {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .add-to-cart-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── CONTACT MAP: taller on mobile for better usability ── */
+@media (max-width: 600px) {
+  .ct-map-embed iframe {
+    height: 280px;
+  }
+}
+
+/* ── FOOTER: very narrow logo sizing ── */
+@media (max-width: 380px) {
+  .logo-img--footer {
+    height: 72px;
+  }
+}
+
+/* ── SERVICES HERO: avoid text spilling off-screen ── */
+@media (max-width: 380px) {
+  .services-hero-title {
+    font-size: 2rem !important;
+  }
+  .services-hero {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* ── ABOUT PAGE HERO: content offset below mobile header ── */
+@media (max-width: 600px) {
+  .hs-hero-content {
+    padding-top: calc(var(--header-height-mobile) + 20px);
+  }
+}
+
+/* ── GENERAL: Prevent any child from causing overflow ── */
+@media (max-width: 768px) {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  /* Exception: full-width images should still span full width */
+  img {
+    max-width: 100% !important;
+  }
+  /* Our work slide images stay at defined fixed sizes set per-element */
+  .our-work-slide img,
+  .acc-img-wrap img,
+  .team-cell.team-photo img,
+  .hs-founder-photo img,
+  .hs-tc-photo img,
+  .hs-gallery-item img,
+  .hs-intro-img-wrap img,
+  .about-slide img,
+  .split-bg,
+  .pj-card-img img,
+  .pj-gallery-item img,
+  .product-image img,
+  .product-main-image img,
+  .product-thumbnails img,
+  .panel-img img,
+  .ref-journal-img-wrap img,
+  .sidebar-banner img {
+    max-width: none !important;
+  }
+}
+
+/* ===================================================
+   HOME PAGE — COMPREHENSIVE WIDTH-BASED RESPONSIVE
+   Works on ANY screen size + orientation.
+   Sections: Hero · About · Projects · Accordion ·
+   Quote Banner · Team · Testimonials · Journal · CTA
+   IMAGE SIZES / VISUAL STYLES NOT CHANGED.
+=================================================== */
+
+/* ── LARGE TABLET / SMALL DESKTOP (≤ 1280px) ── */
+@media (max-width: 1280px) {
+  body.home-page #about .container {
+    padding: 0 4vw;
+  }
+  body.home-page .new-about-top {
+    gap: 40px;
+  }
+  body.home-page .about-slideshow {
+    flex: 0 0 380px;
+    width: 380px;
+    height: 190px;
+  }
+  body.home-page .our-work-left {
+    flex: 0 0 30%;
+    padding: 0 32px 0 48px;
+  }
+  body.home-page .ref-journal-grid {
+    gap: 40px 14px;
+  }
+}
+
+/* ── TABLET (≤ 1100px) ── */
+@media (max-width: 1100px) {
+  body.home-page #about .container {
+    padding: 0 3.5vw;
+  }
+  body.home-page .new-about-top {
+    gap: 32px;
+  }
+  body.home-page .about-slideshow {
+    flex: 0 0 340px;
+    width: 340px;
+    height: 170px;
+  }
+  body.home-page .new-about-heading {
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+  }
+  body.home-page .our-work-container {
+    height: 56vh;
+    min-height: 420px;
+    max-height: 600px;
+  }
+  body.home-page .our-work-left {
+    flex: 0 0 32%;
+    padding: 0 28px 0 40px;
+  }
+  body.home-page .our-work-title {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+  }
+  body.home-page .accordion-section {
+    padding: 80px 0 180px;
+  }
+  body.home-page .acc-container {
+    width: 92%;
+  }
+  body.home-page .acc-title {
+    font-size: 32px;
+  }
+  body.home-page .acc-text-wrap {
+    padding: 40px 50px;
+  }
+  body.home-page .ref-journal-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 14px;
+  }
+  body.home-page .hs-footer-inner {
+    padding: 60px 50px 40px;
+  }
+}
+
+/* ── MID TABLET (≤ 1024px) ── */
+@media (max-width: 1024px) {
+  body.home-page #sticky-header {
+    padding: 0 24px;
+  }
+  body.home-page .sticky-nav li a {
+    font-size: 14px;
+    padding: 0 14px;
+  }
+  body.home-page #hero.split-view {
+    min-height: 60vh;
+  }
+  body.home-page #about {
+    padding: 60px 0;
+    background-size: 60%;
+    background-position: 60% center;
+  }
+  body.home-page #about .container {
+    padding: 0 40px;
+  }
+  body.home-page .new-about-top {
+    flex-direction: column;
+    gap: 28px;
+    margin-bottom: 36px;
+  }
+  body.home-page .new-about-text {
+    padding-right: 0;
+    width: 100%;
+  }
+  body.home-page .about-slideshow {
+    order: -1;
+    flex: none;
+    width: 100%;
+    max-width: 520px;
+    height: 260px;
+    margin: 0 auto;
+  }
+  body.home-page .new-about-bottom {
+    gap: 32px;
+  }
+  body.home-page .new-about-links a {
+    font-size: 1rem;
+  }
+  body.home-page .new-about-col p {
+    max-width: 100%;
+  }
+  body.home-page #projects {
+    padding: 70px 0;
+  }
+  body.home-page .our-work-container {
+    flex-direction: column;
+    height: auto;
+    min-height: unset;
+    max-height: unset;
+  }
+  body.home-page .our-work-left {
+    flex: none;
+    padding: 0 40px;
+    margin-bottom: 28px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  body.home-page .our-work-label {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  body.home-page .our-work-info {
+    margin: 0;
+    text-align: right;
+  }
+  body.home-page .our-work-title {
+    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  }
+  body.home-page .our-work-swiper {
+    height: 300px;
+  }
+  body.home-page .our-work-slide {
+    width: 480px !important;
+    height: 300px !important;
+  }
+  body.home-page .our-work-slide img {
+    width: 480px !important;
+    height: 300px !important;
+    object-fit: cover;
+  }
+  body.home-page .our-work-nav {
+    padding-right: 5%;
+    height: 52px;
+  }
+  body.home-page .accordion-section {
+    padding: 70px 0 120px;
+  }
+  body.home-page .accordion-section::before {
+    margin-bottom: 50px;
+  }
+  body.home-page .acc-container {
+    flex-direction: column;
+    height: auto;
+    width: 92%;
+    gap: 2px;
+  }
+  body.home-page .acc-item {
+    flex: none !important;
+    flex-direction: column;
+    width: 100%;
+  }
+  body.home-page .acc-item.active {
+    flex: none !important;
+  }
+  body.home-page .acc-header {
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    min-height: unset;
+    max-height: unset;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  body.home-page .acc-title {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    transform: none;
+    font-size: 1.4rem;
+    padding: 0;
+    flex: none;
+  }
+  body.home-page .acc-title::after {
+    display: none;
+  }
+  body.home-page .acc-icon {
+    font-size: 1.5rem;
+    order: 2;
+    opacity: 1 !important;
+  }
+  body.home-page .acc-content {
+    flex-direction: column;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+    pointer-events: none;
+  }
+  body.home-page .acc-item.active .acc-content {
+    max-height: 700px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  body.home-page .acc-img-wrap {
+    flex: none;
+    width: 100%;
+    height: 260px;
+    min-width: unset;
+    max-width: unset;
+    min-height: unset;
+    max-height: unset;
+  }
+  body.home-page .acc-text-wrap {
+    padding: 32px 24px;
+  }
+  body.home-page .acc-close {
+    top: 20px;
+    right: 20px;
+    font-size: 1.6rem;
+  }
+  body.home-page .acc-text-wrap p {
+    max-width: 100%;
+  }
+  body.home-page .quote-banner-content.container {
+    padding: 0 40px;
+  }
+  body.home-page #team {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  body.home-page .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 30vw;
+  }
+  body.home-page .team-cell.team-photo,
+  body.home-page .team-cell.team-info,
+  body.home-page .team-cell.team-empty {
+    height: 30vw;
+    aspect-ratio: unset;
+  }
+  body.home-page .team-cell.team-jobs {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    min-height: 120px;
+    height: auto;
+  }
+  body.home-page .team-cell.team-empty {
+    display: none;
+  }
+  body.home-page .team-name {
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+  }
+  body.home-page #ref-journal {
+    padding: 60px 0 80px;
+  }
+  body.home-page #ref-journal .container {
+    padding: 0 40px;
+  }
+  body.home-page .ref-journal-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 14px;
+  }
+  body.home-page #cta-banner {
+    padding: 80px 0;
+  }
+}
+
+/* ── SMALL TABLET / LARGE PHONE (≤ 900px) ── */
+@media (max-width: 900px) {
+  body.home-page .about-slideshow {
+    height: 220px;
+    max-width: 100%;
+  }
+  body.home-page .new-about-bottom {
+    flex-direction: column;
+    gap: 28px;
+  }
+  body.home-page .new-about-links {
+    flex: none;
+    width: 100%;
+  }
+  body.home-page .new-about-col {
+    flex: none;
+    width: 100%;
+  }
+  body.home-page .our-work-left {
+    padding: 0 28px;
+  }
+  body.home-page .our-work-swiper {
+    height: 280px;
+  }
+  body.home-page .our-work-slide {
+    width: 420px !important;
+    height: 280px !important;
+  }
+  body.home-page .our-work-slide img {
+    width: 420px !important;
+    height: 280px !important;
+    object-fit: cover;
+  }
+  body.home-page .team-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+  body.home-page .team-cell.team-photo {
+    height: 320px;
+    min-height: 320px;
+    aspect-ratio: unset;
+  }
+  body.home-page .team-cell.team-info {
+    height: auto;
+    min-height: auto;
+    padding: 24px 20px 36px;
+  }
+  body.home-page .team-cell.team-jobs {
+    grid-column: 1 / -1;
+    min-height: 100px;
+  }
+  body.home-page .team-cell.team-empty {
+    display: none;
+  }
+  body.home-page .ref-journal-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  body.home-page .ref-journal-card .ref-journal-img-wrap {
+    max-width: 100%;
+    height: 240px;
+    aspect-ratio: unset !important;
+  }
+}
+
+/* ── MOBILE (≤ 768px) ── */
+@media (max-width: 768px) {
+  body.home-page #sticky-header {
+    padding: 0 20px;
+    height: var(--header-height-mobile);
+  }
+  body.home-page .sticky-nav {
+    display: none !important;
+  }
+  body.home-page .hamburger-btn {
+    display: flex;
+    margin-left: auto;
+  }
+  body.home-page .logo-img--sticky {
+    height: 40px;
+  }
+  body.home-page #hero.split-view {
+    flex-direction: column;
+    height: 100svh;
+    min-height: 100svh;
+  }
+  body.home-page .center-logo-img {
+    max-width: 180px;
+  }
+  body.home-page .vert-left {
+    left: 50%;
+    top: 18px !important;
+    bottom: auto;
+    transform: translateX(-50%) rotate(0deg) !important;
+    transform-origin: center center !important;
+  }
+  body.home-page .vert-right {
+    right: auto !important;
+    left: 50%;
+    top: auto !important;
+    bottom: 18px;
+    transform: translateX(-50%) rotate(0deg) !important;
+    transform-origin: center center !important;
+  }
+  body.home-page .vert-text {
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+  }
+  body.home-page #about {
+    padding: 52px 0 44px;
+    background-size: 80%;
+    background-position: 50% 85%;
+  }
+  body.home-page #about .container {
+    padding: 0 24px;
+  }
+  body.home-page .new-about-heading {
+    font-size: clamp(1.4rem, 5vw, 2rem);
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+  body.home-page .about-slideshow {
+    width: 100%;
+    height: 200px;
+    max-width: 480px;
+  }
+  body.home-page #projects {
+    padding: 52px 0;
+  }
+  body.home-page .our-work-left {
+    padding: 0 24px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  body.home-page .our-work-info {
+    margin: 0;
+    text-align: left;
+  }
+  body.home-page .our-work-label {
+    margin-bottom: 16px;
+  }
+  body.home-page .our-work-right {
+    min-height: 240px;
+  }
+  body.home-page .our-work-swiper {
+    height: 240px;
+  }
+  body.home-page .our-work-slide {
+    width: 82% !important;
+    height: 240px !important;
+  }
+  body.home-page .our-work-slide img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+  }
+  body.home-page .our-work-nav {
+    padding-right: 5%;
+    height: 48px;
+    gap: 20px;
+  }
+  body.home-page .our-work-title {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+  }
+  body.home-page .accordion-section {
+    padding: 52px 0 80px;
+  }
+  body.home-page .accordion-section::before {
+    margin-bottom: 40px;
+  }
+  body.home-page .acc-container {
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+  body.home-page .acc-header {
+    padding: 16px 18px;
+  }
+  body.home-page .acc-title {
+    font-size: 1.2rem;
+  }
+  body.home-page .acc-img-wrap {
+    height: 200px;
+  }
+  body.home-page .acc-text-wrap {
+    padding: 24px 16px;
+  }
+  body.home-page .acc-text-wrap p {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  body.home-page #quote-banner {
+    height: 380px;
+    min-height: 380px;
+    max-height: 380px;
+  }
+  body.home-page .quote-banner-content.container {
+    padding: 0 24px;
+  }
+  body.home-page .quote-banner-content h2 {
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    margin-top: 60px;
+    max-width: none;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  body.home-page #team {
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+  body.home-page .team-grid {
+    display: block;
+  }
+  body.home-page .team-cell {
+    width: 100%;
+    max-width: 100%;
+  }
+  body.home-page .team-cell.team-photo {
+    height: 280px;
+    min-height: 280px;
+  }
+  body.home-page .team-cell.team-info {
+    padding: 24px 20px 32px;
+    min-height: unset;
+    height: auto;
+  }
+  body.home-page .team-cell.team-jobs {
+    min-height: 120px;
+    padding: 40px 24px;
+  }
+  body.home-page .team-cell.team-jobs::after {
+    display: none;
+  }
+  body.home-page .team-cell.team-empty {
+    display: none;
+  }
+  body.home-page .team-name {
+    font-size: 1.15rem;
+  }
+  body.home-page .team-role {
+    font-size: 0.7rem;
+  }
+  body.home-page #testimonials.section-pad {
+    padding: 52px 0;
+  }
+  body.home-page .testimonial-text {
+    font-size: clamp(1rem, 4vw, 1.35rem);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  body.home-page #ref-journal {
+    padding: 52px 0 68px;
+  }
+  body.home-page #ref-journal .container {
+    padding: 0 20px;
+  }
+  body.home-page .ref-journal-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  body.home-page .ref-journal-card .ref-journal-img-wrap {
+    height: 240px;
+    max-width: 100%;
+    aspect-ratio: unset !important;
+  }
+  body.home-page .ref-journal-title {
+    font-size: 1rem;
+  }
+  body.home-page #cta-banner {
+    padding: 60px 0;
+  }
+  body.home-page .cta-inner h2 {
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+  }
+  body.home-page .cta-inner p {
+    font-size: 0.9rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  body.home-page .btn {
+    padding: 13px 28px;
+    font-size: 0.75rem;
+  }
+  body.home-page .hs-footer-inner {
+    padding: 40px 20px 28px;
+    gap: 32px;
+    flex-direction: column;
+  }
+  body.home-page .hs-footer-cols {
+    flex-direction: column;
+    gap: 28px;
+  }
+  body.home-page .hs-footer-bottom {
+    padding: 16px 20px;
+  }
+  body.home-page .logo-img--footer {
+    height: 90px;
+  }
+  body.home-page .section-pad {
+    padding: 52px 0;
+  }
+  body.home-page .container {
+    padding: 0 20px;
+  }
+}
+
+/* ── SMALL MOBILE (≤ 600px) ── */
+@media (max-width: 600px) {
+  body.home-page .new-about-top {
+    gap: 24px;
+  }
+  body.home-page .about-slideshow {
+    height: 180px;
+  }
+  body.home-page .new-about-heading {
+    font-size: clamp(1.25rem, 5.5vw, 1.7rem);
+  }
+  body.home-page .new-about-links a {
+    font-size: 0.95rem;
+  }
+  body.home-page .our-work-swiper {
+    height: 220px;
+  }
+  body.home-page .our-work-slide {
+    width: 85% !important;
+    height: 220px !important;
+  }
+  body.home-page .our-work-slide img {
+    height: 220px !important;
+  }
+  body.home-page #quote-banner {
+    height: 320px;
+    min-height: 320px;
+    max-height: 320px;
+  }
+  body.home-page .quote-banner-content h2 {
+    font-size: clamp(1rem, 4.5vw, 1.3rem);
+    margin-top: 40px;
+  }
+  body.home-page .team-cell.team-photo {
+    height: 260px;
+    min-height: 260px;
+  }
+  body.home-page .ref-journal-card .ref-journal-img-wrap {
+    height: 200px;
+  }
+  body.home-page .testimonials-inner {
+    padding: 0 4px;
+  }
+  body.home-page .testimonial-text {
+    font-size: clamp(0.95rem, 4.5vw, 1.2rem);
+  }
+  body.home-page #cta-banner {
+    padding: 48px 0;
+  }
+}
+
+/* ── EXTRA SMALL MOBILE (≤ 480px) ── */
+@media (max-width: 480px) {
+  body.home-page #about .container {
+    padding: 0 16px;
+  }
+  body.home-page .new-section-label {
+    font-size: 0.6rem;
+    margin-bottom: 0.9rem;
+  }
+  body.home-page .new-about-heading {
+    font-size: clamp(1.15rem, 6vw, 1.5rem);
+  }
+  body.home-page .about-slideshow {
+    height: 160px;
+  }
+  body.home-page .our-work-left {
+    padding: 0 16px;
+  }
+  body.home-page .our-work-swiper {
+    height: 200px;
+  }
+  body.home-page .our-work-slide {
+    width: 90% !important;
+    height: 200px !important;
+  }
+  body.home-page .our-work-slide img {
+    height: 200px !important;
+  }
+  body.home-page .our-work-title {
+    font-size: 1.4rem;
+  }
+  body.home-page .acc-container {
+    padding: 0 12px;
+  }
+  body.home-page .acc-title {
+    font-size: 1.05rem;
+  }
+  body.home-page .acc-text-wrap {
+    padding: 20px 14px;
+  }
+  body.home-page #quote-banner {
+    height: 280px;
+    min-height: 280px;
+    max-height: 280px;
+  }
+  body.home-page .quote-banner-content h2 {
+    font-size: clamp(0.9rem, 4vw, 1.15rem);
+    margin-top: 32px;
+    line-height: 1.55;
+  }
+  body.home-page .team-cell.team-photo {
+    height: 240px;
+    min-height: 240px;
+  }
+  body.home-page .team-cell.team-info {
+    padding: 20px 16px 28px;
+  }
+  body.home-page .team-name {
+    font-size: 1.05rem;
+  }
+  body.home-page .ref-journal-card .ref-journal-img-wrap {
+    height: 180px;
+  }
+  body.home-page .ref-journal-title {
+    font-size: 0.92rem;
+  }
+  body.home-page #ref-journal .container {
+    padding: 0 16px;
+  }
+  body.home-page #cta-banner {
+    padding: 40px 0;
+  }
+  body.home-page .cta-inner h2 {
+    font-size: clamp(1.3rem, 7vw, 1.8rem);
+  }
+  body.home-page .cta-inner p {
+    font-size: 0.85rem;
+  }
+  body.home-page .container {
+    padding: 0 16px;
+  }
+  body.home-page .section-pad {
+    padding: 44px 0;
+  }
+  body.home-page .logo-img--footer {
+    height: 76px;
+  }
+}
+
+/* ── VERY SMALL MOBILE (≤ 380px) ── */
+@media (max-width: 380px) {
+  body.home-page #sticky-header {
+    padding: 0 14px;
+  }
+  body.home-page .logo-img--sticky {
+    height: 34px;
+  }
+  body.home-page .center-logo-img {
+    max-width: 130px;
+  }
+  body.home-page .vert-text {
+    font-size: 0.7rem;
+  }
+  body.home-page .new-about-heading {
+    font-size: clamp(1.05rem, 6vw, 1.35rem);
+  }
+  body.home-page .about-slideshow {
+    height: 140px;
+  }
+  body.home-page .our-work-swiper {
+    height: 180px;
+  }
+  body.home-page .our-work-slide {
+    height: 180px !important;
+  }
+  body.home-page .our-work-slide img {
+    height: 180px !important;
+  }
+  body.home-page .acc-title {
+    font-size: 0.95rem;
+  }
+  body.home-page #quote-banner {
+    height: 240px;
+    min-height: 240px;
+    max-height: 240px;
+  }
+  body.home-page .quote-banner-content h2 {
+    font-size: 0.85rem;
+    margin-top: 20px;
+  }
+  body.home-page .team-cell.team-photo {
+    height: 200px;
+    min-height: 200px;
+  }
+  body.home-page .ref-journal-card .ref-journal-img-wrap {
+    height: 160px;
+  }
+  body.home-page .cta-inner h2 {
+    font-size: 1.25rem;
+  }
+  body.home-page .btn {
+    padding: 11px 20px;
+    font-size: 0.7rem;
+  }
+  body.home-page .hs-footer-inner {
+    padding: 32px 14px 24px;
+  }
+  body.home-page .hs-footer-bottom {
+    padding: 14px 14px;
+  }
+  body.home-page .logo-img--footer {
+    height: 64px;
+  }
+}
+
