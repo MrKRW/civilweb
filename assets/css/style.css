@@ -1572,13 +1572,13 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 549px;
-  min-height: 549px;
-  max-height: 549px;
+  height: 618px;
+  min-height: 618px;
+  max-height: 618px;
   width: 100%;  /* was 1361px — caused horizontal overflow on mobile */
   display: flex;
-  align-items: center;
-  padding: 0;
+  align-items: flex-end;
+  padding: 0 0 70px 0;
   overflow: hidden;
 }
 
@@ -1594,11 +1594,11 @@ p {
 
 .quote-banner-content h2 {
   color: var(--white);
-  font-family: var(--font-b);
-  font-size: clamp(1.125rem, 1.65vw, 1.375rem);
-  font-weight: 300;
-  max-width: 420px;
-  line-height: 1.55;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  max-width: 800px;
+  line-height: 42px;
   margin: 0;
   padding: 0;
   letter-spacing: 0.01em;
@@ -1608,9 +1608,9 @@ p {
 
 
 body.home-page #quote-banner {
-  height: 549px;
-  min-height: 549px;
-  max-height: 549px;
+  height: 618px;
+  min-height: 618px;
+  max-height: 618px;
   width: 100%;  /* was 1361px — caused horizontal overflow on mobile */
 }
 
@@ -6063,3 +6063,203 @@ body.home-page .team-role {
   }
 }
 
+/* =============================================================
+   HOME PAGE — FINAL RESPONSIVE POLISH
+   Targeting remaining gaps comparing to the Hiroshi reference.
+   Does NOT change desktop (>1024px) sizing or styling.
+============================================================= */
+
+/* ── GLOBAL OVERFLOW PROTECTION for home page ── */
+body.home-page {
+  overflow-x: hidden;
+}
+
+/* ── HERO: proper stacking on mobile, each half exactly 50% ── */
+@media (max-width: 768px) {
+  body.home-page .split-half {
+    flex: 1 0 50%;
+    min-height: 0;
+  }
+}
+
+/* ── ABOUT: center slideshow on narrow screens ── */
+@media (max-width: 768px) {
+  body.home-page .about-slideshow {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  body.home-page .new-about-top {
+    align-items: stretch;
+  }
+}
+
+/* ── ABOUT BOTTOM: stack vertically on 600px and below ── */
+@media (max-width: 600px) {
+  body.home-page .new-about-bottom {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  body.home-page .new-about-links,
+  body.home-page .new-about-col {
+    flex: none;
+    width: 100%;
+  }
+
+  body.home-page .new-about-col p {
+    max-width: 100%;
+  }
+}
+
+/* ── PROJECTS: safeguard min-height for swiper container on smallest screens ── */
+@media (max-width: 480px) {
+  body.home-page .our-work-right {
+    min-height: 200px;
+  }
+}
+
+/* ── ACCORDION: hide the top border divider line on mobile ── */
+@media (max-width: 768px) {
+  body.home-page .accordion-section::before {
+    display: none;
+  }
+
+  body.home-page .accordion-section {
+    padding-top: 40px;
+  }
+
+  /* Ensure accordion icon is always visible at mobile sizes */
+  body.home-page .acc-item .acc-icon {
+    opacity: 1 !important;
+  }
+}
+
+/* ── JOURNAL: 2-column grid in landscape orientation on mobile ── */
+@media (max-width: 768px) and (orientation: landscape) {
+  body.home-page .ref-journal-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 12px;
+  }
+}
+
+/* ── TEAM GRID: ensure absolute-positioned images fill the fixed-height cells ── */
+@media (max-width: 768px) {
+  body.home-page .team-cell.team-photo {
+    position: relative;
+    overflow: hidden;
+  }
+
+  body.home-page .team-cell.team-photo img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+  }
+}
+
+/* ── ACCORDION ICON: visible at all tablet sizes (not hidden by active state) ── */
+@media (max-width: 1024px) {
+  body.home-page .acc-item .acc-icon {
+    opacity: 1 !important;
+  }
+}
+
+/* ── BACK TO TOP: keep accessible above mobile browser nav bars ── */
+@media (max-width: 768px) {
+  #back-top {
+    bottom: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ── VERY NARROW PHONES (≤360px) ── */
+@media (max-width: 360px) {
+  body.home-page .container,
+  body.home-page #ref-journal .container,
+  body.home-page #about .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  body.home-page #sticky-header {
+    padding: 0 12px;
+  }
+
+  body.home-page .new-about-heading {
+    font-size: 1rem;
+  }
+
+  body.home-page .cta-inner h2 {
+    font-size: 1.1rem;
+  }
+
+  body.home-page .quote-banner-content h2 {
+    font-size: 0.8rem !important;
+    margin-top: 16px !important;
+    line-height: 1.5;
+  }
+
+  body.home-page #quote-banner {
+    height: 220px !important;
+    min-height: 220px !important;
+    max-height: 220px !important;
+  }
+
+  body.home-page .vert-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+  }
+
+  body.home-page .testimonials-inner {
+    padding: 0;
+  }
+
+  body.home-page .testimonial-text {
+    font-size: 0.9rem;
+  }
+
+  body.home-page .testimonial-author {
+    font-size: 0.68rem;
+  }
+
+  body.home-page .ref-journal-card .ref-journal-img-wrap {
+    height: 140px;
+  }
+
+  body.home-page .ref-journal-title {
+    font-size: 0.85rem;
+  }
+
+  body.home-page .logo-img--footer {
+    height: 56px;
+  }
+
+  body.home-page .hs-footer-inner {
+    padding: 28px 12px 20px;
+  }
+}
+
+/* ── OVERRIDE FOR MOBILE QUOTE BANNER TO MATCH REFERENCE IMAGE ── */
+@media (max-width: 768px) {
+  #quote-banner,
+  body.home-page #quote-banner {
+    height: 545px !important;
+    min-height: 545px !important;
+    max-height: 545px !important;
+  }
+  
+  .quote-banner-content h2,
+  body.home-page .quote-banner-content h2 {
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 30px !important;
+    font-weight: 400 !important;
+    line-height: 35px !important;
+    margin-top: 140px !important;
+  }
+}
