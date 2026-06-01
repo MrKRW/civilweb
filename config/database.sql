@@ -51,6 +51,15 @@ VALUES ('admin', '$2y$10$RkVHNEaaKixPN0XuEEPXru0E49gzv6FOTzxXktFGJraGZ99RXprpu',
 ON DUPLICATE KEY UPDATE `username` = `username`;
 
 -- ------------------------------------------------------------
+--  ADDITIONAL ADMIN USERS
+-- ------------------------------------------------------------
+INSERT INTO `admin_users` (`username`, `password`, `full_name`)
+VALUES 
+('admin@civilanka.com', '$2y$10$sPFH67/fF2iFBuRwA9ujsOVD6hHi2cf56PvmxryECS/MaXUXpspJy', 'CivilLanka Admin'),
+('EngageLanka', '$2y$10$wMl0Pc3scc.KDS1TUfnhPuZsDllXYpC0IeykaOt.e5v4rffnqTtkG', 'EngageLanka')
+ON DUPLICATE KEY UPDATE `password` = VALUES(`password`), `full_name` = VALUES(`full_name`);
+
+-- ------------------------------------------------------------
 --  PRODUCT REVIEWS TABLE
 -- ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `product_reviews` (
