@@ -12,11 +12,46 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <section id="about-hero" class="hs-hero">
     <div class="hs-hero-bg"></div>
 
+    <!-- Transparent overlay navbar (visible before sticky header appears) -->
+    <header class="hs-hero-header" id="about-hero-nav">
+      <a href="<?= $BASE ?>" class="hs-hero-logo">
+        <img src="<?= $BASE ?>/Logos/trans.PNG" alt="Civilanka" style="height:52px;width:auto;filter:brightness(0) invert(1);" />
+      </a>
+      <nav class="hs-hero-nav">
+        <ul>
+          <li<?= $activeNav === 'home'     ? ' class="active"' : '' ?>><a href="<?= $BASE ?>/">home</a></li>
+          <li<?= $activeNav === 'about'    ? ' class="active"' : '' ?>><a href="<?= $BASE ?>/about">about</a></li>
+          <li<?= $activeNav === 'services' ? ' class="active"' : '' ?>><a href="<?= $BASE ?>/services">services</a></li>
+          <li<?= $activeNav === 'projects' ? ' class="active"' : '' ?>><a href="<?= $BASE ?>/projects">projects</a></li>
+          <li<?= $activeNav === 'blog'     ? ' class="active"' : '' ?>><a href="<?= $BASE ?>/blog">blog</a></li>
+          <li<?= $activeNav === 'shop'     ? ' class="active"' : '' ?>><a href="<?= $BASE ?>/shop">shop</a></li>
+          <li<?= $activeNav === 'contact'  ? ' class="active"' : '' ?>><a href="<?= $BASE ?>/contact">contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
     <div class="hs-hero-content"><h1 class="hs-hero-title">Our Studio</h1></div>
     <div class="hs-hero-footer">
       <div class="hs-hero-tag"><span class="dot"></span> A SENSE OF SERENITY</div>
     </div>
   </section>
+
+  <script>
+    // Fade out the about hero navbar as user scrolls toward the sticky header reveal point
+    (function() {
+      var heroNav = document.getElementById('about-hero-nav');
+      if (!heroNav) return;
+      var THRESHOLD = 80; // must match main.js REVEAL_THRESHOLD
+      function updateHeroNav() {
+        var s = window.scrollY;
+        var opacity = Math.max(0, 1 - (s / THRESHOLD));
+        heroNav.style.opacity = opacity;
+        heroNav.style.pointerEvents = opacity < 0.1 ? 'none' : 'all';
+      }
+      updateHeroNav();
+      window.addEventListener('scroll', updateHeroNav, { passive: true });
+    })();
+  </script>
 
   <!-- INTRO -->
   <section class="hs-intro">

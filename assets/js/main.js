@@ -17,14 +17,20 @@ const hamburgerBtn = document.getElementById('hamburger-btn');
 // ============================
 
 
-// Apply border-hidden class on load if already at top
+// Pages where the sticky header should be hidden until the user scrolls
+const HIDE_NAV_PAGES = ['home-page', 'about-page'];
+const isHideNavPage = HIDE_NAV_PAGES.some(cls => document.body.classList.contains(cls));
+
+const REVEAL_THRESHOLD = 80; // px — header slides in after this many pixels
+
+// Apply initial states on load
 if (stickyHeader) {
   stickyHeader.classList.toggle('nav-at-top', window.scrollY === 0);
+  // Hide the header immediately on home/about pages if at the top
+  if (isHideNavPage && window.scrollY < REVEAL_THRESHOLD) {
+    stickyHeader.classList.add('nav-hidden');
+  }
 }
-
-const REVEAL_THRESHOLD = 80; // px
-
-
 
 window.addEventListener('scroll', () => {
   const scrolled = window.scrollY;
@@ -37,9 +43,13 @@ window.addEventListener('scroll', () => {
     // Hide bottom border at page-top, show when scrolled
     stickyHeader.classList.toggle('nav-at-top', scrolled === 0);
 
+    // On home & about pages: hide header at top, reveal after scroll threshold
+    if (isHideNavPage) {
+      stickyHeader.classList.toggle('nav-hidden', scrolled < REVEAL_THRESHOLD);
+    }
+
     // Back-to-top button
     if (backTop) backTop.classList.toggle('show', scrolled > 400);
-
 
   }
 });
