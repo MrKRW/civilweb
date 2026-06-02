@@ -9,64 +9,12 @@ const mobileNav = document.getElementById('mobile-nav');
 const mobileClose = document.getElementById('mobile-nav-close');
 const hamburgerBtn = document.getElementById('hamburger-btn');
 
-// Section→nav-label mapping (for active highlight on home page)
-const sectionMap = [
-  { id: 'hero', label: 'home' },
-  { id: 'about', label: 'about' },
-  { id: 'projects', label: 'projects' },
-  { id: 'footer', label: 'contact' },
-];
-
-function getActiveSection() {
-  let current = 'home';
-  sectionMap.forEach(({ id, label }) => {
-    const el = document.getElementById(id);
-    if (el && window.scrollY >= el.offsetTop - 120) current = label;
-  });
-  return current;
-}
-
-function updateNavActive(label) {
-  if (!stickyHeader) return;
-  stickyHeader.querySelectorAll('.sticky-nav li').forEach(li => {
-    const a = li.querySelector('a');
-    if (a) li.classList.toggle('active', a.textContent.trim() === label);
-  });
-}
-
-function setActiveNavFromPath() {
-  if (!stickyHeader || document.getElementById('hero')) return;
-
-  const page = window.location.pathname.split('/').pop() || 'index.html';
-  const pageKey = page === '' || page === 'index.html' ? 'home' : page.replace('.html', '');
-
-  stickyHeader.querySelectorAll('.sticky-nav li').forEach(li => {
-    const a = li.querySelector('a');
-    if (!a) return;
-    const href = a.getAttribute('href') || '';
-    const linkKey = href === 'index.html' ? 'home' : href.replace('.html', '');
-    li.classList.toggle('active', linkKey === pageKey);
-  });
-
-  if (mobileNav) {
-    mobileNav.querySelectorAll('a').forEach(a => {
-      const href = a.getAttribute('href') || '';
-      const linkKey = href === 'index.html' ? 'home' : href.replace('.html', '');
-      a.classList.toggle('active', linkKey === pageKey);
-    });
-  }
-}
+// Section→nav-label mapping removed because PHP handles active states
 
 // ============================
-// SCROLL-REVEAL NAV (home page only)
-// On the home page the nav is hidden at page-top and slides in on scroll.
-// On all other pages it is always visible.
+// SCROLL-REVEAL NAV REMOVED
+// Sticky header is always visible to standardize look.
 // ============================
-const isScrollRevealPage = document.getElementById('hero') !== null;
-
-if (isScrollRevealPage && stickyHeader) {
-  stickyHeader.classList.add('nav-hidden');
-}
 
 
 // Apply border-hidden class on load if already at top
@@ -76,26 +24,15 @@ if (stickyHeader) {
 
 const REVEAL_THRESHOLD = 80; // px
 
-// Set initial active nav highlight on page load
-if (document.getElementById('hero')) {
-  updateNavActive('home');
-} else {
-  setActiveNavFromPath();
-}
+
 
 window.addEventListener('scroll', () => {
   const scrolled = window.scrollY;
 
-  // Hide/show hero top-bar
+  // Hide/show hero top-bar (if still present)
   if (topBar) topBar.classList.toggle('hidden', scrolled > 50);
 
   if (stickyHeader) {
-    // Scroll-reveal on home & about
-    if (isScrollRevealPage) {
-      stickyHeader.classList.toggle('nav-hidden', scrolled < REVEAL_THRESHOLD);
-    } else if (document.body.classList.contains('home-page') && stickyHeader) {
-      stickyHeader.classList.remove('nav-hidden');
-    }
 
     // Hide bottom border at page-top, show when scrolled
     stickyHeader.classList.toggle('nav-at-top', scrolled === 0);
@@ -103,10 +40,7 @@ window.addEventListener('scroll', () => {
     // Back-to-top button
     if (backTop) backTop.classList.toggle('show', scrolled > 400);
 
-    // Active nav highlight (home page only) — always keep "home" active
-    if (document.getElementById('hero')) {
-      updateNavActive('home');
-    }
+
   }
 });
 

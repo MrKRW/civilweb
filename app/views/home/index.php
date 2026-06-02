@@ -7,12 +7,6 @@ $extraJs   = ['main.js'];
 $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',['localhost','127.0.0.1','::1'])?'/civilweb':'');
 ?>
 
-  <!-- HERO TOP BAR -->
-  <div id="top-bar">
-    <a href="<?= $BASE ?>/" class="hero-topleft-brand" aria-label="Civilanka Home">
-      <img src="<?= $BASE ?>/Logos/TRANSPARENT CIVILANKA.png" alt="Civilanka" class="hero-topleft-logo-img" />
-    </a>
-  </div>
 
   <!-- HERO SECTION -->
   <section id="hero" class="split-view" aria-label="Featured Projects Split View">

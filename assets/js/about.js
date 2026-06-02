@@ -5,25 +5,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* -------------------------------------------------------
-     STICKY HEADER — hidden until user scrolls past hero
+     STICKY HEADER logic removed to standardize navigation.
+     The sticky header is now always visible.
   ------------------------------------------------------- */
-  const stickyHeader = document.getElementById('sticky-header');
-  const aboutHero   = document.getElementById('about-hero');
-
-  if (stickyHeader && aboutHero) {
-    const showHeader = () => {
-      const heroBottom = aboutHero.getBoundingClientRect().bottom;
-      if (heroBottom <= 0) {
-        stickyHeader.classList.add('scrolled-in');
-      } else {
-        stickyHeader.classList.remove('scrolled-in');
-      }
-    };
-
-    // Run immediately in case page is loaded already scrolled
-    showHeader();
-    window.addEventListener('scroll', showHeader, { passive: true });
-  }
 
   /* -------------------------------------------------------
      SCROLL REVEAL (reuse classes from main style.css)

@@ -68,13 +68,13 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <!-- MOBILE NAV -->
   <nav id="mobile-nav" role="navigation" aria-label="Mobile Navigation">
     <button id="mobile-nav-close" aria-label="Close menu">&#x2715;</button>
-    <a href="<?= $BASE ?>/">home</a>
-    <a href="<?= $BASE ?>/about">about</a>
-    <a href="<?= $BASE ?>/services">services</a>
-    <a href="<?= $BASE ?>/projects">projects</a>
-    <a href="<?= $BASE ?>/blog">blog</a>
-    <a href="<?= $BASE ?>/shop">shop</a>
-    <a href="<?= $BASE ?>/contact">contact</a>
+    <a href="<?= $BASE ?>/"<?= $activeNav === 'home' ? ' class="active"' : '' ?>>home</a>
+    <a href="<?= $BASE ?>/about"<?= $activeNav === 'about' ? ' class="active"' : '' ?>>about</a>
+    <a href="<?= $BASE ?>/services"<?= $activeNav === 'services' ? ' class="active"' : '' ?>>services</a>
+    <a href="<?= $BASE ?>/projects"<?= $activeNav === 'projects' ? ' class="active"' : '' ?>>projects</a>
+    <a href="<?= $BASE ?>/blog"<?= $activeNav === 'blog' ? ' class="active"' : '' ?>>blog</a>
+    <a href="<?= $BASE ?>/shop"<?= $activeNav === 'shop' ? ' class="active"' : '' ?>>shop</a>
+    <a href="<?= $BASE ?>/contact"<?= $activeNav === 'contact' ? ' class="active"' : '' ?>>contact</a>
   </nav>
 
   <!-- PAGE CONTENT -->

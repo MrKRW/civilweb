@@ -11,19 +11,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <!-- HERO -->
   <section id="about-hero" class="hs-hero">
     <div class="hs-hero-bg"></div>
-    <nav class="about-hero-nav" aria-label="Hero Navigation">
-      <a href="<?= $BASE ?>/" class="hero-logo" aria-label="Civilanka Home">
-        <img src="<?= $BASE ?>/Logos/trans.PNG" alt="Civilanka Architects" />
-      </a>
-      <ul role="list">
-        <li><a href="<?= $BASE ?>/">home</a></li>
-        <li class="active"><a href="<?= $BASE ?>/about">about</a></li>
-        <li><a href="<?= $BASE ?>/projects">projects</a></li>
-        <li><a href="<?= $BASE ?>/blog">blog</a></li>
-        <li><a href="<?= $BASE ?>/shop">shop</a></li>
-        <li><a href="<?= $BASE ?>/contact">contact</a></li>
-      </ul>
-    </nav>
+
     <div class="hs-hero-content"><h1 class="hs-hero-title">Our Studio</h1></div>
     <div class="hs-hero-footer">
       <div class="hs-hero-tag"><span class="dot"></span> A SENSE OF SERENITY</div>
