@@ -89,7 +89,7 @@
    SERVICES SECTIONS — common
 ============================================================ */
 .services-section {
-  padding: 100px 0;
+  padding: calc(var(--header-height) + 40px) 0 100px;
   background: #fff;
 }
 
@@ -228,23 +228,42 @@
 
 .srv-card-list li {
   font-family: 'Inter', sans-serif;
-  font-size: 0.88rem;
-  color: #555;
+  font-size: 0.95rem;
+  color: #444;
   font-weight: 300;
-  line-height: 1.6;
-  padding: 5px 0;
+  line-height: 1.65;
+  padding: 12px 0 12px 24px;
   border-bottom: 1px solid #f0eeea;
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
+  position: relative;
+  display: block;
+  transition: padding-left 0.3s ease, color 0.3s ease;
+}
+
+.srv-card-list li:hover {
+  padding-left: 28px;
+  color: #111;
 }
 
 .srv-card-list li::before {
-  content: '—';
-  color: #bbb;
-  font-size: 0.7rem;
-  margin-top: 3px;
-  flex-shrink: 0;
+  content: '→';
+  color: #111;
+  font-size: 1.05rem;
+  position: absolute;
+  left: 0;
+  top: 11px;
+  transition: left 0.3s ease, color 0.3s ease;
+}
+
+.srv-card-list li:hover::before {
+  left: 4px;
+  color: #555;
+}
+
+.srv-card-list li strong {
+  font-weight: 600;
+  color: #111;
+  letter-spacing: -0.01em;
+  margin-right: 4px;
 }
 
 /* Card image — hidden by default, revealed on hover */
@@ -294,6 +313,12 @@
 .srv-card:hover .srv-card-list li {
   color: rgba(255,255,255,0.8);
   border-bottom-color: rgba(255,255,255,0.1);
+  background: transparent;
+}
+
+.srv-card:hover .srv-card-list li strong,
+.srv-card:hover .srv-card-list li::before {
+  color: #fff;
 }
 
 .srv-card:hover .srv-card-icon {
@@ -397,6 +422,22 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.srv-intl-featured-content .srv-card-list li {
+  padding-left: 28px;
+}
+.srv-intl-featured-content .srv-card-list li::before {
+  top: 13px;
+  left: 6px;
+}
+.srv-intl-featured-content .srv-card-list li:hover {
+  background: #fdfbf7;
+  padding-left: 32px;
+  border-radius: 4px;
+}
+.srv-intl-featured-content .srv-card-list li:hover::before {
+  left: 10px;
 }
 
 .srv-intl-num {

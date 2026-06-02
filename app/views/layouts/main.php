@@ -109,18 +109,17 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
           </ul>
         </div>
         <div class="hs-footer-col">
-          <span class="hs-footer-col-label">Contact</span>
+          <span class="hs-footer-col-label">CONTACT</span>
           <address>
             <span>374, Peradeniya Road</span>
-            <span>Kandy, Sri Lanka</span>
+            <span>Kandy 2000, Sri Lanka</span>
             <a href="tel:0812387235">0812 387 235</a>
-            <a href="mailto:hello@civilweb.com">hello@civilweb.com</a>
           </address>
         </div>
       </div>
     </div>
     <div class="hs-footer-bottom">
-      <p>&copy; 2025 Civilanka Architecture Studio. All rights reserved.</p>
+      <p>&copy; 2026 Civilanka Consultancy private limited. all right reserved. </p>
     </div>
   </footer>
 

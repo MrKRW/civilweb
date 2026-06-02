@@ -7,16 +7,6 @@ $extraJs   = ['services.js'];
 $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',['localhost','127.0.0.1','::1'])?'/civilweb':'');
 ?>
 
-  <!-- PAGE HERO -->
-  <section class="services-hero">
-    <div class="services-hero-inner">
-      <span class="new-section-label">• &nbsp;WHAT WE OFFER</span>
-      <h1 class="services-hero-title">Our Services</h1>
-      <p class="services-hero-sub">Comprehensive architecture, engineering &amp; construction solutions — delivered locally and internationally with precision and creativity.</p>
-    </div>
-    <div class="services-scroll-hint"><span>scroll</span><div class="services-scroll-line"></div></div>
-  </section>
-
   <!-- SERVICES -->
   <section id="our-services" class="services-section">
     <div class="srv-section-header reveal-up">
