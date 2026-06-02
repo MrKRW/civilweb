@@ -3,10 +3,12 @@
  */
 const API = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/projects';
 const SHOP_API = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/shop';
+const BLOG_API = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/blog';
 const AUTH = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/auth';
 const SETTINGS_API = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/settings';
 const UPLOAD_BASE = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/projects/';
 const SHOP_UPLOAD_BASE = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/shop/';
+const BLOG_UPLOAD_BASE = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/blog/';
 
 /* ── NAVIGATION ─────────────────────────── */
 document.querySelectorAll('.nav-item[data-page]').forEach(item => {
@@ -31,11 +33,15 @@ function navigateTo(page) {
   if (page === 'dashboard') loadDashboard();
   if (page === 'projects') loadProjects();
   if (page === 'shop') loadShopItems();
+  if (page === 'blog-posts') loadBlogPosts();
   if (page === 'add-project') {
     if (!document.getElementById('edit-id').value) resetForm();
   }
   if (page === 'add-shop-item') {
     if (!document.getElementById('shop-edit-id').value) resetShopForm();
+  }
+  if (page === 'add-blog-post') {
+    if (!document.getElementById('blog-edit-id').value) resetBlogForm();
   }
 }
 
@@ -75,6 +81,14 @@ async function loadDashboard() {
     document.getElementById('stat-local').textContent = projects.filter(p => p.category === 'local').length;
     document.getElementById('stat-intl').textContent = projects.filter(p => p.category === 'international').length;
     document.getElementById('stat-featured').textContent = projects.filter(p => p.featured == 1).length;
+
+    // Blog post count
+    try {
+      const blogRes = await fetch(BLOG_API + '?action=list&status=published');
+      const blogData = await blogRes.json();
+      const blogEl = document.getElementById('stat-blog');
+      if (blogEl) blogEl.textContent = (blogData.posts || []).length;
+    } catch {}
 
     // Recent table — show last 5
     const recent = projects.slice(0, 5);
@@ -614,6 +628,181 @@ for (let i = 1; i <= 4; i++) {
   zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
   zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag-over'); });
 });
+
+/* ── BLOG LOGIC ─────────────────────────── */
+
+const BLOG_CATEGORIES = ['Architecture','Interior','Landscape Architecture','Materials','Interviews'];
+
+async function loadBlogPosts() {
+  const status = document.getElementById('filter-blog-status')?.value || '';
+  let url = BLOG_API + '?action=list';
+  if (status) url += '&status=' + status;
+
+  const tableEl = document.getElementById('blog-posts-table');
+  if (!tableEl) return;
+  tableEl.innerHTML = '<p class="loading-text">Loading…</p>';
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    const posts = data.posts || [];
+    tableEl.innerHTML = posts.length ? buildBlogTable(posts) : '<p class="empty-state">No blog posts found. <a href="#" onclick="navigateTo(\'add-blog-post\')" style="color:var(--accent)">Add your first post →</a></p>';
+  } catch {
+    tableEl.innerHTML = '<p class="empty-state">Failed to load blog posts.</p>';
+  }
+}
+
+function buildBlogTable(posts) {
+  let html = `<table class="data-table">
+    <thead><tr>
+      <th>Image</th><th>Title</th><th>Category</th><th>Status</th><th>Date</th><th>Actions</th>
+    </tr></thead><tbody>`;
+
+  posts.forEach(p => {
+    const thumb = p.image
+      ? `<img src="${BLOG_UPLOAD_BASE}${p.image}" class="project-thumb" alt="" />`
+      : `<div class="project-thumb" style="background:var(--bg-hover);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" width="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>`;
+    const statusBadge = `<span class="badge badge--${p.status}">${p.status}</span>`;
+    const date = p.created_at ? new Date(p.created_at).toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'}) : '—';
+
+    html += `<tr>
+      <td>${thumb}</td>
+      <td><strong>${escHtml(p.title)}</strong>${p.excerpt ? '<br><small style="color:var(--text-muted)">' + escHtml(p.excerpt.substring(0,80)) + (p.excerpt.length > 80 ? '…' : '') + '</small>' : ''}</td>
+      <td>${p.category ? escHtml(p.category) : '—'}</td>
+      <td>${statusBadge}</td>
+      <td><small>${date}</small></td>
+      <td><div class="action-btns">
+        <button class="action-btn action-btn--edit" onclick="editBlogPost(${p.id})" title="Edit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </button>
+        <button class="action-btn action-btn--delete" onclick="deleteBlogPost(${p.id}, '${escHtml(p.title)}')" title="Delete">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+        </button>
+      </div></td>
+    </tr>`;
+  });
+
+  html += '</tbody></table>';
+  return html;
+}
+
+document.getElementById('blog-form')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const editId = document.getElementById('blog-edit-id').value;
+  const isEdit = !!editId;
+  const btn = document.getElementById('blog-form-submit-btn');
+  btn.querySelector('span').textContent = 'Saving…';
+  btn.disabled = true;
+
+  const fd = new FormData(e.target);
+  const url = BLOG_API + '?action=' + (isEdit ? 'update&id=' + editId : 'create');
+
+  try {
+    const res = await fetch(url, { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      showToast(isEdit ? 'Post updated!' : 'Post published!', 'success');
+      resetBlogForm();
+      navigateTo('blog-posts');
+    } else {
+      showToast(data.error || 'Save failed', 'error');
+    }
+  } catch (err) {
+    console.error('Blog save error:', err);
+    showToast('Network error', 'error');
+  }
+
+  btn.querySelector('span').textContent = 'Save Post';
+  btn.disabled = false;
+});
+
+async function editBlogPost(id) {
+  try {
+    const res = await fetch(BLOG_API + '?action=get&id=' + id);
+    const data = await res.json();
+    if (!data.post) { showToast('Post not found', 'error'); return; }
+
+    const p = data.post;
+    document.getElementById('blog-edit-id').value  = p.id;
+    document.getElementById('blog-title').value     = p.title;
+    document.getElementById('blog-category').value  = p.category || '';
+    document.getElementById('blog-status').value    = p.status;
+    document.getElementById('blog-sort').value      = p.sort_order || 0;
+    document.getElementById('blog-excerpt').value   = p.excerpt || '';
+    document.getElementById('blog-content').value   = p.content || '';
+
+    // Show existing cover image
+    if (p.image) {
+      document.getElementById('blog-preview-img').src = BLOG_UPLOAD_BASE + p.image;
+      document.getElementById('blog-upload-preview').style.display = 'inline-block';
+      document.getElementById('blog-upload-placeholder').style.display = 'none';
+    }
+
+    document.getElementById('blog-form-page-title').textContent = 'Edit Blog Post';
+    document.getElementById('blog-form-submit-btn').querySelector('span').textContent = 'Update Post';
+    navigateTo('add-blog-post');
+  } catch {
+    showToast('Failed to load post', 'error');
+  }
+}
+
+async function deleteBlogPost(id, title) {
+  if (!confirm(`Delete "${title}"? This cannot be undone.`)) return;
+  try {
+    const fd = new FormData();
+    fd.append('id', id);
+    const res = await fetch(BLOG_API + '?action=delete&id=' + id, { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      showToast('Post deleted', 'success');
+      loadBlogPosts();
+      loadDashboard();
+    } else {
+      showToast(data.error || 'Delete failed', 'error');
+    }
+  } catch (err) {
+    console.error('Blog delete error:', err);
+    showToast('Network error', 'error');
+  }
+}
+
+function resetBlogForm() {
+  document.getElementById('blog-form').reset();
+  document.getElementById('blog-edit-id').value = '';
+  document.getElementById('blog-form-page-title').textContent = 'Add New Blog Post';
+  document.getElementById('blog-form-submit-btn').querySelector('span').textContent = 'Save Post';
+  document.getElementById('blog-upload-preview').style.display = 'none';
+  document.getElementById('blog-upload-placeholder').style.display = '';
+}
+
+function removeBlogImage() {
+  document.getElementById('blog-upload-preview').style.display = 'none';
+  document.getElementById('blog-upload-placeholder').style.display = '';
+  document.getElementById('blog-image').value = '';
+}
+
+document.getElementById('blog-image')?.addEventListener('change', function() {
+  if (this.files && this.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('blog-preview-img').src = e.target.result;
+      document.getElementById('blog-upload-preview').style.display = 'inline-block';
+      document.getElementById('blog-upload-placeholder').style.display = 'none';
+    };
+    reader.readAsDataURL(this.files[0]);
+  }
+});
+
+// Blog upload zone drag-and-drop
+const blogZone = document.getElementById('blog-upload-zone');
+if (blogZone) {
+  blogZone.addEventListener('dragover', e => { e.preventDefault(); blogZone.classList.add('drag-over'); });
+  blogZone.addEventListener('dragleave', () => blogZone.classList.remove('drag-over'));
+  blogZone.addEventListener('drop', e => { e.preventDefault(); blogZone.classList.remove('drag-over'); });
+}
+
+// Blog status filter
+document.getElementById('filter-blog-status')?.addEventListener('change', loadBlogPosts);
 
 /* ── INIT ───────────────────────────────── */
 loadDashboard();

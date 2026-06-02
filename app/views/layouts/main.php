@@ -41,7 +41,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
 
   <!-- Page-specific styles -->
   <?php foreach ($extraCss as $css): ?>
-  <link rel="stylesheet" href="<?= $BASE . '/assets/css/' . htmlspecialchars($css) ?>" />
+  <link rel="stylesheet" href="<?= $BASE . '/assets/css/' . htmlspecialchars($css) ?>?v=<?= time() ?>" />
   <?php endforeach; ?>
 </head>
 <body class="<?= htmlspecialchars($pageClass) ?>">

@@ -5,164 +5,222 @@ $pageClass = 'blog-page';
 $activeNav = 'blog';
 $extraCss  = ['blog.css'];
 $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',['localhost','127.0.0.1','::1'])?'/civilweb':'');
+$posts = $posts ?? [];
 ?>
 
-  <!-- Breadcrumbs -->
-  <div class="breadcrumb-container">
-    <div class="container">
-      <nav class="breadcrumbs">
-        <a href="<?= $BASE ?>/">Home</a> / <span>Right Sidebar</span>
-      </nav>
+<!-- ═══════════════════════════════════════════
+     PAGE HERO BANNER
+═══════════════════════════════════════════ -->
+<section class="blog-hero">
+  <div class="container">
+    <div class="blog-hero__inner">
+      <span class="blog-hero__label">Our Journal</span>
+      <h1 class="blog-hero__title">Stories &amp; Insights</h1>
+      <p class="blog-hero__sub">Architecture, design thinking, and behind-the-scenes perspectives from our studio.</p>
     </div>
   </div>
+</section>
 
-  <!-- Main Content -->
-  <main class="blog-main-layout">
-    <div class="container">
-      <div class="blog-layout-grid">
+<!-- ═══════════════════════════════════════════
+     BREADCRUMBS
+═══════════════════════════════════════════ -->
+<div class="breadcrumb-container">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="<?= $BASE ?>/">Home</a>
+      <span class="bc-sep">›</span>
+      <span>Blog</span>
+    </nav>
+  </div>
+</div>
 
-        <!-- Blog Content Left -->
-        <div class="blog-content">
+<!-- ═══════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════ -->
+<main class="blog-main-layout">
+  <div class="container">
+    <div class="blog-layout-grid">
 
-          <!-- Post 1: Slider Style -->
-          <article class="post-item post-slider">
-            <div class="post-media">
-              <img src="<?= $BASE ?>/assets/images/blog/kitchen.png" alt="Living Room Trends">
-              <div class="slider-controls">
-                <span class="slide-count">1/3</span>
-                <div class="slide-arrows">
-                  <button class="prev-arrow">←</button>
-                  <button class="next-arrow">→</button>
-                </div>
-              </div>
+      <!-- ── Blog Content (Left) ──────────── -->
+      <div class="blog-content">
+
+        <?php if (empty($posts)): ?>
+          <!-- Empty State -->
+          <div class="blog-empty">
+            <div class="blog-empty__icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M28 4H12a4 4 0 00-4 4v32a4 4 0 004 4h24a4 4 0 004-4V16L28 4z"/>
+                <polyline points="28 4 28 16 40 16"/>
+                <line x1="32" y1="26" x2="16" y2="26"/>
+                <line x1="32" y1="34" x2="16" y2="34"/>
+                <line x1="20" y1="18" x2="16" y2="18"/>
+              </svg>
             </div>
-            <div class="post-info">
-              <h2 class="post-title"><a href="#">Living Room Trends For The Upcoming Season 2024</a></h2>
-              <div class="post-meta">
-                <span class="post-cat">LANDSCAPE ARCHITECTURE</span>
-                <span class="post-date">DECEMBER 14, 2022</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Post 2: Quote Style -->
-          <article class="post-item post-quote">
-            <div class="quote-container">
-              <div class="author-img"><img src="<?= $BASE ?>/assets/images/blog/architect.png" alt="Frank Gehry"></div>
-              <div class="quote-text-wrap">
-                <blockquote class="quote-text">"Architecture should speak of its time and place, but yearn for timelessness."</blockquote>
-                <cite class="quote-author">FRANK GEHRY</cite>
-              </div>
-            </div>
-          </article>
-
-          <!-- Post 3: Standard Image -->
-          <article class="post-item post-standard">
-            <div class="post-media"><img src="<?= $BASE ?>/assets/images/blog/villa.png" alt="Glass Wall Facade"></div>
-            <div class="post-info">
-              <h2 class="post-title"><a href="#">Glass Wall Facade And How To Design It With Wooden Profiles</a></h2>
-              <div class="post-meta">
-                <span class="post-cat">LANDSCAPE ARCHITECTURE</span>
-                <span class="post-date">DECEMBER 14, 2022</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Post 4: Small Image List Style -->
-          <article class="post-item post-list-style">
-            <div class="post-list-inner">
-              <div class="post-thumb"><img src="<?= $BASE ?>/Project%20images/hero_local_bright.png" alt="Flooring types"></div>
-              <div class="post-list-content">
-                <h3 class="post-list-title"><a href="#">Types of flooring to consider for your new apartment</a></h3>
-              </div>
-            </div>
-          </article>
-
-          <!-- Post 5: Standard Image 2 -->
-          <article class="post-item post-standard">
-            <div class="post-media"><img src="<?= $BASE ?>/assets/images/blog/bathroom.png" alt="Hotel Rooms Puerto Rico"></div>
-            <div class="post-info">
-              <h2 class="post-title"><a href="#">Architecture &amp; Interior Design Of The Hotel Rooms In Puerto Rico</a></h2>
-              <div class="post-meta">
-                <span class="post-cat">LANDSCAPE ARCHITECTURE</span>
-                <span class="post-date">DECEMBER 14, 2022</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Pagination -->
-          <div class="pagination">
-            <ul>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#" class="next-page">→</a></li>
-            </ul>
+            <h2 class="blog-empty__title">No posts yet</h2>
+            <p class="blog-empty__text">Check back soon for insights and stories from our studio.</p>
           </div>
 
-        </div><!-- /.blog-content -->
+        <?php else: ?>
 
-        <!-- Sidebar Right -->
-        <aside class="blog-sidebar">
-          <div class="widget widget-search">
-            <form class="search-form">
-              <input type="text" placeholder="SEARCH" aria-label="Search">
-              <button type="submit">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              </button>
+          <?php
+            $featured = $posts[0] ?? null;
+            $rest     = array_slice($posts, 1);
+          ?>
+
+          <!-- ── Featured / First Post ─────── -->
+          <?php if ($featured): ?>
+            <?php
+              $fImg  = !empty($featured['image'])
+                ? $BASE . '/uploads/blog/' . htmlspecialchars($featured['image'])
+                : $BASE . '/assets/images/blog/villa.png';
+              $fCat  = !empty($featured['category'])
+                ? strtoupper(htmlspecialchars($featured['category']))
+                : 'ARCHITECTURE';
+              $fDate = !empty($featured['created_at'])
+                ? date('F j, Y', strtotime($featured['created_at']))
+                : '';
+            ?>
+            <article class="blog-card blog-card--featured">
+              <a href="<?= $BASE ?>/blog/post/<?= $featured['id'] ?>" class="blog-card__img-wrap">
+                <img src="<?= $fImg ?>" alt="<?= htmlspecialchars($featured['title']) ?>" class="blog-card__img" loading="lazy">
+                <span class="blog-card__cat-badge"><?= $fCat ?></span>
+              </a>
+              <div class="blog-card__body">
+                <?php if ($fDate): ?>
+                  <time class="blog-card__date"><?= $fDate ?></time>
+                <?php endif; ?>
+                <h2 class="blog-card__title">
+                  <a href="<?= $BASE ?>/blog/post/<?= $featured['id'] ?>"><?= htmlspecialchars($featured['title']) ?></a>
+                </h2>
+                <?php if (!empty($featured['excerpt'])): ?>
+                  <p class="blog-card__excerpt"><?= htmlspecialchars($featured['excerpt']) ?></p>
+                <?php endif; ?>
+                <a href="<?= $BASE ?>/blog/post/<?= $featured['id'] ?>" class="blog-card__read-more">Read more <span class="arrow">→</span></a>
+              </div>
+            </article>
+          <?php endif; ?>
+
+          <!-- ── Remaining Posts Grid ──────── -->
+          <?php if (!empty($rest)): ?>
+            <div class="blog-grid">
+              <?php foreach ($rest as $post): ?>
+                <?php
+                  $img  = !empty($post['image'])
+                    ? $BASE . '/uploads/blog/' . htmlspecialchars($post['image'])
+                    : $BASE . '/assets/images/blog/villa.png';
+                  $cat  = !empty($post['category'])
+                    ? strtoupper(htmlspecialchars($post['category']))
+                    : 'ARCHITECTURE';
+                  $date = !empty($post['created_at'])
+                    ? date('F j, Y', strtotime($post['created_at']))
+                    : '';
+                ?>
+                <article class="blog-card blog-card--grid">
+                  <a href="<?= $BASE ?>/blog/post/<?= $post['id'] ?>" class="blog-card__img-wrap">
+                    <img src="<?= $img ?>" alt="<?= htmlspecialchars($post['title']) ?>" class="blog-card__img" loading="lazy">
+                    <span class="blog-card__cat-badge"><?= $cat ?></span>
+                  </a>
+                  <div class="blog-card__body">
+                    <?php if ($date): ?>
+                      <time class="blog-card__date"><?= $date ?></time>
+                    <?php endif; ?>
+                    <h3 class="blog-card__title">
+                      <a href="<?= $BASE ?>/blog/post/<?= $post['id'] ?>"><?= htmlspecialchars($post['title']) ?></a>
+                    </h3>
+                    <?php if (!empty($post['excerpt'])): ?>
+                      <p class="blog-card__excerpt"><?= htmlspecialchars($post['excerpt']) ?></p>
+                    <?php endif; ?>
+                    <a href="<?= $BASE ?>/blog/post/<?= $post['id'] ?>" class="blog-card__read-more">Read more <span class="arrow">→</span></a>
+                  </div>
+                </article>
+              <?php endforeach; ?>
+            </div>
+          <?php endif; ?>
+
+        <?php endif; ?>
+
+      </div><!-- /.blog-content -->
+
+      <!-- ── Sidebar (Right) ──────────────── -->
+      <aside class="blog-sidebar" aria-label="Blog sidebar">
+
+        <!-- Search -->
+        <div class="widget widget-search">
+          <form class="search-form" role="search">
+            <input type="text" placeholder="SEARCH" aria-label="Search blog">
+            <button type="submit" aria-label="Submit search">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
+          </form>
+        </div>
+
+        <!-- Categories -->
+        <div class="widget widget-categories">
+          <h3 class="widget-title">Categories</h3>
+          <ul>
+            <?php
+              $cats = array_unique(array_filter(array_column($posts, 'category')));
+              if (empty($cats)) {
+                  $cats = ['Architecture', 'Interior', 'Landscape Architecture', 'Materials'];
+              }
+              foreach ($cats as $cat):
+            ?>
+              <li><a href="#"><?= htmlspecialchars($cat) ?></a></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+
+        <!-- Recent Posts -->
+        <?php if (!empty($posts)): ?>
+        <div class="widget widget-recent">
+          <h3 class="widget-title">Recent Posts</h3>
+          <div class="recent-list">
+            <?php foreach (array_slice($posts, 0, 4) as $rp): ?>
+              <?php
+                $rImg = !empty($rp['image'])
+                  ? $BASE . '/uploads/blog/' . htmlspecialchars($rp['image'])
+                  : $BASE . '/assets/images/blog/villa.png';
+                $rDate = !empty($rp['created_at']) ? date('M j, Y', strtotime($rp['created_at'])) : '';
+              ?>
+              <a href="#" class="recent-item">
+                <div class="recent-item__img">
+                  <img src="<?= $rImg ?>" alt="<?= htmlspecialchars($rp['title']) ?>">
+                </div>
+                <div class="recent-item__info">
+                  <span class="recent-item__title"><?= htmlspecialchars($rp['title']) ?></span>
+                  <?php if ($rDate): ?><time class="recent-item__date"><?= $rDate ?></time><?php endif; ?>
+                </div>
+              </a>
+            <?php endforeach; ?>
+          </div>
+        </div>
+        <?php endif; ?>
+
+        <!-- Newsletter -->
+        <div class="widget widget-newsletter">
+          <div class="newsletter-box">
+            <h3 class="widget-title">Newsletter</h3>
+            <p class="newsletter-desc">Get design insights delivered to your inbox.</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Your email address" required aria-label="Email address">
+              <button type="submit" class="btn-send">Subscribe</button>
             </form>
           </div>
-          <div class="widget widget-categories">
-            <h3 class="widget-title">Blog categories</h3>
-            <ul>
-              <li><a href="#">ARCHITECTURE</a></li>
-              <li><a href="#">INTERVIEWS</a></li>
-              <li><a href="#">LANDSCAPE ARCHITECTURE</a></li>
-              <li><a href="#">MATERIALS</a></li>
-            </ul>
-          </div>
-          <div class="widget widget-read-next">
-            <h3 class="widget-title">Read next</h3>
-            <div class="read-next-list">
-              <div class="read-next-item">
-                <h4><a href="#">Living Room Trends For The Upcoming Season 2024</a></h4>
-                <span class="item-cat">LANDSCAPE ARCHITECTURE</span>
-              </div>
-              <div class="read-next-item">
-                <h4><a href="#">Frank Gehry</a></h4>
-                <span class="item-cat">LANDSCAPE ARCHITECTURE</span>
-              </div>
-            </div>
-          </div>
-          <div class="widget widget-newsletter">
-            <div class="newsletter-box">
-              <h3 class="widget-title">Join Our Newsletter</h3>
-              <form class="newsletter-form">
-                <input type="email" placeholder="Your Email" required>
-                <button type="submit" class="btn-send">send</button>
-              </form>
-            </div>
-          </div>
-          <div class="widget widget-inspired">
-            <h3 class="widget-title">Get Inspired</h3>
-            <div class="inspired-grid">
-              <div class="grid-item"><img src="<?= $BASE ?>/assets/images/blog/inspired_1.png" alt="Inspiration 1"></div>
-              <div class="grid-item"><img src="<?= $BASE ?>/assets/images/blog/inspired_2.png" alt="Inspiration 2"></div>
-              <div class="grid-item"><img src="<?= $BASE ?>/assets/images/blog/inspired_3.png" alt="Inspiration 3"></div>
-              <div class="grid-item"><img src="<?= $BASE ?>/assets/images/blog/inspired_4.png" alt="Inspiration 4"></div>
-            </div>
-          </div>
-          <div class="widget widget-promo">
-            <div class="promo-box">
-              <div class="promo-img"><img src="<?= $BASE ?>/assets/images/blog/magazine.png" alt="Lighthouse Magazine"></div>
-              <div class="promo-content">
-                <h4>Light House Magazine No 23</h4>
-                <a href="#" class="order-link">order now</a>
-              </div>
-            </div>
-          </div>
-        </aside>
+        </div>
 
-      </div>
-    </div>
-  </main>
+        <!-- Get Inspired -->
+        <div class="widget widget-inspired">
+          <h3 class="widget-title">Get Inspired</h3>
+          <div class="inspired-grid">
+            <div class="grid-item"><img src="<?= $BASE ?>/assets/images/blog/inspired_1.png" alt="Inspiration 1" loading="lazy"></div>
+            <div class="grid-item"><img src="<?= $BASE ?>/assets/images/blog/inspired_2.png" alt="Inspiration 2" loading="lazy"></div>
+            <div class="grid-item"><img src="<?= $BASE ?>/assets/images/blog/inspired_3.png" alt="Inspiration 3" loading="lazy"></div>
+            <div class="grid-item"><img src="<?= $BASE ?>/assets/images/blog/inspired_4.png" alt="Inspiration 4" loading="lazy"></div>
+          </div>
+        </div>
+
+      </aside>
+
+    </div><!-- /.blog-layout-grid -->
+  </div><!-- /.container -->
+</main>

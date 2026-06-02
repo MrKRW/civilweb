@@ -72,3 +72,22 @@ CREATE TABLE IF NOT EXISTS `product_reviews` (
   `created_at`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   INDEX `idx_product` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ------------------------------------------------------------
+--  BLOG POSTS TABLE
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `blog_posts` (
+  `id`          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `title`       VARCHAR(255)  NOT NULL,
+  `slug`        VARCHAR(255)  NOT NULL UNIQUE,
+  `category`    VARCHAR(100)  NULL,
+  `excerpt`     TEXT          NULL,
+  `content`     LONGTEXT      NULL,
+  `image`       VARCHAR(255)  NULL    COMMENT 'Cover image filename in uploads/blog/',
+  `status`      ENUM('draft','published') NOT NULL DEFAULT 'published',
+  `sort_order`  INT           NOT NULL DEFAULT 0,
+  `created_at`  TIMESTAMP     DEFAULT CURRENT_TIMESTAMP,
+  `updated_at`  TIMESTAMP     DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_status` (`status`),
+  INDEX `idx_category` (`category`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -27,6 +27,7 @@ $router->add('/shop',       'ShopController',     'index');
 // ── Parameterised public pages ─────────────────────────────────────
 $router->addParam('/projects/{id}',   'ProjectsController', 'detail',  'id');
 $router->addParam('/shop/product/{id}', 'ShopController',   'product', 'id');
+$router->addParam('/blog/post/{id}',  'BlogController',     'detail',  'id');
 
 // ── Admin pages ───────────────────────────────────────────────────
 $router->add('/admin',         'AdminController', 'dashboard');
@@ -36,6 +37,7 @@ $router->add('/admin/logout',  'AuthController',  'logout');
 // ── JSON API endpoints ────────────────────────────────────────────
 $router->add('/api/projects',  'ProjectsController', 'api');
 $router->add('/api/shop',      'ShopController',     'api');
+$router->add('/api/blog',      'BlogController',     'api');
 $router->add('/api/auth',      'AuthController',     'api');
 $router->add('/api/settings',  'AdminController',    'apiSettings');
 
