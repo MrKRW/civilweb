@@ -13,6 +13,10 @@ $adminUser = $adminUser ?? 'admin';
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="<?= $BASE ?>/assets/css/admin.css?v=1.1" />
+  
+  <!-- Quill Rich Text Editor -->
+  <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+  
   <script>
     // Make BASE available to admin.js
     const API_BASE = "<?= $BASE ?>";
@@ -597,7 +601,8 @@ $adminUser = $adminUser ?? 'admin';
             <!-- Content -->
             <div class="form-group full-width">
               <label for="blog-content">Content</label>
-              <textarea id="blog-content" name="content" rows="10" placeholder="Full post content…"></textarea>
+              <div id="quill-editor" style="height: 350px; background: #fff; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;"></div>
+              <input type="hidden" id="blog-content" name="content" />
             </div>
 
             <!-- Cover Image -->
@@ -662,6 +667,8 @@ $adminUser = $adminUser ?? 'admin';
   <!-- Toast container -->
   <div id="toast-container"></div>
 
+  <!-- Quill JS -->
+  <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
   <script src="<?= $BASE ?>/assets/js/admin.js?v=2"></script>
 </body>
 </html>

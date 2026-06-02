@@ -688,6 +688,15 @@ function buildBlogTable(posts) {
 
 document.getElementById('blog-form')?.addEventListener('submit', async (e) => {
   e.preventDefault();
+  
+  // Sync Quill HTML to hidden input
+  const hiddenContent = document.getElementById('blog-content');
+  if (window.quillEditor) {
+    // Check if it's just empty tags
+    const html = window.quillEditor.root.innerHTML;
+    hiddenContent.value = (html === '<p><br></p>') ? '' : html;
+  }
+
   const editId = document.getElementById('blog-edit-id').value;
   const isEdit = !!editId;
   const btn = document.getElementById('blog-form-submit-btn');
@@ -729,7 +738,12 @@ async function editBlogPost(id) {
     document.getElementById('blog-status').value    = p.status;
     document.getElementById('blog-sort').value      = p.sort_order || 0;
     document.getElementById('blog-excerpt').value   = p.excerpt || '';
-    document.getElementById('blog-content').value   = p.content || '';
+    
+    const content = p.content || '';
+    document.getElementById('blog-content').value = content;
+    if (window.quillEditor) {
+      window.quillEditor.clipboard.dangerouslyPasteHTML(content);
+    }
 
     // Show existing cover image
     if (p.image) {
@@ -773,6 +787,9 @@ function resetBlogForm() {
   document.getElementById('blog-form-submit-btn').querySelector('span').textContent = 'Save Post';
   document.getElementById('blog-upload-preview').style.display = 'none';
   document.getElementById('blog-upload-placeholder').style.display = '';
+  if (window.quillEditor) {
+    window.quillEditor.setContents([]);
+  }
 }
 
 function removeBlogImage() {
@@ -806,3 +823,23 @@ document.getElementById('filter-blog-status')?.addEventListener('change', loadBl
 
 /* ── INIT ───────────────────────────────── */
 loadDashboard();
+
+// ── QUILL INITIALIZATION ───────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const editorEl = document.getElementById('quill-editor');
+  if (editorEl && typeof Quill !== 'undefined') {
+    window.quillEditor = new Quill(editorEl, {
+      theme: 'snow',
+      placeholder: 'Full post content…',
+      modules: {
+        toolbar: [
+          [{ 'header': [2, 3, 4, false] }],
+          ['bold', 'italic', 'underline', 'strike'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          ['link', 'image', 'video'],
+          ['clean']
+        ]
+      }
+    });
+  }
+});

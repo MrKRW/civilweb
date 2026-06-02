@@ -62,7 +62,7 @@ $date = !empty($post['created_at']) ? date('F j, Y', strtotime($post['created_at
         <?php endif; ?>
         
         <div class="post-html">
-          <?= nl2br(htmlspecialchars($post['content'])) ?>
+          <?= $post['content'] ?>
         </div>
       </article>
 
