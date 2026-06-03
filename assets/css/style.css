@@ -3157,6 +3157,51 @@ body.home-page .team-role {
   font-size: 0.95rem;
 }
 
+/* Additional Information tab rich content */
+.addl-info-content {
+  color: var(--gray-dark);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+.addl-info-content h2,
+.addl-info-content h3,
+.addl-info-content h4 {
+  font-family: var(--font-h);
+  font-weight: 500;
+  color: var(--black);
+  margin: 20px 0 8px;
+}
+.addl-info-content ul,
+.addl-info-content ol {
+  padding-left: 22px;
+  margin-bottom: 14px;
+}
+.addl-info-content li { margin-bottom: 6px; }
+.addl-info-content a { color: var(--black); text-decoration: underline; }
+.addl-info-content strong { color: var(--black); }
+
+/* Additional Info image grid */
+.addl-info-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.addl-info-img-item {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--cream);
+}
+.addl-info-img-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+.addl-info-img-item:hover img { transform: scale(1.04); }
+
+
 /* Related Products */
 .related-products-section {
   padding-top: 60px;

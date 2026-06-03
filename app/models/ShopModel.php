@@ -23,6 +23,8 @@ class ShopModel extends Model
         foreach ($items as &$item) {
             $item['gallery_images'] = !empty($item['gallery_images'])
                 ? json_decode($item['gallery_images'], true) : [];
+            $item['additional_info_images'] = !empty($item['additional_info_images'])
+                ? json_decode($item['additional_info_images'], true) : [];
         }
         return $items;
     }
@@ -36,37 +38,44 @@ class ShopModel extends Model
         if (!$item) return null;
         $item['gallery_images'] = !empty($item['gallery_images'])
             ? json_decode($item['gallery_images'], true) : [];
+        $item['additional_info_images'] = !empty($item['additional_info_images'])
+            ? json_decode($item['additional_info_images'], true) : [];
         return $item;
     }
 
     /** Create a new shop item. Returns new ID. */
-    public function create(array $data, ?array $mainFile = null, array $galleryFiles = []): int
+    public function create(array $data, ?array $mainFile = null, array $galleryFiles = [], array $additionalInfoFiles = []): int
     {
         $imageName = $mainFile ? $this->uploadImage($mainFile) : '';
         $gallery   = $this->uploadGallery($galleryFiles);
+        $addlImgs  = $this->uploadGallery($additionalInfoFiles);
 
         $stmt = $this->db()->prepare("
             INSERT INTO shop_items
-              (title, price, original_price, description, category, image, gallery_images, status, sort_order)
+              (title, price, original_price, description, additional_info, additional_info_images,
+               category, image, gallery_images, status, sort_order)
             VALUES
-              (:title, :price, :original_price, :description, :category, :image, :gallery_images, :status, :sort_order)
+              (:title, :price, :original_price, :description, :additional_info, :additional_info_images,
+               :category, :image, :gallery_images, :status, :sort_order)
         ");
         $stmt->execute([
-            ':title'          => $data['title'],
-            ':price'          => (float) ($data['price'] ?? 0),
-            ':original_price' => !empty($data['original_price']) ? (float) $data['original_price'] : null,
-            ':description'    => $data['description'] ?? '',
-            ':category'       => $data['category']    ?? '',
-            ':image'          => $imageName,
-            ':gallery_images' => json_encode($gallery),
-            ':status'         => $data['status']      ?? 'published',
-            ':sort_order'     => (int) ($data['sort_order'] ?? 0),
+            ':title'                   => $data['title'],
+            ':price'                   => (float) ($data['price'] ?? 0),
+            ':original_price'          => !empty($data['original_price']) ? (float) $data['original_price'] : null,
+            ':description'             => $data['description'] ?? '',
+            ':additional_info'         => $data['additional_info'] ?? '',
+            ':additional_info_images'  => json_encode($addlImgs),
+            ':category'                => $data['category']    ?? '',
+            ':image'                   => $imageName,
+            ':gallery_images'          => json_encode($gallery),
+            ':status'                  => $data['status']      ?? 'published',
+            ':sort_order'              => (int) ($data['sort_order'] ?? 0),
         ]);
         return (int) $this->db()->lastInsertId();
     }
 
     /** Update a shop item by ID. */
-    public function update(int $id, array $data, ?array $mainFile = null, array $galleryFiles = [], array $removeGallery = []): bool
+    public function update(int $id, array $data, ?array $mainFile = null, array $galleryFiles = [], array $removeGallery = [], array $additionalInfoFiles = [], array $removeAddlImgs = []): bool
     {
         $existing = $this->getById($id);
         if (!$existing) return false;
@@ -80,6 +89,7 @@ class ShopModel extends Model
             }
         }
 
+        // Gallery
         $gallery = is_array($existing['gallery_images']) ? $existing['gallery_images'] : [];
         foreach ($removeGallery as $rem) {
             $this->deleteImage($rem);
@@ -88,24 +98,37 @@ class ShopModel extends Model
         $newGallery = $this->uploadGallery($galleryFiles);
         $gallery = array_slice(array_merge($gallery, $newGallery), 0, 4);
 
+        // Additional Info Images
+        $addlImgs = is_array($existing['additional_info_images']) ? $existing['additional_info_images'] : [];
+        foreach ($removeAddlImgs as $rem) {
+            $this->deleteImage($rem);
+            $addlImgs = array_values(array_filter($addlImgs, fn($g) => $g !== $rem));
+        }
+        $newAddlImgs = $this->uploadGallery($additionalInfoFiles);
+        $addlImgs = array_slice(array_merge($addlImgs, $newAddlImgs), 0, 6);
+
         $stmt = $this->db()->prepare("
             UPDATE shop_items SET
               title = :title, price = :price, original_price = :original_price,
-              description = :description, category = :category, image = :image,
+              description = :description, additional_info = :additional_info,
+              additional_info_images = :additional_info_images,
+              category = :category, image = :image,
               gallery_images = :gallery_images, status = :status, sort_order = :sort_order
             WHERE id = :id
         ");
         $stmt->execute([
-            ':title'          => $data['title']          ?? $existing['title'],
-            ':price'          => isset($data['price'])   ? (float) $data['price'] : $existing['price'],
-            ':original_price' => !empty($data['original_price']) ? (float) $data['original_price'] : null,
-            ':description'    => $data['description']    ?? $existing['description'],
-            ':category'       => $data['category']       ?? $existing['category'],
-            ':image'          => $imageName,
-            ':gallery_images' => json_encode($gallery),
-            ':status'         => $data['status']         ?? $existing['status'],
-            ':sort_order'     => (int) ($data['sort_order'] ?? $existing['sort_order']),
-            ':id'             => $id,
+            ':title'                  => $data['title']          ?? $existing['title'],
+            ':price'                  => isset($data['price'])   ? (float) $data['price'] : $existing['price'],
+            ':original_price'         => !empty($data['original_price']) ? (float) $data['original_price'] : null,
+            ':description'            => $data['description']    ?? $existing['description'],
+            ':additional_info'        => $data['additional_info'] ?? $existing['additional_info'],
+            ':additional_info_images' => json_encode($addlImgs),
+            ':category'               => $data['category']       ?? $existing['category'],
+            ':image'                  => $imageName,
+            ':gallery_images'         => json_encode($gallery),
+            ':status'                 => $data['status']         ?? $existing['status'],
+            ':sort_order'             => (int) ($data['sort_order'] ?? $existing['sort_order']),
+            ':id'                     => $id,
         ]);
         return true;
     }

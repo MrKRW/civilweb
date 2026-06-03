@@ -456,6 +456,14 @@ function buildShopTable(items) {
 
 document.getElementById('shop-form')?.addEventListener('submit', async (e) => {
   e.preventDefault();
+
+  // Sync shop Additional Info Quill → hidden input
+  const hiddenAddlInfo = document.getElementById('shop-additional-info');
+  if (window.shopQuillEditor && hiddenAddlInfo) {
+    const html = window.shopQuillEditor.root.innerHTML;
+    hiddenAddlInfo.value = (html === '<p><br></p>') ? '' : html;
+  }
+
   const editId = document.getElementById('shop-edit-id').value;
   const isEdit = !!editId;
   const btn = document.getElementById('shop-form-submit-btn');
@@ -501,6 +509,14 @@ async function editShopItem(id) {
     document.getElementById('shop-sort').value = p.sort_order || 0;
     document.getElementById('shop-desc').value = p.description || '';
 
+    // Populate Additional Info Quill
+    const addlInfoHidden = document.getElementById('shop-additional-info');
+    const addlInfoContent = p.additional_info || '';
+    if (addlInfoHidden) addlInfoHidden.value = addlInfoContent;
+    if (window.shopQuillEditor) {
+      window.shopQuillEditor.clipboard.dangerouslyPasteHTML(addlInfoContent);
+    }
+
     // Main image
     if (p.image) {
       document.getElementById('shop-preview-img').src = SHOP_UPLOAD_BASE + p.image;
@@ -517,6 +533,18 @@ async function editShopItem(id) {
         document.getElementById('shop-gallery-preview-' + slot).style.display = 'inline-block';
         document.getElementById('shop-gallery-placeholder-' + slot).style.display = 'none';
         document.getElementById('shop-existing-gallery-' + slot).value = imgSrc;
+      }
+    });
+
+    // Additional Info images
+    const addlImgs = Array.isArray(p.additional_info_images) ? p.additional_info_images : [];
+    addlImgs.forEach((imgSrc, index) => {
+      if (index < 6) {
+        const slot = index + 1;
+        document.getElementById('addl-img-preview-' + slot).src = SHOP_UPLOAD_BASE + imgSrc;
+        document.getElementById('addl-preview-' + slot).style.display = 'inline-block';
+        document.getElementById('addl-placeholder-' + slot).style.display = 'none';
+        document.getElementById('addl-existing-' + slot).value = imgSrc;
       }
     });
 
@@ -562,6 +590,20 @@ function resetShopForm() {
     document.getElementById('shop-existing-gallery-' + i).value = '';
   }
   document.getElementById('remove-shop-gallery-input').value = '[]';
+  // Clear additional info
+  if (window.shopQuillEditor) window.shopQuillEditor.setContents([]);
+  const addlHidden = document.getElementById('shop-additional-info');
+  if (addlHidden) addlHidden.value = '';
+  for (let i = 1; i <= 6; i++) {
+    const prev = document.getElementById('addl-preview-' + i);
+    const ph   = document.getElementById('addl-placeholder-' + i);
+    const ex   = document.getElementById('addl-existing-' + i);
+    if (prev) prev.style.display = 'none';
+    if (ph)   ph.style.display = '';
+    if (ex)   ex.value = '';
+  }
+  const removeAddlInput = document.getElementById('remove-addl-info-images-input');
+  if (removeAddlInput) removeAddlInput.value = '[]';
 }
 
 function removeShopImage() {
@@ -628,6 +670,44 @@ for (let i = 1; i <= 4; i++) {
   zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
   zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag-over'); });
 });
+
+/* ── Additional Info Images helpers ─────── */
+function removeAddlInfoImage(slot) {
+  const existingInput = document.getElementById('addl-existing-' + slot);
+  if (existingInput && existingInput.value) {
+    const removeInput = document.getElementById('remove-addl-info-images-input');
+    const toRemove = JSON.parse(removeInput.value || '[]');
+    toRemove.push(existingInput.value);
+    removeInput.value = JSON.stringify(toRemove);
+    existingInput.value = '';
+  }
+  document.getElementById('addl-preview-' + slot).style.display = 'none';
+  document.getElementById('addl-placeholder-' + slot).style.display = '';
+  document.getElementById('addl-img-' + slot).value = '';
+}
+
+// Addl info image file-change previews
+for (let i = 1; i <= 6; i++) {
+  document.getElementById('addl-img-' + i)?.addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+      const existingInput = document.getElementById('addl-existing-' + i);
+      if (existingInput && existingInput.value) {
+        const removeInput = document.getElementById('remove-addl-info-images-input');
+        const toRemove = JSON.parse(removeInput.value || '[]');
+        toRemove.push(existingInput.value);
+        removeInput.value = JSON.stringify(toRemove);
+        existingInput.value = '';
+      }
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        document.getElementById('addl-img-preview-' + i).src = ev.target.result;
+        document.getElementById('addl-preview-' + i).style.display = 'inline-block';
+        document.getElementById('addl-placeholder-' + i).style.display = 'none';
+      };
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+}
 
 /* ── BLOG LOGIC ─────────────────────────── */
 
@@ -826,6 +906,7 @@ loadDashboard();
 
 // ── QUILL INITIALIZATION ───────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  // Blog Quill
   const editorEl = document.getElementById('quill-editor');
   if (editorEl && typeof Quill !== 'undefined') {
     window.quillEditor = new Quill(editorEl, {
@@ -837,6 +918,24 @@ document.addEventListener('DOMContentLoaded', () => {
           ['bold', 'italic', 'underline', 'strike'],
           [{ 'list': 'ordered'}, { 'list': 'bullet' }],
           ['link', 'image', 'video'],
+          ['clean']
+        ]
+      }
+    });
+  }
+
+  // Shop Additional Info Quill
+  const shopEditorEl = document.getElementById('shop-quill-editor');
+  if (shopEditorEl && typeof Quill !== 'undefined') {
+    window.shopQuillEditor = new Quill(shopEditorEl, {
+      theme: 'snow',
+      placeholder: 'Enter additional product details — specifications, dimensions, materials, care instructions…',
+      modules: {
+        toolbar: [
+          [{ 'header': [3, 4, false] }],
+          ['bold', 'italic', 'underline'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          ['link'],
           ['clean']
         ]
       }

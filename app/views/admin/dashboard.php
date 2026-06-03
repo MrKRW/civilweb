@@ -434,8 +434,108 @@ $adminUser = $adminUser ?? 'admin';
             </div>
 
             <div class="form-group full-width">
-              <label for="shop-desc">Description</label>
+              <label for="shop-desc">Description <small style="font-weight:400;color:var(--text-muted)">(short summary shown on product card)</small></label>
               <textarea id="shop-desc" name="description" rows="4" placeholder="Describe the item…"></textarea>
+            </div>
+
+            <!-- Additional Information (rich text + images) -->
+            <div class="form-group full-width">
+              <label>Additional Information <small style="font-weight:400;color:var(--text-muted)">(shown in the "Additional Information" tab on the product page)</small></label>
+              <div id="shop-quill-editor" style="height:260px;background:#fff;border-bottom-left-radius:4px;border-bottom-right-radius:4px;"></div>
+              <input type="hidden" id="shop-additional-info" name="additional_info" />
+            </div>
+
+            <!-- Additional Information Images (up to 6) -->
+            <div class="form-group full-width">
+              <label>Additional Information Images <small style="font-weight:400;color:var(--text-muted)">(displayed in the Additional Info tab — up to 6)</small></label>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;" id="addl-info-img-grid">
+
+                <!-- Addl Image 1 -->
+                <div class="upload-zone" id="addl-zone-1">
+                  <input type="file" id="addl-img-1" name="additional_info_images[]" accept="image/*" class="upload-input" />
+                  <div class="upload-placeholder" id="addl-placeholder-1" style="padding:18px 10px;">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span style="font-size:0.82rem;">Image 1</span>
+                  </div>
+                  <div class="upload-preview" id="addl-preview-1" style="display:none;">
+                    <img id="addl-img-preview-1" src="" alt="Preview" />
+                    <button type="button" class="upload-remove" onclick="removeAddlInfoImage(1)">×</button>
+                    <input type="hidden" id="addl-existing-1" value="" />
+                  </div>
+                </div>
+
+                <!-- Addl Image 2 -->
+                <div class="upload-zone" id="addl-zone-2">
+                  <input type="file" id="addl-img-2" name="additional_info_images[]" accept="image/*" class="upload-input" />
+                  <div class="upload-placeholder" id="addl-placeholder-2" style="padding:18px 10px;">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span style="font-size:0.82rem;">Image 2</span>
+                  </div>
+                  <div class="upload-preview" id="addl-preview-2" style="display:none;">
+                    <img id="addl-img-preview-2" src="" alt="Preview" />
+                    <button type="button" class="upload-remove" onclick="removeAddlInfoImage(2)">×</button>
+                    <input type="hidden" id="addl-existing-2" value="" />
+                  </div>
+                </div>
+
+                <!-- Addl Image 3 -->
+                <div class="upload-zone" id="addl-zone-3">
+                  <input type="file" id="addl-img-3" name="additional_info_images[]" accept="image/*" class="upload-input" />
+                  <div class="upload-placeholder" id="addl-placeholder-3" style="padding:18px 10px;">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span style="font-size:0.82rem;">Image 3</span>
+                  </div>
+                  <div class="upload-preview" id="addl-preview-3" style="display:none;">
+                    <img id="addl-img-preview-3" src="" alt="Preview" />
+                    <button type="button" class="upload-remove" onclick="removeAddlInfoImage(3)">×</button>
+                    <input type="hidden" id="addl-existing-3" value="" />
+                  </div>
+                </div>
+
+                <!-- Addl Image 4 -->
+                <div class="upload-zone" id="addl-zone-4">
+                  <input type="file" id="addl-img-4" name="additional_info_images[]" accept="image/*" class="upload-input" />
+                  <div class="upload-placeholder" id="addl-placeholder-4" style="padding:18px 10px;">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span style="font-size:0.82rem;">Image 4</span>
+                  </div>
+                  <div class="upload-preview" id="addl-preview-4" style="display:none;">
+                    <img id="addl-img-preview-4" src="" alt="Preview" />
+                    <button type="button" class="upload-remove" onclick="removeAddlInfoImage(4)">×</button>
+                    <input type="hidden" id="addl-existing-4" value="" />
+                  </div>
+                </div>
+
+                <!-- Addl Image 5 -->
+                <div class="upload-zone" id="addl-zone-5">
+                  <input type="file" id="addl-img-5" name="additional_info_images[]" accept="image/*" class="upload-input" />
+                  <div class="upload-placeholder" id="addl-placeholder-5" style="padding:18px 10px;">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span style="font-size:0.82rem;">Image 5</span>
+                  </div>
+                  <div class="upload-preview" id="addl-preview-5" style="display:none;">
+                    <img id="addl-img-preview-5" src="" alt="Preview" />
+                    <button type="button" class="upload-remove" onclick="removeAddlInfoImage(5)">×</button>
+                    <input type="hidden" id="addl-existing-5" value="" />
+                  </div>
+                </div>
+
+                <!-- Addl Image 6 -->
+                <div class="upload-zone" id="addl-zone-6">
+                  <input type="file" id="addl-img-6" name="additional_info_images[]" accept="image/*" class="upload-input" />
+                  <div class="upload-placeholder" id="addl-placeholder-6" style="padding:18px 10px;">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                    <span style="font-size:0.82rem;">Image 6</span>
+                  </div>
+                  <div class="upload-preview" id="addl-preview-6" style="display:none;">
+                    <img id="addl-img-preview-6" src="" alt="Preview" />
+                    <button type="button" class="upload-remove" onclick="removeAddlInfoImage(6)">×</button>
+                    <input type="hidden" id="addl-existing-6" value="" />
+                  </div>
+                </div>
+
+              </div>
+              <input type="hidden" id="remove-addl-info-images-input" name="remove_additional_info_images" value="[]" />
             </div>
 
             <!-- Main Image -->

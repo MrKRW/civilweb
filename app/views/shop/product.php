@@ -321,12 +321,31 @@ $pid         = (int)($item['id'] ?? 0);
           <p><?= nl2br(htmlspecialchars($item['description'] ?? 'No description available.')) ?></p>
         </div>
         <div id="tab-info" class="tab-pane">
-          <p>
-            Category: <?= htmlspecialchars($item['category'] ?? 'General') ?><br>
-            SKU: <?= $sku ?><br>
-            Price: $<?= $price ?>
-          </p>
+          <?php
+            $addlInfo   = $item['additional_info'] ?? '';
+            $addlImages = is_array($item['additional_info_images']) ? $item['additional_info_images'] : [];
+          ?>
+          <?php if (!empty($addlInfo)): ?>
+            <div class="addl-info-content"><?= $addlInfo ?></div>
+          <?php else: ?>
+            <p>
+              Category: <?= htmlspecialchars($item['category'] ?? 'General') ?><br>
+              SKU: <?= $sku ?><br>
+              Price: $<?= $price ?>
+            </p>
+          <?php endif; ?>
+
+          <?php if (!empty($addlImages)): ?>
+            <div class="addl-info-images">
+              <?php foreach ($addlImages as $aImg): ?>
+                <div class="addl-info-img-item">
+                  <img src="<?= $BASE ?>/uploads/shop/<?= htmlspecialchars($aImg) ?>" alt="Additional info image" loading="lazy" />
+                </div>
+              <?php endforeach; ?>
+            </div>
+          <?php endif; ?>
         </div>
+
 
 
       </div>

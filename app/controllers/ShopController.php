@@ -71,7 +71,12 @@ class ShopController extends Controller
                 if ($_SERVER['REQUEST_METHOD'] !== 'POST') $this->json(['error' => 'POST required'], 405);
                 $title = trim($_POST['title'] ?? '');
                 if ($title === '') $this->json(['error' => 'Title is required'], 400);
-                $newId = $this->model->create($_POST, $_FILES['image'] ?? null, $_FILES['gallery_images'] ?? []);
+                $newId = $this->model->create(
+                    $_POST,
+                    $_FILES['image'] ?? null,
+                    $_FILES['gallery_images'] ?? [],
+                    $_FILES['additional_info_images'] ?? []
+                );
                 $this->json(['success' => true, 'id' => $newId], 201);
                 break;
 
@@ -79,8 +84,16 @@ class ShopController extends Controller
                 if ($_SERVER['REQUEST_METHOD'] !== 'POST') $this->json(['error' => 'POST required'], 405);
                 $id = (int) ($_GET['id'] ?? $_POST['id'] ?? 0);
                 if (!$id) $this->json(['error' => 'ID required'], 400);
-                $remove = json_decode($_POST['remove_gallery'] ?? '[]', true) ?: [];
-                $ok = $this->model->update($id, $_POST, $_FILES['image'] ?? null, $_FILES['gallery_images'] ?? [], $remove);
+                $remove      = json_decode($_POST['remove_gallery'] ?? '[]', true) ?: [];
+                $removeAddl  = json_decode($_POST['remove_additional_info_images'] ?? '[]', true) ?: [];
+                $ok = $this->model->update(
+                    $id, $_POST,
+                    $_FILES['image'] ?? null,
+                    $_FILES['gallery_images'] ?? [],
+                    $remove,
+                    $_FILES['additional_info_images'] ?? [],
+                    $removeAddl
+                );
                 if (!$ok) $this->json(['error' => 'Not found'], 404);
                 $this->json(['success' => true]);
                 break;
