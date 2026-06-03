@@ -502,8 +502,6 @@ async function editShopItem(id) {
     const p = data.item;
     document.getElementById('shop-edit-id').value = p.id;
     document.getElementById('shop-title').value = p.title;
-    document.getElementById('shop-price').value = p.price;
-    document.getElementById('shop-original-price').value = p.original_price || '';
     document.getElementById('shop-category').value = p.category || '';
     document.getElementById('shop-status').value = p.status;
     document.getElementById('shop-sort').value = p.sort_order || 0;

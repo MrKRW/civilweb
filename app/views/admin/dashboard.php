@@ -405,15 +405,7 @@ $adminUser = $adminUser ?? 'admin';
               <input type="text" id="shop-title" name="title" required placeholder="Enter item name" />
             </div>
 
-            <div class="form-group">
-              <label for="shop-price">Price ($) <span class="req">*</span></label>
-              <input type="number" id="shop-price" name="price" step="0.01" required placeholder="0.00" />
-            </div>
 
-            <div class="form-group">
-              <label for="shop-original-price">Original Price ($)</label>
-              <input type="number" id="shop-original-price" name="original_price" step="0.01" placeholder="e.g. 60.00 (shows strike-through)" />
-            </div>
 
             <div class="form-group">
               <label for="shop-category">Category</label>
