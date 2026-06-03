@@ -41,4 +41,6 @@ $router->add('/api/blog',      'BlogController',     'api');
 $router->add('/api/auth',      'AuthController',     'api');
 $router->add('/api/settings',  'AdminController',    'apiSettings');
 
+$router->add('/api/contact', 'ContactController',    'apiContact');
+
 $router->dispatch();
