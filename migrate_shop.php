@@ -5,6 +5,7 @@
  * Run once: http://localhost/civilweb/migrate_shop.php
  * DELETE after running.
  */
+define('IS_LOCAL', true);
 require_once __DIR__ . '/config/db.php';
 
 echo "<pre style='font-family:monospace;background:#111;color:#0f0;padding:30px;font-size:14px;'>";
@@ -13,7 +14,7 @@ echo "║   CivilLanka Shop Migration               ║\n";
 echo "╚═══════════════════════════════════════════╝\n\n";
 
 try {
-    $pdo = Database::getInstance()->getConnection();
+    $pdo = getDB();
 
     // Add additional_info column if not exists
     $cols = $pdo->query("SHOW COLUMNS FROM `shop_items` LIKE 'additional_info'")->fetchAll();
