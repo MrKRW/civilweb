@@ -508,6 +508,11 @@ async function editShopItem(id) {
     document.getElementById('shop-status').value = p.status;
     document.getElementById('shop-sort').value = p.sort_order || 0;
     document.getElementById('shop-desc').value = p.description || '';
+    document.getElementById('shop-spec-sqft').value = p.spec_sqft || '';
+    document.getElementById('shop-spec-beds').value = p.spec_beds || '';
+    document.getElementById('shop-spec-baths').value = p.spec_baths || '';
+    document.getElementById('shop-spec-floors').value = p.spec_floors || '';
+    document.getElementById('shop-spec-garages').value = p.spec_garages || '';
 
     // Populate Additional Info Quill
     const addlInfoHidden = document.getElementById('shop-additional-info');
@@ -583,6 +588,11 @@ function resetShopForm() {
   document.getElementById('shop-form-submit-btn').querySelector('span').textContent = 'Save Item';
   document.getElementById('shop-upload-preview').style.display = 'none';
   document.getElementById('shop-upload-placeholder').style.display = '';
+  document.getElementById('shop-spec-sqft').value = '';
+  document.getElementById('shop-spec-beds').value = '';
+  document.getElementById('shop-spec-baths').value = '';
+  document.getElementById('shop-spec-floors').value = '';
+  document.getElementById('shop-spec-garages').value = '';
   // Clear gallery slots
   for (let i = 1; i <= 4; i++) {
     document.getElementById('shop-gallery-preview-' + i).style.display = 'none';

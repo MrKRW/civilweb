@@ -2992,9 +2992,54 @@ body.home-page .team-role {
   opacity: 0.8;
 }
 
+/* ── Key Specs ───────────────────────────── */
+.product-key-specs {
+  margin-bottom: 30px;
+}
+.key-specs-title {
+  font-family: var(--font-h);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gray-light);
+}
+.key-specs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 15px;
+}
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 60px;
+}
+.spec-item svg {
+  width: 28px;
+  height: 28px;
+  color: #666;
+  margin-bottom: 6px;
+}
+.spec-val {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--black);
+  line-height: 1.2;
+}
+.spec-label {
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: capitalize;
+}
+
 /* ── Plan Customization Box ──────────────── */
 .plan-customize-box {
-  background: #f4f4f4;
+  background: var(--cream);
   border: 1px solid #e0e0e0;
   border-radius: 2px;
   padding: 22px 24px;

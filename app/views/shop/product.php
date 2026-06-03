@@ -262,30 +262,63 @@ $pid         = (int)($item['id'] ?? 0);
       <div class="product-summary">
         <h1 class="product-single-title"><?= htmlspecialchars($item['title'] ?? '') ?></h1>
         
-        <!-- Price Row -->
-        <div class="product-price-row">
-          <?php if ($origPrice): ?>
-            <span class="ppr-original">$<?= $origPrice ?></span>
-          <?php endif; ?>
-          <span class="ppr-sale">$<?= $price ?></span>
-        </div>
+
 
         <div class="product-short-desc">
           <p><?= nl2br(htmlspecialchars($item['description'] ?? '')) ?></p>
         </div>
 
-        <!-- Quantity + Add to Cart -->
-        <form class="product-cart-form" action="#">
-          <div class="qty-wrap">
-            <span class="qty-display" id="qty-display">1</span>
-            <div class="qty-controls">
-              <button type="button" class="qty-ctrl-btn" id="qty-plus">+</button>
-              <button type="button" class="qty-ctrl-btn" id="qty-minus">&#x2212;</button>
+        <?php
+          $hasSpecs = !empty($item['spec_sqft']) || !empty($item['spec_beds']) || !empty($item['spec_baths']) || !empty($item['spec_floors']) || !empty($item['spec_garages']);
+        ?>
+        <?php if ($hasSpecs): ?>
+          <div class="product-key-specs">
+            <h3 class="key-specs-title">KEY SPECS</h3>
+            <div class="key-specs-grid">
+              <?php if (!empty($item['spec_sqft'])): ?>
+                <div class="spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18M9 21V9"/><circle cx="14" cy="14" r="2"/></svg>
+                  <span class="spec-val"><?= htmlspecialchars($item['spec_sqft']) ?></span>
+                  <span class="spec-label">sq ft</span>
+                </div>
+              <?php endif; ?>
+              
+              <?php if (!empty($item['spec_beds'])): ?>
+                <div class="spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 12v6M21 12v6M4 12V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4M6 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm12 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+                  <span class="spec-val"><?= htmlspecialchars($item['spec_beds']) ?></span>
+                  <span class="spec-label">Beds</span>
+                </div>
+              <?php endif; ?>
+
+              <?php if (!empty($item['spec_baths'])): ?>
+                <div class="spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12v5a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-5M2 12h20M7 12V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v6"/><path d="M10 6v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2"/></svg>
+                  <span class="spec-val"><?= htmlspecialchars($item['spec_baths']) ?></span>
+                  <span class="spec-label">Baths</span>
+                </div>
+              <?php endif; ?>
+
+              <?php if (!empty($item['spec_floors'])): ?>
+                <div class="spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10l9-7 9 7v11H3V10z"/><path d="M3 14h18"/></svg>
+                  <span class="spec-val"><?= htmlspecialchars($item['spec_floors']) ?></span>
+                  <span class="spec-label">Floors</span>
+                </div>
+              <?php endif; ?>
+
+              <?php if (!empty($item['spec_garages'])): ?>
+                <div class="spec-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10l9-7 9 7v11H3V10z"/><path d="M8 21v-5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v5"/><path d="M10 16h4"/></svg>
+                  <span class="spec-val"><?= htmlspecialchars($item['spec_garages']) ?></span>
+                  <span class="spec-label">Garages</span>
+                </div>
+              <?php endif; ?>
             </div>
           </div>
-          <input type="hidden" id="qty" value="1" min="1">
-          <button type="button" class="add-to-cart-btn" id="add-to-cart-main">ADD TO CART</button>
-        </form>
+        <?php endif; ?>
+
+
 
         <!-- Customization Box -->
         <div class="plan-customize-box">
@@ -578,13 +611,12 @@ $pid         = (int)($item['id'] ?? 0);
             <div class="product-card">
               <div class="product-image">
                 <img src="${imgPath}" alt="${escapeHtml(item.title)}">
-                <div class="product-overlay"><button class="add-to-cart">+ add to cart</button></div>
               </div>
               <div class="product-info">
                 <h4 class="product-title"><a href="${BASE}/shop/product/${item.id}">${escapeHtml(item.title)}</a></h4>
-                <div class="price-wrap">${priceHtml}</div>
               </div>
             </div>`;
+
         }).join('');
       })
       .catch(() => {

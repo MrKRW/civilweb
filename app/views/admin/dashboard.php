@@ -433,6 +433,33 @@ $adminUser = $adminUser ?? 'admin';
               <input type="number" id="shop-sort" name="sort_order" value="0" min="0" />
             </div>
 
+            <!-- Key Specs -->
+            <div class="form-group full-width" style="margin-top: 15px;">
+              <h3 style="font-size: 1.1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 5px; margin-bottom: 15px;">Key Specs</h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px;">
+                <div>
+                  <label for="shop-spec-sqft">Sq Ft</label>
+                  <input type="text" id="shop-spec-sqft" name="spec_sqft" placeholder="e.g. 2249" />
+                </div>
+                <div>
+                  <label for="shop-spec-beds">Beds</label>
+                  <input type="text" id="shop-spec-beds" name="spec_beds" placeholder="e.g. 4" />
+                </div>
+                <div>
+                  <label for="shop-spec-baths">Baths</label>
+                  <input type="text" id="shop-spec-baths" name="spec_baths" placeholder="e.g. 2" />
+                </div>
+                <div>
+                  <label for="shop-spec-floors">Floors</label>
+                  <input type="text" id="shop-spec-floors" name="spec_floors" placeholder="e.g. 1" />
+                </div>
+                <div>
+                  <label for="shop-spec-garages">Garages</label>
+                  <input type="text" id="shop-spec-garages" name="spec_garages" placeholder="e.g. 2" />
+                </div>
+              </div>
+            </div>
+
             <div class="form-group full-width">
               <label for="shop-desc">Description <small style="font-weight:400;color:var(--text-muted)">(short summary shown on product card)</small></label>
               <textarea id="shop-desc" name="description" rows="4" placeholder="Describe the item…"></textarea>

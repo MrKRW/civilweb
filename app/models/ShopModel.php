@@ -53,9 +53,11 @@ class ShopModel extends Model
         $stmt = $this->db()->prepare("
             INSERT INTO shop_items
               (title, price, original_price, description, additional_info, additional_info_images,
+               spec_sqft, spec_beds, spec_baths, spec_floors, spec_garages,
                category, image, gallery_images, status, sort_order)
             VALUES
               (:title, :price, :original_price, :description, :additional_info, :additional_info_images,
+               :spec_sqft, :spec_beds, :spec_baths, :spec_floors, :spec_garages,
                :category, :image, :gallery_images, :status, :sort_order)
         ");
         $stmt->execute([
@@ -65,6 +67,11 @@ class ShopModel extends Model
             ':description'             => $data['description'] ?? '',
             ':additional_info'         => $data['additional_info'] ?? '',
             ':additional_info_images'  => json_encode($addlImgs),
+            ':spec_sqft'               => $data['spec_sqft'] ?? '',
+            ':spec_beds'               => $data['spec_beds'] ?? '',
+            ':spec_baths'              => $data['spec_baths'] ?? '',
+            ':spec_floors'             => $data['spec_floors'] ?? '',
+            ':spec_garages'            => $data['spec_garages'] ?? '',
             ':category'                => $data['category']    ?? '',
             ':image'                   => $imageName,
             ':gallery_images'          => json_encode($gallery),
@@ -112,6 +119,8 @@ class ShopModel extends Model
               title = :title, price = :price, original_price = :original_price,
               description = :description, additional_info = :additional_info,
               additional_info_images = :additional_info_images,
+              spec_sqft = :spec_sqft, spec_beds = :spec_beds, spec_baths = :spec_baths,
+              spec_floors = :spec_floors, spec_garages = :spec_garages,
               category = :category, image = :image,
               gallery_images = :gallery_images, status = :status, sort_order = :sort_order
             WHERE id = :id
@@ -123,6 +132,11 @@ class ShopModel extends Model
             ':description'            => $data['description']    ?? $existing['description'],
             ':additional_info'        => $data['additional_info'] ?? $existing['additional_info'],
             ':additional_info_images' => json_encode($addlImgs),
+            ':spec_sqft'              => $data['spec_sqft']      ?? $existing['spec_sqft'],
+            ':spec_beds'              => $data['spec_beds']      ?? $existing['spec_beds'],
+            ':spec_baths'             => $data['spec_baths']     ?? $existing['spec_baths'],
+            ':spec_floors'            => $data['spec_floors']    ?? $existing['spec_floors'],
+            ':spec_garages'           => $data['spec_garages']   ?? $existing['spec_garages'],
             ':category'               => $data['category']       ?? $existing['category'],
             ':image'                  => $imageName,
             ':gallery_images'         => json_encode($gallery),

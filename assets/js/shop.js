@@ -38,13 +38,7 @@ async function loadShopItems(container) {
       const base = (typeof API_BASE !== 'undefined' ? API_BASE : '');
       const imgPath = item.image ? `${base}/uploads/shop/${item.image}` : `${base}/Project images/placeholder.png`;
 
-      // Handle pricing
-      let priceHtml = '';
-      if (item.original_price && item.original_price > item.price) {
-        priceHtml = `<p class="product-price"><del>$${Number(item.original_price).toFixed(2)}</del> <span>$${Number(item.price).toFixed(2)}</span></p>`;
-      } else {
-        priceHtml = `<p class="product-price"><span>$${Number(item.price).toFixed(2)}</span></p>`;
-      }
+
 
       // Add Sale badge if discounted
       let badgeHtml = '';
@@ -57,18 +51,13 @@ async function loadShopItems(container) {
           <div class="product-image">
             ${badgeHtml}
             <img src="${imgPath}" alt="${escapeHtml(item.title)}">
-            <div class="product-overlay">
-              <button class="add-to-cart">+ add to cart</button>
-            </div>
           </div>
           <div class="product-info">
             <h4 class="product-title"><a href="${base}/shop/product/${item.id}">${escapeHtml(item.title)}</a></h4>
-            <div class="price-wrap">
-              ${priceHtml}
-            </div>
           </div>
         </div>
       `;
+
     }).join('');
 
   } catch (err) {
