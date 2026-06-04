@@ -48,75 +48,92 @@ class BlogController extends Controller
     /** /api/blog – JSON API (requires admin auth) */
     public function api(): void
     {
+        ob_start();
+
         header('Content-Type: application/json; charset=utf-8');
         if (session_status() === PHP_SESSION_NONE) session_start();
 
         if (empty($_SESSION['admin_id'])) {
+            ob_clean();
             $this->json(['error' => 'Unauthorized'], 401);
         }
 
         $action = $_GET['action'] ?? 'list';
 
-        switch ($action) {
+        try {
+            switch ($action) {
 
-            // ── LIST all posts ──────────────────────────────────────
-            case 'list':
-                $filters = [];
-                if (!empty($_GET['status']))   $filters['status']   = $_GET['status'];
-                if (!empty($_GET['category'])) $filters['category'] = $_GET['category'];
-                $this->json(['posts' => $this->model->getAll($filters)]);
-                break;
+                // ── LIST all posts ───────────────────────────────────────
+                case 'list':
+                    $filters = [];
+                    if (!empty($_GET['status']))   $filters['status']   = $_GET['status'];
+                    if (!empty($_GET['category'])) $filters['category'] = $_GET['category'];
+                    ob_clean();
+                    $this->json(['posts' => $this->model->getAll($filters)]);
+                    break;
 
-            // ── GET single post ─────────────────────────────────────
-            case 'get':
-                $id   = (int) ($_GET['id'] ?? 0);
-                $post = $this->model->getById($id);
-                if (!$post) $this->json(['error' => 'Not found'], 404);
-                $this->json(['post' => $post]);
-                break;
+                // ── GET single post ───────────────────────────────────
+                case 'get':
+                    $id   = (int) ($_GET['id'] ?? 0);
+                    $post = $this->model->getById($id);
+                    ob_clean();
+                    if (!$post) $this->json(['error' => 'Not found'], 404);
+                    $this->json(['post' => $post]);
+                    break;
 
-            // ── CREATE ──────────────────────────────────────────────
-            case 'create':
-                if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-                    $this->json(['error' => 'POST required'], 405);
-                }
-                $title = trim($_POST['title'] ?? '');
-                if ($title === '') $this->json(['error' => 'Title is required'], 400);
+                // ── CREATE ────────────────────────────────────────────
+                case 'create':
+                    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                        ob_clean();
+                        $this->json(['error' => 'POST required'], 405);
+                    }
+                    $title = trim($_POST['title'] ?? '');
+                    if ($title === '') { ob_clean(); $this->json(['error' => 'Title is required'], 400); }
 
-                $imageFile = (!empty($_FILES['image']['name'])) ? $_FILES['image'] : null;
-                $id = $this->model->create($_POST, $imageFile);
-                $this->json(['success' => true, 'id' => $id]);
-                break;
+                    $imageFile = (!empty($_FILES['image']['name'])) ? $_FILES['image'] : null;
+                    $id = $this->model->create($_POST, $imageFile);
+                    ob_clean();
+                    $this->json(['success' => true, 'id' => $id]);
+                    break;
 
-            // ── UPDATE ──────────────────────────────────────────────
-            case 'update':
-                if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-                    $this->json(['error' => 'POST required'], 405);
-                }
-                $id    = (int) ($_GET['id'] ?? 0);
-                $title = trim($_POST['title'] ?? '');
-                if (!$id)      $this->json(['error' => 'ID required'], 400);
-                if ($title === '') $this->json(['error' => 'Title is required'], 400);
+                // ── UPDATE ────────────────────────────────────────────
+                case 'update':
+                    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                        ob_clean();
+                        $this->json(['error' => 'POST required'], 405);
+                    }
+                    $id    = (int) ($_GET['id'] ?? 0);
+                    $title = trim($_POST['title'] ?? '');
+                    if (!$id)      { ob_clean(); $this->json(['error' => 'ID required'], 400); }
+                    if ($title === '') { ob_clean(); $this->json(['error' => 'Title is required'], 400); }
 
-                $imageFile = (!empty($_FILES['image']['name'])) ? $_FILES['image'] : null;
-                $ok = $this->model->update($id, $_POST, $imageFile);
-                $ok ? $this->json(['success' => true]) : $this->json(['error' => 'Post not found'], 404);
-                break;
+                    $imageFile = (!empty($_FILES['image']['name'])) ? $_FILES['image'] : null;
+                    $ok = $this->model->update($id, $_POST, $imageFile);
+                    ob_clean();
+                    $ok ? $this->json(['success' => true]) : $this->json(['error' => 'Post not found'], 404);
+                    break;
 
-            // ── DELETE ──────────────────────────────────────────────
-            case 'delete':
-                if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-                    $this->json(['error' => 'POST required'], 405);
-                }
-                $id = (int) ($_GET['id'] ?? $_POST['id'] ?? 0);
-                if (!$id) $this->json(['error' => 'ID required'], 400);
+                // ── DELETE ────────────────────────────────────────────
+                case 'delete':
+                    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                        ob_clean();
+                        $this->json(['error' => 'POST required'], 405);
+                    }
+                    $id = (int) ($_GET['id'] ?? $_POST['id'] ?? 0);
+                    if (!$id) { ob_clean(); $this->json(['error' => 'ID required'], 400); }
 
-                $ok = $this->model->delete($id);
-                $ok ? $this->json(['success' => true]) : $this->json(['error' => 'Post not found'], 404);
-                break;
+                    $ok = $this->model->delete($id);
+                    ob_clean();
+                    $ok ? $this->json(['success' => true]) : $this->json(['error' => 'Post not found'], 404);
+                    break;
 
-            default:
-                $this->json(['error' => 'Unknown action'], 400);
+                default:
+                    ob_clean();
+                    $this->json(['error' => 'Unknown action'], 400);
+            }
+        } catch (Throwable $e) {
+            ob_clean();
+            $this->json(['error' => 'Server error: ' . $e->getMessage()], 500);
         }
     }
 }

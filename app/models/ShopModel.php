@@ -171,7 +171,8 @@ class ShopModel extends Model
         if (!in_array($file['type'] ?? '', $allowed)) return '';
         if (($file['size'] ?? 0) > 10 * 1024 * 1024) return '';
 
-        if (!is_dir($this->uploadDir)) mkdir($this->uploadDir, 0755, true);
+        if (!is_dir($this->uploadDir)) @mkdir($this->uploadDir, 0755, true);
+        if (!is_dir($this->uploadDir) || !is_writable($this->uploadDir)) return '';
 
         $ext  = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         $name = uniqid('shop_', true) . '.' . $ext;

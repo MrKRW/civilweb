@@ -54,7 +54,7 @@ document.getElementById('mobile-toggle')?.addEventListener('click', () => {
 document.getElementById('logout-btn')?.addEventListener('click', async (e) => {
   e.preventDefault();
   await fetch(AUTH + '?action=logout', { method: 'POST' });
-  window.location.href = 'login.php';
+  window.location.href = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/admin/login';
 });
 
 /* ── TOAST ──────────────────────────────── */
