@@ -2057,6 +2057,23 @@ body.home-page .team-role {
   opacity: 0.6;
 }
 
+.footer-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #25D366 !important;
+  font-weight: 500;
+  transition: opacity 0.25s !important;
+}
+
+.footer-whatsapp i {
+  font-size: 16px;
+}
+
+.footer-whatsapp:hover {
+  opacity: 0.75 !important;
+}
+
 .hs-footer-bottom {
   border-top: 1px solid #ebebeb;
   padding: 18px 80px;
