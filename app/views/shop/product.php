@@ -378,31 +378,72 @@ $pid         = (int)($item['id'] ?? 0);
             </div>
           <?php endif; ?>
 
-          <div class="plan-included-section" style="margin-top: 2rem;">
-            <h3 style="font-size: 1.1rem; color: #333; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.5px;">WHAT'S INCLUDED IN THIS PLAN SET</h3>
-            <hr style="border: 0; border-top: 1px solid #222; margin-bottom: 1rem;">
-            
-            <p style="margin-bottom: 1.5rem;">
-              <a href="#" style="color: #a48111; text-decoration: none; font-weight: 600;">See a sample plan set</a>
-            </p>
+          <div class="plan-included-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin-top: 2rem; margin-bottom: 2rem;">
+            <!-- What's Included -->
+            <div class="plan-included-section">
+              <h3 style="font-size: 1.6rem; font-family: var(--font-h, serif); color: #333; margin-bottom: 0.8rem; font-weight: 500;">What's Included</h3>
+              <p style="margin-bottom: 1.5rem; color: #555;">Most plan sets include the following:</p>
+              <ul style="list-style-type: none; padding: 0; color: #444; line-height: 1.6;">
+                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                  <strong>Floor Plans:</strong> Floor plan drawings indicating dimensions for construction
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                  <strong>Roof Plan:</strong> Drawings indicating roof slopes and unique conditions
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                  <strong>Exterior Elevations:</strong> Drawings showing appearance and the types of materials used for the exterior finish and trim
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                  <strong>Building Sections:</strong> Drawings cut through important locations in the structure
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                  <strong>Construction Details:</strong> Drawings showing specific construction of building elements at a large scale
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                  <strong>Electrical Plans:</strong> Basic electrical layout (suggested locations of fixtures, switches, and outlets)
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                  <strong>Foundation Plan:</strong> Dimensioned drawings describing specific foundation conditions for the structure
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                  <strong>A building license:</strong> A single-use license for construction at one location only
+                </li>
+                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
+                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                  <strong>Our plans are designed to meet national building codes</strong>
+                </li>
+              </ul>
+            </div>
 
-            <p style="margin-bottom: 1rem; color: #444;">Plans are typically drawn to &frac14;" scale and include:</p>
-            
-            <ul style="list-style-type: disc; margin-left: 1.5rem; margin-bottom: 2rem; color: #444; line-height: 1.6;">
-              <li style="margin-bottom: 0.5rem;"><strong>Cover Sheet:</strong> Designer contact info, plan name/number, legal disclaimers.</li>
-              <li style="margin-bottom: 0.5rem;"><strong>Foundation Plan(s):</strong> This page shows all necessary notations and dimensions including footings, support columns, walls, and excavated/unexcavated areas.</li>
-              <li style="margin-bottom: 0.5rem;"><strong>Floor Plan(s):</strong> Detailed plans for each level showing room dimensions, wall partitions, windows and doors, fixture locations, and ceiling treatments.</li>
-              <li style="margin-bottom: 0.5rem;"><strong>Exterior Elevations:</strong> Views of the home from all four sides showing exterior materials, roof slope, ridge heights, siding and trim notes.</li>
-              <li style="margin-bottom: 0.5rem;"><strong>Overhead Roof Plan(s):</strong> A view of the home from above showing roof pitch, peaks, valleys, and other details.</li>
-              <li style="margin-bottom: 0.5rem;"><strong>Cross Section(s):</strong> A slice of the home from roof to foundation, showing relationships between floors, roof, and foundation.</li>
-              <li style="margin-bottom: 0.5rem;"><strong>Building Section(s):</strong> Shows the relationship between different levels, wall heights, and the overall building volume. May include details like foundation, framing, insulation, and finishes.</li>
-              <li style="margin-bottom: 0.5rem;"><strong>Electrical Plan(s):</strong> Including lighting fixture placement</li>
-              <li style="margin-bottom: 0.5rem;"><strong>Construction Notes and Detail(s):</strong> Shows basic parts and assemblies recommended for the home so the builder can see how things come together.</li>
-            </ul>
-
-            <p>
-              <a href="javascript:void(0);" id="open-important-info" style="color: #5b8db5; text-decoration: none; font-size: 0.95rem;">&raquo; See important information before purchasing.</a>
-            </p>
+            <!-- What's Not Included -->
+            <div class="plan-not-included-section">
+              <h3 style="font-size: 1.6rem; font-family: var(--font-h, serif); color: #333; margin-bottom: 0.8rem; font-weight: 500;">What's Not Included</h3>
+              <p style="margin-bottom: 1.5rem; color: #555;">These items are <u>NOT</u> included:</p>
+              <ul style="list-style-type: none; padding: 0; color: #444; line-height: 1.6;">
+                <li style="margin-bottom: 1.5rem; position: relative; padding-left: 2rem;">
+                  <svg style="position: absolute; left: 0; top: 4px; color: #d9534f;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  We do not guarantee our plans will meet all local building requirements or building codes influenced by local geographic or climatic factors. It is the responsibility of the owner or builder to ensure these plans comply with city, county, municipal, and/or state/provincial building codes.
+                </li>
+                <li style="margin-bottom: 1.5rem; position: relative; padding-left: 2rem;">
+                  <svg style="position: absolute; left: 0; top: 4px; color: #d9534f;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  Your plans will not be sealed or stamped by an engineer or architect. It is the owner's (or builder's) responsibility to hire a local professional to review and seal or stamp the plans if required by the building department. This must be handled by an engineer or architect licensed in the state/province where the plan is to be built.
+                </li>
+              </ul>
+              
+              <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
+                <p>
+                  <a href="javascript:void(0);" id="open-important-info" style="color: #5b8db5; text-decoration: none; font-size: 0.95rem; font-weight: 500;">&raquo; See important information before purchasing.</a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
