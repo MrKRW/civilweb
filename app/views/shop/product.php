@@ -801,6 +801,9 @@ $pid         = (int)($item['id'] ?? 0);
       <p style="margin-bottom: 16px;">Plan content may vary depending on the design, building type, and selected package. Standard plans are for design review, pricing, and project understanding only.</p>
       <p style="margin-bottom: 16px;">Local code compliance, permit drawings, engineering, and site-specific changes must be checked by the relevant professionals or authorities before construction.</p>
       <p style="margin-bottom: 0;">Need changes or permit drawings? <a href="<?= $BASE ?>/contact" style="color: #5b8db5; text-decoration: underline;">Contact us to modify this plan</a></p>
+      <div style="margin-top: 24px; text-align: center;">
+        <button type="button" id="important-info-close-btn" style="background: #9d8c14; color: #fff; border: none; padding: 10px 24px; font-family: var(--font-h, sans-serif); font-size: 0.9rem; font-weight: 500; cursor: pointer; border-radius: 2px;">Close</button>
+      </div>
     </div>
   </div>
 </div>
@@ -983,6 +986,7 @@ $pid         = (int)($item['id'] ?? 0);
   });
 
   document.getElementById('important-info-close')?.addEventListener('click', closeIiModal);
+  document.getElementById('important-info-close-btn')?.addEventListener('click', closeIiModal);
 
   iiOverlay?.addEventListener('click', (e) => {
     if (e.target === iiOverlay) closeIiModal();
