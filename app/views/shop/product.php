@@ -352,7 +352,6 @@ $pid         = (int)($item['id'] ?? 0);
       <div class="product-tabs-content">
         <div id="tab-desc" class="tab-pane active">
           <div class="desc-content"><?= !empty($item['description']) ? $item['description'] : '<p>No description available.</p>' ?></div>
-          <?php include __DIR__ . '/_options_tables.php'; ?>
         </div>
         <div id="tab-info" class="tab-pane">
           <?php
