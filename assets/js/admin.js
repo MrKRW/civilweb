@@ -49,6 +49,9 @@ function navigateTo(page) {
 document.getElementById('mobile-toggle')?.addEventListener('click', () => {
   document.getElementById('sidebar').classList.toggle('open');
 });
+document.getElementById('sidebar-overlay')?.addEventListener('click', () => {
+  document.getElementById('sidebar').classList.remove('open');
+});
 
 /* ── LOGOUT ─────────────────────────────── */
 document.getElementById('logout-btn')?.addEventListener('click', async (e) => {
@@ -127,7 +130,7 @@ document.getElementById('filter-status')?.addEventListener('change', loadProject
 
 /* ── BUILD TABLE ────────────────────────── */
 function buildProjectTable(projects) {
-  let html = `<table class="data-table">
+  let html = `<div class="table-wrap"><table class="data-table">
     <thead><tr>
       <th>Image</th><th>Title</th><th>Category</th><th>Service</th><th>Status</th><th>Actions</th>
     </tr></thead><tbody>`;
@@ -160,7 +163,7 @@ function buildProjectTable(projects) {
     </tr>`;
   });
 
-  html += '</tbody></table>';
+  html += '</tbody></table></div>';
   return html;
 }
 
@@ -422,7 +425,7 @@ async function loadShopItems() {
 }
 
 function buildShopTable(items) {
-  let html = `<table class="data-table">
+  let html = `<div class="table-wrap"><table class="data-table">
     <thead><tr>
       <th>Image</th><th>Name</th><th>Price</th><th>Category</th><th>Status</th><th>Actions</th>
     </tr></thead><tbody>`;
@@ -450,18 +453,16 @@ function buildShopTable(items) {
     </tr>`;
   });
 
-  html += '</tbody></table>';
+  html += '</tbody></table></div>';
   return html;
 }
 
 document.getElementById('shop-form')?.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  // Sync shop Additional Info Quill → hidden input
-  const hiddenAddlInfo = document.getElementById('shop-additional-info');
-  if (window.shopQuillEditor && hiddenAddlInfo) {
-    const html = window.shopQuillEditor.root.innerHTML;
-    hiddenAddlInfo.value = (html === '<p><br></p>') ? '' : html;
+  // Sync TinyMCE to textarea
+  if (typeof tinymce !== 'undefined') {
+    tinymce.triggerSave();
   }
 
   const editId = document.getElementById('shop-edit-id').value;
@@ -505,19 +506,22 @@ async function editShopItem(id) {
     document.getElementById('shop-category').value = p.category || '';
     document.getElementById('shop-status').value = p.status;
     document.getElementById('shop-sort').value = p.sort_order || 0;
+    
     document.getElementById('shop-desc').value = p.description || '';
+    if (typeof tinymce !== 'undefined' && tinymce.get('shop-desc')) {
+      tinymce.get('shop-desc').setContent(p.description || '');
+    }
     document.getElementById('shop-spec-sqft').value = p.spec_sqft || '';
     document.getElementById('shop-spec-beds').value = p.spec_beds || '';
     document.getElementById('shop-spec-baths').value = p.spec_baths || '';
     document.getElementById('shop-spec-floors').value = p.spec_floors || '';
     document.getElementById('shop-spec-garages').value = p.spec_garages || '';
 
-    // Populate Additional Info Quill
-    const addlInfoHidden = document.getElementById('shop-additional-info');
+    // Populate Additional Info TinyMCE
     const addlInfoContent = p.additional_info || '';
-    if (addlInfoHidden) addlInfoHidden.value = addlInfoContent;
-    if (window.shopQuillEditor) {
-      window.shopQuillEditor.clipboard.dangerouslyPasteHTML(addlInfoContent);
+    document.getElementById('shop-additional-info').value = addlInfoContent;
+    if (typeof tinymce !== 'undefined' && tinymce.get('shop-additional-info')) {
+      tinymce.get('shop-additional-info').setContent(addlInfoContent);
     }
 
     // Main image
@@ -591,6 +595,10 @@ function resetShopForm() {
   document.getElementById('shop-spec-baths').value = '';
   document.getElementById('shop-spec-floors').value = '';
   document.getElementById('shop-spec-garages').value = '';
+  
+  if (typeof tinymce !== 'undefined' && tinymce.get('shop-desc')) {
+    tinymce.get('shop-desc').setContent('');
+  }
   // Clear gallery slots
   for (let i = 1; i <= 4; i++) {
     document.getElementById('shop-gallery-preview-' + i).style.display = 'none';
@@ -599,9 +607,10 @@ function resetShopForm() {
   }
   document.getElementById('remove-shop-gallery-input').value = '[]';
   // Clear additional info
-  if (window.shopQuillEditor) window.shopQuillEditor.setContents([]);
-  const addlHidden = document.getElementById('shop-additional-info');
-  if (addlHidden) addlHidden.value = '';
+  document.getElementById('shop-additional-info').value = '';
+  if (typeof tinymce !== 'undefined' && tinymce.get('shop-additional-info')) {
+    tinymce.get('shop-additional-info').setContent('');
+  }
   for (let i = 1; i <= 6; i++) {
     const prev = document.getElementById('addl-preview-' + i);
     const ph   = document.getElementById('addl-placeholder-' + i);
@@ -741,7 +750,7 @@ async function loadBlogPosts() {
 }
 
 function buildBlogTable(posts) {
-  let html = `<table class="data-table">
+  let html = `<div class="table-wrap"><table class="data-table">
     <thead><tr>
       <th>Image</th><th>Title</th><th>Category</th><th>Status</th><th>Date</th><th>Actions</th>
     </tr></thead><tbody>`;
@@ -770,7 +779,7 @@ function buildBlogTable(posts) {
     </tr>`;
   });
 
-  html += '</tbody></table>';
+  html += '</tbody></table></div>';
   return html;
 }
 
@@ -932,20 +941,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Shop Additional Info Quill
-  const shopEditorEl = document.getElementById('shop-quill-editor');
-  if (shopEditorEl && typeof Quill !== 'undefined') {
-    window.shopQuillEditor = new Quill(shopEditorEl, {
-      theme: 'snow',
-      placeholder: 'Enter additional product details — specifications, dimensions, materials, care instructions…',
-      modules: {
-        toolbar: [
-          [{ 'header': [3, 4, false] }],
-          ['bold', 'italic', 'underline'],
-          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-          ['link'],
-          ['clean']
-        ]
+  // TinyMCE Initialization
+  if (typeof tinymce !== 'undefined') {
+    tinymce.init({
+      selector: '#shop-desc, #shop-additional-info',
+      plugins: 'table lists link',
+      toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | table | link',
+      menubar: false,
+      height: 300,
+      setup: function (editor) {
+        editor.on('change', function () {
+          editor.save();
+        });
       }
     });
   }

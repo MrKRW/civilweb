@@ -84,6 +84,7 @@ $adminUser = $adminUser ?? 'admin';
       </a>
     </div>
   </aside>
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
   <!-- ═══════════════════════════════════════════
        MAIN CONTENT
@@ -453,15 +454,14 @@ $adminUser = $adminUser ?? 'admin';
             </div>
 
             <div class="form-group full-width">
-              <label for="shop-desc">Description <small style="font-weight:400;color:var(--text-muted)">(short summary shown on product card)</small></label>
-              <textarea id="shop-desc" name="description" rows="4" placeholder="Describe the item…"></textarea>
+              <label for="shop-desc">Description <small style="font-weight:400;color:var(--text-muted)">(short summary shown on product card and Description tab)</small></label>
+              <textarea id="shop-desc" name="description" rows="8" placeholder="Describe the item... You can add tables here."></textarea>
             </div>
 
             <!-- Additional Information (rich text + images) -->
             <div class="form-group full-width">
               <label>Additional Information <small style="font-weight:400;color:var(--text-muted)">(shown in the "Additional Information" tab on the product page)</small></label>
-              <div id="shop-quill-editor" style="height:260px;background:#fff;border-bottom-left-radius:4px;border-bottom-right-radius:4px;"></div>
-              <input type="hidden" id="shop-additional-info" name="additional_info" />
+              <textarea id="shop-additional-info" name="additional_info" rows="8" placeholder="Enter additional product details — specifications, dimensions, materials, care instructions..."></textarea>
             </div>
 
             <!-- Additional Information Images (up to 6) -->
@@ -788,6 +788,8 @@ $adminUser = $adminUser ?? 'admin';
 
   <!-- Quill JS -->
   <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+  <!-- TinyMCE -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js"></script>
   <script src="<?= $BASE ?>/assets/js/admin.js?v=2"></script>
 </body>
 </html>

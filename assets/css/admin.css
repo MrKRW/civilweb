@@ -347,9 +347,15 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 .loading-text { color: var(--text-muted); font-size: 0.85rem; padding: 20px 0; }
 
 /* ── RESPONSIVE ─────────────────────────── */
+.sidebar-overlay {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 90;
+  backdrop-filter: blur(2px); transition: opacity 0.3s var(--ease); opacity: 0;
+}
+
 @media (max-width: 900px) {
   #sidebar { transform: translateX(-100%); }
   #sidebar.open { transform: translateX(0); }
+  #sidebar.open + .sidebar-overlay { display: block; opacity: 1; }
   #main-content { margin-left: 0; padding: 20px 20px 40px; }
   .mobile-header { display: flex; }
   .form-grid { grid-template-columns: 1fr; }
