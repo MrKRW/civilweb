@@ -168,28 +168,24 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
         <div class="hs-tc-photo"><img src="<?= $BASE ?>/team%20images/32.png" alt="Robert Jhonson" /></div>
         <div class="hs-tc-info">
           <h3 class="hs-tc-name">Robert Jhonson</h3><p class="hs-tc-role">CEO / ARCHITECT</p>
-          <div class="hs-tc-socials"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a></div>
         </div>
       </div>
       <div class="hs-team-card">
         <div class="hs-tc-photo"><img src="<?= $BASE ?>/team%20images/33.png" alt="Aida Belul" /></div>
         <div class="hs-tc-info">
           <h3 class="hs-tc-name">Aida Belul</h3><p class="hs-tc-role">MAIN CONTRACTOR</p>
-          <div class="hs-tc-socials"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a></div>
         </div>
       </div>
       <div class="hs-team-card">
         <div class="hs-tc-photo"><img src="<?= $BASE ?>/team%20images/29.png" alt="Rebecca Wales" /></div>
         <div class="hs-tc-info">
           <h3 class="hs-tc-name">Rebecca Wales</h3><p class="hs-tc-role">ARCHITECT</p>
-          <div class="hs-tc-socials"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a></div>
         </div>
       </div>
       <div class="hs-team-card">
         <div class="hs-tc-photo"><img src="<?= $BASE ?>/team%20images/30.png" alt="Jasmin Dorothy" /></div>
         <div class="hs-tc-info">
           <h3 class="hs-tc-name">Jasmin Dorothy</h3><p class="hs-tc-role">PRODUCT DESIGNER</p>
-          <div class="hs-tc-socials"><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a></div>
         </div>
       </div>
     </div>
