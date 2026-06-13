@@ -335,7 +335,7 @@ $pid         = (int)($item['id'] ?? 0);
         </div>
 
         <div class="product-share">
-          <a href="#" aria-label="Share">
+          <a href="#" id="share-btn" aria-label="Share">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
           </a>
         </div>
@@ -822,6 +822,36 @@ $pid         = (int)($item['id'] ?? 0);
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && iiOverlay?.classList.contains('open')) closeIiModal();
+  });
+
+  /* ── Share Button ────────────── */
+  document.getElementById('share-btn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const url = window.location.href;
+    
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Link copied to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    } else {
+      let textArea = document.createElement("textarea");
+      textArea.value = url;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        alert('Link copied to clipboard!');
+      } catch (err) {
+        console.error('Fallback: Oops, unable to copy', err);
+      }
+      textArea.remove();
+    }
   });
 
 })();
