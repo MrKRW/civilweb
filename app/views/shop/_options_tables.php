@@ -161,14 +161,53 @@
           <p>** Options with a fee may take time to prepare. Please call to confirm.</p>
         </div>
 
-        <div style="margin-top: 2rem; background: #e8f0fe; padding: 1.5rem; border-radius: 8px; border-left: 5px solid #4285f4; color: #333; line-height: 1.5;">
-          <p style="margin: 0;">Unless you buy an "unlimited" plan set or a multi-use license you may only build one home from a set of plans. Please call to verify if you intend to build more than once. Plan licenses are non-transferable and cannot be resold.</p>
+        <h3 style="font-size: 1.35rem; margin-bottom: 1.25rem; color: #1a1a2e; margin-top: 2rem; text-transform: uppercase;">IMPORTANT NOTES</h3>
+        <div class="options-table-wrapper" style="overflow-x: auto; margin-bottom: 1rem;">
+          <table style="width: 100%; border-collapse: collapse; min-width: 600px; background: #fff;">
+            <thead>
+              <tr style="background: #f4f6f8; text-align: left;">
+                <th style="padding: 14px 18px; border: 1px solid #ddd; font-weight: 700; width: 30%; color: #333;">Note</th>
+                <th style="padding: 14px 18px; border: 1px solid #ddd; font-weight: 700; color: #333;">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 14px 18px; border: 1px solid #ddd; font-weight: 600; color: #222;">Plan Use</td>
+                <td style="padding: 14px 18px; border: 1px solid #ddd; color: #555;">Drawings are intended for design review, pricing, modification, and project development.</td>
+              </tr>
+              <tr style="background: #fafafa;">
+                <td style="padding: 14px 18px; border: 1px solid #ddd; font-weight: 600; color: #222;">Permit Use</td>
+                <td style="padding: 14px 18px; border: 1px solid #ddd; color: #555;">Standard plans are not automatically permit-ready unless specifically stated.</td>
+              </tr>
+              <tr>
+                <td style="padding: 14px 18px; border: 1px solid #ddd; font-weight: 600; color: #222;">Local / International Compliance</td>
+                <td style="padding: 14px 18px; border: 1px solid #ddd; color: #555;">Plans must be checked against the building codes, zoning rules, planning regulations, fire requirements, and service authority requirements of the project location.</td>
+              </tr>
+              <tr style="background: #fafafa;">
+                <td style="padding: 14px 18px; border: 1px solid #ddd; font-weight: 600; color: #222;">Engineering Requirement</td>
+                <td style="padding: 14px 18px; border: 1px solid #ddd; color: #555;">Structural, civil, MEP, fire, geotechnical, or other engineering input may be required depending on the project.</td>
+              </tr>
+              <tr>
+                <td style="padding: 14px 18px; border: 1px solid #ddd; font-weight: 600; color: #222;">Modification Charges</td>
+                <td style="padding: 14px 18px; border: 1px solid #ddd; color: #555;">Any redesign, layout change, authority revision, engineering, or construction documentation is charged separately.</td>
+              </tr>
+              <tr style="background: #fafafa;">
+                <td style="padding: 14px 18px; border: 1px solid #ddd; font-weight: 600; color: #222;">Site-Specific Review</td>
+                <td style="padding: 14px 18px; border: 1px solid #ddd; color: #555;">Final design must consider survey, soil condition, drainage, climate, access, utilities, and authority comments.</td>
+              </tr>
+              <tr>
+                <td style="padding: 14px 18px; border: 1px solid #ddd; font-weight: 600; color: #222;">License Use</td>
+                <td style="padding: 14px 18px; border: 1px solid #ddd; color: #555;">Unless a multi-use license is agreed, each plan set is for one project/building only and cannot be resold or reused.</td>
+              </tr>
+              <tr style="background: #fafafa;">
+                <td style="padding: 14px 18px; border: 1px solid #ddd; font-weight: 600; color: #222;">Final Approval</td>
+                <td style="padding: 14px 18px; border: 1px solid #ddd; color: #555;">Before construction, drawings must be reviewed and approved by the relevant local professionals, consultants, engineers, and authorities.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-
-        <div style="margin-top: 1.5rem; background: #fff8c4; padding: 1.5rem; border-radius: 8px; border-left: 5px solid #f4b400; color: #333; line-height: 1.6;">
-          <h4 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.1rem; color: #b08100;">Caution! Read This Before Getting Started</h4>
-          <p style="margin-bottom: 0.75rem;">Before beginning your building project, check with your local building department about local codes and requirements, as you may need to obtain engineering, stamping, sealing, etc. Usually, the plan set does not include any plumbing, heating or air conditioning drawings due to the vast variety of local codes and climatic conditions. These details and specifications can be accessed from your builder, contractor, and/or local suppliers.</p>
-          <p style="margin: 0;">All house plans are designed to conform to the building codes from when and where the original house was designed.</p>
+        <div style="font-weight: 700; color: #222; margin-top: 0.5rem; margin-bottom: 2.5rem; font-size: 0.95rem;">
+          <a href="javascript:void(0);" id="modify-plan-link" style="color: inherit; text-decoration: none; cursor: pointer;">Need this plan modified or prepared for approval? Contact us with your site location and requirements.</a>
         </div>
 
       </div>

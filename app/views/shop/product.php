@@ -744,6 +744,7 @@ $pid         = (int)($item['id'] ?? 0);
   }
 
   document.getElementById('modify-plan-btn')?.addEventListener('click', openPlhModal);
+  document.getElementById('modify-plan-link')?.addEventListener('click', openPlhModal);
   document.getElementById('plh-close')?.addEventListener('click', closePlhModal);
 
   // Close on backdrop click

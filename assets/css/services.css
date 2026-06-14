@@ -236,12 +236,7 @@
   border-bottom: 1px solid #f0eeea;
   position: relative;
   display: block;
-  transition: padding-left 0.3s ease, color 0.3s ease;
-}
-
-.srv-card-list li:hover {
-  padding-left: 28px;
-  color: #111;
+  transition: color 0.3s ease;
 }
 
 .srv-card-list li::before {
@@ -251,12 +246,7 @@
   position: absolute;
   left: 0;
   top: 11px;
-  transition: left 0.3s ease, color 0.3s ease;
-}
-
-.srv-card-list li:hover::before {
-  left: 4px;
-  color: #555;
+  transition: color 0.3s ease;
 }
 
 .srv-card-list li strong {
@@ -430,14 +420,6 @@
 .srv-intl-featured-content .srv-card-list li::before {
   top: 13px;
   left: 6px;
-}
-.srv-intl-featured-content .srv-card-list li:hover {
-  background: #fdfbf7;
-  padding-left: 32px;
-  border-radius: 4px;
-}
-.srv-intl-featured-content .srv-card-list li:hover::before {
-  left: 10px;
 }
 
 .srv-intl-num {
