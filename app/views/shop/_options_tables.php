@@ -5,7 +5,7 @@
     <section class="product-options-info" style="padding-top: 1rem; padding-bottom: 2rem;">
       <div class="info-content" style="background: #fdfdfd; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eaeaea;">
         <h2 style="font-size: 1.6rem; margin-bottom: 1rem; color: #1a1a2e; text-transform: uppercase; letter-spacing: 0.5px;">PLAN SET</h2>
-        <p style="margin-bottom: 2rem; color: #555; line-height: 1.6; font-size: 1.05rem;">Each design can be supplied in different formats depending on your requirement. The available drawings, foundation type, structural system, and additional services may vary based on the selected design, building type, location, and approval requirements.</p>
+        <p style="margin-bottom: 2rem; color: #555; line-height: 1.6; font-size: 0.95rem;">Each design can be supplied in different formats depending on your requirement. The available drawings, foundation type, structural system, and additional services may vary based on the selected design, building type, location, and approval requirements.</p>
 
         <div class="options-table-wrapper" style="overflow-x: auto; margin-bottom: 2.5rem;">
           <table style="width: 100%; border-collapse: collapse; min-width: 600px; background: #fff;">
