@@ -1,4 +1,4 @@
-    <!-- Divider -->
+View important notes    <!-- Divider -->
     <hr style="margin: 3rem auto; border: 0; border-top: 2px solid #e0e0e0; width: 100%;">
 
     <!-- General Info Section -->
@@ -161,8 +161,10 @@
           <p>** Options with a fee may take time to prepare. Please call to confirm.</p>
         </div>
 
-        <h3 style="font-size: 1.35rem; margin-bottom: 1.25rem; color: #1a1a2e; margin-top: 2rem; text-transform: uppercase;">IMPORTANT NOTES</h3>
-        <div class="options-table-wrapper" style="overflow-x: auto; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.35rem; margin-bottom: 1.25rem; color: #1a1a2e; margin-top: 2rem; text-transform: uppercase;">
+          <span style="cursor: pointer; text-decoration: underline;" onclick="var w = document.getElementById('important-notes-wrapper'); w.style.display = w.style.display === 'none' ? 'block' : 'none';">VIEW IMPORTANT NOTES</span>
+        </h3>
+        <div id="important-notes-wrapper" class="options-table-wrapper" style="overflow-x: auto; margin-bottom: 1rem; display: none;">
           <table style="width: 100%; border-collapse: collapse; min-width: 600px; background: #fff;">
             <thead>
               <tr style="background: #f4f6f8; text-align: left;">
