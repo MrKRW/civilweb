@@ -30,10 +30,9 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
     <div class="container">
       <div class="new-about-top">
         <div class="new-about-text reveal-left">
-          <span class="new-section-label">&bull; &nbsp;ARCHITECT STUDIO</span>
-          <h2 class="new-about-heading">Architects excited about beauty,<br>affordability sustainability
-            materials<br>for every project and person</h2>
-          <a href="<?= $BASE ?>/about" class="new-read-more">read more</a>
+          <span class="new-section-label">&bull; &nbsp;ARCHITECTURE  • ENGINEERING   • BIM   • PROJECT CONSULTANCY </span>
+          <h2 class="new-about-heading">Architecture, engineering and project solutions, designed<br> with purpose and precision</h2>
+          <a href="<?= $BASE ?>/about" class="new-read-more">Explore our services</a>
         </div>
         <div class="about-slideshow reveal-right">
           <div class="about-slide active">
@@ -50,16 +49,16 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
       <div class="new-about-bottom stagger">
         <div class="new-about-links">
           <a href="#">Design a perfect home</a>
-          <a href="#">Download our brochure</a>
+          <a href="#">Download our company profile</a>
           <a href="#">Ask us your questions our architects</a>
         </div>
         <div class="new-about-col">
-          <h3>Urban Exteriors</h3>
-          <p>Purus sit amet vol utpat con sequat mauris nunc congue. Sed id s emper risus in hend rrerit. Facilisi etiam dig nissim diam quis enim. Quis auctor.</p>
+          <h3>Architectural Design & Planning </h3>
+          <p> Concept design, space planning, authority drawings, 3D visualization and construction documentation for residential, commercial and industrial projects. </p>
         </div>
         <div class="new-about-col">
-          <h3>Cityscapes Buildings</h3>
-          <p>Purus sit amet vol utpat con sequat mauris nunc congue. Sed id s emper risus in hend rrerit. Facilisi etiam dig nissim diam quis enim. Quis auctor.</p>
+          <h3> Engineering & BIM Solutions </h3>
+          <p>Structural, civil, stormwater, MEP, BIM modelling, quantity take-off and technical documentation prepared for accurate coordination and practical construction. </p>
         </div>
       </div>
     </div>
@@ -141,7 +140,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <!-- QUOTE BANNER -->
   <section id="quote-banner">
     <div class="quote-banner-content container">
-      <h2>The whimsical feel of Villa Esther begins with the Neo-Modern gateway in the style of Le Corbusier's Villa Savoye.</h2>
+      <h2>From concept to construction, we deliver coordinated architecture, engineering, BIM, costing and project support for practical, buildable developments</h2>
     </div>
   </section>
 
@@ -149,13 +148,13 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <section id="team" aria-label="Our Team">
     <div class="team-grid">
       <div class="team-cell team-photo"><img src="<?= $BASE ?>/team%20images/29.png" alt="Architect portrait" /></div>
-      <div class="team-cell team-info"><h3 class="team-name">Lorem ipsum</h3><p class="team-role"><span class="team-role-accent">CEO</span> / <span class="team-role-plain">ARCHITECT</span></p></div>
+      <div class="team-cell team-info"><h3 class="team-name">Harsha</h3><p class="team-role"><span class="team-role-accent">Draughtsman & 3D Visualizer </p></div>
       <div class="team-cell team-photo"><img src="<?= $BASE ?>/team%20images/30.png" alt="Main Contractor portrait" /></div>
-      <div class="team-cell team-info"><h3 class="team-name">Lorem ipsum</h3><p class="team-role"><span class="team-role-accent">MAIN CONTRACTOR</span></p></div>
-      <div class="team-cell team-jobs" rowspan="2"><a href="#" class="team-jobs-link">jobs and internships</a></div>
+      <div class="team-cell team-info"><h3 class="team-name">Dhiyan</h3><p class="team-role"><span class="team-role-accent">Senior Structural Engineer </p></div>
+      <div class="team-cell team-jobs" rowspan="2"><a href="#" class="team-jobs-link">careers and internships</a></div>
       <div class="team-cell team-empty"></div>
       <div class="team-cell team-photo"><img src="<?= $BASE ?>/team%20images/32.png" alt="Architect portrait" /></div>
-      <div class="team-cell team-info"><h3 class="team-name">Lorem ipsum</h3><p class="team-role"><span class="team-role-plain">Lorem ipsum</span></p></div>
+      <div class="team-cell team-info"><h3 class="team-name">Teshan </h3><p class="team-role"><span class="team-role-plain">Structural Engineer </span></p></div>
       <div class="team-cell team-photo"><img src="<?= $BASE ?>/team%20images/33.png" alt="Product Designer portrait" /></div>
     </div>
   </section>
