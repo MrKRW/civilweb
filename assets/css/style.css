@@ -1105,7 +1105,7 @@ p {
   text-orientation: mixed;
   transform: rotate(180deg);
   font-family: 'DM Sans', sans-serif;
-  font-size: 42px;
+  font-size: 23px;
   font-weight: 300;
   letter-spacing: 0.06em;
   color: var(--black);
@@ -1194,7 +1194,7 @@ p {
 
 .acc-text-wrap p {
   font-family: var(--font-b);
-  font-size: 1.1rem;
+  font-size: 0.88rem;
   color: #555;
   line-height: 1.8;
   margin-bottom: 40px;
@@ -1434,29 +1434,19 @@ p {
   transform: translateY(-2px);
 }
 
-/* Jobs panel — spans both rows in column 5 */
+/* Jobs panel — single square in col 5, row 1 */
 .team-cell.team-jobs {
   background: #E4E7D5;
   grid-column: 5 / 6;
-  grid-row: 1 / 3;
+  grid-row: 1 / 2;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-end;
   padding: 40px;
   border: 1px solid rgba(0, 0, 0, 0.06);
   position: relative;
 }
 
-/* Thin right border accent (visible in ref image) */
-.team-cell.team-jobs::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--black);
-}
 
 .team-jobs-link {
   font-family: var(--font-b);
@@ -1477,6 +1467,12 @@ p {
 /* Empty offset cell — matches Hiroshi's row-2 shift */
 .team-cell.team-empty {
   background: #E4E7D5;
+}
+
+/* Last person's info cell — placed explicitly in col 5, row 2 */
+.team-cell.team-info-last {
+  grid-column: 5 / 6;
+  grid-row: 2 / 3;
 }
 
 /* Responsive: checkerboard 2-column on tablets */
@@ -1528,29 +1524,35 @@ p {
     aspect-ratio: unset;
     min-height: 180px;
     padding: 40px;
+    align-items: center;
+    justify-content: flex-start;
   }
   .team-cell.team-jobs::after {
     display: none;
   }
 
-  .team-cell.team-empty,
-  .team-cell:nth-child(9) {
+  /* Hide only the empty offset cell — NOT the person cells */
+  .team-cell.team-empty {
     display: none !important;
   }
 
-  .team-cell:nth-child(1) { order: 1; }
-  .team-cell:nth-child(2) { order: 2; }
-  .team-cell:nth-child(4) { order: 3; }
-  .team-cell:nth-child(3) { order: 4; }
-  .team-cell:nth-child(7) { order: 5; }
-  .team-cell:nth-child(8) { order: 6; }
-  .team-cell:nth-child(5) { order: 7; }
+  /* Tablet order: photo/info pairs side by side, careers full-width at end */
+  .team-cell:nth-child(1)  { order: 1; }  /* Harsha photo */
+  .team-cell:nth-child(2)  { order: 2; }  /* Harsha info */
+  .team-cell:nth-child(3)  { order: 3; }  /* Dhiyan photo */
+  .team-cell:nth-child(4)  { order: 4; }  /* Dhiyan info */
+  .team-cell:nth-child(7)  { order: 5; }  /* Teshan photo */
+  .team-cell:nth-child(8)  { order: 6; }  /* Teshan info */
+  .team-cell:nth-child(9)  { order: 7; }  /* Janith photo */
+  .team-cell:nth-child(10) { order: 8; }  /* Janith info */
+  .team-cell:nth-child(5)  { order: 9; grid-column: 1 / -1 !important; }  /* careers */
 }
 
 /* Responsive: stack to single-col on mobile */
 @media (max-width: 768px) {
   .team-grid {
-    display: block;   /* drop grid entirely — simple vertical stack */
+    display: flex;
+    flex-direction: column;
     width: 100%;
     overflow: hidden;
   }
@@ -1608,11 +1610,21 @@ p {
     display: none;
   }
 
-  /* Hide empty offset cell — not needed in stacked layout */
-  .team-cell.team-empty,
-  .team-cell:nth-child(9) {
+  /* Hide only the empty offset cell — not the person cells */
+  .team-cell.team-empty {
     display: none;
   }
+
+  /* Mobile order: photo/info pairs stacked, careers full-width at end */
+  .team-cell:nth-child(1)  { order: 1; }  /* Harsha photo */
+  .team-cell:nth-child(2)  { order: 2; }  /* Harsha info */
+  .team-cell:nth-child(3)  { order: 3; }  /* Dhiyan photo */
+  .team-cell:nth-child(4)  { order: 4; }  /* Dhiyan info */
+  .team-cell:nth-child(7)  { order: 5; }  /* Teshan photo */
+  .team-cell:nth-child(8)  { order: 6; }  /* Teshan info */
+  .team-cell:nth-child(9)  { order: 7; }  /* Janith photo */
+  .team-cell:nth-child(10) { order: 8; }  /* Janith info */
+  .team-cell:nth-child(5)  { order: 9; }  /* careers */
 
   /* Larger name & role text for readability on mobile */
   .team-name {

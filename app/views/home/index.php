@@ -32,7 +32,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
         <div class="new-about-text reveal-left">
           <span class="new-section-label">&bull; &nbsp;ARCHITECTURE  • ENGINEERING   • BIM   • PROJECT CONSULTANCY </span>
           <h2 class="new-about-heading">Architecture, engineering and project solutions, designed<br> with purpose and precision</h2>
-          <a href="<?= $BASE ?>/about" class="new-read-more">Explore our services</a>
+          <a href="<?= $BASE ?>/services" class="new-read-more">Explore our services</a>
         </div>
         <div class="about-slideshow reveal-right">
           <div class="about-slide active">
@@ -50,7 +50,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
         <div class="new-about-links">
           <a href="#">Design a perfect home</a>
           <a href="#">Download our company profile</a>
-          <a href="#">Ask us your questions our architects</a>
+          <a href="<?= $BASE ?>/contact">Ask our technical team</a>
         </div>
         <div class="new-about-col">
           <h3>Architectural Design & Planning </h3>
@@ -107,31 +107,31 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <section id="services" class="accordion-section reveal">
     <div class="acc-container">
       <div class="acc-item">
-        <div class="acc-header"><span class="acc-icon">+</span><span class="acc-title">Urban Planning</span></div>
+        <div class="acc-header"><span class="acc-icon">+</span><span class="acc-title">Design & Visualization</span></div>
         <div class="acc-content">
           <div class="acc-img-wrap"><img src="<?= $BASE ?>/Project%20images/2023-11-07.jpg" alt="Urban Planning" /></div>
-          <div class="acc-text-wrap"><span class="acc-close">&minus;</span><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><a href="#" class="read-more">read more</a></div>
+          <div class="acc-text-wrap"><span class="acc-close">&minus;</span><p>Professional architectural design, 3D modelling, visualization, landscape design and technical drawing documentation for residential, commercial, industrial and mixed-use projects. </p><a href="#" class="read-more">View engineering services</a></div>
         </div>
       </div>
       <div class="acc-item">
-        <div class="acc-header"><span class="acc-icon">+</span><span class="acc-title">Exterior</span></div>
+        <div class="acc-header"><span class="acc-icon">+</span><span class="acc-title">Engineering & Infrastructure </span></div>
         <div class="acc-content">
           <div class="acc-img-wrap"><img src="<?= $BASE ?>/Project%20images/1%20(4).png" alt="Exterior" /></div>
-          <div class="acc-text-wrap"><span class="acc-close">&minus;</span><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><a href="#" class="read-more">read more</a></div>
+          <div class="acc-text-wrap"><span class="acc-close">&minus;</span><p>Structural, civil, drainage, infrastructure and MEP design support prepared with practical engineering coordination for accurate construction and authority submission. </p><a href="#" class="read-more">View engineering services</a></div>
         </div>
       </div>
       <div class="acc-item">
-        <div class="acc-header"><span class="acc-icon">+</span><span class="acc-title">Residential</span></div>
+        <div class="acc-header"><span class="acc-icon">+</span><span class="acc-title">Management & Costing </span></div>
         <div class="acc-content">
           <div class="acc-img-wrap"><img src="<?= $BASE ?>/assets/images/hero_2.png" alt="Residential" /></div>
-          <div class="acc-text-wrap"><span class="acc-close">&minus;</span><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><a href="#" class="read-more">read more</a></div>
+          <div class="acc-text-wrap"><span class="acc-close">&minus;</span><p>Cost estimation, quantity surveying, project coordination, feasibility studies, technical specifications and consultancy support for better project planning and control. </p><a href="#" class="read-more">View engineering services</a></div>
         </div>
       </div>
       <div class="acc-item active">
-        <div class="acc-header"><span class="acc-icon">&minus;</span><span class="acc-title">Interior</span></div>
+        <div class="acc-header"><span class="acc-icon">&minus;</span><span class="acc-title">Project Close-Out </span></div>
         <div class="acc-content">
           <div class="acc-img-wrap"><img src="<?= $BASE ?>/Project%20images/A%20(10).png" alt="Interior" /></div>
-          <div class="acc-text-wrap"><span class="acc-close">&minus;</span><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><a href="#" class="read-more">read more</a></div>
+          <div class="acc-text-wrap"><span class="acc-close">&minus;</span><p>Project completion support including final documentation, handover preparation, maintenance planning and aftercare assistance for a controlled project close-out process.  </p><a href="#" class="read-more">View engineering services</a></div>
         </div>
       </div>
     </div>
@@ -148,14 +148,15 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <section id="team" aria-label="Our Team">
     <div class="team-grid">
       <div class="team-cell team-photo"><img src="<?= $BASE ?>/team%20images/29.png" alt="Architect portrait" /></div>
-      <div class="team-cell team-info"><h3 class="team-name">Harsha</h3><p class="team-role"><span class="team-role-accent">Draughtsman & 3D Visualizer </p></div>
+      <div class="team-cell team-info"><h3 class="team-name">Harsha</h3><p class="team-role"><span class="team-role-accent">Draughtsman &amp; 3D Visualizer </span></p></div>
       <div class="team-cell team-photo"><img src="<?= $BASE ?>/team%20images/30.png" alt="Main Contractor portrait" /></div>
-      <div class="team-cell team-info"><h3 class="team-name">Dhiyan</h3><p class="team-role"><span class="team-role-accent">Senior Structural Engineer </p></div>
-      <div class="team-cell team-jobs" rowspan="2"><a href="#" class="team-jobs-link">careers and internships</a></div>
+      <div class="team-cell team-info"><h3 class="team-name">Dhiyan</h3><p class="team-role"><span class="team-role-accent">Senior Structural Engineer </span></p></div>
+      <div class="team-cell team-jobs"><a href="#" class="team-jobs-link">careers and internships</a></div>
       <div class="team-cell team-empty"></div>
       <div class="team-cell team-photo"><img src="<?= $BASE ?>/team%20images/32.png" alt="Architect portrait" /></div>
       <div class="team-cell team-info"><h3 class="team-name">Teshan </h3><p class="team-role"><span class="team-role-plain">Structural Engineer </span></p></div>
       <div class="team-cell team-photo"><img src="<?= $BASE ?>/team%20images/33.png" alt="Product Designer portrait" /></div>
+      <div class="team-cell team-info team-info-last"><h3 class="team-name">Janith</h3><p class="team-role"><span class="team-role-plain">Facility Engineer</span></p></div>
     </div>
   </section>
 
