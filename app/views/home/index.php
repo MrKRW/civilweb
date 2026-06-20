@@ -193,26 +193,45 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <section id="ref-journal">
     <div class="container">
       <div class="ref-journal-grid reveal">
-        <article class="ref-journal-card">
-          <div class="ref-journal-img-wrap"><img src="<?= $BASE ?>/Project images/2023-11-07.jpg" alt="Interior Design"></div>
-          <h3 class="ref-journal-title">Studio Hiroshi Cuisine And Bar Innovative Interior Design</h3>
-          <div class="ref-journal-meta"><span>INTERVIEWS</span><span class="ref-journal-meta-sep">|</span><span>DECEMBER 14, 2022</span></div>
-        </article>
-        <article class="ref-journal-card">
-          <div class="ref-journal-img-wrap"><img src="<?= $BASE ?>/team images/29.png" alt="Zara Madid"></div>
-          <h3 class="ref-journal-title">Zara Madid Speaking About Her Influence And Creative Vision</h3>
-          <div class="ref-journal-meta"><span>INTERVIEWS</span><span class="ref-journal-meta-sep">|</span><span>DECEMBER 14, 2022</span></div>
-        </article>
-        <article class="ref-journal-card">
-          <div class="ref-journal-img-wrap"><img src="<?= $BASE ?>/Project images/1 (4).png" alt="Glass Wall Facade"></div>
-          <h3 class="ref-journal-title">Glass Wall Facade And How To Design It With AluProfiles</h3>
-          <div class="ref-journal-meta"><span>INTERVIEWS</span><span class="ref-journal-meta-sep">|</span><span>DECEMBER 14, 2022</span></div>
-        </article>
-        <article class="ref-journal-card">
-          <div class="ref-journal-img-wrap"><img src="<?= $BASE ?>/Project images/A (10).png" alt="Landscape Architecture"></div>
-          <h3 class="ref-journal-title">Coexisting With The Landscape Is The Main Rule</h3>
-          <div class="ref-journal-meta"><span>INTERVIEWS</span><span class="ref-journal-meta-sep">|</span><span>DECEMBER 14, 2022</span></div>
-        </article>
+        <?php $recentBlogs = $recentBlogs ?? []; ?>
+        <?php if (!empty($recentBlogs)): ?>
+          <?php foreach ($recentBlogs as $blog): ?>
+            <?php
+              $bImg = !empty($blog['image'])
+                ? $BASE . '/uploads/blog/' . htmlspecialchars($blog['image'])
+                : $BASE . '/Project images/2023-11-07.jpg';
+              $bCat = !empty($blog['category']) ? strtoupper(htmlspecialchars($blog['category'])) : 'INTERVIEWS';
+              $bDate = !empty($blog['created_at']) ? strtoupper(date('F j, Y', strtotime($blog['created_at']))) : 'DECEMBER 14, 2022';
+              $bTitle = htmlspecialchars($blog['title']);
+            ?>
+            <article class="ref-journal-card">
+              <div class="ref-journal-img-wrap"><img src="<?= $bImg ?>" alt="<?= htmlspecialchars($blog['title']) ?>"></div>
+              <h3 class="ref-journal-title"><?= $bTitle ?></h3>
+              <div class="ref-journal-meta"><span><?= $bCat ?></span><span class="ref-journal-meta-sep">|</span><span><?= $bDate ?></span></div>
+            </article>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <article class="ref-journal-card">
+            <div class="ref-journal-img-wrap"><img src="<?= $BASE ?>/Project images/2023-11-07.jpg" alt="Interior Design"></div>
+            <h3 class="ref-journal-title">Studio Hiroshi Cuisine And Bar Innovative Interior Design</h3>
+            <div class="ref-journal-meta"><span>INTERVIEWS</span><span class="ref-journal-meta-sep">|</span><span>DECEMBER 14, 2022</span></div>
+          </article>
+          <article class="ref-journal-card">
+            <div class="ref-journal-img-wrap"><img src="<?= $BASE ?>/team images/29.png" alt="Zara Madid"></div>
+            <h3 class="ref-journal-title">Zara Madid Speaking About Her Influence And Creative Vision</h3>
+            <div class="ref-journal-meta"><span>INTERVIEWS</span><span class="ref-journal-meta-sep">|</span><span>DECEMBER 14, 2022</span></div>
+          </article>
+          <article class="ref-journal-card">
+            <div class="ref-journal-img-wrap"><img src="<?= $BASE ?>/Project images/1 (4).png" alt="Glass Wall Facade"></div>
+            <h3 class="ref-journal-title">Glass Wall Facade And How To Design It With AluProfiles</h3>
+            <div class="ref-journal-meta"><span>INTERVIEWS</span><span class="ref-journal-meta-sep">|</span><span>DECEMBER 14, 2022</span></div>
+          </article>
+          <article class="ref-journal-card">
+            <div class="ref-journal-img-wrap"><img src="<?= $BASE ?>/Project images/A (10).png" alt="Landscape Architecture"></div>
+            <h3 class="ref-journal-title">Coexisting With The Landscape Is The Main Rule</h3>
+            <div class="ref-journal-meta"><span>INTERVIEWS</span><span class="ref-journal-meta-sep">|</span><span>DECEMBER 14, 2022</span></div>
+          </article>
+        <?php endif; ?>
       </div>
     </div>
   </section>
