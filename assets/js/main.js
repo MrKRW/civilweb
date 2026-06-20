@@ -150,12 +150,22 @@ if (typeof Swiper !== 'undefined' && document.querySelector('.test-swiper')) {
       el: '.test-pagination',
       type: 'progressbar',
       clickable: true,
-    },
-    navigation: {
-      prevEl: '.test-prev',
-      nextEl: '.test-next',
     }
   });
+
+  // Make the entire wrapper clickable (left side = prev, right side = next)
+  const navWrapper = document.querySelector('.test-nav-wrapper');
+  if (navWrapper) {
+    navWrapper.addEventListener('click', (e) => {
+      const rect = navWrapper.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      if (clickX < rect.width / 2) {
+        testSwiper.slidePrev();
+      } else {
+        testSwiper.slideNext();
+      }
+    });
+  }
 }
 
 // ============================

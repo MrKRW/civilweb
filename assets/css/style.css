@@ -1799,41 +1799,18 @@ body.home-page .team-role {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
   margin-top: 40px;
-}
-
-.test-prev,
-.test-next {
-  background: none;
-  border: none;
+  padding: 20px;
   cursor: pointer;
-  color: var(--black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
-  opacity: 0.6;
-  transition: opacity 0.3s;
-}
-
-.test-prev:hover,
-.test-next:hover {
-  opacity: 1;
-}
-
-.test-prev.swiper-button-disabled,
-.test-next.swiper-button-disabled {
-  opacity: 0.2;
-  cursor: default;
 }
 
 .test-pagination.swiper-pagination-progressbar {
   position: relative;
   width: 100%;
-  max-width: 150px;
+  max-width: 250px;
   height: 1px !important;
   background: rgba(0, 0, 0, 0.1);
+  pointer-events: none; /* Let the wrapper handle clicks */
 }
 
 .test-pagination .swiper-pagination-progressbar-fill {
