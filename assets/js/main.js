@@ -148,7 +148,12 @@ if (typeof Swiper !== 'undefined' && document.querySelector('.test-swiper')) {
     autoplay: { delay: 6000, disableOnInteraction: false },
     pagination: {
       el: '.test-pagination',
+      type: 'progressbar',
       clickable: true,
+    },
+    navigation: {
+      prevEl: '.test-prev',
+      nextEl: '.test-next',
     }
   });
 }

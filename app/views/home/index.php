@@ -3,7 +3,7 @@ $title     = 'Civilanka — Architecture & Design Studio';
 $meta      = 'Civilanka is a premier architecture and design studio in Sri Lanka, creating spaces that inspire.';
 $pageClass = 'home-page';
 $activeNav = 'home';
-$extraJs   = ['main.js'];
+$extraJs   = [];
 $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',['localhost','127.0.0.1','::1'])?'/civilweb':'');
 ?>
 
@@ -168,22 +168,70 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
         <div class="swiper test-swiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <p class="testimonial-text">Civilanka transformed our vision into a home that surpasses everything we imagined. Their attention to light, material, and proportion is extraordinary.</p>
-              <p class="testimonial-author">JAMES &amp; CLARA WHITFIELD</p>
-              <p class="testimonial-role">Private Residence Client, London</p>
+              <p class="testimonial-text">They did an amazing job on my civil and structural design project! His creativity and attention to detail truly impressed me. He was friendly, communicative, and delivered everything ahead of schedule. I can't wait to work with him again!</p>
+              <p class="testimonial-author">ANTONE AUSTIN</p>
+              <p class="testimonial-role">GDI</p>
             </div>
             <div class="swiper-slide">
-              <p class="testimonial-text">Working with the Civilanka team was a revelation. They listened deeply and delivered a commercial space that perfectly reflects our brand values.</p>
-              <p class="testimonial-author">SEBASTIAN NAKAMURA</p>
-              <p class="testimonial-role">CEO, Nakamura Group</p>
+              <p class="testimonial-text">Produced very good, high quality Structural Engineering documentation &amp; drawings. I've got more upcoming work and will be engaging Civilanka Team for this.</p>
+              <p class="testimonial-author">GREG NICHOLS</p>
+              <p class="testimonial-role">Apex BTI</p>
             </div>
             <div class="swiper-slide">
-              <p class="testimonial-text">The master plan Civilanka created for our mixed-use development is visionary. Their urban sensibility and design quality are unmatched in the industry.</p>
-              <p class="testimonial-author">AMARA OSEI-BONSU</p>
-              <p class="testimonial-role">Director of Development, Cityline Properties</p>
+              <p class="testimonial-text">Civilanka is really great professional, not focused only on his field of engineering, but he also knows very well consequences and circumstances of his job to the rest of project. Definitely I want work with him again.</p>
+              <p class="testimonial-author">PETR SYKORA</p>
+              <p class="testimonial-role">Mazanec Fenix</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">Hi. One of the best Engineering Team i have ever worked with. Their skills in his field is really awesome. I'll definitely work with again on any civil project.</p>
+              <p class="testimonial-author">ANDREW</p>
+              <p class="testimonial-role">Epic</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">Thank you for the outstanding structural design project. The rigorous load assessments, validated stress modeling, and meticulous technical documentation have resulted in a structurally robust and constructible final product. Highly recommended</p>
+              <p class="testimonial-author">MATT BEHMER</p>
+              <p class="testimonial-role">Behmer Group</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">Civilanka Team is very responsible, professional, and easy to work with. I am already planning on using him for my next project!</p>
+              <p class="testimonial-author">BRIAN SCHOELKOPF</p>
+              <p class="testimonial-role">BCS Sports LLC</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">It is nice to work with Civilanka. They are accommodating and responsive.</p>
+              <p class="testimonial-author">KENNY C</p>
+              <p class="testimonial-role">Swan Li</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">A very professional and high standard work done in analysis seismic and harmonic force analysis of a RCC bridge in Autodesk Robot software. Highly recommended. Also helped with stamping the drawings and documents.</p>
+              <p class="testimonial-author">WEBB WEHBE</p>
+              <p class="testimonial-role">Metro Trucks</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">Civilanka was great. Great work, great communication, on schedule. Worked great with my architecture team</p>
+              <p class="testimonial-author">RAY B</p>
+              <p class="testimonial-role">Westport Structures</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">They consistently delivers top-quality work, demonstrating exceptional responsiveness and a keen attention to detail when reviewing my reports. Their unparalleled efficiency and accuracy makes them an invaluable asset.</p>
+              <p class="testimonial-author">SOREN GEMS</p>
+              <p class="testimonial-role">Gems &amp; Partners</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">Amazing, they were the only contractor to call and seek clarification on the work scope, they has worked methodically thought the entire project providing all aspects on plans required, and is happy to make alterations very quickly, we highly recommend him for future projects</p>
+              <p class="testimonial-author">SHAUN SURSOK</p>
+              <p class="testimonial-role">Surewest Group</p>
             </div>
           </div>
-          <div class="swiper-pagination test-pagination"></div>
+          <div class="test-nav-wrapper">
+            <button class="test-prev">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="swiper-pagination test-pagination"></div>
+            <button class="test-next">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>

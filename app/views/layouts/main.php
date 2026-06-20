@@ -137,7 +137,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <!-- Main JS -->
-  <script src="<?= $BASE ?>/assets/js/main.js"></script>
+  <script src="<?= $BASE ?>/assets/js/main.js?v=<?= time() ?>"></script>
 
   <!-- Page-specific JS -->
   <?php foreach ($extraJs as $js): ?>
