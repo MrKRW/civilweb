@@ -57,7 +57,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <section class="hs-intro">
     <div class="hs-intro-inner">
       <div class="hs-intro-left reveal-left">
-        <h2 class="hs-intro-heading">Architects and other<br class="hs-desktop-br">engineers meeting to improve<br class="hs-desktop-br">the learning and collaboration<br class="hs-desktop-br">between one another</h2>
+        <h2 class="hs-intro-heading">Multidisciplinary architecture<br class="hs-desktop-br">engineering and project consultancy for practical,<br class="hs-desktop-br"> buildable developments </h2>
       </div>
       <div class="hs-intro-right reveal-right">
         <div class="hs-intro-img-wrap">
@@ -78,14 +78,14 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
         </div>
       </div>
       <div class="hs-approach-col">
-        <h3 class="hs-approach-title">Urban Exteriors</h3>
-        <p>From street-facing facades to public plazas, we design exterior spaces that activate communities and create memorable experiences.</p>
-        <a href="#" class="hs-read-more">read more</a>
+        <h3 class="hs-approach-title">Who We Are </h3>
+        <p>CiviLanka is a multidisciplinary consultancy providing architecture, structural engineering, civil, MEP, BIM, quantity surveying, visualization and project support services for residential, commercial, industrial and infrastructure developments. </p>
+        <a href="#" class="hs-read-more">learn more</a>
       </div>
       <div class="hs-approach-col">
-        <h3 class="hs-approach-title">Cityscapes Buildings</h3>
-        <p>We create buildings that become landmarks — structures that define skylines and serve as gathering places. Each project is an opportunity to shape how cities evolve.</p>
-        <a href="#" class="hs-read-more">read more</a>
+        <h3 class="hs-approach-title">How We Work </h3>
+        <p>We combine design thinking, engineering accuracy and construction practicality to produce coordinated drawings, models, reports and documentation that support clear decisions and efficient project delivery. </p>
+        <a href="#" class="hs-read-more">Our process</a>
       </div>
     </div>
   </section>
@@ -110,22 +110,12 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
     </div>
   </section>
 
-  <!-- QUOTE -->
-  <section class="hs-quote">
-    <div class="hs-quote-inner reveal">
-      <p class="hs-quote-text">Our studio is built on the principle that great architecture emerges from collaboration, diverse perspectives, and a shared commitment to excellence.</p>
-      <span class="hs-quote-author">JACOB, OWNER</span>
-      <div class="hs-quote-dots">
-        <span class="hs-dot active"></span><span class="hs-dot"></span><span class="hs-dot"></span>
-      </div>
-    </div>
-  </section>
 
   <!-- BANNER -->
   <section class="hs-banner">
     <div class="hs-banner-bg"></div>
     <div class="hs-banner-content">
-      <h2 class="hs-banner-quote">The whimsical feel of Villa Esther begins with the Neo-Modern gateway in the style of Le Corbusier's Villa Savoye.</h2>
+      <h2 class="hs-banner-quote">Integrated architecture, engineering and project consultancy for practical, coordinated and buildable developments. </h2>
     </div>
   </section>
 
@@ -150,8 +140,8 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <section class="hs-founders">
     <div class="hs-founders-inner">
       <div class="hs-founders-text reveal-left">
-        <h2 class="hs-founders-heading">Meet our Architects:<br>Jacob and Maria</h2>
-        <p>Our founding partners bring together decades of experience and a shared vision for architecture that is both beautiful and functional.</p>
+        <h2 class="hs-founders-heading">Meet our Architects:<br>Meet our Team Behind CiviLanka</h2>
+        <p>Our multidisciplinary team brings together architecture, structural engineering, civil works, MEP coordination, BIM documentation, cost planning, construction and project coordination expertise to support residential, commercial, industrial and infrastructure developments from concept to completion.  </p>
         <a href="#footer" class="hs-read-more" style="margin-top:2rem;display:inline-block;">Work with us</a>
       </div>
       <div class="hs-founders-photos">
@@ -167,25 +157,96 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
       <div class="hs-team-card">
         <div class="hs-tc-photo"><img src="<?= $BASE ?>/team%20images/32.png" alt="Robert Jhonson" /></div>
         <div class="hs-tc-info">
-          <h3 class="hs-tc-name">Robert Jhonson</h3><p class="hs-tc-role">CEO / ARCHITECT</p>
+          <h3 class="hs-tc-name">Teshan</h3><p class="hs-tc-role">Structural Engineer</p>
         </div>
       </div>
       <div class="hs-team-card">
         <div class="hs-tc-photo"><img src="<?= $BASE ?>/team%20images/33.png" alt="Aida Belul" /></div>
         <div class="hs-tc-info">
-          <h3 class="hs-tc-name">Aida Belul</h3><p class="hs-tc-role">MAIN CONTRACTOR</p>
+          <h3 class="hs-tc-name">Dhiyan</h3><p class="hs-tc-role">Senior Structural Engineer</p>
         </div>
       </div>
       <div class="hs-team-card">
         <div class="hs-tc-photo"><img src="<?= $BASE ?>/team%20images/29.png" alt="Rebecca Wales" /></div>
         <div class="hs-tc-info">
-          <h3 class="hs-tc-name">Rebecca Wales</h3><p class="hs-tc-role">ARCHITECT</p>
+          <h3 class="hs-tc-name">Harsha</h3><p class="hs-tc-role">Draughtsman & 3D Visualizer</p>
         </div>
       </div>
       <div class="hs-team-card">
         <div class="hs-tc-photo"><img src="<?= $BASE ?>/team%20images/30.png" alt="Jasmin Dorothy" /></div>
         <div class="hs-tc-info">
-          <h3 class="hs-tc-name">Jasmin Dorothy</h3><p class="hs-tc-role">PRODUCT DESIGNER</p>
+          <h3 class="hs-tc-name">Janith</h3><p class="hs-tc-role">Facility Engineer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="section-pad">
+    <div class="container">
+      <div class="testimonials-inner reveal">
+        <span class="section-label">Client Words</span>
+        <div class="swiper test-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <p class="testimonial-text">They did an amazing job on my civil and structural design project! His creativity and attention to detail truly impressed me. He was friendly, communicative, and delivered everything ahead of schedule. I can't wait to work with him again!</p>
+              <p class="testimonial-author">ANTONE AUSTIN</p>
+              <p class="testimonial-role">GDI</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">Produced very good, high quality Structural Engineering documentation &amp; drawings. I've got more upcoming work and will be engaging Civilanka Team for this.</p>
+              <p class="testimonial-author">GREG NICHOLS</p>
+              <p class="testimonial-role">Apex BTI</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">Civilanka is really great professional, not focused only on his field of engineering, but he also knows very well consequences and circumstances of his job to the rest of project. Definitely I want work with him again.</p>
+              <p class="testimonial-author">PETR SYKORA</p>
+              <p class="testimonial-role">Mazanec Fenix</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">Hi. One of the best Engineering Team i have ever worked with. Their skills in his field is really awesome. I'll definitely work with again on any civil project.</p>
+              <p class="testimonial-author">ANDREW</p>
+              <p class="testimonial-role">Epic</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">Thank you for the outstanding structural design project. The rigorous load assessments, validated stress modeling, and meticulous technical documentation have resulted in a structurally robust and constructible final product. Highly recommended</p>
+              <p class="testimonial-author">MATT BEHMER</p>
+              <p class="testimonial-role">Behmer Group</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">Civilanka Team is very responsible, professional, and easy to work with. I am already planning on using him for my next project!</p>
+              <p class="testimonial-author">BRIAN SCHOELKOPF</p>
+              <p class="testimonial-role">BCS Sports LLC</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">It is nice to work with Civilanka. They are accommodating and responsive.</p>
+              <p class="testimonial-author">KENNY C</p>
+              <p class="testimonial-role">Swan Li</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">A very professional and high standard work done in analysis seismic and harmonic force analysis of a RCC bridge in Autodesk Robot software. Highly recommended. Also helped with stamping the drawings and documents.</p>
+              <p class="testimonial-author">WEBB WEHBE</p>
+              <p class="testimonial-role">Metro Trucks</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">Civilanka was great. Great work, great communication, on schedule. Worked great with my architecture team</p>
+              <p class="testimonial-author">RAY B</p>
+              <p class="testimonial-role">Westport Structures</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">They consistently delivers top-quality work, demonstrating exceptional responsiveness and a keen attention to detail when reviewing my reports. Their unparalleled efficiency and accuracy makes them an invaluable asset.</p>
+              <p class="testimonial-author">SOREN GEMS</p>
+              <p class="testimonial-role">Gems &amp; Partners</p>
+            </div>
+            <div class="swiper-slide">
+              <p class="testimonial-text">Amazing, they were the only contractor to call and seek clarification on the work scope, they has worked methodically thought the entire project providing all aspects on plans required, and is happy to make alterations very quickly, we highly recommend him for future projects</p>
+              <p class="testimonial-author">SHAUN SURSOK</p>
+              <p class="testimonial-role">Surewest Group</p>
+            </div>
+          </div>
+          <div class="test-nav-wrapper">
+            <div class="swiper-pagination test-pagination"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -194,7 +255,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <!-- CTA -->
   <section class="hs-cta">
     <div class="hs-cta-inner reveal">
-      <p class="hs-cta-text">Lorem ipsum dolor sit amet, cons tetur adip scing elit. Praesent accumsan libero ac ullamcorper ultrices.</p>
-      <a href="#footer" class="hs-cta-btn">contact us</a>
+      <p class="hs-cta-text">Have a project that needs design, engineering, BIM, costing or construction support? Send us your brief, drawings or project scope and our team will guide the next step. </p>
+      <a href="<?= $BASE ?>/contact" class="hs-cta-btn">Contact us</a>
     </div>
   </section>

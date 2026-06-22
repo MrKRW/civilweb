@@ -284,7 +284,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
       <div class="cta-inner reveal">
         <h2>Let's Build Something<br />Remarkable Together.</h2>
         <p>Whether a private home or a city block — bring us your vision. We'll shape it into something that lasts.</p>
-        <a href="#footer" class="btn btn-dark btn-arrow"><span>Contact us now</span></a>
+        <a href="<?= $BASE ?>/contact" class="btn btn-dark btn-arrow"><span>Contact us now</span></a>
       </div>
     </div>
   </section>
