@@ -323,7 +323,7 @@ $pid         = (int)($item['id'] ?? 0);
         <!-- Customization Box -->
         <div class="plan-customize-box">
           <p class="pcb-title">This plan can be customized</p>
-          <p class="pcb-desc">Tell us about your desired changes so we can prepare an estimate for the design service. Click the button to submit your request for pricing, or call <strong>1-877-803-2251</strong> for assistance.</p>
+          <p class="pcb-desc">Tell us the changes you need and share your project requirements. Our team can review the scope and prepare a suitable design, engineering or documentation proposal. For faster assistance, call <strong>0812 387 235</strong> or WhatsApp <strong>0765 797 472</strong>.</p>
           <button type="button" class="pcb-btn" id="modify-plan-btn">MODIFY THIS PLAN</button>
         </div>
 
@@ -604,12 +604,12 @@ $pid         = (int)($item['id'] ?? 0);
 
     <!-- Footer info -->
     <div class="plh-footer">
-      <p><strong>We do our best to get back to you within 24 – 48 business hours.</strong></p>
-      <p>Need an answer faster? Call now…<br>
-        Phone: <a href="tel:18778032251">1-877-803-2251</a></p>
+      <p><strong>We aim to respond within 24–48 business hours.</strong></p>
+      <p>Need faster assistance? Contact us directly.<br>
+        Phone: <a href="tel:0812387235">0812 387 235</a><br>
+        WhatsApp: <a href="https://wa.me/94765797472" target="_blank">0765 797 472</a></p>
       <p><strong>Hours:</strong><br>
-        Ready for Your Call 7 Days a Week<br>
-        Every Day 7 am – 8:30 pm Eastern</p>
+        Monday – Saturday 9:00 AM – 6:00 PM</p>
     </div>
 
   </div>
