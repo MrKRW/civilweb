@@ -14,8 +14,6 @@ $adminUser = $adminUser ?? 'admin';
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="<?= $BASE ?>/assets/css/admin.css?v=1.1" />
   
-  <!-- Quill Rich Text Editor -->
-  <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
   
   <script>
     // Make BASE available to admin.js
@@ -722,9 +720,8 @@ $adminUser = $adminUser ?? 'admin';
 
             <!-- Content -->
             <div class="form-group full-width">
-              <label for="blog-content">Content</label>
-              <div id="quill-editor" style="height: 350px; background: #fff; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;"></div>
-              <input type="hidden" id="blog-content" name="content" />
+              <label for="blog-content-editor">Content</label>
+              <textarea id="blog-content-editor" name="content"></textarea>
             </div>
 
             <!-- Cover Image -->
@@ -789,10 +786,9 @@ $adminUser = $adminUser ?? 'admin';
   <!-- Toast container -->
   <div id="toast-container"></div>
 
-  <!-- Quill JS -->
-  <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+  <!-- Quill JS removed — blog editor now uses TinyMCE -->
   <!-- TinyMCE -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js"></script>
-  <script src="<?= $BASE ?>/assets/js/admin.js?v=2"></script>
+  <script src="<?= $BASE ?>/assets/js/admin.js?v=3"></script>
 </body>
 </html>

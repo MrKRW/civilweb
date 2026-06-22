@@ -127,6 +127,41 @@ class BlogController extends Controller
                     $ok ? $this->json(['success' => true]) : $this->json(['error' => 'Post not found'], 404);
                     break;
 
+                // ── UPLOAD inline image (for TinyMCE body) ────────────
+                case 'upload_image':
+                    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                        ob_clean();
+                        $this->json(['error' => 'POST required'], 405);
+                    }
+                    if (empty($_FILES['file']['name']) || ($_FILES['file']['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
+                        ob_clean();
+                        $this->json(['error' => 'No file uploaded'], 400);
+                    }
+                    $file    = $_FILES['file'];
+                    $allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+                    if (!in_array($file['type'] ?? '', $allowed)) {
+                        ob_clean();
+                        $this->json(['error' => 'Invalid file type'], 400);
+                    }
+                    if (($file['size'] ?? 0) > 10 * 1024 * 1024) {
+                        ob_clean();
+                        $this->json(['error' => 'File too large (max 10 MB)'], 400);
+                    }
+                    $contentDir = ROOT_DIR . '/uploads/blog/content/';
+                    if (!is_dir($contentDir)) mkdir($contentDir, 0755, true);
+                    $ext      = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+                    $filename = uniqid('blogimg_', true) . '.' . $ext;
+                    if (!move_uploaded_file($file['tmp_name'], $contentDir . $filename)) {
+                        ob_clean();
+                        $this->json(['error' => 'Upload failed'], 500);
+                    }
+                    $baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http')
+                             . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost')
+                             . (defined('BASE_PATH') ? BASE_PATH : '/civilweb');
+                    ob_clean();
+                    $this->json(['location' => $baseUrl . '/uploads/blog/content/' . $filename]);
+                    break;
+
                 default:
                     ob_clean();
                     $this->json(['error' => 'Unknown action'], 400);

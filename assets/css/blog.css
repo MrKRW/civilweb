@@ -728,6 +728,194 @@
   margin-bottom: 1.8em;
 }
 
+/* ── Images within post body ─────────────────────────────── */
+.post-html img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 2px;
+  display: block;
+}
+
+/* Class-based alignment (set via TinyMCE image class list) */
+.post-html img.img-align-left,
+.post-html img[style*="float: left"],
+.post-html img[style*="float:left"] {
+  float: left;
+  margin: 4px 28px 16px 0;
+  max-width: 55%;
+}
+
+.post-html img.img-align-right,
+.post-html img[style*="float: right"],
+.post-html img[style*="float:right"] {
+  float: right;
+  margin: 4px 0 16px 28px;
+  max-width: 55%;
+}
+
+.post-html img.img-align-center {
+  float: none;
+  display: block;
+  margin: 0 auto 28px;
+}
+
+.post-html img.img-full-width {
+  float: none;
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  margin: 0 0 28px;
+}
+
+/* TinyMCE figure / figcaption support */
+.post-html figure {
+  margin: 0 0 28px;
+}
+.post-html figure.align-left {
+  float: left;
+  margin: 4px 28px 16px 0;
+  max-width: 55%;
+}
+.post-html figure.align-right {
+  float: right;
+  margin: 4px 0 16px 28px;
+  max-width: 55%;
+}
+.post-html figure.align-center {
+  display: table;
+  margin: 0 auto 28px;
+}
+.post-html figcaption {
+  font-size: 0.8rem;
+  color: var(--gray-mid);
+  text-align: center;
+  margin-top: 8px;
+  font-family: var(--font-h);
+  letter-spacing: 0.05em;
+}
+
+/* Clearfix so text/content after a floated image reflows properly */
+.post-html::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+/* ── Headings ──────────────────────────────────────────── */
+.post-html h2, .post-html h3, .post-html h4 {
+  font-family: var(--font-h);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--black);
+  margin: 2em 0 0.7em;
+  clear: both;
+}
+.post-html h2 { font-size: 1.75rem; }
+.post-html h3 { font-size: 1.35rem; }
+.post-html h4 { font-size: 1.1rem;  }
+
+/* ── Lists ────────────────────────────────────────────── */
+.post-html ul, .post-html ol {
+  padding-left: 1.6em;
+  margin-bottom: 1.8em;
+  line-height: 1.8;
+}
+.post-html li { margin-bottom: 0.4em; }
+
+/* ── Blockquote ────────────────────────────────────────── */
+.post-html blockquote {
+  border-left: 3px solid var(--accent, #c9a96e);
+  padding: 12px 24px;
+  margin: 0 0 1.8em;
+  font-style: italic;
+  color: var(--gray-mid);
+  background: var(--cream, #faf9f6);
+}
+
+/* ── Tables ───────────────────────────────────────────── */
+.post-html table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.8em;
+  font-size: 0.93rem;
+}
+.post-html th, .post-html td {
+  border: 1px solid var(--gray-light, #e5e5e5);
+  padding: 10px 14px;
+  text-align: left;
+}
+.post-html th {
+  background: var(--cream, #faf9f6);
+  font-weight: 600;
+  font-family: var(--font-h);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── Links ────────────────────────────────────────────── */
+.post-html a {
+  color: var(--accent, #c9a96e);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.post-html a:hover { opacity: 0.75; }
+
+/* ── Responsive: tablet (≤ 768px) ────────────────────── */
+@media (max-width: 768px) {
+  .post-html img.img-align-left,
+  .post-html img[style*="float: left"],
+  .post-html img[style*="float:left"],
+  .post-html img.img-align-right,
+  .post-html img[style*="float: right"],
+  .post-html img[style*="float:right"] {
+    max-width: 45%;
+  }
+  .post-html figure.align-left,
+  .post-html figure.align-right {
+    max-width: 45%;
+  }
+}
+
+/* ── Responsive: mobile (≤ 540px) — cancel all floats ── */
+@media (max-width: 540px) {
+  .post-html img,
+  .post-html img.img-align-left,
+  .post-html img.img-align-right,
+  .post-html img.img-align-center,
+  .post-html img.img-full-width,
+  .post-html img[style*="float"],
+  .post-html img[style*="width"] {
+    float: none !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 20px !important;
+  }
+  .post-html figure,
+  .post-html figure.align-left,
+  .post-html figure.align-right,
+  .post-html figure.align-center {
+    float: none !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 20px !important;
+  }
+  .post-html figure img {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .post-html table {
+    font-size: 0.82rem;
+  }
+  .post-html th, .post-html td {
+    padding: 8px 10px;
+  }
+}
+
+/* ── Post layout responsive ─────────────────────────── */
 @media (max-width: 1024px) {
   .post-content-wrap {
     grid-template-columns: 1fr;

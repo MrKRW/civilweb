@@ -786,12 +786,9 @@ function buildBlogTable(posts) {
 document.getElementById('blog-form')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   
-  // Sync Quill HTML to hidden input
-  const hiddenContent = document.getElementById('blog-content');
-  if (window.quillEditor) {
-    // Check if it's just empty tags
-    const html = window.quillEditor.root.innerHTML;
-    hiddenContent.value = (html === '<p><br></p>') ? '' : html;
+  // Sync TinyMCE blog editor HTML to the textarea
+  if (typeof tinymce !== 'undefined' && tinymce.get('blog-content-editor')) {
+    tinymce.get('blog-content-editor').save();
   }
 
   const editId = document.getElementById('blog-edit-id').value;
@@ -837,9 +834,9 @@ async function editBlogPost(id) {
     document.getElementById('blog-excerpt').value   = p.excerpt || '';
     
     const content = p.content || '';
-    document.getElementById('blog-content').value = content;
-    if (window.quillEditor) {
-      window.quillEditor.clipboard.dangerouslyPasteHTML(content);
+    document.getElementById('blog-content-editor').value = content;
+    if (typeof tinymce !== 'undefined' && tinymce.get('blog-content-editor')) {
+      tinymce.get('blog-content-editor').setContent(content);
     }
 
     // Show existing cover image
@@ -884,8 +881,8 @@ function resetBlogForm() {
   document.getElementById('blog-form-submit-btn').querySelector('span').textContent = 'Save Post';
   document.getElementById('blog-upload-preview').style.display = 'none';
   document.getElementById('blog-upload-placeholder').style.display = '';
-  if (window.quillEditor) {
-    window.quillEditor.setContents([]);
+  if (typeof tinymce !== 'undefined' && tinymce.get('blog-content-editor')) {
+    tinymce.get('blog-content-editor').setContent('');
   }
 }
 
@@ -921,28 +918,90 @@ document.getElementById('filter-blog-status')?.addEventListener('change', loadBl
 /* ── INIT ───────────────────────────────── */
 loadDashboard();
 
-// ── QUILL INITIALIZATION ───────────────────────
+// ── TINYMCE INITIALIZATION ─────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  // Blog Quill
-  const editorEl = document.getElementById('quill-editor');
-  if (editorEl && typeof Quill !== 'undefined') {
-    window.quillEditor = new Quill(editorEl, {
-      theme: 'snow',
-      placeholder: 'Full post content…',
-      modules: {
-        toolbar: [
-          [{ 'header': [2, 3, 4, false] }],
-          ['bold', 'italic', 'underline', 'strike'],
-          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-          ['link', 'image', 'video'],
-          ['clean']
-        ]
-      }
+
+  // ── Shared TinyMCE image uploader helper ─────
+  function blogImageUploader(blobInfo, progress) {
+    return new Promise((resolve, reject) => {
+      const fd = new FormData();
+      fd.append('file', blobInfo.blob(), blobInfo.filename());
+      fetch(BLOG_API + '?action=upload_image', { method: 'POST', body: fd })
+        .then(r => r.json())
+        .then(data => {
+          if (data.location) resolve(data.location);
+          else reject({ message: data.error || 'Upload failed', remove: true });
+        })
+        .catch(() => reject({ message: 'Network error', remove: true }));
     });
   }
 
-  // TinyMCE Initialization
+  // ── Blog Content Editor ───────────────────────
   if (typeof tinymce !== 'undefined') {
+    const commonConfig = {
+      images_upload_handler: blogImageUploader,
+      automatic_uploads: true,
+      file_picker_types: 'image',
+      file_picker_callback: function(cb, value, meta) {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+        input.addEventListener('change', function () {
+          const file = this.files[0];
+          const fd = new FormData();
+          fd.append('file', file, file.name);
+          fetch(BLOG_API + '?action=upload_image', { method: 'POST', body: fd })
+            .then(r => r.json())
+            .then(data => {
+              if (data.location) cb(data.location, { title: file.name });
+            });
+        });
+        input.click();
+      }
+    };
+
+    // Blog editor — full featured with image resize
+    tinymce.init({
+      selector: '#blog-content-editor',
+      plugins: 'image link lists table media code',
+      toolbar:
+        'undo redo | blocks | bold italic underline strikethrough | ' +
+        'alignleft aligncenter alignright alignjustify | ' +
+        'bullist numlist | link image media table | code | removeformat',
+      menubar: false,
+      height: 480,
+      resize: true,
+      image_advtab: true,
+      image_caption: true,
+      object_resizing: true,
+      image_dimensions: true,
+      image_class_list: [
+        { title: 'None',         value: '' },
+        { title: 'Left float',   value: 'img-align-left' },
+        { title: 'Center',       value: 'img-align-center' },
+        { title: 'Right float',  value: 'img-align-right' },
+        { title: 'Full width',   value: 'img-full-width' }
+      ],
+      // Allow all img attributes including style, width, height, class
+      extended_valid_elements: 'img[src|alt|title|width|height|style|class|loading]',
+      content_style: `
+        body { font-family: Georgia, serif; font-size: 16px; line-height: 1.8;
+               color: #333; max-width: 820px; margin: 24px auto; padding: 0 20px; }
+        img { max-width: 100%; height: auto; border-radius: 2px; }
+        img.img-align-left  { float: left;  margin: 0 24px 16px 0; }
+        img.img-align-right { float: right; margin: 0 0 16px 24px; }
+        img.img-align-center{ display: block; margin: 0 auto 24px; }
+        img.img-full-width  { display: block; width: 100%; }
+        p { margin-bottom: 1.6em; }
+        h2,h3,h4 { margin: 1.6em 0 0.6em; line-height: 1.3; }
+      `,
+      setup: function(editor) {
+        editor.on('change input', function() { editor.save(); });
+      },
+      ...commonConfig
+    });
+
+    // Shop editors (existing)
     tinymce.init({
       selector: '#shop-desc, #shop-additional-info',
       plugins: 'table lists link',
