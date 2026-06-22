@@ -25,12 +25,15 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
     <div class="pj-filters-inner pj-type-filters">
       <button class="pj-type-btn active" data-type="all">show all</button>
       <button class="pj-type-btn" data-type="ARCHITECTURE">Architecture</button>
+      <button class="pj-type-btn" data-type="ENGINEERING">Engineering</button>
+      <button class="pj-type-btn" data-type="BIM & DOCUMENTATION">BIM & Documentation</button>
       <button class="pj-type-btn" data-type="INTERIOR">Interior</button>
-      <button class="pj-type-btn" data-type="WELLNESS">Wellness</button>
-      <button class="pj-type-btn" data-type="COMMERCIAL">Commercial</button>
       <button class="pj-type-btn" data-type="RESIDENTIAL">Residential</button>
+      <button class="pj-type-btn" data-type="COMMERCIAL">Commercial</button>
+      <button class="pj-type-btn" data-type="INDUSTRIAL">Industrial</button>
       <button class="pj-type-btn" data-type="LANDSCAPE">Landscape</button>
-      <button class="pj-type-btn" data-type="URBAN PLANNING">Urban Planning</button>
+      <button class="pj-type-btn" data-type="INFRASTRUCTURE">Infrastructure</button>
+      <button class="pj-type-btn" data-type="TURNKEY CONSTRUCTION">Turnkey Construction</button>
     </div>
   </section>
 

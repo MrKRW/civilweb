@@ -227,12 +227,15 @@ $adminUser = $adminUser ?? 'admin';
               <select id="proj-service" name="service_type">
                 <option value="">Select type</option>
                 <option value="ARCHITECTURE">Architecture</option>
+                <option value="ENGINEERING">Engineering</option>
+                <option value="BIM & DOCUMENTATION">BIM & Documentation</option>
                 <option value="INTERIOR">Interior</option>
-                <option value="WELLNESS">Wellness</option>
-                <option value="COMMERCIAL">Commercial</option>
                 <option value="RESIDENTIAL">Residential</option>
+                <option value="COMMERCIAL">Commercial</option>
+                <option value="INDUSTRIAL">Industrial</option>
                 <option value="LANDSCAPE">Landscape</option>
-                <option value="URBAN PLANNING">Urban Planning</option>
+                <option value="INFRASTRUCTURE">Infrastructure</option>
+                <option value="TURNKEY CONSTRUCTION">Turnkey Construction</option>
               </select>
             </div>
 
