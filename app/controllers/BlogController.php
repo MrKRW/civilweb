@@ -127,6 +127,23 @@ class BlogController extends Controller
                     $ok ? $this->json(['success' => true]) : $this->json(['error' => 'Post not found'], 404);
                     break;
 
+                // ── CLEANUP orphaned content images ───────────────────
+                case 'cleanup_images':
+                    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                        ob_clean();
+                        $this->json(['error' => 'POST required'], 405);
+                    }
+                    $deleted = $this->model->cleanupContentImages();
+                    ob_clean();
+                    $this->json([
+                        'success' => true,
+                        'deleted' => $deleted,
+                        'message' => $deleted === 0
+                            ? 'No orphaned images found.'
+                            : $deleted . ' orphaned image' . ($deleted === 1 ? '' : 's') . ' deleted.'
+                    ]);
+                    break;
+
                 // ── UPLOAD inline image (for TinyMCE body) ────────────
                 case 'upload_image':
                     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

@@ -173,4 +173,50 @@ class BlogModel extends Model
         $path = $this->uploadDir . $filename;
         if (file_exists($path)) @unlink($path);
     }
+
+    // ── Orphan cleanup ─────────────────────────────────────
+
+    /**
+     * Scan /uploads/blog/content/ and delete any image file whose filename
+     * does not appear in any rich-text content field across all tables.
+     * Returns the number of files deleted.
+     */
+    public function cleanupContentImages(): int
+    {
+        $contentDir = ROOT_DIR . '/uploads/blog/content/';
+        if (!is_dir($contentDir)) return 0;
+
+        $files = array_filter(
+            glob($contentDir . '*') ?: [],
+            fn($f) => is_file($f)
+        );
+        if (empty($files)) return 0;
+
+        // Collect all rich-text content from every table
+        $allContent = '';
+        $queries = [
+            'SELECT content                      FROM blog_posts',
+            'SELECT description                  FROM projects',
+            'SELECT description, additional_info FROM shop_items',
+        ];
+        foreach ($queries as $sql) {
+            try {
+                $rows = $this->db()->query($sql)->fetchAll(\PDO::FETCH_NUM);
+                foreach ($rows as $row) {
+                    $allContent .= implode(' ', array_map('strval', $row));
+                }
+            } catch (\Throwable $e) {
+                // Table may not exist — skip silently
+            }
+        }
+
+        $deleted = 0;
+        foreach ($files as $filePath) {
+            if (strpos($allContent, basename($filePath)) === false) {
+                @unlink($filePath);
+                $deleted++;
+            }
+        }
+        return $deleted;
+    }
 }

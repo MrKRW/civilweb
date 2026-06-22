@@ -456,7 +456,7 @@ $adminUser = $adminUser ?? 'admin';
 
             <div class="form-group full-width">
               <label for="shop-desc">Description <small style="font-weight:400;color:var(--text-muted)">(short summary shown on product card and Description tab)</small></label>
-              <textarea id="shop-desc" name="description" rows="8" placeholder="Describe the item... You can add tables here."></textarea>
+              <textarea id="shop-desc" name="description" rows="8" placeholder="Describe the item..."></textarea>
             </div>
 
             <!-- Additional Information (rich text + images) -->
@@ -789,6 +789,6 @@ $adminUser = $adminUser ?? 'admin';
   <!-- Quill JS removed — blog editor now uses TinyMCE -->
   <!-- TinyMCE -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js"></script>
-  <script src="<?= $BASE ?>/assets/js/admin.js?v=3"></script>
+  <script src="<?= $BASE ?>/assets/js/admin.js?v=10"></script>
 </body>
 </html>

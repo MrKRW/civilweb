@@ -527,8 +527,16 @@
   font-family: var(--font-b);
 }
 
-.pj-detail-desc p {
-  font-size: 1.1rem;
+/* Rich HTML content from TinyMCE editor */
+.pj-detail-desc .post-html {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--gray-dark);
+  font-weight: 300;
+}
+
+.pj-detail-desc .post-html p {
+  font-size: 1.05rem;
   line-height: 1.85;
   color: var(--gray-dark);
   font-weight: 300;

@@ -45,7 +45,7 @@ $gallery = is_array($project['image_gallery']) ? $project['image_gallery'] : [];
 
       <?php if (!empty($project['description'])): ?>
       <div class="pj-detail-desc">
-        <p><?= nl2br(htmlspecialchars($project['description'])) ?></p>
+        <div class="post-html"><?= $project['description'] ?></div>
       </div>
       <?php endif; ?>
 

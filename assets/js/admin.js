@@ -182,6 +182,11 @@ document.getElementById('project-form')?.addEventListener('submit', async (e) =>
   btn.querySelector('span').textContent = 'Saving…';
   btn.disabled = true;
 
+  // Sync TinyMCE description to textarea
+  if (typeof tinymce !== 'undefined' && tinymce.get('proj-desc')) {
+    tinymce.get('proj-desc').save();
+  }
+
   const fd = new FormData(e.target);
 
   // Handle featured checkbox
@@ -229,7 +234,11 @@ async function editProject(id) {
     document.getElementById('proj-status').value = p.status;
     document.getElementById('proj-featured').checked = p.featured == 1;
     document.getElementById('proj-sort').value = p.sort_order || 0;
-    document.getElementById('proj-desc').value = p.description || '';
+    const projDesc = p.description || '';
+    document.getElementById('proj-desc').value = projDesc;
+    if (typeof tinymce !== 'undefined' && tinymce.get('proj-desc')) {
+      tinymce.get('proj-desc').setContent(projDesc);
+    }
 
     // Show existing main image
     if (p.image_main) {
@@ -305,6 +314,9 @@ function resetForm() {
   document.getElementById('form-submit-btn').querySelector('span').textContent = 'Save Project';
   document.getElementById('main-upload-preview').style.display = 'none';
   document.getElementById('main-upload-placeholder').style.display = '';
+  if (typeof tinymce !== 'undefined' && tinymce.get('proj-desc')) {
+    tinymce.get('proj-desc').setContent('');
+  }
   
   for (let i = 1; i <= 4; i++) {
     document.getElementById('gallery-preview-' + i).style.display = 'none';
@@ -939,6 +951,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Blog Content Editor ───────────────────────
   if (typeof tinymce !== 'undefined') {
     const commonConfig = {
+      convert_urls: false,
       images_upload_handler: blogImageUploader,
       automatic_uploads: true,
       file_picker_types: 'image',
@@ -967,7 +980,7 @@ document.addEventListener('DOMContentLoaded', () => {
       toolbar:
         'undo redo | blocks | bold italic underline strikethrough | ' +
         'alignleft aligncenter alignright alignjustify | ' +
-        'bullist numlist | link image media table | code | removeformat',
+        'bullist numlist | blockquote | link image media table | code | removeformat',
       menubar: false,
       height: 480,
       resize: true,
@@ -984,16 +997,24 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       // Allow all img attributes including style, width, height, class
       extended_valid_elements: 'img[src|alt|title|width|height|style|class|loading]',
+      content_css: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Jost:wght@300;400;500;600;700&display=swap',
       content_style: `
-        body { font-family: Georgia, serif; font-size: 16px; line-height: 1.8;
-               color: #333; max-width: 820px; margin: 24px auto; padding: 0 20px; }
+        body { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400;
+               line-height: 1.8; color: #3A3A3A;
+               max-width: 820px; margin: 24px auto; padding: 0 20px; }
+        p { margin-bottom: 1.6em; font-weight: 300; }
+        h1, h2, h3, h4, h5 { font-family: 'Jost', sans-serif; font-weight: 300;
+               letter-spacing: -0.02em; line-height: 1.2; color: #0D0D0D; margin: 1.8em 0 0.6em; }
+        h2 { font-size: 1.75rem; }
+        h3 { font-size: 1.35rem; }
+        h4 { font-size: 1.1rem; }
         img { max-width: 100%; height: auto; border-radius: 2px; }
         img.img-align-left  { float: left;  margin: 0 24px 16px 0; }
         img.img-align-right { float: right; margin: 0 0 16px 24px; }
         img.img-align-center{ display: block; margin: 0 auto 24px; }
         img.img-full-width  { display: block; width: 100%; }
-        p { margin-bottom: 1.6em; }
-        h2,h3,h4 { margin: 1.6em 0 0.6em; line-height: 1.3; }
+        blockquote { border-left: 3px solid #111; padding: 12px 24px; margin: 0 0 1.8em;
+               font-style: italic; color: #9A9A9A; background: #F5F3EF; }
       `,
       setup: function(editor) {
         editor.on('change input', function() { editor.save(); });
@@ -1001,18 +1022,48 @@ document.addEventListener('DOMContentLoaded', () => {
       ...commonConfig
     });
 
-    // Shop editors (existing)
+    // Shared rich content editor — identical to blog editor, with image upload
     tinymce.init({
-      selector: '#shop-desc, #shop-additional-info',
-      plugins: 'table lists link',
-      toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | table | link',
+      selector: '#proj-desc, #shop-desc, #shop-additional-info',
+      plugins: 'image link lists table media code',
+      toolbar:
+        'undo redo | blocks | bold italic underline strikethrough | ' +
+        'alignleft aligncenter alignright alignjustify | ' +
+        'bullist numlist | blockquote | link image media table | code | removeformat',
       menubar: false,
-      height: 300,
-      setup: function (editor) {
-        editor.on('change', function () {
-          editor.save();
-        });
-      }
+      height: 380,
+      resize: true,
+      image_advtab: true,
+      image_caption: true,
+      object_resizing: true,
+      image_dimensions: true,
+      image_class_list: [
+        { title: 'None',         value: '' },
+        { title: 'Left float',   value: 'img-align-left' },
+        { title: 'Center',       value: 'img-align-center' },
+        { title: 'Right float',  value: 'img-align-right' },
+        { title: 'Full width',   value: 'img-full-width' }
+      ],
+      extended_valid_elements: 'img[src|alt|title|width|height|style|class|loading]',
+      content_css: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Jost:wght@300;400;500;600;700&display=swap',
+      content_style: `
+        body { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 400;
+               line-height: 1.8; color: #3A3A3A; margin: 16px; padding: 0; }
+        p { margin-bottom: 1.4em; font-weight: 300; }
+        h2, h3, h4 { font-family: 'Jost', sans-serif; font-weight: 300;
+               letter-spacing: -0.02em; line-height: 1.2; color: #0D0D0D; margin: 1.6em 0 0.5em; }
+        img { max-width: 100%; height: auto; border-radius: 2px; }
+        img.img-align-left  { float: left;  margin: 0 24px 16px 0; }
+        img.img-align-right { float: right; margin: 0 0 16px 24px; }
+        img.img-align-center{ display: block; margin: 0 auto 24px; }
+        img.img-full-width  { display: block; width: 100%; }
+        blockquote { border-left: 3px solid #111; padding: 10px 20px; margin: 0 0 1.4em;
+               font-style: italic; color: #9A9A9A; background: #F5F3EF; }
+      `,
+      setup: function(editor) {
+        editor.on('change input', function() { editor.save(); });
+      },
+      ...commonConfig
     });
   }
 });

@@ -212,6 +212,14 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
   transition: all 0.2s;
 }
 .btn-ghost:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+.btn-ghost-sm {
+  background: transparent; border: 1px solid var(--border);
+  color: var(--text-muted); padding: 7px 14px;
+  border-radius: var(--radius-sm); font-size: 0.76rem;
+  transition: all 0.2s; white-space: nowrap;
+}
+.btn-ghost-sm:hover { border-color: var(--danger); color: var(--danger); background: rgba(239,68,68,0.06); }
+.btn-ghost-sm:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* ── FORMS ──────────────────────────────── */
 .form-grid {
