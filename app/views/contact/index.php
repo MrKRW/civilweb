@@ -21,7 +21,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
 
       <!-- LEFT: Form -->
       <div class="ct-left">
-        <p class="ct-intro-text">Morbi tristique senectus et netus. Arcu odio ut sem nulla pharetra. Sapien eget mi proin sed libero enim sed faucibus turpis. Sit amet cursus sit amet.</p>
+        <p class="ct-intro-text">Have a project, drawing set or site requirement you need help with?  Send us your inquiry and our team will review your requirements for design, engineering, BIM, costing, consultancy or construction support.</p>
 
         <form id="contact-form" class="ct-form" novalidate>
           <div class="ct-form-row">
@@ -54,16 +54,18 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
           <div class="ct-info-panel">
             <span class="ct-info-label">DIRECT CONTACT</span>
             <address class="ct-info-address">
-              <p>374, Peradeniya Road, Kandy</p>
-              <p><a href="tel:+94812345678">+94 81 234 5678</a></p>
-              <p><a href="mailto:hello@civilweb.com">hello@civilweb.com</a></p>
+              <p>374, Peradeniya Road,</p>
+              <p>Kandy 2000, Sri Lanka.</p>
+              <p><a href="tel:+94812387235">Phone: 0812 387 235 </a></p>
+               <p>WhatsApp: 0765 797 472 </p>
+              <p><a href="mailto:contact@civilanka.com">contact@civilanka.com</a></p>
             </address>
           </div>
           <div class="ct-info-panel">
             <span class="ct-info-label">ADMINISTRATIVE HOURS</span>
             <div class="ct-info-hours">
-              <p>Monday to Friday, <span class="ct-accent">9AM–5PM</span></p>
-              <p class="ct-accent">Weekend Closed</p>
+              <p>Monday to Friday, <span class="ct-accent">9AM–6PM</span></p>
+              <p class="ct-accent">Sunday: By appointment only </p>
             </div>
           </div>
         </div>
