@@ -11,7 +11,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <section id="our-services" class="services-section">
     <div class="srv-section-header reveal-up">
       <div class="srv-section-badge">Our Services</div>
-      <h2 class="srv-section-title">Comprehensive <em>Solutions</em></h2>
+      <h2 class="srv-section-title">Comprehensive Solutions</h2>
       <p class="srv-section-desc">Delivering world-class design, engineering, and construction services for every stage of your project.</p>
     </div>
 
