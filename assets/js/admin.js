@@ -9,6 +9,8 @@ const SETTINGS_API = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/s
 const UPLOAD_BASE = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/projects/';
 const SHOP_UPLOAD_BASE = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/shop/';
 const BLOG_UPLOAD_BASE = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/blog/';
+const LOGO_UPLOAD_BASE = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/logos/';
+const LOGO_API = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/partner-logos';
 
 /* ── NAVIGATION ─────────────────────────── */
 document.querySelectorAll('.nav-item[data-page]').forEach(item => {
@@ -34,6 +36,7 @@ function navigateTo(page) {
   if (page === 'projects') loadProjects();
   if (page === 'shop') loadShopItems();
   if (page === 'blog-posts') loadBlogPosts();
+  if (page === 'partner-logos') loadPartnerLogos();
   if (page === 'add-project') {
     if (!document.getElementById('edit-id').value) resetForm();
   }
@@ -42,6 +45,9 @@ function navigateTo(page) {
   }
   if (page === 'add-blog-post') {
     if (!document.getElementById('blog-edit-id').value) resetBlogForm();
+  }
+  if (page === 'add-partner-logo') {
+    if (!document.getElementById('logo-edit-id').value) resetLogoForm();
   }
 }
 
@@ -1067,3 +1073,151 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+/* ── PARTNER LOGOS LOGIC ────────────────── */
+
+async function loadPartnerLogos() {
+  const tableEl = document.getElementById('partner-logos-table');
+  if (!tableEl) return;
+  tableEl.innerHTML = '<p class="loading-text">Loading…</p>';
+
+  try {
+    const res = await fetch(LOGO_API + '?action=list');
+    const data = await res.json();
+    const logos = data.logos || [];
+    tableEl.innerHTML = logos.length ? buildLogoTable(logos) : '<p class="empty-state">No partner logos found. <a href="#" onclick="navigateTo(\'add-partner-logo\')" style="color:var(--accent)">Add your first logo →</a></p>';
+  } catch {
+    tableEl.innerHTML = '<p class="empty-state">Failed to load partner logos.</p>';
+  }
+}
+
+function buildLogoTable(logos) {
+  let html = `<div class="table-wrap"><table class="data-table">
+    <thead><tr>
+      <th>Image</th><th>Company Name (Alt)</th><th>Sort Order</th><th>Actions</th>
+    </tr></thead><tbody>`;
+
+  logos.forEach(p => {
+    const thumb = p.image
+      ? `<img src="${LOGO_UPLOAD_BASE}${p.image}" class="project-thumb" style="object-fit:contain;" alt="" />`
+      : `<div class="project-thumb" style="background:var(--bg-hover);"></div>`;
+
+    html += `<tr>
+      <td>${thumb}</td>
+      <td><strong>${escHtml(p.alt_text || '—')}</strong></td>
+      <td>${p.sort_order}</td>
+      <td><div class="action-btns">
+        <button class="action-btn action-btn--edit" onclick="editLogo(${p.id}, '${escHtml(p.alt_text)}', '${p.image}', ${p.sort_order})" title="Edit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </button>
+        <button class="action-btn action-btn--delete" onclick="deleteLogo(${p.id})" title="Delete">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+        </button>
+      </div></td>
+    </tr>`;
+  });
+
+  html += '</tbody></table></div>';
+  return html;
+}
+
+document.getElementById('logo-form')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const editId = document.getElementById('logo-edit-id').value;
+  const isEdit = !!editId;
+  const btn = document.getElementById('logo-form-submit-btn');
+  btn.querySelector('span').textContent = 'Saving…';
+  btn.disabled = true;
+
+  const fd = new FormData(e.target);
+  let url = LOGO_API + '?action=save';
+
+  try {
+    const res = await fetch(url, { method: 'POST', body: fd });
+    const data = await res.json();
+
+    if (data.success) {
+      showToast(isEdit ? 'Logo updated!' : 'Logo added!', 'success');
+      resetLogoForm();
+      navigateTo('partner-logos');
+    } else {
+      showToast(data.error || 'Save failed', 'error');
+    }
+  } catch (err) {
+    console.error('Logo save error:', err);
+    showToast('Network error', 'error');
+  }
+
+  btn.querySelector('span').textContent = 'Save Logo';
+  btn.disabled = false;
+});
+
+function editLogo(id, altText, image, sortOrder) {
+  document.getElementById('logo-edit-id').value = id;
+  document.getElementById('logo-alt-text').value = altText === 'null' ? '' : altText;
+  document.getElementById('logo-sort').value = sortOrder;
+
+  if (image) {
+    document.getElementById('logo-preview-img').src = LOGO_UPLOAD_BASE + image;
+    document.getElementById('logo-upload-preview').style.display = 'inline-block';
+    document.getElementById('logo-upload-placeholder').style.display = 'none';
+  }
+
+  document.getElementById('logo-form-page-title').textContent = 'Edit Partner Logo';
+  document.getElementById('logo-form-submit-btn').querySelector('span').textContent = 'Update Logo';
+  navigateTo('add-partner-logo');
+}
+
+async function deleteLogo(id) {
+  if (!confirm('Delete this logo? This cannot be undone.')) return;
+
+  try {
+    const fd = new FormData();
+    fd.append('id', id);
+    const res = await fetch(LOGO_API + '?action=delete', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.success) {
+      showToast('Logo deleted', 'success');
+      loadPartnerLogos();
+    } else {
+      showToast(data.error || 'Delete failed', 'error');
+    }
+  } catch (err) {
+    console.error('Logo delete error:', err);
+    showToast('Network error', 'error');
+  }
+}
+
+function resetLogoForm() {
+  document.getElementById('logo-form').reset();
+  document.getElementById('logo-edit-id').value = '';
+  document.getElementById('logo-form-page-title').textContent = 'Add New Partner Logo';
+  document.getElementById('logo-form-submit-btn').querySelector('span').textContent = 'Save Logo';
+  document.getElementById('logo-upload-preview').style.display = 'none';
+  document.getElementById('logo-upload-placeholder').style.display = '';
+}
+
+function removeLogoImage() {
+  document.getElementById('logo-upload-preview').style.display = 'none';
+  document.getElementById('logo-upload-placeholder').style.display = '';
+  document.getElementById('logo-image').value = '';
+}
+
+document.getElementById('logo-image')?.addEventListener('change', function() {
+  if (this.files && this.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('logo-preview-img').src = e.target.result;
+      document.getElementById('logo-upload-preview').style.display = 'inline-block';
+      document.getElementById('logo-upload-placeholder').style.display = 'none';
+    };
+    reader.readAsDataURL(this.files[0]);
+  }
+});
+
+const logoZone = document.getElementById('logo-upload-zone');
+if (logoZone) {
+  logoZone.addEventListener('dragover', e => { e.preventDefault(); logoZone.classList.add('drag-over'); });
+  logoZone.addEventListener('dragleave', () => logoZone.classList.remove('drag-over'));
+  logoZone.addEventListener('drop', e => { e.preventDefault(); logoZone.classList.remove('drag-over'); });
+}

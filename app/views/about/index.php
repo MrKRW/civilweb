@@ -136,6 +136,31 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
     </div>
   </section>
 
+  <!-- LOGO STRIP -->
+  <?php if (!empty($partnerLogos)): ?>
+  <section class="hs-logo-strip">
+    <h2 class="hs-partners-heading">OUR PARTNERS</h2>
+    <div class="hs-logo-track">
+      <!-- First set of logos -->
+      <div class="hs-logos">
+        <?php foreach ($partnerLogos as $logo): ?>
+          <div class="hs-logo-item">
+            <img src="<?= $BASE ?>/uploads/logos/<?= htmlspecialchars($logo['image']) ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" />
+          </div>
+        <?php endforeach; ?>
+      </div>
+      <!-- Duplicate set for seamless looping -->
+      <div class="hs-logos">
+        <?php foreach ($partnerLogos as $logo): ?>
+          <div class="hs-logo-item">
+            <img src="<?= $BASE ?>/uploads/logos/<?= htmlspecialchars($logo['image']) ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" />
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </section>
+  <?php endif; ?>
+
   <!-- FOUNDERS -->
   <section class="hs-founders">
     <div class="hs-founders-inner">

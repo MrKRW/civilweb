@@ -1203,3 +1203,82 @@
     overflow: hidden;
   }
 }
+
+/* ============================================================
+   SECTION 7B — LOGO STRIP (PARTNERS)
+============================================================ */
+.hs-logo-strip {
+  background: #f0f0f0; /* matching the image background */
+  padding: 80px 0 60px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hs-partners-heading {
+  font-family: var(--font-h), 'Nunito Sans', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  color: #1b5b6b; /* matching the teal color from the image */
+  text-align: center;
+  margin-bottom: 50px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hs-logo-track {
+  display: flex;
+  width: calc(200px * 16 * 2);
+  animation: scroll-logos 40s linear infinite;
+}
+
+.hs-logo-track:hover {
+  animation-play-state: paused;
+}
+
+.hs-logos {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: calc(200px * 16);
+}
+
+.hs-logo-item {
+  width: 150px;
+  margin: 0 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hs-logo-item img {
+  max-width: 100%;
+  max-height: 80px;
+  object-fit: contain;
+  filter: grayscale(100%) opacity(0.8);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.hs-logo-item:hover img {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.05);
+}
+
+@keyframes scroll-logos {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-200px * 16)); }
+}
+
+@media (max-width: 768px) {
+  .hs-logo-strip { padding: 50px 0 40px; }
+  .hs-partners-heading { font-size: 1.8rem; margin-bottom: 30px; }
+  .hs-logo-item { width: 100px; margin: 0 15px; }
+  .hs-logo-track { width: calc(130px * 16 * 2); }
+  .hs-logos { width: calc(130px * 16); }
+  @keyframes scroll-logos {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-130px * 16)); }
+  }
+}

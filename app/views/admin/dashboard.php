@@ -62,6 +62,10 @@ $adminUser = $adminUser ?? 'admin';
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
         <span>Add Blog Post</span>
       </a>
+      <a href="#" class="nav-item" data-page="partner-logos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        <span>Partner Logos</span>
+      </a>
       <a href="#" class="nav-item" data-page="settings">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
         <span>Settings</span>
@@ -776,6 +780,74 @@ $adminUser = $adminUser ?? 'admin';
           </div>
           <div class="form-actions">
             <button type="submit" class="btn-primary">Update Password</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ── PARTNER LOGOS PAGE ───────────────────────── -->
+    <section id="page-partner-logos" class="page">
+      <div class="page-header">
+        <h1>Partner Logos</h1>
+        <div class="page-actions">
+          <button class="btn-primary" onclick="navigateTo('add-partner-logo')">+ Add Logo</button>
+        </div>
+      </div>
+      <div class="card">
+        <div id="partner-logos-table" class="table-wrap">
+          <p class="loading-text">Loading…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ADD / EDIT PARTNER LOGO PAGE ────────────── -->
+    <section id="page-add-partner-logo" class="page">
+      <div class="page-header">
+        <h1 id="logo-form-page-title">Add New Partner Logo</h1>
+        <p class="page-subtitle">Upload a customer brand logo</p>
+      </div>
+
+      <div class="card">
+        <form id="logo-form" enctype="multipart/form-data">
+          <input type="hidden" id="logo-edit-id" name="id" value="" />
+
+          <div class="form-grid">
+            <!-- Alt Text -->
+            <div class="form-group full-width">
+              <label for="logo-alt-text">Company Name (Alt Text)</label>
+              <input type="text" id="logo-alt-text" name="alt_text" placeholder="e.g. Apex Building Technology" />
+            </div>
+
+            <!-- Sort Order -->
+            <div class="form-group">
+              <label for="logo-sort">Sort Order</label>
+              <input type="number" id="logo-sort" name="sort_order" value="0" min="0" />
+            </div>
+
+            <!-- Image -->
+            <div class="form-group full-width">
+              <label>Logo Image <span class="req">*</span></label>
+              <div class="upload-zone" id="logo-upload-zone">
+                <input type="file" id="logo-image" name="image" accept="image/*" class="upload-input" />
+                <div class="upload-placeholder" id="logo-upload-placeholder">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  <span>Click or drag to upload logo image</span>
+                  <small>JPEG, PNG, WebP, SVG — max 5 MB</small>
+                </div>
+                <div class="upload-preview" id="logo-upload-preview" style="display:none;">
+                  <img id="logo-preview-img" src="" alt="Preview" />
+                  <button type="button" class="upload-remove" onclick="removeLogoImage()">×</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-ghost" onclick="resetLogoForm()">Cancel</button>
+            <button type="submit" class="btn-primary" id="logo-form-submit-btn">
+              <span>Save Logo</span>
+            </button>
           </div>
         </form>
       </div>

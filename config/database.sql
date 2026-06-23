@@ -91,3 +91,14 @@ CREATE TABLE IF NOT EXISTS `blog_posts` (
   INDEX `idx_status` (`status`),
   INDEX `idx_category` (`category`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ------------------------------------------------------------
+--  PARTNER LOGOS TABLE
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `partner_logos` (
+  `id`          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `image`       VARCHAR(255)  NOT NULL COMMENT 'Logo image filename in uploads/logos/',
+  `alt_text`    VARCHAR(255)  NULL     COMMENT 'Company name for alt text',
+  `sort_order`  INT           NOT NULL DEFAULT 0,
+  `created_at`  TIMESTAMP     DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
