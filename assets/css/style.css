@@ -993,6 +993,7 @@ p {
 
 .our-work-swiper .swiper-wrapper {
   height: 100%;
+  will-change: transform;
 }
 
 .our-work-slide {
@@ -1001,6 +1002,7 @@ p {
   cursor: pointer;
   overflow: hidden;
   transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
@@ -1009,7 +1011,7 @@ p {
   height: 100%;
   object-fit: cover;
   display: block;
-  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 

@@ -89,17 +89,21 @@ function updateOurWorkInfo(title, cat) {
     clearTimeout(ourWorkTimeout);
   }
 
-  // Fade out
+  // Fade out immediately
   ourWorkTitle.style.opacity = '0';
   ourWorkCat.style.opacity = '0';
 
   // After fade-out completes, swap text and fade back in
+  // 300ms: slightly more than the 0.28s CSS transition to avoid flicker
   ourWorkTimeout = setTimeout(() => {
     ourWorkTitle.textContent = title || '';
     ourWorkCat.textContent = cat || '';
-    ourWorkTitle.style.opacity = '1';
-    ourWorkCat.style.opacity = '1';
-  }, 280); // matches CSS transition duration
+    // Small rAF to ensure DOM update before re-opacity
+    requestAnimationFrame(() => {
+      ourWorkTitle.style.opacity = '1';
+      ourWorkCat.style.opacity = '1';
+    });
+  }, 300);
 }
 
 window.initOurWorkSwiper = function() {
@@ -134,8 +138,10 @@ window.initOurWorkSwiper = function() {
     observer: true,
     observeParents: true,
     on: {
-      slideChange() {
-        // realIndex always points to the original (non-cloned) slide in loop mode
+      // realIndexChange fires ONLY when the true project content changes —
+      // not during the silent loop-jump Swiper does internally.
+      // This prevents double text-update flicker on loop boundaries.
+      realIndexChange() {
         const realSlides = this.slides.filter(s => !s.classList.contains('swiper-slide-duplicate'));
         const realSlide = realSlides[this.realIndex];
         if (realSlide) {
