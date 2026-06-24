@@ -93,6 +93,35 @@ CREATE TABLE IF NOT EXISTS `blog_posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ------------------------------------------------------------
+--  SHOP ITEMS TABLE
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `shop_items` (
+  `id`                      INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `title`                   VARCHAR(255)   NOT NULL,
+  `price`                   DECIMAL(10,2)  NOT NULL DEFAULT 0.00,
+  `original_price`          DECIMAL(10,2)  NULL      COMMENT 'Strike-through price before discount',
+  `description`             TEXT           NULL,
+  `additional_info`         LONGTEXT       NULL      COMMENT 'Rich-text additional information section',
+  `additional_info_images`  JSON           NULL      COMMENT 'Array of image filenames for additional info',
+  `whats_included`          TEXT           NULL,
+  `whats_not_included`      TEXT           NULL,
+  `spec_sqft`               VARCHAR(50)    NULL,
+  `spec_beds`               VARCHAR(50)    NULL,
+  `spec_baths`              VARCHAR(50)    NULL,
+  `spec_floors`             VARCHAR(50)    NULL,
+  `spec_garages`            VARCHAR(50)    NULL,
+  `category`                VARCHAR(100)   NULL,
+  `image`                   VARCHAR(255)   NULL      COMMENT 'Main image filename in uploads/shop/',
+  `gallery_images`          JSON           NULL      COMMENT 'Array of gallery image filenames',
+  `status`                  ENUM('draft','published') NOT NULL DEFAULT 'published',
+  `sort_order`              INT            NOT NULL DEFAULT 0,
+  `created_at`              TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
+  `updated_at`              TIMESTAMP      DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX `idx_status`   (`status`),
+  INDEX `idx_category` (`category`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ------------------------------------------------------------
 --  PARTNER LOGOS TABLE
 -- ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `partner_logos` (
