@@ -143,7 +143,7 @@ function buildProjectTable(projects) {
 
   projects.forEach(p => {
     const thumb = p.image_main
-      ? `<img src="${UPLOAD_BASE}${p.image_main}" class="project-thumb" alt="" />`
+      ? `<img src="${UPLOAD_BASE}${p.image_main}" class="project-thumb" alt="" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://civilanka.com/uploads/projects/${p.image_main}';}" />`
       : `<div class="project-thumb" style="background:var(--bg-hover);"></div>`;
     const catBadge = `<span class="badge badge--${p.category}">${p.category}</span>`;
     const statusBadge = `<span class="badge badge--${p.status}">${p.status}</span>`;
@@ -251,6 +251,7 @@ async function editProject(id) {
       const preview = document.getElementById('main-upload-preview');
       const img = document.getElementById('main-preview-img');
       img.src = UPLOAD_BASE + p.image_main;
+      img.onerror = function() { if(!this.dataset.fb) { this.dataset.fb=1; this.src='https://civilanka.com/uploads/projects/' + p.image_main; } };
       preview.style.display = 'inline-block';
       document.getElementById('main-upload-placeholder').style.display = 'none';
     }
@@ -260,7 +261,9 @@ async function editProject(id) {
       p.image_gallery.forEach((imgSrc, index) => {
         if (index < 4) {
           const slot = index + 1;
-          document.getElementById('gallery-img-' + slot).src = UPLOAD_BASE + imgSrc;
+          const galImg = document.getElementById('gallery-img-' + slot);
+          galImg.src = UPLOAD_BASE + imgSrc;
+          galImg.onerror = function() { if(!this.dataset.fb) { this.dataset.fb=1; this.src='https://civilanka.com/uploads/projects/' + imgSrc; } };
           document.getElementById('gallery-preview-' + slot).style.display = 'inline-block';
           document.getElementById('gallery-placeholder-' + slot).style.display = 'none';
           document.getElementById('existing-gallery-' + slot).value = imgSrc;

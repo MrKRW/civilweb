@@ -189,7 +189,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <section class="hs-founders">
     <div class="hs-founders-inner">
       <div class="hs-founders-text reveal-left">
-        <h2 class="hs-founders-heading">Meet our Architects:<br>Meet our Team Behind CiviLanka</h2>
+        <h2 class="hs-founders-heading">Meet our Team Behind CiviLanka</h2>
         <p>Our multidisciplinary team brings together architecture, structural engineering, civil works, MEP coordination, BIM documentation, cost planning, construction and project coordination expertise to support residential, commercial, industrial and infrastructure developments from concept to completion.  </p>
         <a href="#footer" class="hs-read-more" style="margin-top:2rem;display:inline-block;">Work with us</a>
       </div>

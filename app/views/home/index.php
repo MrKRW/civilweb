@@ -300,12 +300,13 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
         if (!wrapper) return;
         wrapper.innerHTML = '';
         projects.forEach(p => {
-          const imgSrc = p.image_main ? (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/projects/' + p.image_main : (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/Project%20images/2023-11-07.jpg';
+          const imgSrc = p.image_main ? (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/projects/' + encodeURI(p.image_main) : (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/Project%20images/2023-11-07.jpg';
+          const fallbackSrc = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/Project%20images/2023-11-07.jpg';
           const slide = document.createElement('div');
           slide.className = 'swiper-slide our-work-slide';
           slide.setAttribute('data-title', p.title);
           slide.setAttribute('data-cat', p.service_type || '');
-          slide.innerHTML = `<img src="${imgSrc}" alt="${p.title}" />`;
+          slide.innerHTML = `<img src="${imgSrc}" alt="${p.title}" ${p.image_main ? `onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://civilanka.com/uploads/projects/${encodeURI(p.image_main)}';}else{this.src='${fallbackSrc}';}"` : ''} />`;
           wrapper.appendChild(slide);
         });
         if (projects.length > 0) {
@@ -314,8 +315,12 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
           if (titleEl) titleEl.textContent = projects[0].title;
           if (catEl) catEl.textContent = projects[0].service_type || '';
         }
-        const swiperEl = document.querySelector('.our-work-swiper');
-        if (swiperEl && swiperEl.swiper) swiperEl.swiper.update();
+        if (typeof window.initOurWorkSwiper === 'function') {
+          window.initOurWorkSwiper();
+        } else {
+          const swiperEl = document.querySelector('.our-work-swiper');
+          if (swiperEl && swiperEl.swiper) swiperEl.swiper.update();
+        }
       } catch (e) { /* keep static slides */ }
     })();
   </script>

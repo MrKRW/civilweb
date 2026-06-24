@@ -79,16 +79,22 @@ if (backTop) backTop.addEventListener('click', () => window.scrollTo({ top: 0, b
 const ourWorkTitle = document.querySelector('.our-work-title');
 const ourWorkCat = document.querySelector('.our-work-cat');
 
+let ourWorkTimeout;
+
 // Helper: fade-update the left-panel text smoothly
 function updateOurWorkInfo(title, cat) {
   if (!ourWorkTitle || !ourWorkCat) return;
+
+  if (ourWorkTimeout) {
+    clearTimeout(ourWorkTimeout);
+  }
 
   // Fade out
   ourWorkTitle.style.opacity = '0';
   ourWorkCat.style.opacity = '0';
 
   // After fade-out completes, swap text and fade back in
-  setTimeout(() => {
+  ourWorkTimeout = setTimeout(() => {
     ourWorkTitle.textContent = title || '';
     ourWorkCat.textContent = cat || '';
     ourWorkTitle.style.opacity = '1';
@@ -96,9 +102,15 @@ function updateOurWorkInfo(title, cat) {
   }, 280); // matches CSS transition duration
 }
 
-let ourWorkSwiper;
-if (typeof Swiper !== 'undefined' && document.querySelector('.our-work-swiper')) {
-  ourWorkSwiper = new Swiper('.our-work-swiper', {
+window.initOurWorkSwiper = function() {
+  const swiperEl = document.querySelector('.our-work-swiper');
+  if (!swiperEl || typeof Swiper === 'undefined') return;
+
+  if (swiperEl.swiper) {
+    swiperEl.swiper.destroy(true, true);
+  }
+
+  window.ourWorkSwiper = new Swiper('.our-work-swiper', {
     loop: true,
     speed: 700,
     grabCursor: true,
@@ -132,7 +144,9 @@ if (typeof Swiper !== 'undefined' && document.querySelector('.our-work-swiper'))
       }
     }
   });
-}
+};
+
+window.initOurWorkSwiper();
 
 // ============================
 // TESTIMONIALS SWIPER
