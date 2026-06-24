@@ -872,6 +872,6 @@ $adminUser = $adminUser ?? 'admin';
   <!-- Quill JS removed — blog editor now uses TinyMCE -->
   <!-- TinyMCE -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js"></script>
-  <script src="<?= $BASE ?>/assets/js/admin.js?v=10"></script>
+  <script src="<?= $BASE ?>/assets/js/admin.js?v=11"></script>
 </body>
 </html>

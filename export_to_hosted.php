@@ -12,7 +12,7 @@ require_once __DIR__ . '/config/db.php';
 $db = getDB();
 
 // Tables to export
-$tables = ['shop_items', 'projects', 'blog_posts', 'product_reviews'];
+$tables = ['shop_items', 'projects', 'blog_posts', 'product_reviews', 'partner_logos'];
 
 header('Content-Type: text/plain; charset=utf-8');
 header('Content-Disposition: attachment; filename="civilanka_export_' . date('Y-m-d_H-i-s') . '.sql"');

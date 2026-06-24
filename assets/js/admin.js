@@ -453,7 +453,7 @@ function buildShopTable(items) {
 
   items.forEach(p => {
     const thumb = p.image
-      ? `<img src="${SHOP_UPLOAD_BASE}${p.image}" class="project-thumb" alt="" />`
+      ? `<img src="${SHOP_UPLOAD_BASE}${p.image}" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://civilanka.com/uploads/projects/'+'${p.image}';}else{this.outerHTML='<div class=\\'project-thumb\\' style=\\'background:var(--bg-hover);display:flex;align-items:center;justify-content:center;\\'><span style=\\'font-size:10px;color:var(--text-muted);\\'>Missing</span></div>';}" class="project-thumb" alt="" />`
       : `<div class="project-thumb" style="background:var(--bg-hover);"></div>`;
     const statusBadge = `<span class="badge badge--${p.status}">${p.status}</span>`;
 
@@ -1111,7 +1111,7 @@ function buildLogoTable(logos) {
     const thumbSrc = isUrl ? p.image : (LOGO_UPLOAD_BASE + p.image);
     const fallbackSrc = isUrl ? p.image : `https://civilanka.com/uploads/logos/${p.image}`;
     const thumb = p.image
-      ? `<img src="${thumbSrc}" onerror="this.onerror=null; this.src='${fallbackSrc}';" class="project-thumb" style="object-fit:contain;" alt="" />`
+      ? `<img src="${thumbSrc}" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='${fallbackSrc}';}else{this.outerHTML='<div class=\\'project-thumb\\' style=\\'background:var(--bg-hover);display:flex;align-items:center;justify-content:center;\\'><span style=\\'font-size:10px;color:var(--text-muted);\\'>Missing</span></div>';}" class="project-thumb" style="object-fit:contain;" alt="" />`
       : `<div class="project-thumb" style="background:var(--bg-hover);"></div>`;
 
     html += `<tr>
@@ -1172,10 +1172,15 @@ function editLogo(id, altText, image, sortOrder) {
   if (image) {
     const isUrl = image.startsWith('http');
     const previewImg = document.getElementById('logo-preview-img');
+    delete previewImg.dataset.fb;
+    previewImg.style.display = 'inline-block';
     previewImg.src = isUrl ? image : (LOGO_UPLOAD_BASE + image);
     previewImg.onerror = function() {
-        if (!isUrl && this.src !== `https://civilanka.com/uploads/logos/${image}`) {
+        if (!this.dataset.fb && !isUrl && this.src !== `https://civilanka.com/uploads/logos/${image}`) {
+            this.dataset.fb = 1;
             this.src = `https://civilanka.com/uploads/logos/${image}`;
+        } else {
+            this.style.display = 'none';
         }
     };
     document.getElementById('logo-upload-preview').style.display = 'inline-block';
