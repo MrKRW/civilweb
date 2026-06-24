@@ -544,6 +544,9 @@ async function editShopItem(id) {
     if (typeof tinymce !== 'undefined' && tinymce.get('shop-additional-info')) {
       tinymce.get('shop-additional-info').setContent(addlInfoContent);
     }
+    
+    document.getElementById('shop-whats-included').value = p.whats_included || '';
+    document.getElementById('shop-whats-not-included').value = p.whats_not_included || '';
 
     // Main image
     if (p.image) {
@@ -632,6 +635,9 @@ function resetShopForm() {
   if (typeof tinymce !== 'undefined' && tinymce.get('shop-additional-info')) {
     tinymce.get('shop-additional-info').setContent('');
   }
+  
+  document.getElementById('shop-whats-included').value = '';
+  document.getElementById('shop-whats-not-included').value = '';
   for (let i = 1; i <= 6; i++) {
     const prev = document.getElementById('addl-preview-' + i);
     const ph   = document.getElementById('addl-placeholder-' + i);

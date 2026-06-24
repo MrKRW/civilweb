@@ -469,6 +469,17 @@ $adminUser = $adminUser ?? 'admin';
               <textarea id="shop-additional-info" name="additional_info" rows="8" placeholder="Enter additional product details — specifications, dimensions, materials, care instructions..."></textarea>
             </div>
 
+            <!-- What's Included & Not Included -->
+            <div class="form-group full-width">
+              <label>What's Included <small style="font-weight:400;color:var(--text-muted)">(Each item on a new line)</small></label>
+              <textarea id="shop-whats-included" name="whats_included" rows="6" placeholder="Floor Plans: Floor plan drawings...&#10;Roof Plan: Drawings indicating roof slopes..."></textarea>
+            </div>
+            
+            <div class="form-group full-width">
+              <label>What's Not Included <small style="font-weight:400;color:var(--text-muted)">(Each item on a new line)</small></label>
+              <textarea id="shop-whats-not-included" name="whats_not_included" rows="4" placeholder="We do not guarantee our plans will meet all local building requirements...&#10;Your plans will not be sealed or stamped..."></textarea>
+            </div>
+
             <!-- Additional Information Images (up to 6) -->
             <div class="form-group full-width">
               <label>Additional Information Images <small style="font-weight:400;color:var(--text-muted)">(displayed in the Additional Info tab — up to 6)</small></label>

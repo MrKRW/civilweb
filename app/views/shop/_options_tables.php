@@ -1,4 +1,4 @@
-View important notes    <!-- Divider -->
+<!-- Divider -->
     <hr style="margin: 3rem auto; border: 0; border-top: 2px solid #e0e0e0; width: 100%;">
 
     <!-- General Info Section -->

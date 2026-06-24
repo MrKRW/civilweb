@@ -384,42 +384,22 @@ $pid         = (int)($item['id'] ?? 0);
               <h3 style="font-size: 1.6rem; font-family: var(--font-h, serif); color: #333; margin-bottom: 0.8rem; font-weight: 500;">What's Included</h3>
               <p style="margin-bottom: 1.5rem; color: #555;">Most plan sets include the following:</p>
               <ul style="list-style-type: none; padding: 0; color: #444; line-height: 1.6;">
+                <?php
+                  $whatsIncluded = trim($item['whats_included'] ?? '');
+                  if (empty($whatsIncluded)) {
+                      $whatsIncluded = "Floor Plans: Floor plan drawings indicating dimensions for construction\nRoof Plan: Drawings indicating roof slopes and unique conditions\nExterior Elevations: Drawings showing appearance and the types of materials used for the exterior finish and trim\nBuilding Sections: Drawings cut through important locations in the structure\nConstruction Details: Drawings showing specific construction of building elements at a large scale\nElectrical Plans: Basic electrical layout (suggested locations of fixtures, switches, and outlets)\nFoundation Plan: Dimensioned drawings describing specific foundation conditions for the structure\nA building license: A single-use license for construction at one location only\nOur plans are designed to meet national building codes";
+                  }
+                  $includedItems = array_filter(array_map('trim', explode("\n", $whatsIncluded)));
+                  foreach ($includedItems as $incItem):
+                      // Make the text before colon bold if there is a colon
+                      $parts = explode(':', $incItem, 2);
+                      $formattedText = count($parts) > 1 ? '<strong>' . htmlspecialchars($parts[0]) . ':</strong>' . htmlspecialchars($parts[1]) : htmlspecialchars($incItem);
+                ?>
                 <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
                   <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-                  <strong>Floor Plans:</strong> Floor plan drawings indicating dimensions for construction
+                  <?= $formattedText ?>
                 </li>
-                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
-                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-                  <strong>Roof Plan:</strong> Drawings indicating roof slopes and unique conditions
-                </li>
-                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
-                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-                  <strong>Exterior Elevations:</strong> Drawings showing appearance and the types of materials used for the exterior finish and trim
-                </li>
-                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
-                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-                  <strong>Building Sections:</strong> Drawings cut through important locations in the structure
-                </li>
-                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
-                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-                  <strong>Construction Details:</strong> Drawings showing specific construction of building elements at a large scale
-                </li>
-                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
-                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-                  <strong>Electrical Plans:</strong> Basic electrical layout (suggested locations of fixtures, switches, and outlets)
-                </li>
-                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
-                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-                  <strong>Foundation Plan:</strong> Dimensioned drawings describing specific foundation conditions for the structure
-                </li>
-                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
-                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-                  <strong>A building license:</strong> A single-use license for construction at one location only
-                </li>
-                <li style="margin-bottom: 1rem; position: relative; padding-left: 2rem;">
-                  <svg style="position: absolute; left: 0; top: 4px; color: #2e8b57;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-                  <strong>Our plans are designed to meet national building codes</strong>
-                </li>
+                <?php endforeach; ?>
               </ul>
             </div>
 
@@ -428,14 +408,19 @@ $pid         = (int)($item['id'] ?? 0);
               <h3 style="font-size: 1.6rem; font-family: var(--font-h, serif); color: #333; margin-bottom: 0.8rem; font-weight: 500;">What's Not Included</h3>
               <p style="margin-bottom: 1.5rem; color: #555;">These items are <u>NOT</u> included:</p>
               <ul style="list-style-type: none; padding: 0; color: #444; line-height: 1.6;">
+                <?php
+                  $whatsNotIncluded = trim($item['whats_not_included'] ?? '');
+                  if (empty($whatsNotIncluded)) {
+                      $whatsNotIncluded = "We do not guarantee our plans will meet all local building requirements or building codes influenced by local geographic or climatic factors. It is the responsibility of the owner or builder to ensure these plans comply with city, county, municipal, and/or state/provincial building codes.\nYour plans will not be sealed or stamped by an engineer or architect. It is the owner's (or builder's) responsibility to hire a local professional to review and seal or stamp the plans if required by the building department. This must be handled by an engineer or architect licensed in the state/province where the plan is to be built.";
+                  }
+                  $notIncludedItems = array_filter(array_map('trim', explode("\n", $whatsNotIncluded)));
+                  foreach ($notIncludedItems as $notIncItem):
+                ?>
                 <li style="margin-bottom: 1.5rem; position: relative; padding-left: 2rem;">
                   <svg style="position: absolute; left: 0; top: 4px; color: #d9534f;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                  We do not guarantee our plans will meet all local building requirements or building codes influenced by local geographic or climatic factors. It is the responsibility of the owner or builder to ensure these plans comply with city, county, municipal, and/or state/provincial building codes.
+                  <?= htmlspecialchars($notIncItem) ?>
                 </li>
-                <li style="margin-bottom: 1.5rem; position: relative; padding-left: 2rem;">
-                  <svg style="position: absolute; left: 0; top: 4px; color: #d9534f;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                  Your plans will not be sealed or stamped by an engineer or architect. It is the owner's (or builder's) responsibility to hire a local professional to review and seal or stamp the plans if required by the building department. This must be handled by an engineer or architect licensed in the state/province where the plan is to be built.
-                </li>
+                <?php endforeach; ?>
               </ul>
               
               <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #eee;">

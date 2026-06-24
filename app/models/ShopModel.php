@@ -53,10 +53,12 @@ class ShopModel extends Model
         $stmt = $this->db()->prepare("
             INSERT INTO shop_items
               (title, price, original_price, description, additional_info, additional_info_images,
+               whats_included, whats_not_included,
                spec_sqft, spec_beds, spec_baths, spec_floors, spec_garages,
                category, image, gallery_images, status, sort_order)
             VALUES
               (:title, :price, :original_price, :description, :additional_info, :additional_info_images,
+               :whats_included, :whats_not_included,
                :spec_sqft, :spec_beds, :spec_baths, :spec_floors, :spec_garages,
                :category, :image, :gallery_images, :status, :sort_order)
         ");
@@ -67,6 +69,8 @@ class ShopModel extends Model
             ':description'             => $data['description'] ?? '',
             ':additional_info'         => $data['additional_info'] ?? '',
             ':additional_info_images'  => json_encode($addlImgs),
+            ':whats_included'          => $data['whats_included'] ?? '',
+            ':whats_not_included'      => $data['whats_not_included'] ?? '',
             ':spec_sqft'               => $data['spec_sqft'] ?? '',
             ':spec_beds'               => $data['spec_beds'] ?? '',
             ':spec_baths'              => $data['spec_baths'] ?? '',
@@ -119,6 +123,7 @@ class ShopModel extends Model
               title = :title, price = :price, original_price = :original_price,
               description = :description, additional_info = :additional_info,
               additional_info_images = :additional_info_images,
+              whats_included = :whats_included, whats_not_included = :whats_not_included,
               spec_sqft = :spec_sqft, spec_beds = :spec_beds, spec_baths = :spec_baths,
               spec_floors = :spec_floors, spec_garages = :spec_garages,
               category = :category, image = :image,
@@ -132,6 +137,8 @@ class ShopModel extends Model
             ':description'            => $data['description']    ?? $existing['description'],
             ':additional_info'        => $data['additional_info'] ?? $existing['additional_info'],
             ':additional_info_images' => json_encode($addlImgs),
+            ':whats_included'         => $data['whats_included'] ?? $existing['whats_included'] ?? '',
+            ':whats_not_included'     => $data['whats_not_included'] ?? $existing['whats_not_included'] ?? '',
             ':spec_sqft'              => $data['spec_sqft']      ?? $existing['spec_sqft'],
             ':spec_beds'              => $data['spec_beds']      ?? $existing['spec_beds'],
             ':spec_baths'             => $data['spec_baths']     ?? $existing['spec_baths'],
