@@ -26,9 +26,9 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
           <span class="srv-intl-num">01</span>
           <h3>Design &amp; Visualization</h3>
           <ul class="srv-card-list">
-            <li><strong>Architectural Design:</strong> Professional design and drawings documentation for residential, commercial, Industrial and Mixed use projects.</li>
-            <li><strong>3D Modelling &amp; Visualization:</strong> Clear visual and technical models supporting design and construction.</li>
-            <li><strong>Landscape &amp; Outdoor Space Design:</strong> External space design documentation for diverse developments.</li>
+            <li><strong>Architectural Design</strong></li>
+            <li><strong>3D Modelling &amp; Visualization</strong></li>
+            <li><strong>Landscape &amp; Outdoor Space Design</strong></li>
           </ul>
         </div>
       </div>
@@ -43,9 +43,9 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
           <span class="srv-intl-num">02</span>
           <h3>Engineering &amp; Infrastructure</h3>
           <ul class="srv-card-list">
-            <li><strong>Structural Engineering Support:</strong> Structural designs, drafting, detailing, structural calculation reports, soil investigation coordination.</li>
-            <li><strong>Civil Engineering &amp; External Works:</strong> Design documentation for site development, drainage, and infrastructure.</li>
-            <li><strong>MEP &amp; Building Services Coordination:</strong> Drafting and coordination for mechanical, electrical, plumbing, and smart systems.</li>
+            <li><strong>Structural Engineering Support</strong></li>
+            <li><strong>Civil Engineering &amp; External Works</strong></li>
+            <li><strong>MEP &amp; Building Services Coordination</strong></li>
           </ul>
         </div>
       </div>
@@ -60,9 +60,9 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
           <span class="srv-intl-num">03</span>
           <h3>Management, Costing &amp; Consulting</h3>
           <ul class="srv-card-list">
-            <li><strong>Quantity Surveying &amp; Cost Estimation:</strong> Cost and quantity documentation for budgeting, tendering, and cost control.</li>
-            <li><strong>Project Management &amp; Supervision Support:</strong> Project planning, technical coordination, monitoring, and reporting assistance.</li>
-            <li><strong>Research &amp; Development:</strong> Pre-feasibility and feasibility study reports, technical specifications, green building consultancy.</li>
+            <li><strong>Quantity Surveying &amp; Cost Estimation</strong></li>
+            <li><strong>Project Management &amp; Supervision Support</strong></li>
+            <li><strong>Research &amp; Development</strong></li>
           </ul>
         </div>
       </div>
@@ -77,8 +77,8 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
           <span class="srv-intl-num">04</span>
           <h3>Project Close-Out</h3>
           <ul class="srv-card-list">
-            <li><strong>Handover Documentation:</strong> Project close-out support including final documentation and handover preparation.</li>
-            <li><strong>Aftercare:</strong> Maintenance services.</li>
+            <li><strong>Handover Documentation</strong></li>
+            <li><strong>Aftercare</strong></li>
           </ul>
         </div>
       </div>
@@ -94,10 +94,10 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
           <h3>End-to-End Turnkey Construction</h3>
           <p class="srv-card-sub" style="margin-top:-10px; margin-bottom: 10px; color: #555;">Exclusive physical construction, management and delivery services for local clients.</p>
           <ul class="srv-card-list">
-            <li><strong>Turnkey Solutions:</strong> Complete, end-to-end construction delivery for local residential and commercial projects.</li>
-            <li><strong>Building &amp; Renovation:</strong> Full-scale housing and commercial construction, including renovations and extensions.</li>
-            <li><strong>Site &amp; Civil Works:</strong> Site preparation, road access, and underground service infrastructure.</li>
-            <li><strong>Building Systems &amp; Finishing:</strong> Installation of mechanical, electrical, plumbing, smart systems, and finishing works.</li>
+            <li><strong>Turnkey Solutions</strong></li>
+            <li><strong>Building &amp; Renovation</strong></li>
+            <li><strong>Site &amp; Civil Works</strong></li>
+            <li><strong>Building Systems &amp; Finishing</strong></li>
           </ul>
         </div>
       </div>
