@@ -43,5 +43,6 @@ $router->add('/api/settings',  'AdminController',    'apiSettings');
 $router->add('/api/partner-logos', 'PartnerLogoController', 'api');
 
 $router->add('/api/contact', 'ContactController',    'apiContact');
+$router->add('/api/contact-form', 'ContactController', 'apiContactForm');
 
 $router->dispatch();

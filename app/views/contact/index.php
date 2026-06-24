@@ -34,6 +34,33 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
               <input type="email" id="contact-email" name="email" autocomplete="email" required />
             </div>
           </div>
+          <div class="ct-form-row">
+            <div class="ct-form-field">
+              <label for="contact-phone">PHONE / WHATSAPP</label>
+              <input type="text" id="contact-phone" name="phone" required />
+            </div>
+            <div class="ct-form-field">
+              <label for="contact-location">PROJECT LOCATION</label>
+              <input type="text" id="contact-location" name="location" required />
+            </div>
+          </div>
+          <div class="ct-form-field ct-form-field--full">
+            <label for="contact-service">SERVICE REQUIRED</label>
+            <select id="contact-service" name="service" required>
+              <option value="" disabled selected></option>
+              <option value="Architectural Design">Architectural Design</option>
+              <option value="Structural Engineering">Structural Engineering</option>
+              <option value="Civil & Infrastructure Works">Civil & Infrastructure Works</option>
+              <option value="MEP Design & Coordination">MEP Design & Coordination</option>
+              <option value="BIM Modeling & Documentation">BIM Modeling & Documentation</option>
+              <option value="3D Visualization & Rendering">3D Visualization & Rendering</option>
+              <option value="Quantity Surveying / BOQ / Cost Estimation">Quantity Surveying / BOQ / Cost Estimation</option>
+              <option value="Project Management / Site Supervision">Project Management / Site Supervision</option>
+              <option value="Landscape & Outdoor Space Design">Landscape & Outdoor Space Design</option>
+              <option value="Turnkey Construction">Turnkey Construction</option>
+              <option value="General Consultation">General Consultation</option>
+            </select>
+          </div>
           <div class="ct-form-field ct-form-field--full">
             <label for="contact-message">MESSAGE</label>
             <textarea id="contact-message" name="message" rows="6" required></textarea>

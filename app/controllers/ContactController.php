@@ -62,4 +62,44 @@ class ContactController extends Controller {
             echo json_encode(['success' => true, 'note' => 'Email sending depends on server configuration.']);
         }
     }
+
+    public function apiContactForm(): void {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['error' => 'Method not allowed']);
+            return;
+        }
+
+        $name = $_POST['name'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $phone = $_POST['phone'] ?? '';
+        $location = $_POST['location'] ?? '';
+        $service = $_POST['service'] ?? '';
+        $userMessage = $_POST['message'] ?? '';
+
+        $to = 'contact@civilanka.com';
+        $subject = 'New Contact Request from Civilanka Website';
+
+        $message = "You have received a new contact request from the website.\n\n";
+        $message .= "Contact Details:\n";
+        $message .= "Name: $name\n";
+        $message .= "Email: $email\n";
+        $message .= "Phone / WhatsApp: $phone\n\n";
+
+        $message .= "Project Details:\n";
+        $message .= "Project Location: $location\n";
+        $message .= "Service Required: $service\n\n";
+
+        $message .= "Message:\n$userMessage\n";
+
+        $headers = "From: no-reply@civilanka.com\r\n";
+        $headers .= "Reply-To: " . (!empty($email) ? $email : "no-reply@civilanka.com") . "\r\n";
+        $headers .= "X-Mailer: PHP/" . phpversion();
+
+        if (@mail($to, $subject, $message, $headers)) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => true, 'note' => 'Email sending depends on server configuration.']);
+        }
+    }
 }

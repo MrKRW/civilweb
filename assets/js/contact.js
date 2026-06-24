@@ -28,14 +28,17 @@
   const formNote = document.getElementById('ct-form-note');
 
   if (form) {
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      const name    = document.getElementById('contact-name').value.trim();
-      const email   = document.getElementById('contact-email').value.trim();
-      const message = document.getElementById('contact-message').value.trim();
+      const name     = document.getElementById('contact-name').value.trim();
+      const email    = document.getElementById('contact-email').value.trim();
+      const phone    = document.getElementById('contact-phone').value.trim();
+      const location = document.getElementById('contact-location').value.trim();
+      const service  = document.getElementById('contact-service').value.trim();
+      const message  = document.getElementById('contact-message').value.trim();
 
-      if (!name || !email || !message) {
+      if (!name || !email || !phone || !location || !service || !message) {
         showNote('Please fill in all fields.', 'error');
         return;
       }
@@ -44,17 +47,31 @@
         return;
       }
 
-      // Simulate send
       const submitBtn = document.getElementById('ct-submit');
       submitBtn.disabled = true;
       submitBtn.querySelector('span').textContent = 'Sending…';
 
-      setTimeout(() => {
-        showNote('Thank you! Your message has been sent.', 'success');
-        form.reset();
+      try {
+        const formData = new FormData(form);
+        const res = await fetch((typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/contact-form', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await res.json();
+        
+        if (data.success) {
+          showNote('Thank you! Your message has been sent.', 'success');
+          form.reset();
+        } else {
+          showNote(data.error || 'Something went wrong. Please try again.', 'error');
+        }
+      } catch (err) {
+        showNote('Network error. Please try again later.', 'error');
+      } finally {
         submitBtn.disabled = false;
         submitBtn.querySelector('span').textContent = 'Send Message';
-      }, 1200);
+      }
     });
   }
 

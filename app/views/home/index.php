@@ -77,18 +77,18 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
       <div class="our-work-right reveal-right">
         <div class="swiper our-work-swiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide our-work-slide" data-title="The feel of Villa Yun" data-cat="WELLNESS">
+            <a href="<?= $BASE ?>/projects" class="swiper-slide our-work-slide" data-title="The feel of Villa Yun" data-cat="WELLNESS" style="display:block;">
               <img src="<?= $BASE ?>/Project%20images/2023-11-07.jpg" alt="Villa Yun" />
-            </div>
-            <div class="swiper-slide our-work-slide" data-title="Contemporary Interior" data-cat="INTERIOR">
+            </a>
+            <a href="<?= $BASE ?>/projects" class="swiper-slide our-work-slide" data-title="Contemporary Interior" data-cat="INTERIOR" style="display:block;">
               <img src="<?= $BASE ?>/Project%20images/A%20(10).png" alt="Contemporary Interior" />
-            </div>
-            <div class="swiper-slide our-work-slide" data-title="Modern Structure" data-cat="ARCHITECTURE">
+            </a>
+            <a href="<?= $BASE ?>/projects" class="swiper-slide our-work-slide" data-title="Modern Structure" data-cat="ARCHITECTURE" style="display:block;">
               <img src="<?= $BASE ?>/Project%20images/1%20(4).png" alt="Modern Structure" />
-            </div>
-            <div class="swiper-slide our-work-slide" data-title="Industrial Facility" data-cat="COMMERCIAL">
+            </a>
+            <a href="<?= $BASE ?>/projects" class="swiper-slide our-work-slide" data-title="Industrial Facility" data-cat="COMMERCIAL" style="display:block;">
               <img src="<?= $BASE ?>/Project%20images/WIN_Facility6.jpg" alt="Industrial Facility" />
-            </div>
+            </a>
           </div>
         </div>
         <div class="our-work-nav">
@@ -302,10 +302,13 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
         projects.forEach(p => {
           const imgSrc = p.image_main ? (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/projects/' + encodeURI(p.image_main) : (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/Project%20images/2023-11-07.jpg';
           const fallbackSrc = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/Project%20images/2023-11-07.jpg';
-          const slide = document.createElement('div');
+          const baseHref = typeof API_BASE !== 'undefined' ? API_BASE : '';
+          const slide = document.createElement('a');
+          slide.href = `${baseHref}/projects/${p.id}`;
           slide.className = 'swiper-slide our-work-slide';
           slide.setAttribute('data-title', p.title);
           slide.setAttribute('data-cat', p.service_type || '');
+          slide.style.display = 'block';
           slide.innerHTML = `<img src="${imgSrc}" alt="${p.title}" ${p.image_main ? `onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://civilanka.com/uploads/projects/${encodeURI(p.image_main)}';}else{this.src='${fallbackSrc}';}"` : ''} />`;
           wrapper.appendChild(slide);
         });
