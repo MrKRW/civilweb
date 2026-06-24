@@ -145,7 +145,19 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
       <div class="hs-logos">
         <?php foreach ($partnerLogos as $logo): ?>
           <div class="hs-logo-item">
-            <img src="<?= $BASE ?>/uploads/logos/<?= htmlspecialchars($logo['image']) ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" />
+            <?php
+              if (strpos($logo['image'], 'http') === 0) {
+                  $imgSrc = htmlspecialchars($logo['image']);
+              } else {
+                  $localPath = ROOT_DIR . '/uploads/logos/' . $logo['image'];
+                  if (file_exists($localPath)) {
+                      $imgSrc = $BASE . '/uploads/logos/' . htmlspecialchars($logo['image']);
+                  } else {
+                      $imgSrc = 'https://civilanka.com/uploads/logos/' . htmlspecialchars($logo['image']);
+                  }
+              }
+            ?>
+            <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" />
           </div>
         <?php endforeach; ?>
       </div>
@@ -153,7 +165,19 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
       <div class="hs-logos">
         <?php foreach ($partnerLogos as $logo): ?>
           <div class="hs-logo-item">
-            <img src="<?= $BASE ?>/uploads/logos/<?= htmlspecialchars($logo['image']) ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" />
+            <?php
+              if (strpos($logo['image'], 'http') === 0) {
+                  $imgSrc = htmlspecialchars($logo['image']);
+              } else {
+                  $localPath = ROOT_DIR . '/uploads/logos/' . $logo['image'];
+                  if (file_exists($localPath)) {
+                      $imgSrc = $BASE . '/uploads/logos/' . htmlspecialchars($logo['image']);
+                  } else {
+                      $imgSrc = 'https://civilanka.com/uploads/logos/' . htmlspecialchars($logo['image']);
+                  }
+              }
+            ?>
+            <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" />
           </div>
         <?php endforeach; ?>
       </div>

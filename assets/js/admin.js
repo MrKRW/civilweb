@@ -1098,8 +1098,11 @@ function buildLogoTable(logos) {
     </tr></thead><tbody>`;
 
   logos.forEach(p => {
+    const isUrl = p.image && p.image.startsWith('http');
+    const thumbSrc = isUrl ? p.image : (LOGO_UPLOAD_BASE + p.image);
+    const fallbackSrc = isUrl ? p.image : `https://civilanka.com/uploads/logos/${p.image}`;
     const thumb = p.image
-      ? `<img src="${LOGO_UPLOAD_BASE}${p.image}" class="project-thumb" style="object-fit:contain;" alt="" />`
+      ? `<img src="${thumbSrc}" onerror="this.onerror=null; this.src='${fallbackSrc}';" class="project-thumb" style="object-fit:contain;" alt="" />`
       : `<div class="project-thumb" style="background:var(--bg-hover);"></div>`;
 
     html += `<tr>
@@ -1158,7 +1161,14 @@ function editLogo(id, altText, image, sortOrder) {
   document.getElementById('logo-sort').value = sortOrder;
 
   if (image) {
-    document.getElementById('logo-preview-img').src = LOGO_UPLOAD_BASE + image;
+    const isUrl = image.startsWith('http');
+    const previewImg = document.getElementById('logo-preview-img');
+    previewImg.src = isUrl ? image : (LOGO_UPLOAD_BASE + image);
+    previewImg.onerror = function() {
+        if (!isUrl && this.src !== `https://civilanka.com/uploads/logos/${image}`) {
+            this.src = `https://civilanka.com/uploads/logos/${image}`;
+        }
+    };
     document.getElementById('logo-upload-preview').style.display = 'inline-block';
     document.getElementById('logo-upload-placeholder').style.display = 'none';
   }
