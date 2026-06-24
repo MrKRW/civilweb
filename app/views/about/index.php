@@ -156,6 +156,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
                       $imgSrc = 'https://civilanka.com/uploads/logos/' . htmlspecialchars($logo['image']);
                   }
               }
+            ?>
             <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" onerror="this.outerHTML='<span style=\\'font-size:1rem;font-weight:600;color:var(--text-secondary);text-align:center;padding:10px;\\'>'+this.alt+'</span>';" />
           </div>
         <?php endforeach; ?>
@@ -175,6 +176,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
                       $imgSrc = 'https://civilanka.com/uploads/logos/' . htmlspecialchars($logo['image']);
                   }
               }
+            ?>
             <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" onerror="this.outerHTML='<span style=\\'font-size:1rem;font-weight:600;color:var(--text-secondary);text-align:center;padding:10px;\\'>'+this.alt+'</span>';" />
           </div>
         <?php endforeach; ?>
