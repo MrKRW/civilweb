@@ -36,13 +36,13 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
         </div>
         <div class="about-slideshow reveal-right">
           <div class="about-slide active">
-            <img src="<?= $BASE ?>/assets/images/about_team.png" alt="Architects working">
+            <img src="<?= $BASE ?>/Project%20images/home/WhatsApp%20Image%202026-06-25%20at%2011.48.40.jpeg" alt="Architects working">
           </div>
           <div class="about-slide">
-            <img src="<?= $BASE ?>/Project images/A (10).png" alt="Slide 2">
+            <img src="<?= $BASE ?>/Project%20images/home/WhatsApp%20Image%202026-06-25%20at%2011.48.57.jpeg" alt="Slide 2">
           </div>
           <div class="about-slide">
-            <img src="<?= $BASE ?>/Project images/1 (4).png" alt="Slide 3">
+            <img src="<?= $BASE ?>/Project%20images/home/ferfref.jpeg" alt="Slide 3">
           </div>
         </div>
       </div>

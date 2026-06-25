@@ -892,10 +892,10 @@
   .post-html img[style*="float"],
   .post-html img[style*="width"] {
     float: none !important;
-    display: block !important;
-    width: 100% !important;
+    display: inline-block !important; /* Changed from block to allow side-by-side */
     max-width: 100% !important;
-    margin: 0 0 20px !important;
+    /* Removed width: 100% !important to allow images to be smaller and sit side-by-side */
+    margin: 5px !important; 
   }
   .post-html figure,
   .post-html figure.align-left,
@@ -903,12 +903,10 @@
   .post-html figure.align-center {
     float: none !important;
     display: block !important;
-    width: 100% !important;
     max-width: 100% !important;
     margin: 0 0 20px !important;
   }
   .post-html figure img {
-    width: 100% !important;
     max-width: 100% !important;
   }
   .post-html table {
@@ -916,6 +914,18 @@
   }
   .post-html th, .post-html td {
     padding: 8px 10px;
+  }
+  /* Automatically make paragraphs with multiple images a flex container so they sit side by side */
+  .post-html p:has(> img:nth-child(2)) {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  .post-html p:has(> img:nth-child(2)) img {
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0 !important;
   }
 }
 
