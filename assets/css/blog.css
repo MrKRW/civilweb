@@ -730,11 +730,14 @@
 
 /* ── Images within post body ─────────────────────────────── */
 .post-html img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  border-radius: 2px;
+  max-width: 100% !important;
+  max-height: 500px !important;
+  height: auto !important;
+  border-radius: 8px;
   display: block;
+  margin: 1.5rem auto;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  object-fit: contain;
 }
 
 /* Class-based alignment (set via TinyMCE image class list) */
@@ -743,7 +746,7 @@
 .post-html img[style*="float:left"] {
   float: left;
   margin: 4px 28px 16px 0;
-  max-width: 55%;
+  max-width: 55% !important;
 }
 
 .post-html img.img-align-right,
@@ -751,7 +754,7 @@
 .post-html img[style*="float:right"] {
   float: right;
   margin: 4px 0 16px 28px;
-  max-width: 55%;
+  max-width: 55% !important;
 }
 
 .post-html img.img-align-center {
