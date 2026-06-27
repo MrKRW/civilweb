@@ -49,7 +49,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
       <div class="new-about-bottom stagger">
         <div class="new-about-links">
           <a href="#">Design a perfect home</a>
-          <a href="#">Download our company profile</a>
+          <a href="<?= $BASE ?>/Project%20images/home/COMPANY%20PROFILE%20-%20CIVILANKA.pdf" target="_blank" download>Download our company profile</a>
           <a href="<?= $BASE ?>/contact">Ask our technical team</a>
         </div>
         <div class="new-about-col">
@@ -109,28 +109,28 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
       <div class="acc-item">
         <div class="acc-header"><span class="acc-icon">+</span><span class="acc-title">Design & Visualization</span></div>
         <div class="acc-content">
-          <div class="acc-img-wrap"><img src="<?= $BASE ?>/Project%20images/2023-11-07.jpg" alt="Urban Planning" /></div>
+          <div class="acc-img-wrap"><img src="<?= $BASE ?>/Project%20images/1%20(4).png" alt="Urban Planning" /></div>
           <div class="acc-text-wrap"><span class="acc-close">&minus;</span><p>Professional architectural design, 3D modelling, visualization, landscape design and technical drawing documentation for residential, commercial, industrial and mixed-use projects. </p><a href="#" class="read-more">View engineering services</a></div>
         </div>
       </div>
       <div class="acc-item">
         <div class="acc-header"><span class="acc-icon">+</span><span class="acc-title">Engineering & Infrastructure </span></div>
         <div class="acc-content">
-          <div class="acc-img-wrap"><img src="<?= $BASE ?>/Project%20images/1%20(4).png" alt="Exterior" /></div>
+          <div class="acc-img-wrap"><img src="<?= $BASE ?>/Project%20images/home/WhatsApp%20Image%202026-06-25%20at%2011.57.20.jpeg" alt="Exterior" /></div>
           <div class="acc-text-wrap"><span class="acc-close">&minus;</span><p>Structural, civil, drainage, infrastructure and MEP design support prepared with practical engineering coordination for accurate construction and authority submission. </p><a href="#" class="read-more">View engineering services</a></div>
         </div>
       </div>
       <div class="acc-item">
         <div class="acc-header"><span class="acc-icon">+</span><span class="acc-title">Management & Costing </span></div>
         <div class="acc-content">
-          <div class="acc-img-wrap"><img src="<?= $BASE ?>/assets/images/hero_2.png" alt="Residential" /></div>
+          <div class="acc-img-wrap"><img src="<?= $BASE ?>/Project%20images/2023-11-07.jpg" alt="Residential" /></div>
           <div class="acc-text-wrap"><span class="acc-close">&minus;</span><p>Cost estimation, quantity surveying, project coordination, feasibility studies, technical specifications and consultancy support for better project planning and control. </p><a href="#" class="read-more">View engineering services</a></div>
         </div>
       </div>
       <div class="acc-item active">
         <div class="acc-header"><span class="acc-icon">&minus;</span><span class="acc-title">Project Close-Out </span></div>
         <div class="acc-content">
-          <div class="acc-img-wrap"><img src="<?= $BASE ?>/Project%20images/A%20(10).png" alt="Interior" /></div>
+          <div class="acc-img-wrap"><img src="<?= $BASE ?>/assets/images/hero_2.png" alt="Interior" /></div>
           <div class="acc-text-wrap"><span class="acc-close">&minus;</span><p>Project completion support including final documentation, handover preparation, maintenance planning and aftercare assistance for a controlled project close-out process.  </p><a href="#" class="read-more">View engineering services</a></div>
         </div>
       </div>
