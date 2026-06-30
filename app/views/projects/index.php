@@ -34,6 +34,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
       <button class="pj-type-btn" data-type="LANDSCAPE">Landscape</button>
       <button class="pj-type-btn" data-type="INFRASTRUCTURE">Infrastructure</button>
       <button class="pj-type-btn" data-type="TURNKEY CONSTRUCTION">Turnkey Construction</button>
+      <button class="pj-type-btn" data-type="TOURISM AND HOSPITALITY/ WELLNESS">Tourism and Hospitality/ Wellness</button>
     </div>
   </section>
 

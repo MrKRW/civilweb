@@ -238,6 +238,7 @@ $adminUser = $adminUser ?? 'admin';
                 <option value="LANDSCAPE">Landscape</option>
                 <option value="INFRASTRUCTURE">Infrastructure</option>
                 <option value="TURNKEY CONSTRUCTION">Turnkey Construction</option>
+                <option value="TOURISM AND HOSPITALITY/ WELLNESS">Tourism and Hospitality/ Wellness</option>
               </select>
             </div>
 
