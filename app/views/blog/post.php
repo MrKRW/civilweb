@@ -45,7 +45,7 @@ $date = !empty($post['created_at']) ? date('F j, Y', strtotime($post['created_at
 <div class="post-hero-image">
   <div class="container">
     <div class="post-hero-image__wrap">
-      <img src="<?= $img ?>" alt="<?= htmlspecialchars($post['title']) ?>" />
+      <img src="<?= $img ?>" alt="<?= htmlspecialchars($post['title']) ?>" <?php if(!empty($post['image'])) echo 'onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=\'https://civilanka.com/uploads/blog/'.htmlspecialchars($post['image']).'\';}"'; ?> />
     </div>
   </div>
 </div>
@@ -81,7 +81,7 @@ $date = !empty($post['created_at']) ? date('F j, Y', strtotime($post['created_at
               ?>
               <a href="<?= $BASE ?>/blog/post/<?= $rp['id'] ?>" class="recent-item">
                 <div class="recent-item__img">
-                  <img src="<?= $rImg ?>" alt="<?= htmlspecialchars($rp['title']) ?>">
+                  <img src="<?= $rImg ?>" alt="<?= htmlspecialchars($rp['title']) ?>" <?php if(!empty($rp['image'])) echo 'onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=\'https://civilanka.com/uploads/blog/'.htmlspecialchars($rp['image']).'\';}"'; ?>>
                 </div>
                 <div class="recent-item__info">
                   <span class="recent-item__title"><?= htmlspecialchars($rp['title']) ?></span>

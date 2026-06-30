@@ -248,13 +248,13 @@ $pid         = (int)($item['id'] ?? 0);
       <!-- Gallery left -->
       <div class="product-gallery">
         <div class="product-thumbnails" id="product-thumbnails">
-          <img src="<?= $imgSrc ?>" alt="Main View" class="active" data-src="<?= $imgSrc ?>" />
+          <img src="<?= $imgSrc ?>" alt="Main View" class="active" data-src="<?= $imgSrc ?>" <?php if(!empty($item['image'])) echo 'onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=\'https://civilanka.com/uploads/shop/'.htmlspecialchars($item['image']).'\'; this.dataset.src=this.src;}"'; ?> />
           <?php foreach ($gallery as $i => $img): ?>
-            <img src="<?= $BASE ?>/uploads/shop/<?= htmlspecialchars($img) ?>" alt="View <?= $i + 2 ?>" data-src="<?= $BASE ?>/uploads/shop/<?= htmlspecialchars($img) ?>" />
+            <img src="<?= $BASE ?>/uploads/shop/<?= htmlspecialchars($img) ?>" alt="View <?= $i + 2 ?>" data-src="<?= $BASE ?>/uploads/shop/<?= htmlspecialchars($img) ?>" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://civilanka.com/uploads/shop/<?= htmlspecialchars($img) ?>'; this.dataset.src=this.src;}" />
           <?php endforeach; ?>
         </div>
         <div class="product-main-image">
-          <img id="main-product-img" src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($item['title'] ?? '') ?>" />
+          <img id="main-product-img" src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($item['title'] ?? '') ?>" <?php if(!empty($item['image'])) echo 'onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=\'https://civilanka.com/uploads/shop/'.htmlspecialchars($item['image']).'\';}"'; ?> />
         </div>
       </div>
 
@@ -372,7 +372,7 @@ $pid         = (int)($item['id'] ?? 0);
             <div class="addl-info-images">
               <?php foreach ($addlImages as $aImg): ?>
                 <div class="addl-info-img-item">
-                  <img src="<?= $BASE ?>/uploads/shop/<?= htmlspecialchars($aImg) ?>" alt="Additional info image" loading="lazy" />
+                  <img src="<?= $BASE ?>/uploads/shop/<?= htmlspecialchars($aImg) ?>" alt="Additional info image" loading="lazy" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://civilanka.com/uploads/shop/<?= htmlspecialchars($aImg) ?>';}" />
                 </div>
               <?php endforeach; ?>
             </div>

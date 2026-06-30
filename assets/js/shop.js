@@ -50,7 +50,7 @@ async function loadShopItems(container) {
         <div class="product-card">
           <div class="product-image">
             ${badgeHtml}
-            <img src="${imgPath}" alt="${escapeHtml(item.title)}">
+            <img src="${imgPath}" alt="${escapeHtml(item.title)}" ${item.image ? `onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://civilanka.com/uploads/shop/${item.image}';}"` : ''}>
           </div>
           <div class="product-info">
             <h4 class="product-title"><a href="${base}/shop/product/${item.id}">${escapeHtml(item.title)}</a></h4>

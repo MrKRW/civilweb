@@ -453,7 +453,7 @@ function buildShopTable(items) {
 
   items.forEach(p => {
     const thumb = p.image
-      ? `<img src="${SHOP_UPLOAD_BASE}${p.image}" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://civilanka.com/uploads/projects/'+'${p.image}';}else{this.outerHTML='<div class=\\'project-thumb\\' style=\\'background:var(--bg-hover);display:flex;align-items:center;justify-content:center;\\'><span style=\\'font-size:10px;color:var(--text-muted);\\'>Missing</span></div>';}" class="project-thumb" alt="" />`
+      ? `<img src="${SHOP_UPLOAD_BASE}${p.image}" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://civilanka.com/uploads/shop/'+'${p.image}';}else{this.outerHTML='<div class=\\'project-thumb\\' style=\\'background:var(--bg-hover);display:flex;align-items:center;justify-content:center;\\'><span style=\\'font-size:10px;color:var(--text-muted);\\'>Missing</span></div>';}" class="project-thumb" alt="" />`
       : `<div class="project-thumb" style="background:var(--bg-hover);"></div>`;
     const statusBadge = `<span class="badge badge--${p.status}">${p.status}</span>`;
 
@@ -784,7 +784,7 @@ function buildBlogTable(posts) {
 
   posts.forEach(p => {
     const thumb = p.image
-      ? `<img src="${BLOG_UPLOAD_BASE}${p.image}" class="project-thumb" alt="" />`
+      ? `<img src="${BLOG_UPLOAD_BASE}${p.image}" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://civilanka.com/uploads/blog/'+'${p.image}';}else{this.outerHTML='<div class=\\'project-thumb\\' style=\\'background:var(--bg-hover);display:flex;align-items:center;justify-content:center;\\'><span style=\\'font-size:10px;color:var(--text-muted);\\'>Missing</span></div>';}" class="project-thumb" alt="" />`
       : `<div class="project-thumb" style="background:var(--bg-hover);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" width="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>`;
     const statusBadge = `<span class="badge badge--${p.status}">${p.status}</span>`;
     const date = p.created_at ? new Date(p.created_at).toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'}) : '—';

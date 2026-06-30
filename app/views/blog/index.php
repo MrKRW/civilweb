@@ -82,7 +82,7 @@ $posts = $posts ?? [];
             ?>
             <article class="blog-card blog-card--featured">
               <a href="<?= $BASE ?>/blog/post/<?= $featured['id'] ?>" class="blog-card__img-wrap">
-                <img src="<?= $fImg ?>" alt="<?= htmlspecialchars($featured['title']) ?>" class="blog-card__img" loading="lazy">
+                <img src="<?= $fImg ?>" alt="<?= htmlspecialchars($featured['title']) ?>" class="blog-card__img" loading="lazy" <?php if(!empty($featured['image'])) echo 'onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=\'https://civilanka.com/uploads/blog/'.htmlspecialchars($featured['image']).'\';}"'; ?>>
                 <span class="blog-card__cat-badge"><?= $fCat ?></span>
               </a>
               <div class="blog-card__body">
@@ -117,7 +117,7 @@ $posts = $posts ?? [];
                 ?>
                 <article class="blog-card blog-card--grid">
                   <a href="<?= $BASE ?>/blog/post/<?= $post['id'] ?>" class="blog-card__img-wrap">
-                    <img src="<?= $img ?>" alt="<?= htmlspecialchars($post['title']) ?>" class="blog-card__img" loading="lazy">
+                    <img src="<?= $img ?>" alt="<?= htmlspecialchars($post['title']) ?>" class="blog-card__img" loading="lazy" <?php if(!empty($post['image'])) echo 'onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=\'https://civilanka.com/uploads/blog/'.htmlspecialchars($post['image']).'\';}"'; ?>>
                     <span class="blog-card__cat-badge"><?= $cat ?></span>
                   </a>
                   <div class="blog-card__body">
@@ -184,7 +184,7 @@ $posts = $posts ?? [];
               ?>
               <a href="#" class="recent-item">
                 <div class="recent-item__img">
-                  <img src="<?= $rImg ?>" alt="<?= htmlspecialchars($rp['title']) ?>">
+                  <img src="<?= $rImg ?>" alt="<?= htmlspecialchars($rp['title']) ?>" <?php if(!empty($rp['image'])) echo 'onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=\'https://civilanka.com/uploads/blog/'.htmlspecialchars($rp['image']).'\';}"'; ?>>
                 </div>
                 <div class="recent-item__info">
                   <span class="recent-item__title"><?= htmlspecialchars($rp['title']) ?></span>
