@@ -2165,6 +2165,10 @@ body.home-page .team-role {
   transform: translateY(-8px);
 }
 
+body.home-page #back-top {
+  display: none !important;
+}
+
 /* ===========================
    HAMBURGER MENU BUTTON
 =========================== */

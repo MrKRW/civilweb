@@ -93,7 +93,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   </section>
 
   <!-- SERVICES ACCORDION -->
-  <section id="services" class="accordion-section reveal">
+  <section id="services" class="accordion-section">
     <div class="acc-container">
       <div class="acc-item">
         <div class="acc-header"><span class="acc-icon">+</span><span class="acc-title">Design & Visualization</span></div>
