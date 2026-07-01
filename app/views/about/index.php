@@ -138,45 +138,19 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
 
   <!-- LOGO STRIP -->
   <?php 
-  // Hardcoded partner logos to prevent database glitches
-  $hardcodedPartners = [
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3bad76eafe28.21349305.jpg', 'alt_text' => 'Mazanec'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3bad5a6c9a02.13187782.jpg', 'alt_text' => 'EPIC'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3bad48c67e40.02405538.jpg', 'alt_text' => 'Hosokawa Alpine'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3bad35666e06.11957914.jpg', 'alt_text' => 'Westport'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3bad27b9de38.76631544.png', 'alt_text' => 'Gems & Partner'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3bad19e8dbb5.78825162.jpg', 'alt_text' => 'Intrafor'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3bad0c67e525.84899538.png', 'alt_text' => 'Surewest'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3bacf3aa2e46.12771378.png', 'alt_text' => 'mindstudio'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3bac7a5a69e5.79779457.png', 'alt_text' => 'RA international'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3bac6b237270.37936484.jpg', 'alt_text' => 'Vykres'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3bac5bd72539.14685798.jpg', 'alt_text' => 'Metro Tow Trucks'],
-      ['image' => 'logo_6a43b3ce4036a9.00932853.png', 'alt_text' => 'H&B Steel'], // Local fallback
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3bac11af5993.43430116.jpg', 'alt_text' => 'BEHMER'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3babfba214c6.16496199.jpg', 'alt_text' => 'BCS'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3babebbdf290.27183116.png', 'alt_text' => 'Swan Li'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3babdde8a177.51262754.png', 'alt_text' => 'Apex'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3bab197c6bd1.36913317.png', 'alt_text' => 'Urth.'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3bab53950272.13239386.png', 'alt_text' => 'Modpadz'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3baa868d1380.46961839.png', 'alt_text' => 'BOI'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3baa7d484fb5.94758977.png', 'alt_text' => 'Natex'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3ba0d45d4b11.99581543.png', 'alt_text' => 'Australian HSRA'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3ba0bae18230.48420255.png', 'alt_text' => 'SLA'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3ba0aee35e15.23455713.png', 'alt_text' => 'Hga'],
-      ['image' => 'https://civilanka.com/uploads/logos/logo_6a3ba00d6663c2.29865339.png', 'alt_text' => 'Timmons Group']
-  ];
-  
-  // Use hardcoded array if DB fails or is empty, to guarantee display
-  $logosToDisplay = !empty($partnerLogos) ? $partnerLogos : $hardcodedPartners;
+  // Use DB logos, if empty fallback to an empty array so it doesn't break
+  $logosToDisplay = !empty($partnerLogos) ? $partnerLogos : [];
   ?>
   <section class="hs-logo-strip">
     <h2 class="hs-partners-heading">OUR PARTNERS</h2>
+    <?php if (!empty($logosToDisplay)): ?>
     <div class="hs-logo-track">
       <!-- First set of logos -->
       <div class="hs-logos">
         <?php foreach ($logosToDisplay as $logo): ?>
           <div class="hs-logo-item">
             <?php
+              $imgSrc = '';
               if (strpos($logo['image'], 'http') === 0) {
                   $imgSrc = htmlspecialchars($logo['image']);
               } else {
@@ -189,7 +163,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
                   }
               }
             ?>
-            <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" onerror="this.outerHTML='<span style=&quot;font-size:1.2rem;font-weight:600;color:var(--text-secondary);text-align:center;padding:10px;text-transform:uppercase;&quot;>'+this.alt+'</span>';" />
+            <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" onerror="this.onerror=null; this.src='https://placehold.co/150x80/f0f0f0/333333?text='+encodeURIComponent(this.alt);" />
           </div>
         <?php endforeach; ?>
       </div>
@@ -198,6 +172,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
         <?php foreach ($logosToDisplay as $logo): ?>
           <div class="hs-logo-item">
             <?php
+              $imgSrc = '';
               if (strpos($logo['image'], 'http') === 0) {
                   $imgSrc = htmlspecialchars($logo['image']);
               } else {
@@ -205,15 +180,17 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
                   if (!empty($logo['image']) && file_exists($localPath) && is_file($localPath)) {
                       $imgSrc = $BASE . '/uploads/logos/' . htmlspecialchars($logo['image']);
                   } else {
+                      // Fallback to the live site URL if not found locally
                       $imgSrc = 'https://civilanka.com/uploads/logos/' . htmlspecialchars($logo['image']);
                   }
               }
             ?>
-            <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" onerror="this.outerHTML='<span style=&quot;font-size:1.2rem;font-weight:600;color:var(--text-secondary);text-align:center;padding:10px;text-transform:uppercase;&quot;>'+this.alt+'</span>';" />
+            <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" onerror="this.onerror=null; this.src='https://placehold.co/150x80/f0f0f0/333333?text='+encodeURIComponent(this.alt);" />
           </div>
         <?php endforeach; ?>
       </div>
     </div>
+    <?php endif; ?>
   </section>
 
   <!-- FOUNDERS -->
