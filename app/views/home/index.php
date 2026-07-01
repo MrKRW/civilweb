@@ -64,44 +64,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
     </div>
   </section>
 
-  <!-- PROJECTS / OUR WORK SECTION -->
-  <section id="projects" class="section-pad dark-section">
-    <div class="our-work-container">
-      <div class="our-work-left reveal-left">
-        <span class="our-work-label">&bull; &nbsp;OUR WORK</span>
-        <div class="our-work-info">
-          <h2 class="our-work-title">The feel of Villa Yun</h2>
-          <span class="our-work-cat">WELLNESS</span>
-        </div>
-      </div>
-      <div class="our-work-right reveal-right">
-        <div class="swiper our-work-swiper">
-          <div class="swiper-wrapper">
-            <a href="<?= $BASE ?>/projects" class="swiper-slide our-work-slide" data-title="The feel of Villa Yun" data-cat="WELLNESS" style="display:block;">
-              <img src="<?= $BASE ?>/Project%20images/2023-11-07.jpg" alt="Villa Yun" />
-            </a>
-            <a href="<?= $BASE ?>/projects" class="swiper-slide our-work-slide" data-title="Contemporary Interior" data-cat="INTERIOR" style="display:block;">
-              <img src="<?= $BASE ?>/Project%20images/A%20(10).png" alt="Contemporary Interior" />
-            </a>
-            <a href="<?= $BASE ?>/projects" class="swiper-slide our-work-slide" data-title="Modern Structure" data-cat="ARCHITECTURE" style="display:block;">
-              <img src="<?= $BASE ?>/Project%20images/1%20(4).png" alt="Modern Structure" />
-            </a>
-            <a href="<?= $BASE ?>/projects" class="swiper-slide our-work-slide" data-title="Industrial Facility" data-cat="COMMERCIAL" style="display:block;">
-              <img src="<?= $BASE ?>/Project%20images/WIN_Facility6.jpg" alt="Industrial Facility" />
-            </a>
-          </div>
-        </div>
-        <div class="our-work-nav">
-          <button class="our-work-prev">
-            <svg width="40" height="10" viewBox="0 0 60 14" fill="none"><path d="M60 7H2M2 7L8 1M2 7L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button class="our-work-next">
-            <svg width="40" height="10" viewBox="0 0 60 14" fill="none"><path d="M0 7H58M58 7L52 1M58 7L52 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <!-- SERVICES ACCORDION -->
   <section id="services" class="accordion-section reveal">
@@ -289,41 +252,3 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
     </div>
   </section>
 
-  <script>
-    (async function loadFeaturedProjects() {
-      try {
-        const res = await fetch((typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/projects?action=featured');
-        const data = await res.json();
-        const projects = data.projects;
-        if (!projects || projects.length === 0) return;
-        const wrapper = document.querySelector('.our-work-swiper .swiper-wrapper');
-        if (!wrapper) return;
-        wrapper.innerHTML = '';
-        projects.forEach(p => {
-          const imgSrc = p.image_main ? (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/projects/' + encodeURI(p.image_main) : (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/Project%20images/2023-11-07.jpg';
-          const fallbackSrc = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/Project%20images/2023-11-07.jpg';
-          const baseHref = typeof API_BASE !== 'undefined' ? API_BASE : '';
-          const slide = document.createElement('a');
-          slide.href = `${baseHref}/projects/${p.id}`;
-          slide.className = 'swiper-slide our-work-slide';
-          slide.setAttribute('data-title', p.title);
-          slide.setAttribute('data-cat', p.service_type || '');
-          slide.style.display = 'block';
-          slide.innerHTML = `<img src="${imgSrc}" alt="${p.title}" ${p.image_main ? `onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://civilanka.com/uploads/projects/${encodeURI(p.image_main)}';}else{this.src='${fallbackSrc}';}"` : ''} />`;
-          wrapper.appendChild(slide);
-        });
-        if (projects.length > 0) {
-          const titleEl = document.querySelector('.our-work-title');
-          const catEl = document.querySelector('.our-work-cat');
-          if (titleEl) titleEl.textContent = projects[0].title;
-          if (catEl) catEl.textContent = projects[0].service_type || '';
-        }
-        if (typeof window.initOurWorkSwiper === 'function') {
-          window.initOurWorkSwiper();
-        } else {
-          const swiperEl = document.querySelector('.our-work-swiper');
-          if (swiperEl && swiperEl.swiper) swiperEl.swiper.update();
-        }
-      } catch (e) { /* keep static slides */ }
-    })();
-  </script>

@@ -908,139 +908,7 @@ p {
   max-width: 440px;
 }
 
-/* ===========================
-   PROJECTS (OUR WORK SLIDER)
-=========================== */
-#projects {
-  background: #000000;
-  padding: 100px 0;
-  overflow: hidden;
-  isolation: isolate;
-  position: relative;
-  z-index: 1;
-}
 
-.our-work-container {
-  display: flex;
-  align-items: stretch;
-  height: 65vh;
-  min-height: 500px;
-  max-height: 700px;
-  max-width: 100%;
-}
-
-.our-work-left {
-  flex: 0 0 28%;
-  padding: 0 40px 0 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.our-work-label {
-  font-family: var(--font-b);
-  font-size: 0.75rem;
-  /* 12px */
-  letter-spacing: 0.18em;
-  color: #bbb;
-  text-transform: uppercase;
-  margin-top: 40px;
-}
-
-.our-work-info {
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-.our-work-title {
-  font-family: var(--font-b);
-  font-size: clamp(2.5rem, 4vw, 3.75rem);
-  /* 40px–60px */
-  font-weight: 300;
-  line-height: 1.1;
-  color: #fff;
-  letter-spacing: -0.02em;
-  opacity: 1;
-  transition: opacity 0.28s ease;
-  will-change: opacity;
-}
-
-.our-work-cat {
-  font-family: var(--font-b);
-  font-size: 0.75rem;
-  /* 12px */
-  letter-spacing: 0.22em;
-  color: #bbb;
-  text-transform: uppercase;
-  opacity: 1;
-  transition: opacity 0.28s ease;
-  will-change: opacity;
-}
-
-.our-work-right {
-  flex: 1;
-  overflow: hidden;
-  position: relative;
-  padding-left: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.our-work-swiper {
-  width: 100%;
-  height: calc(100% - 60px);
-}
-
-.our-work-swiper .swiper-wrapper {
-  height: 100%;
-  will-change: transform;
-}
-
-.our-work-slide {
-  width: 75%;
-  height: 100%;
-  cursor: pointer;
-  overflow: hidden;
-  transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.our-work-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.our-work-nav {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 60px;
-  gap: 30px;
-  padding-right: 28%;
-}
-
-.our-work-nav button {
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: 300;
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-family: var(--font-b);
-  opacity: 0.8;
-  transition: opacity 0.3s;
-  letter-spacing: -2px;
-  /* To make arrows look longer if they are just characters */
-}
-
-.our-work-nav button:hover {
-  opacity: 1;
-}
 
 /* ===========================
    HORIZONTAL ACCORDION SERVICES
@@ -1249,49 +1117,7 @@ p {
   transform-origin: left center;
 }
 
-@media (max-width: 900px) {
-  .our-work-container {
-    flex-direction: column;
-    height: auto;
-    min-height: auto;
-    max-height: none;
-  }
 
-  .our-work-left {
-    flex: none;
-    padding: 0 40px;
-    margin-bottom: 40px;
-  }
-
-  .our-work-label {
-    margin-top: 0;
-    margin-bottom: 20px;
-    display: block;
-  }
-
-  .our-work-right {
-    padding-left: 0;
-    height: auto;
-  }
-
-  .our-work-swiper {
-    height: 306px;
-  }
-
-  .our-work-slide {
-    width: 300px !important;
-    min-width: 300px !important;
-    max-width: 300px !important;
-    height: 306px !important;
-    flex-shrink: 0 !important;
-  }
-
-  .our-work-slide img {
-    object-fit: cover !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-}
 
 /* ===========================
    TEAM SECTION
@@ -3477,30 +3303,6 @@ body.home-page .team-role {
     flex: none;
   }
 
-  /* Projects slider */
-  .our-work-container {
-    flex-direction: column;
-    height: auto;
-    min-height: unset;
-    max-height: unset;
-  }
-
-  .our-work-left {
-    flex: none;
-    padding: 0 40px;
-    margin-bottom: 32px;
-  }
-
-  .our-work-label {
-    margin-top: 0;
-    margin-bottom: 20px;
-    display: block;
-  }
-
-  .our-work-slide {
-    width: 90%;
-  }
-
   /* Quote banner */
   #quote-banner {
     height: 549px;
@@ -3638,32 +3440,6 @@ body.home-page .team-role {
 
   .center-logo-img {
     max-width: 160px;
-  }
-
-  /* Projects — compact */
-  #projects {
-    padding: 60px 0;
-  }
-
-  .our-work-left {
-    padding: 0 24px;
-    margin-bottom: 24px;
-  }
-
-  .our-work-right {
-    min-height: 260px;
-  }
-
-  .our-work-swiper {
-    height: 220px;
-  }
-
-  .our-work-slide {
-    width: 82%;
-  }
-
-  .our-work-nav {
-    padding-right: 5%;
   }
 
   /* Services accordion — vertical stacked */
@@ -4449,50 +4225,6 @@ body.home-page .team-role {
     line-height: 1.6;
   }
 
-  /* Projects — compact dark band */
-  body.home-page #projects {
-    padding: 52px 0;
-  }
-
-  body.home-page .our-work-container {
-    height: 384px;
-    min-height: unset;
-    max-height: unset;
-  }
-
-  body.home-page .our-work-left {
-    flex: 0 0 30%;
-    padding: 0 24px 0 32px;
-  }
-
-  body.home-page .our-work-label {
-    font-size: 0.65rem;
-    margin-top: 16px;
-  }
-
-  body.home-page .our-work-title {
-    font-size: clamp(1.45rem, 3.8vw, 2rem);
-  }
-
-  body.home-page .our-work-cat {
-    font-size: 0.65rem;
-  }
-
-  body.home-page .our-work-swiper {
-    height: 324px;
-  }
-
-  body.home-page .our-work-slide {
-    width: 562px;
-    height: 324px;
-  }
-
-  body.home-page .our-work-slide img {
-    width: 562px;
-    height: 324px;
-    object-fit: cover;
-  }
-
   /* Services — keep horizontal accordion (reference layout) */
   body.home-page .accordion-section {
     padding: 52px 0;
@@ -4773,30 +4505,6 @@ body.home-page .team-role {
 
 /* Portrait + very narrow refinements */
 @media (orientation: portrait) and (max-width: 600px) {
-  body.home-page .our-work-container {
-    flex-direction: column;
-    height: auto;
-    min-height: 0;
-    max-height: none;
-  }
-
-  body.home-page .our-work-left {
-    flex: none;
-    padding: 0 24px;
-    margin-bottom: 20px;
-  }
-
-  body.home-page .our-work-right {
-    min-height: 220px;
-  }
-
-  body.home-page .our-work-swiper {
-    height: 200px;
-  }
-
-  body.home-page .our-work-slide {
-    width: 82%;
-  }
 
   body.home-page .new-about-col {
     flex: 1 1 100%;
@@ -5407,11 +5115,7 @@ body.home-page .team-role {
 }
 
 /* ── OUR WORK NAV: remove the fixed 28% padding on non-large screens ── */
-@media (max-width: 1100px) {
-  .our-work-nav {
-    padding-right: 8%;
-  }
-}
+
 
 /* ── ABOUT INTRO inner grid: don't lock second column to 606px ── */
 @media (max-width: 1100px) and (min-width: 1025px) {
@@ -5552,26 +5256,6 @@ body.home-page .team-role {
   img {
     max-width: 100% !important;
   }
-  /* Our work slide images stay at defined fixed sizes set per-element */
-  .our-work-slide img,
-  .acc-img-wrap img,
-  .team-cell.team-photo img,
-  .hs-founder-photo img,
-  .hs-tc-photo img,
-  .hs-gallery-item img,
-  .hs-intro-img-wrap img,
-  .about-slide img,
-  .split-bg,
-  .pj-card-img img,
-  .pj-gallery-item img,
-  .product-image img,
-  .product-main-image img,
-  .product-thumbnails img,
-  .panel-img img,
-  .ref-journal-img-wrap img,
-  .sidebar-banner img {
-    max-width: none !important;
-  }
 }
 
 /* ===================================================
@@ -5595,10 +5279,6 @@ body.home-page .team-role {
     width: 380px;
     height: 190px;
   }
-  body.home-page .our-work-left {
-    flex: 0 0 30%;
-    padding: 0 32px 0 48px;
-  }
   body.home-page .ref-journal-grid {
     gap: 40px 14px;
   }
@@ -5619,18 +5299,6 @@ body.home-page .team-role {
   }
   body.home-page .new-about-heading {
     font-size: clamp(1.5rem, 3vw, 2.4rem);
-  }
-  body.home-page .our-work-container {
-    height: 56vh;
-    min-height: 420px;
-    max-height: 600px;
-  }
-  body.home-page .our-work-left {
-    flex: 0 0 32%;
-    padding: 0 28px 0 40px;
-  }
-  body.home-page .our-work-title {
-    font-size: clamp(2rem, 3.5vw, 3rem);
   }
   body.home-page .accordion-section {
     padding: 80px 0 180px;
@@ -5698,50 +5366,6 @@ body.home-page .team-role {
   }
   body.home-page .new-about-col p {
     max-width: 100%;
-  }
-  body.home-page #projects {
-    padding: 70px 0;
-  }
-  body.home-page .our-work-container {
-    flex-direction: column;
-    height: auto;
-    min-height: unset;
-    max-height: unset;
-  }
-  body.home-page .our-work-left {
-    flex: none;
-    padding: 0 40px;
-    margin-bottom: 28px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-  body.home-page .our-work-label {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  body.home-page .our-work-info {
-    margin: 0;
-    text-align: right;
-  }
-  body.home-page .our-work-title {
-    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
-  }
-  body.home-page .our-work-swiper {
-    height: 300px;
-  }
-  body.home-page .our-work-slide {
-    width: 480px !important;
-    height: 300px !important;
-  }
-  body.home-page .our-work-slide img {
-    width: 480px !important;
-    height: 300px !important;
-    object-fit: cover;
-  }
-  body.home-page .our-work-nav {
-    padding-right: 5%;
-    height: 52px;
   }
   body.home-page .accordion-section {
     padding: 70px 0 120px;
@@ -5908,21 +5532,6 @@ body.home-page .team-role {
     flex: none;
     width: 100%;
   }
-  body.home-page .our-work-left {
-    padding: 0 28px;
-  }
-  body.home-page .our-work-swiper {
-    height: 280px;
-  }
-  body.home-page .our-work-slide {
-    width: 420px !important;
-    height: 280px !important;
-  }
-  body.home-page .our-work-slide img {
-    width: 420px !important;
-    height: 280px !important;
-    object-fit: cover;
-  }
   body.home-page .team-grid {
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
@@ -6015,45 +5624,6 @@ body.home-page .team-role {
     width: 100%;
     height: 200px;
     max-width: 480px;
-  }
-  body.home-page #projects {
-    padding: 52px 0;
-  }
-  body.home-page .our-work-left {
-    padding: 0 24px;
-    margin-bottom: 20px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  body.home-page .our-work-info {
-    margin: 0;
-    text-align: left;
-  }
-  body.home-page .our-work-label {
-    margin-bottom: 16px;
-  }
-  body.home-page .our-work-right {
-    min-height: 240px;
-  }
-  body.home-page .our-work-swiper {
-    height: 240px;
-  }
-  body.home-page .our-work-slide {
-    width: 82% !important;
-    height: 240px !important;
-  }
-  body.home-page .our-work-slide img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover;
-  }
-  body.home-page .our-work-nav {
-    padding-right: 5%;
-    height: 48px;
-    gap: 20px;
-  }
-  body.home-page .our-work-title {
-    font-size: clamp(1.5rem, 5vw, 2.2rem);
   }
   body.home-page .accordion-section {
     padding: 52px 0 80px;
@@ -6214,16 +5784,6 @@ body.home-page .team-role {
   body.home-page .new-about-links a {
     font-size: 0.95rem;
   }
-  body.home-page .our-work-swiper {
-    height: 220px;
-  }
-  body.home-page .our-work-slide {
-    width: 85% !important;
-    height: 220px !important;
-  }
-  body.home-page .our-work-slide img {
-    height: 220px !important;
-  }
   body.home-page #quote-banner {
     height: 320px;
     min-height: 320px;
@@ -6265,22 +5825,6 @@ body.home-page .team-role {
   }
   body.home-page .about-slideshow {
     height: 160px;
-  }
-  body.home-page .our-work-left {
-    padding: 0 16px;
-  }
-  body.home-page .our-work-swiper {
-    height: 200px;
-  }
-  body.home-page .our-work-slide {
-    width: 90% !important;
-    height: 200px !important;
-  }
-  body.home-page .our-work-slide img {
-    height: 200px !important;
-  }
-  body.home-page .our-work-title {
-    font-size: 1.4rem;
   }
   body.home-page .acc-container {
     padding: 0 12px;
@@ -6359,15 +5903,6 @@ body.home-page .team-role {
   }
   body.home-page .about-slideshow {
     height: 140px;
-  }
-  body.home-page .our-work-swiper {
-    height: 180px;
-  }
-  body.home-page .our-work-slide {
-    height: 180px !important;
-  }
-  body.home-page .our-work-slide img {
-    height: 180px !important;
   }
   body.home-page .acc-title {
     font-size: 0.95rem;
@@ -6456,11 +5991,7 @@ body.home-page {
 }
 
 /* ── PROJECTS: safeguard min-height for swiper container on smallest screens ── */
-@media (max-width: 480px) {
-  body.home-page .our-work-right {
-    min-height: 200px;
-  }
-}
+
 
 /* ── ACCORDION: hide the top border divider line on mobile ── */
 @media (max-width: 768px) {
