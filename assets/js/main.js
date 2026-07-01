@@ -190,3 +190,187 @@ if (aboutSlides.length > 0) {
   }, 4000);
 }
 
+// ============================
+// OUR WORK — Featured Projects Slideshow
+// ============================
+(function () {
+  const track       = document.getElementById('ow-track');
+  const prevBtn     = document.getElementById('ow-prev');
+  const nextBtn     = document.getElementById('ow-next');
+  const nameEl      = document.getElementById('ow-project-name');
+  const typeEl      = document.getElementById('ow-project-type');
+  const progressEl  = document.getElementById('ow-progress-fill');
+
+  if (!track) return; // not on home page
+
+  const UPLOAD   = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/uploads/projects/';
+  const PROJ_URL = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/projects/';
+  const API_URL  = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/projects';
+
+  let projects = [];
+  let current  = 0;
+  let autoTimer = null;
+  let isAnimating = false;
+
+  /* ── Show skeleton while loading ─── */
+  track.innerHTML = '<div class="ow-skeleton"></div>';
+
+  /* ── Fetch featured projects ─────── */
+  fetch(API_URL + '?action=featured')
+    .then(r => r.json())
+    .then(data => {
+      projects = (data.projects || []).filter(p => p.image_main);
+      if (projects.length === 0) {
+        // fallback: fetch all published and take first 6
+        return fetch(API_URL + '?action=list&status=published')
+          .then(r => r.json())
+          .then(d => {
+            projects = (d.projects || []).filter(p => p.image_main).slice(0, 6);
+            buildSlider();
+          });
+      }
+      buildSlider();
+    })
+    .catch(() => {
+      track.innerHTML = ''; // silent fail, section stays dark
+    });
+
+  /* ── Build slider DOM ────────────── */
+  function buildSlider() {
+    if (projects.length === 0) { track.innerHTML = ''; return; }
+
+    track.innerHTML = projects.map((p, i) => {
+      const src = UPLOAD + encodeURIComponent(p.image_main);
+      const href = PROJ_URL + p.id;
+      return `
+        <a class="ow-slide" href="${href}" data-index="${i}" draggable="false">
+          <img src="${src}" alt="${escAttr(p.title)}" loading="${i === 0 ? 'eager' : 'lazy'}"
+               onerror="this.onerror=null;this.src='https://civilanka.com/uploads/projects/'+encodeURIComponent('${p.image_main}')">
+        </a>`;
+    }).join('');
+
+    updateSlideClasses();
+    updateInfo(0, false);
+    updateProgress();
+    startAuto();
+
+    prevBtn && prevBtn.addEventListener('click', () => go(-1));
+    nextBtn && nextBtn.addEventListener('click', () => go(1));
+
+    /* Swipe support */
+    let tsX = 0;
+    track.addEventListener('touchstart', e => { tsX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const diff = tsX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) go(diff > 0 ? 1 : -1);
+    }, { passive: true });
+
+    /* Click on non-active slide navigates */
+    track.addEventListener('click', e => {
+      const slide = e.target.closest('.ow-slide');
+      if (!slide) return;
+      const idx = parseInt(slide.dataset.index, 10);
+      if (idx === current) return; // allow link navigation
+      e.preventDefault();
+      goTo(idx);
+    });
+  }
+
+  /* ── Navigate ──────────────────── */
+  function go(dir) {
+    if (isAnimating) return;
+    const next = (current + dir + projects.length) % projects.length;
+    goTo(next);
+  }
+
+  function goTo(idx) {
+    if (idx === current || isAnimating) return;
+    isAnimating = true;
+    current = idx;
+
+    updateSlideClasses();
+    updateInfo(idx, true);
+    updateProgress();
+    resetAuto();
+
+    setTimeout(() => { isAnimating = false; }, 780);
+  }
+
+  /* ── Update slide positions ──────── */
+  function updateSlideClasses() {
+    const slides = track.querySelectorAll('.ow-slide');
+
+    // 1. First remove all classes so layout reflows to default widths
+    slides.forEach(s => s.classList.remove('ow-main', 'ow-peek'));
+
+    // 2. Apply main + peek to current and next slide
+    slides.forEach((s, i) => {
+      if (i === current) s.classList.add('ow-main');
+      else if (i === (current + 1) % projects.length) s.classList.add('ow-peek');
+    });
+
+    // 3. Compute pixel offset by summing widths of slides before `current`
+    // Use requestAnimationFrame so the flex reflow has settled
+    requestAnimationFrame(() => {
+      let offset = 0;
+      slides.forEach((s, i) => {
+        if (i < current) offset += s.offsetWidth + 6; // 6px gap
+      });
+      track.style.transform = `translateX(-${offset}px)`;
+    });
+  }
+
+  /* ── Update text labels ──────────── */
+  function updateInfo(idx, animate) {
+    const p = projects[idx];
+    if (!p) return;
+
+    if (animate && nameEl && typeEl) {
+      nameEl.classList.add('ow-fade-out');
+      typeEl.classList.add('ow-fade-out');
+      setTimeout(() => {
+        nameEl.textContent = p.title || '';
+        typeEl.textContent = p.service_type || p.category || '';
+        nameEl.classList.remove('ow-fade-out');
+        typeEl.classList.remove('ow-fade-out');
+        nameEl.classList.add('ow-fade-in');
+        typeEl.classList.add('ow-fade-in');
+        setTimeout(() => {
+          nameEl.classList.remove('ow-fade-in');
+          typeEl.classList.remove('ow-fade-in');
+        }, 400);
+      }, 260);
+    } else if (nameEl && typeEl) {
+      nameEl.textContent = p.title || '';
+      typeEl.textContent = p.service_type || p.category || '';
+    }
+  }
+
+  /* ── Progress bar ────────────────── */
+  function updateProgress() {
+    if (!progressEl || projects.length === 0) return;
+    const pct = ((current + 1) / projects.length) * 100;
+    progressEl.style.width = pct + '%';
+  }
+
+  /* ── Autoplay ────────────────────── */
+  function startAuto() {
+    if (projects.length <= 1) return;
+    autoTimer = setInterval(() => go(1), 5000);
+  }
+  function resetAuto() {
+    clearInterval(autoTimer);
+    startAuto();
+  }
+
+  /* ── Pause on hover ──────────────── */
+  const section = document.getElementById('our-work');
+  if (section) {
+    section.addEventListener('mouseenter', () => clearInterval(autoTimer));
+    section.addEventListener('mouseleave', () => startAuto());
+  }
+
+  function escAttr(s) {
+    return (s || '').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+})();

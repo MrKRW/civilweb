@@ -64,7 +64,40 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
     </div>
   </section>
 
-
+  <!-- OUR WORK SECTION -->
+  <section id="our-work" class="ow-section" aria-label="Our Work">
+    <div class="ow-left">
+      <span class="ow-label">&#x2022; OUR WORK</span>
+      <div class="ow-info-wrap">
+        <h2 class="ow-project-name" id="ow-project-name">&nbsp;</h2>
+        <p class="ow-project-type" id="ow-project-type">&nbsp;</p>
+      </div>
+      <div class="ow-nav">
+        <button class="ow-arrow ow-prev" id="ow-prev" aria-label="Previous project">
+          <svg width="38" height="12" viewBox="0 0 60 14" fill="none">
+            <path d="M60 7H2M2 7L8 1M2 7L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="ow-arrow ow-next" id="ow-next" aria-label="Next project">
+          <svg width="38" height="12" viewBox="0 0 60 14" fill="none">
+            <path d="M0 7H58M58 7L52 1M58 7L52 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="ow-slider-wrap" id="ow-slider-wrap">
+      <div class="ow-track" id="ow-track">
+        <!-- slides injected by JS -->
+      </div>
+      <div class="ow-progress-bar"><div class="ow-progress-fill" id="ow-progress-fill"></div></div>
+    </div>
+    <a href="<?= $BASE ?>/projects" class="ow-view-all" aria-label="View all projects">
+      <span>View all</span>
+      <svg width="36" height="10" viewBox="0 0 60 14" fill="none">
+        <path d="M0 7H58M58 7L52 1M58 7L52 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </section>
 
   <!-- SERVICES ACCORDION -->
   <section id="services" class="accordion-section reveal">

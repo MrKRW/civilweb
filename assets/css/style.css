@@ -6146,3 +6146,240 @@ body.home-page {
     margin-top: 140px !important;
   }
 }
+
+/* ══════════════════════════════════════════════════════
+   OUR WORK — Cinematic Slideshow Section
+══════════════════════════════════════════════════════ */
+.ow-section {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background: #0b0b0b;
+  height: 437px;
+  overflow: hidden;
+}
+
+/* ── Left panel ──────────────────────────────────── */
+.ow-left {
+  flex: 0 0 260px;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px 32px 40px 44px;
+  position: relative;
+  z-index: 10;
+  background: #0b0b0b;
+  box-sizing: border-box;
+}
+
+.ow-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: #fff;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.ow-info-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 12px;
+}
+
+.ow-project-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+  transition: opacity 0.4s ease;
+  min-height: 1.3em;
+}
+
+.ow-project-type {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin: 0;
+  transition: opacity 0.4s ease;
+  min-height: 1.5em;
+}
+
+.ow-nav {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.ow-arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255,255,255,0.65);
+  padding: 4px 0;
+  transition: color 0.25s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.ow-arrow:hover { color: #fff; }
+.ow-prev:hover { transform: translateX(-4px) scale(1.1); }
+.ow-next:hover { transform: translateX(4px) scale(1.1); }
+
+/* ── Slider track area ───────────────────────────── */
+.ow-slider-wrap {
+  flex: 1 1 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.ow-track {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%;
+  transition: transform 0.75s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+}
+
+/* ── Individual Slides ──────────────────────────── */
+.ow-slide {
+  flex: 0 0 766px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  /* Removed flex transition to rely purely on translateX for sliding */
+}
+
+/* We keep .ow-main class for text animations in JS, but it no longer changes width */
+
+/* Image fills the entire slide box */
+.ow-slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.75s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+}
+
+.ow-slide:hover img {
+  transform: scale(1.04);
+}
+
+/* Gap between slides */
+.ow-slide + .ow-slide {
+  margin-left: 6px;
+}
+
+/* Progress bar */
+.ow-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255,255,255,0.12);
+}
+
+.ow-progress-fill {
+  height: 100%;
+  background: rgba(255,255,255,0.55);
+  transition: width 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+}
+
+/* ── View all link ──────────────────────────────── */
+.ow-view-all {
+  display: none;
+}
+
+/* ── Text fade animation ─────────────────────────── */
+.ow-fade-out {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.ow-fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.35s ease 0.15s, transform 0.35s ease 0.15s;
+}
+
+/* ── Loading skeleton ────────────────────────────── */
+.ow-skeleton {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #1a1a1a 25%, #252525 50%, #1a1a1a 75%);
+  background-size: 200% 100%;
+  animation: ow-shimmer 1.5s infinite;
+}
+
+@keyframes ow-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 900px) {
+  .ow-section {
+    flex-direction: column;
+    height: auto;
+  }
+  .ow-left {
+    flex: none;
+    height: auto;
+    padding: 36px 24px 24px 24px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+  .ow-info-wrap {
+    padding-bottom: 0;
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+  .ow-nav {
+    margin-top: 0;
+    margin-left: auto;
+  }
+  .ow-slider-wrap {
+    height: 300px;
+    flex: none;
+  }
+  .ow-slide { flex: 0 0 80%; }
+  .ow-view-all {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    padding: 16px 24px;
+    background: #0b0b0b;
+    transition: color 0.2s;
+  }
+  .ow-view-all:hover { color: #fff; }
+}
+
+@media (max-width: 560px) {
+  .ow-slide { flex: 0 0 90%; }
+  .ow-slider-wrap { height: 240px; }
+}
+
+
+
