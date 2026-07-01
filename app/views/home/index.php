@@ -88,15 +88,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
     <div class="ow-slider-wrap" id="ow-slider-wrap">
       <div class="ow-track" id="ow-track">
         <!-- slides injected by JS -->
-      </div>
-      <div class="ow-progress-bar"><div class="ow-progress-fill" id="ow-progress-fill"></div></div>
     </div>
-    <a href="<?= $BASE ?>/projects" class="ow-view-all" aria-label="View all projects">
-      <span>View all</span>
-      <svg width="36" height="10" viewBox="0 0 60 14" fill="none">
-        <path d="M0 7H58M58 7L52 1M58 7L52 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
   </section>
 
   <!-- SERVICES ACCORDION -->
