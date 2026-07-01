@@ -83,8 +83,8 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
             <address class="ct-info-address">
               <p>374, Peradeniya Road,</p>
               <p>Kandy 2000, Sri Lanka.</p>
-              <p><a href="tel:+94812387235">Phone: 0812 387 235 </a></p>
-               <p>WhatsApp: 0765 797 472 </p>
+              <p>Phone: 0812 387 235</p>
+               <p><a href="https://wa.me/94765797472" target="_blank">WhatsApp: 0765 797 472</a></p>
               <p><a href="mailto:contact@civilanka.com">contact@civilanka.com</a></p>
             </address>
           </div>
