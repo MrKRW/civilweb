@@ -239,18 +239,26 @@ if (aboutSlides.length > 0) {
   function buildSlider() {
     if (projects.length === 0) { track.innerHTML = ''; return; }
 
-    track.innerHTML = projects.map((p, i) => {
+    const buildHTML = (p, i) => {
       const src = UPLOAD + encodeURIComponent(p.image_main);
       const href = PROJ_URL + p.id;
       return `
-        <a class="ow-slide" href="${href}" data-index="${i}" draggable="false">
-          <img src="${src}" alt="${escAttr(p.title)}" loading="${i === 0 ? 'eager' : 'lazy'}"
+        <a class="ow-slide" href="${href}" data-index="${i % projects.length}" draggable="false">
+          <img src="${src}" alt="${escAttr(p.title)}" loading="${(i % projects.length) === 0 ? 'eager' : 'lazy'}"
                onerror="this.onerror=null;this.src='https://civilanka.com/uploads/projects/'+encodeURIComponent('${p.image_main}')">
         </a>`;
-    }).join('');
+    };
 
-    updateSlideClasses();
-    updateInfo(0, false);
+    let html = '';
+    for(let j = 0; j < 3; j++) {
+       html += projects.map((p, i) => buildHTML(p, i + j * projects.length)).join('');
+    }
+    track.innerHTML = html;
+    
+    current = projects.length; // start at middle set
+
+    updateSlideClasses(true);
+    updateInfo(current % projects.length, false);
     updateProgress();
     startAuto();
 
@@ -269,18 +277,18 @@ if (aboutSlides.length > 0) {
     track.addEventListener('click', e => {
       const slide = e.target.closest('.ow-slide');
       if (!slide) return;
-      const idx = parseInt(slide.dataset.index, 10);
-      if (idx === current) return; // allow link navigation
+      const slides = Array.from(track.querySelectorAll('.ow-slide'));
+      const physicalIdx = slides.indexOf(slide);
+      if (physicalIdx === current) return; // allow link navigation
       e.preventDefault();
-      goTo(idx);
+      goTo(physicalIdx);
     });
   }
 
   /* ── Navigate ──────────────────── */
   function go(dir) {
     if (isAnimating) return;
-    const next = (current + dir + projects.length) % projects.length;
-    goTo(next);
+    goTo(current + dir);
   }
 
   function goTo(idx) {
@@ -288,16 +296,36 @@ if (aboutSlides.length > 0) {
     isAnimating = true;
     current = idx;
 
-    updateSlideClasses();
-    updateInfo(idx, true);
+    updateSlideClasses(false);
+    updateInfo(current % projects.length, true);
     updateProgress();
     resetAuto();
 
-    setTimeout(() => { isAnimating = false; }, 780);
+    setTimeout(() => { 
+      isAnimating = false; 
+      checkLoop();
+    }, 780);
+  }
+
+  function checkLoop() {
+    if (current >= projects.length * 2) {
+      current -= projects.length;
+      jumpToCurrent();
+    } else if (current < projects.length) {
+      current += projects.length;
+      jumpToCurrent();
+    }
+  }
+
+  function jumpToCurrent() {
+    track.style.transition = 'none';
+    updateSlideClasses(true);
+    void track.offsetHeight;
+    track.style.transition = '';
   }
 
   /* ── Update slide positions ──────── */
-  function updateSlideClasses() {
+  function updateSlideClasses(sync = false) {
     const slides = track.querySelectorAll('.ow-slide');
 
     // 1. First remove all classes so layout reflows to default widths
@@ -306,18 +334,23 @@ if (aboutSlides.length > 0) {
     // 2. Apply main + peek to current and next slide
     slides.forEach((s, i) => {
       if (i === current) s.classList.add('ow-main');
-      else if (i === (current + 1) % projects.length) s.classList.add('ow-peek');
+      else if (i === current + 1) s.classList.add('ow-peek');
     });
 
     // 3. Compute pixel offset by summing widths of slides before `current`
-    // Use requestAnimationFrame so the flex reflow has settled
-    requestAnimationFrame(() => {
+    const applyTransform = () => {
       let offset = 0;
       slides.forEach((s, i) => {
         if (i < current) offset += s.offsetWidth + 6; // 6px gap
       });
       track.style.transform = `translateX(-${offset}px)`;
-    });
+    };
+
+    if (sync) {
+      applyTransform();
+    } else {
+      requestAnimationFrame(applyTransform);
+    }
   }
 
   /* ── Update text labels ──────────── */
@@ -349,7 +382,8 @@ if (aboutSlides.length > 0) {
   /* ── Progress bar ────────────────── */
   function updateProgress() {
     if (!progressEl || projects.length === 0) return;
-    const pct = ((current + 1) / projects.length) * 100;
+    const realIdx = current % projects.length;
+    const pct = ((realIdx + 1) / projects.length) * 100;
     progressEl.style.width = pct + '%';
   }
 
