@@ -234,10 +234,21 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
               $bCat = !empty($blog['category']) ? strtoupper(htmlspecialchars($blog['category'])) : 'INTERVIEWS';
               $bDate = !empty($blog['created_at']) ? strtoupper(date('F j, Y', strtotime($blog['created_at']))) : 'DECEMBER 14, 2022';
               $bTitle = htmlspecialchars($blog['title']);
+              $fallbackStr = '';
+              if (!empty($blog['image'])) {
+                  $fbUrl = 'https://civilanka.com/uploads/blog/' . htmlspecialchars($blog['image']);
+                  $fallbackStr = 'onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=\''.$fbUrl.'\';}"';
+              }
             ?>
-            <article class="ref-journal-card">
-              <div class="ref-journal-img-wrap"><img src="<?= $bImg ?>" alt="<?= htmlspecialchars($blog['title']) ?>"></div>
-              <h3 class="ref-journal-title"><?= $bTitle ?></h3>
+            <article class="ref-journal-card" style="cursor:pointer;" onclick="window.location.href='<?= $BASE ?>/blog/post/<?= $blog['id'] ?? 0 ?>'">
+              <div class="ref-journal-img-wrap">
+                <a href="<?= $BASE ?>/blog/post/<?= $blog['id'] ?? 0 ?>">
+                  <img src="<?= $bImg ?>" alt="<?= htmlspecialchars($blog['title']) ?>" <?= $fallbackStr ?>>
+                </a>
+              </div>
+              <h3 class="ref-journal-title">
+                <a href="<?= $BASE ?>/blog/post/<?= $blog['id'] ?? 0 ?>" style="color:inherit; text-decoration:none;"><?= $bTitle ?></a>
+              </h3>
               <div class="ref-journal-meta"><span><?= $bCat ?></span><span class="ref-journal-meta-sep">|</span><span><?= $bDate ?></span></div>
             </article>
           <?php endforeach; ?>
