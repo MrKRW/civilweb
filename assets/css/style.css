@@ -1328,7 +1328,7 @@ p {
     width: 100%;
     overflow: hidden;
   }
-  
+
   .team-cell {
     grid-column: unset !important;
     grid-row: unset !important;
@@ -1345,6 +1345,7 @@ p {
     overflow: hidden !important;
     background: transparent !important;
   }
+
   .team-cell.team-photo img {
     position: static !important;
     display: block !important;
@@ -1372,6 +1373,7 @@ p {
     align-items: center;
     justify-content: flex-start;
   }
+
   .team-cell.team-jobs::after {
     display: none;
   }
@@ -1382,15 +1384,52 @@ p {
   }
 
   /* Tablet order: photo/info pairs side by side, careers full-width at end */
-  .team-cell:nth-child(1)  { order: 1; }  /* Harsha photo */
-  .team-cell:nth-child(2)  { order: 2; }  /* Harsha info */
-  .team-cell:nth-child(3)  { order: 3; }  /* Dhiyan photo */
-  .team-cell:nth-child(4)  { order: 4; }  /* Dhiyan info */
-  .team-cell:nth-child(7)  { order: 5; }  /* Teshan photo */
-  .team-cell:nth-child(8)  { order: 6; }  /* Teshan info */
-  .team-cell:nth-child(9)  { order: 7; }  /* Janith photo */
-  .team-cell:nth-child(10) { order: 8; }  /* Janith info */
-  .team-cell:nth-child(5)  { order: 9; grid-column: 1 / -1 !important; }  /* careers */
+  .team-cell:nth-child(1) {
+    order: 1;
+  }
+
+  /* Harsha photo */
+  .team-cell:nth-child(2) {
+    order: 2;
+  }
+
+  /* Harsha info */
+  .team-cell:nth-child(3) {
+    order: 3;
+  }
+
+  /* Dhiyan photo */
+  .team-cell:nth-child(4) {
+    order: 4;
+  }
+
+  /* Dhiyan info */
+  .team-cell:nth-child(7) {
+    order: 5;
+  }
+
+  /* Teshan photo */
+  .team-cell:nth-child(8) {
+    order: 6;
+  }
+
+  /* Teshan info */
+  .team-cell:nth-child(9) {
+    order: 7;
+  }
+
+  /* Janith photo */
+  .team-cell:nth-child(10) {
+    order: 8;
+  }
+
+  /* Janith info */
+  .team-cell:nth-child(5) {
+    order: 9;
+    grid-column: 1 / -1 !important;
+  }
+
+  /* careers */
 }
 
 /* Responsive: stack to single-col on mobile */
@@ -1418,10 +1457,13 @@ p {
     position: relative !important;
     width: 100% !important;
     max-width: 444px !important;
-    height: auto !important; /* Let height adjust to image to prevent cutouts & borders */
-    margin: 0 auto; /* Center horizontally */
+    height: auto !important;
+    /* Let height adjust to image to prevent cutouts & borders */
+    margin: 0 auto;
+    /* Center horizontally */
     overflow: hidden !important;
-    background: transparent !important; /* Remove black borders */
+    background: transparent !important;
+    /* Remove black borders */
   }
 
   /* Image: Natural flow, full width, preserve aspect ratio */
@@ -1461,15 +1503,51 @@ p {
   }
 
   /* Mobile order: photo/info pairs stacked, careers full-width at end */
-  body.home-page #team .team-cell:nth-child(1)  { order: 1; }  /* Harsha photo */
-  body.home-page #team .team-cell:nth-child(2)  { order: 2; }  /* Harsha info */
-  body.home-page #team .team-cell:nth-child(3)  { order: 3; }  /* Dhiyan photo */
-  body.home-page #team .team-cell:nth-child(4)  { order: 4; }  /* Dhiyan info */
-  body.home-page #team .team-cell:nth-child(7)  { order: 5; }  /* Teshan photo */
-  body.home-page #team .team-cell:nth-child(8)  { order: 6; }  /* Teshan info */
-  body.home-page #team .team-cell:nth-child(9)  { order: 7; }  /* Janith photo */
-  body.home-page #team .team-cell:nth-child(10) { order: 8; }  /* Janith info */
-  body.home-page #team .team-cell:nth-child(5)  { order: 9; }  /* careers */
+  body.home-page #team .team-cell:nth-child(1) {
+    order: 1;
+  }
+
+  /* Harsha photo */
+  body.home-page #team .team-cell:nth-child(2) {
+    order: 2;
+  }
+
+  /* Harsha info */
+  body.home-page #team .team-cell:nth-child(3) {
+    order: 3;
+  }
+
+  /* Dhiyan photo */
+  body.home-page #team .team-cell:nth-child(4) {
+    order: 4;
+  }
+
+  /* Dhiyan info */
+  body.home-page #team .team-cell:nth-child(7) {
+    order: 5;
+  }
+
+  /* Teshan photo */
+  body.home-page #team .team-cell:nth-child(8) {
+    order: 6;
+  }
+
+  /* Teshan info */
+  body.home-page #team .team-cell:nth-child(9) {
+    order: 7;
+  }
+
+  /* Janith photo */
+  body.home-page #team .team-cell:nth-child(10) {
+    order: 8;
+  }
+
+  /* Janith info */
+  body.home-page #team .team-cell:nth-child(5) {
+    order: 9;
+  }
+
+  /* careers */
 
   /* Larger name & role text for readability on mobile */
   .team-name {
@@ -1501,7 +1579,8 @@ p {
   height: 618px;
   min-height: 618px;
   max-height: 618px;
-  width: 100%;  /* was 1361px — caused horizontal overflow on mobile */
+  width: 100%;
+  /* was 1361px — caused horizontal overflow on mobile */
   display: flex;
   align-items: flex-end;
   padding: 0 0 70px 0;
@@ -1537,7 +1616,8 @@ body.home-page #quote-banner {
   height: 618px;
   min-height: 618px;
   max-height: 618px;
-  width: 100%;  /* was 1361px — caused horizontal overflow on mobile */
+  width: 100%;
+  /* was 1361px — caused horizontal overflow on mobile */
 }
 
 body.home-page #team {
@@ -1565,7 +1645,8 @@ body.home-page .team-role {
     height: 549px;
     min-height: 549px;
     max-height: 549px;
-    width: 100%; /* overflow fix */
+    width: 100%;
+    /* overflow fix */
   }
 
   .quote-banner-content.container {
@@ -1655,7 +1736,8 @@ body.home-page .team-role {
   max-width: 250px;
   height: 1px !important;
   background: rgba(0, 0, 0, 0.1);
-  pointer-events: none; /* Let the wrapper handle clicks */
+  pointer-events: none;
+  /* Let the wrapper handle clicks */
 }
 
 .test-pagination .swiper-pagination-progressbar-fill {
@@ -1777,7 +1859,8 @@ body.home-page .team-role {
 
   /* Ensure the image fills the 446x344 box perfectly */
   .ref-journal-card .ref-journal-img-wrap img {
-    filter: none; /* Remove monochrome look */
+    filter: none;
+    /* Remove monochrome look */
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
@@ -1794,6 +1877,7 @@ body.home-page .team-role {
     gap: 20px;
   }
 }
+
 /* ===========================
    CTA BANNER
 =========================== */
@@ -2107,10 +2191,12 @@ body.home-page .team-role {
 }
 
 @media (max-width: 768px) {
+
   /* Show hamburger on ALL pages at mobile widths */
   .hamburger-btn {
     display: flex;
-    margin-left: auto; /* push it to the right of the header */
+    margin-left: auto;
+    /* push it to the right of the header */
   }
 
   /* Hide desktop nav links on mobile for ALL pages */
@@ -2867,6 +2953,7 @@ body.home-page .team-role {
 .product-key-specs {
   margin-bottom: 30px;
 }
+
 .key-specs-title {
   font-family: var(--font-h);
   font-size: 0.95rem;
@@ -2877,12 +2964,14 @@ body.home-page .team-role {
   padding-bottom: 8px;
   border-bottom: 1px solid var(--gray-light);
 }
+
 .key-specs-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
   margin-top: 15px;
 }
+
 .spec-item {
   display: flex;
   flex-direction: column;
@@ -2890,18 +2979,21 @@ body.home-page .team-role {
   text-align: center;
   min-width: 60px;
 }
+
 .spec-item svg {
   width: 28px;
   height: 28px;
   color: #666;
   margin-bottom: 6px;
 }
+
 .spec-val {
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--black);
   line-height: 1.2;
 }
+
 .spec-label {
   font-size: 0.75rem;
   color: #666;
@@ -3080,6 +3172,7 @@ body.home-page .team-role {
   line-height: 1.8;
   margin-bottom: 30px;
 }
+
 .addl-info-content h2,
 .addl-info-content h3,
 .addl-info-content h4 {
@@ -3088,14 +3181,25 @@ body.home-page .team-role {
   color: var(--black);
   margin: 20px 0 8px;
 }
+
 .addl-info-content ul,
 .addl-info-content ol {
   padding-left: 22px;
   margin-bottom: 14px;
 }
-.addl-info-content li { margin-bottom: 6px; }
-.addl-info-content a { color: var(--black); text-decoration: underline; }
-.addl-info-content strong { color: var(--black); }
+
+.addl-info-content li {
+  margin-bottom: 6px;
+}
+
+.addl-info-content a {
+  color: var(--black);
+  text-decoration: underline;
+}
+
+.addl-info-content strong {
+  color: var(--black);
+}
 
 /* Additional Info image grid */
 .addl-info-images {
@@ -3104,18 +3208,23 @@ body.home-page .team-role {
   gap: 16px;
   margin-top: 24px;
 }
+
 .addl-info-img-item {
   aspect-ratio: 4/3;
   overflow: hidden;
   background: var(--cream);
 }
+
 .addl-info-img-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s var(--ease);
 }
-.addl-info-img-item:hover img { transform: scale(1.04); }
+
+.addl-info-img-item:hover img {
+  transform: scale(1.04);
+}
 
 
 /* Related Products */
@@ -3206,6 +3315,7 @@ body.home-page .team-role {
   body {
     overflow-x: hidden;
   }
+
   img {
     max-width: 100%;
   }
@@ -3270,6 +3380,7 @@ body.home-page .team-role {
 
 /* ── LARGE MOBILE + TABLET (≤ 900px) ─── */
 @media (max-width: 900px) {
+
   /* About section — stack image above text */
   #about {
     padding: 60px 0;
@@ -3308,7 +3419,8 @@ body.home-page .team-role {
     height: 549px;
     min-height: 549px;
     max-height: 549px;
-    width: 100%; /* overflow fix */
+    width: 100%;
+    /* overflow fix */
   }
 
   .quote-banner-content.container {
@@ -3382,6 +3494,7 @@ body.home-page .team-role {
 
 /* ── MOBILE (≤ 768px) ─── */
 @media (max-width: 768px) {
+
   /* Sticky header — hamburger only */
   #sticky-header {
     padding: 0 20px;
@@ -3738,6 +3851,7 @@ body.home-page .team-role {
 
 /* ── SMALL MOBILE (≤ 600px) ─── */
 @media (max-width: 600px) {
+
   /* Testimonials */
   #testimonials {
     padding: 60px 0;
@@ -3804,6 +3918,7 @@ body.home-page .team-role {
 
 /* ── EXTRA SMALL MOBILE (≤ 480px) ─── */
 @media (max-width: 480px) {
+
   /* Container + section padding */
   .container {
     padding: 0 20px;
@@ -3828,7 +3943,8 @@ body.home-page .team-role {
     height: 549px;
     min-height: 549px;
     max-height: 549px;
-    width: 100%; /* overflow fix */
+    width: 100%;
+    /* overflow fix */
   }
 
   .quote-banner-content.container {
@@ -4600,7 +4716,7 @@ body.home-page .team-role {
     height: 300px;
     min-height: 300px;
   }
-  
+
   body.home-page .team-cell.team-info {
     height: auto;
     min-height: auto;
@@ -4922,7 +5038,8 @@ body.home-page .team-role {
   }
 
   .blog-sidebar {
-    display: none; /* hide sidebar on mobile for blog */
+    display: none;
+    /* hide sidebar on mobile for blog */
   }
 
   .breadcrumb-container {
@@ -4994,6 +5111,7 @@ body.home-page .team-role {
   .hs-footer-inner {
     display: flex !important;
   }
+
   .hs-footer-cols {
     display: flex !important;
     gap: 40px !important;
@@ -5019,6 +5137,7 @@ body.home-page .team-role {
     font-size: 14px;
     padding: 0 14px;
   }
+
   #sticky-header {
     padding: 0 24px;
   }
@@ -5048,14 +5167,17 @@ body.home-page .team-role {
     width: 95%;
     gap: 2px;
   }
+
   .acc-item {
     flex: none !important;
     flex-direction: column;
     width: 100%;
   }
+
   .acc-item.active {
     flex: none !important;
   }
+
   .acc-header {
     width: 100%;
     min-width: unset;
@@ -5068,6 +5190,7 @@ body.home-page .team-role {
     min-height: unset;
     max-height: unset;
   }
+
   .acc-title {
     writing-mode: horizontal-tb;
     text-orientation: initial;
@@ -5076,13 +5199,16 @@ body.home-page .team-role {
     padding: 0;
     flex: none;
   }
+
   .acc-title::after {
     display: none;
   }
+
   .acc-icon {
     font-size: 1.4rem;
     order: 2;
   }
+
   .acc-content {
     flex-direction: column;
     max-height: 0;
@@ -5091,11 +5217,13 @@ body.home-page .team-role {
     transition: max-height 0.5s ease, opacity 0.4s ease;
     pointer-events: none;
   }
+
   .acc-item.active .acc-content {
     max-height: 700px;
     opacity: 1;
     pointer-events: auto;
   }
+
   .acc-img-wrap {
     flex: none;
     height: 220px;
@@ -5105,9 +5233,11 @@ body.home-page .team-role {
     min-height: unset;
     max-height: unset;
   }
+
   .acc-text-wrap {
     padding: 28px 20px;
   }
+
   .acc-close {
     top: 16px;
     right: 16px;
@@ -5123,6 +5253,7 @@ body.home-page .team-role {
     grid-template-columns: 1fr 460px;
     gap: 60px;
   }
+
   .hs-intro-img-wrap {
     width: 460px;
     height: auto;
@@ -5140,6 +5271,7 @@ body.home-page .team-role {
 
 /* ── CONTAINER: ensure side padding never causes x-overflow ── */
 @media (max-width: 480px) {
+
   .container,
   #ref-journal .container {
     padding-left: 16px;
@@ -5152,6 +5284,7 @@ body.home-page .team-role {
   .center-logo-img {
     max-width: 120px;
   }
+
   .vert-text {
     font-size: 0.72rem;
   }
@@ -5162,6 +5295,7 @@ body.home-page .team-role {
   #sticky-header {
     padding: 0 16px;
   }
+
   .logo-img--sticky {
     height: 36px;
   }
@@ -5182,6 +5316,7 @@ body.home-page .team-role {
     padding-left: 16px;
     padding-right: 16px;
   }
+
   .pj-cta-inner {
     padding-left: 16px;
     padding-right: 16px;
@@ -5193,6 +5328,7 @@ body.home-page .team-role {
   .quote-text-wrap {
     padding: 20px 14px;
   }
+
   .quote-text {
     font-size: 1rem;
   }
@@ -5204,6 +5340,7 @@ body.home-page .team-role {
     flex-wrap: wrap;
     gap: 12px;
   }
+
   .add-to-cart-btn {
     width: 100%;
     justify-content: center;
@@ -5229,6 +5366,7 @@ body.home-page .team-role {
   .services-hero-title {
     font-size: 2rem !important;
   }
+
   .services-hero {
     padding-left: 16px;
     padding-right: 16px;
@@ -5244,14 +5382,18 @@ body.home-page .team-role {
 
 /* ── GENERAL: Prevent any child from causing overflow ── */
 @media (max-width: 768px) {
-  html, body {
+
+  html,
+  body {
     max-width: 100%;
     overflow-x: hidden;
   }
+
   * {
     max-width: 100%;
     box-sizing: border-box;
   }
+
   /* Exception: full-width images should still span full width */
   img {
     max-width: 100% !important;
@@ -5271,14 +5413,17 @@ body.home-page .team-role {
   body.home-page #about .container {
     padding: 0 4vw;
   }
+
   body.home-page .new-about-top {
     gap: 40px;
   }
+
   body.home-page .about-slideshow {
     flex: 0 0 380px;
     width: 380px;
     height: 190px;
   }
+
   body.home-page .ref-journal-grid {
     gap: 40px 14px;
   }
@@ -5289,33 +5434,42 @@ body.home-page .team-role {
   body.home-page #about .container {
     padding: 0 3.5vw;
   }
+
   body.home-page .new-about-top {
     gap: 32px;
   }
+
   body.home-page .about-slideshow {
     flex: 0 0 340px;
     width: 340px;
     height: 170px;
   }
+
   body.home-page .new-about-heading {
     font-size: clamp(1.5rem, 3vw, 2.4rem);
   }
+
   body.home-page .accordion-section {
     padding: 80px 0 180px;
   }
+
   body.home-page .acc-container {
     width: 92%;
   }
+
   body.home-page .acc-title {
     font-size: 32px;
   }
+
   body.home-page .acc-text-wrap {
     padding: 40px 50px;
   }
+
   body.home-page .ref-journal-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 36px 14px;
   }
+
   body.home-page .hs-footer-inner {
     padding: 60px 50px 40px;
   }
@@ -5326,30 +5480,37 @@ body.home-page .team-role {
   body.home-page #sticky-header {
     padding: 0 24px;
   }
+
   body.home-page .sticky-nav li a {
     font-size: 14px;
     padding: 0 14px;
   }
+
   body.home-page #hero.split-view {
     min-height: 60vh;
   }
+
   body.home-page #about {
     padding: 60px 0;
     background-size: 60%;
     background-position: 60% center;
   }
+
   body.home-page #about .container {
     padding: 0 40px;
   }
+
   body.home-page .new-about-top {
     flex-direction: column;
     gap: 28px;
     margin-bottom: 36px;
   }
+
   body.home-page .new-about-text {
     padding-right: 0;
     width: 100%;
   }
+
   body.home-page .about-slideshow {
     order: -1;
     flex: none;
@@ -5358,35 +5519,44 @@ body.home-page .team-role {
     height: 260px;
     margin: 0 auto;
   }
+
   body.home-page .new-about-bottom {
     gap: 32px;
   }
+
   body.home-page .new-about-links a {
     font-size: 1rem;
   }
+
   body.home-page .new-about-col p {
     max-width: 100%;
   }
+
   body.home-page .accordion-section {
     padding: 70px 0 120px;
   }
+
   body.home-page .accordion-section::before {
     margin-bottom: 50px;
   }
+
   body.home-page .acc-container {
     flex-direction: column;
     height: auto;
     width: 92%;
     gap: 2px;
   }
+
   body.home-page .acc-item {
     flex: none !important;
     flex-direction: column;
     width: 100%;
   }
+
   body.home-page .acc-item.active {
     flex: none !important;
   }
+
   body.home-page .acc-header {
     width: 100%;
     min-width: unset;
@@ -5399,6 +5569,7 @@ body.home-page .team-role {
     padding: 20px 24px;
     border-bottom: 1px solid var(--gray-light);
   }
+
   body.home-page .acc-title {
     writing-mode: horizontal-tb;
     text-orientation: initial;
@@ -5407,14 +5578,17 @@ body.home-page .team-role {
     padding: 0;
     flex: none;
   }
+
   body.home-page .acc-title::after {
     display: none;
   }
+
   body.home-page .acc-icon {
     font-size: 1.5rem;
     order: 2;
     opacity: 1 !important;
   }
+
   body.home-page .acc-content {
     flex-direction: column;
     max-height: 0;
@@ -5423,11 +5597,13 @@ body.home-page .team-role {
     transition: max-height 0.5s ease, opacity 0.4s ease;
     pointer-events: none;
   }
+
   body.home-page .acc-item.active .acc-content {
     max-height: 700px;
     opacity: 1;
     pointer-events: auto;
   }
+
   body.home-page .acc-img-wrap {
     flex: none;
     width: 100%;
@@ -5437,29 +5613,36 @@ body.home-page .team-role {
     min-height: unset;
     max-height: unset;
   }
+
   body.home-page .acc-text-wrap {
     padding: 32px 24px;
   }
+
   body.home-page .acc-close {
     top: 20px;
     right: 20px;
     font-size: 1.6rem;
   }
+
   body.home-page .acc-text-wrap p {
     max-width: 100%;
   }
+
   body.home-page .quote-banner-content.container {
     padding: 0 40px;
   }
+
   body.home-page #team {
     padding-top: 80px;
     padding-bottom: 80px;
   }
+
   body.home-page .team-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: auto;
   }
+
   body.home-page .team-cell.team-photo,
   body.home-page .team-cell.team-info,
   body.home-page .team-cell.team-empty {
@@ -5467,10 +5650,12 @@ body.home-page .team-role {
     min-height: unset;
     aspect-ratio: unset;
   }
+
   body.home-page .team-cell.team-photo {
     position: relative;
     overflow: hidden;
   }
+
   body.home-page .team-cell.team-photo img {
     position: static !important;
     display: block !important;
@@ -5478,37 +5663,71 @@ body.home-page .team-role {
     height: auto !important;
     object-fit: cover !important;
   }
+
   body.home-page .team-cell.team-jobs {
     grid-column: 1 / -1;
     grid-row: auto;
     min-height: 120px;
     height: auto;
   }
+
   body.home-page .team-cell.team-empty {
     display: none;
   }
-  body.home-page .team-cell:nth-child(1) { order: 1; }
-  body.home-page .team-cell:nth-child(2) { order: 2; }
-  body.home-page .team-cell:nth-child(4) { order: 3; }
-  body.home-page .team-cell:nth-child(3) { order: 4; }
-  body.home-page .team-cell:nth-child(7) { order: 5; }
-  body.home-page .team-cell:nth-child(8) { order: 6; }
-  body.home-page .team-cell:nth-child(10) { order: 7; }
-  body.home-page .team-cell:nth-child(9) { order: 8; }
-  body.home-page .team-cell:nth-child(5) { order: 9; }
+
+  body.home-page .team-cell:nth-child(1) {
+    order: 1;
+  }
+
+  body.home-page .team-cell:nth-child(2) {
+    order: 2;
+  }
+
+  body.home-page .team-cell:nth-child(4) {
+    order: 3;
+  }
+
+  body.home-page .team-cell:nth-child(3) {
+    order: 4;
+  }
+
+  body.home-page .team-cell:nth-child(7) {
+    order: 5;
+  }
+
+  body.home-page .team-cell:nth-child(8) {
+    order: 6;
+  }
+
+  body.home-page .team-cell:nth-child(10) {
+    order: 7;
+  }
+
+  body.home-page .team-cell:nth-child(9) {
+    order: 8;
+  }
+
+  body.home-page .team-cell:nth-child(5) {
+    order: 9;
+  }
+
   body.home-page .team-name {
     font-size: clamp(1rem, 1.8vw, 1.3rem);
   }
+
   body.home-page #ref-journal {
     padding: 60px 0 80px;
   }
+
   body.home-page #ref-journal .container {
     padding: 0 40px;
   }
+
   body.home-page .ref-journal-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 40px 14px;
   }
+
   body.home-page #cta-banner {
     padding: 80px 0;
   }
@@ -5520,43 +5739,53 @@ body.home-page .team-role {
     height: 220px;
     max-width: 100%;
   }
+
   body.home-page .new-about-bottom {
     flex-direction: column;
     gap: 28px;
   }
+
   body.home-page .new-about-links {
     flex: none;
     width: 100%;
   }
+
   body.home-page .new-about-col {
     flex: none;
     width: 100%;
   }
+
   body.home-page .team-grid {
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
   }
+
   body.home-page .team-cell.team-photo {
     height: 320px;
     min-height: 320px;
     aspect-ratio: unset;
   }
+
   body.home-page .team-cell.team-info {
     height: auto;
     min-height: auto;
     padding: 24px 20px 36px;
   }
+
   body.home-page .team-cell.team-jobs {
     grid-column: 1 / -1;
     min-height: 100px;
   }
+
   body.home-page .team-cell.team-empty {
     display: none;
   }
+
   body.home-page .ref-journal-grid {
     grid-template-columns: 1fr;
     gap: 48px;
   }
+
   body.home-page .ref-journal-card .ref-journal-img-wrap {
     max-width: 100%;
     height: auto;
@@ -5570,24 +5799,30 @@ body.home-page .team-role {
     padding: 0 20px;
     height: var(--header-height-mobile);
   }
+
   body.home-page .sticky-nav {
     display: none !important;
   }
+
   body.home-page .hamburger-btn {
     display: flex;
     margin-left: auto;
   }
+
   body.home-page .logo-img--sticky {
     height: 40px;
   }
+
   body.home-page #hero.split-view {
     flex-direction: column;
     height: 100svh;
     min-height: 100svh;
   }
+
   body.home-page .center-logo-img {
     max-width: 180px;
   }
+
   body.home-page .vert-left {
     left: 50%;
     top: 18px !important;
@@ -5595,6 +5830,7 @@ body.home-page .team-role {
     transform: translateX(-50%) rotate(0deg) !important;
     transform-origin: center center !important;
   }
+
   body.home-page .vert-right {
     right: auto !important;
     left: 50%;
@@ -5603,64 +5839,80 @@ body.home-page .team-role {
     transform: translateX(-50%) rotate(0deg) !important;
     transform-origin: center center !important;
   }
+
   body.home-page .vert-text {
     font-size: 0.85rem;
     letter-spacing: 0.18em;
   }
+
   body.home-page #about {
     padding: 52px 0 44px;
     background-size: 80%;
     background-position: 50% 85%;
   }
+
   body.home-page #about .container {
     padding: 0 24px;
   }
+
   body.home-page .new-about-heading {
     font-size: clamp(1.4rem, 5vw, 2rem);
     line-height: 1.2;
     margin-bottom: 1.2rem;
   }
+
   body.home-page .about-slideshow {
     width: 100%;
     height: 200px;
     max-width: 480px;
   }
+
   body.home-page .accordion-section {
     padding: 52px 0 80px;
   }
+
   body.home-page .accordion-section::before {
     margin-bottom: 40px;
   }
+
   body.home-page .acc-container {
     width: 100%;
     padding: 0 16px;
     box-sizing: border-box;
   }
+
   body.home-page .acc-header {
     padding: 16px 18px;
   }
+
   body.home-page .acc-title {
     font-size: 1.2rem;
   }
+
   body.home-page .acc-img-wrap {
     height: 200px;
   }
+
   body.home-page .acc-text-wrap {
     padding: 24px 16px;
   }
+
   body.home-page .acc-text-wrap p {
     font-size: 0.92rem;
     line-height: 1.7;
     margin-bottom: 24px;
   }
+
   body.home-page #quote-banner {
     height: 380px;
     min-height: 380px;
     max-height: 380px;
   }
+
   body.home-page .quote-banner-content.container {
     padding: 0 24px;
   }
+
   body.home-page .quote-banner-content h2 {
     font-size: clamp(1.1rem, 4vw, 1.5rem);
     margin-top: 60px;
@@ -5668,103 +5920,130 @@ body.home-page .team-role {
     font-weight: 300;
     line-height: 1.5;
   }
+
   body.home-page #team {
     padding-top: 52px;
     padding-bottom: 52px;
   }
+
   body.home-page .team-grid {
     display: flex;
     flex-direction: column;
   }
+
   body.home-page .team-cell {
     width: 100%;
     max-width: 100%;
   }
+
   body.home-page .team-cell.team-photo {
     height: 280px;
     min-height: 280px;
   }
+
   body.home-page .team-cell.team-info {
     padding: 24px 20px 32px;
     min-height: unset;
     height: auto;
   }
+
   body.home-page .team-cell.team-jobs {
     min-height: 120px;
     padding: 40px 24px;
   }
+
   body.home-page .team-cell.team-jobs::after {
     display: none;
   }
+
   body.home-page .team-cell.team-empty {
     display: none;
   }
+
   body.home-page .team-name {
     font-size: 1.15rem;
   }
+
   body.home-page .team-role {
     font-size: 0.7rem;
   }
+
   body.home-page #testimonials.section-pad {
     padding: 52px 0;
   }
+
   body.home-page .testimonial-text {
     font-size: clamp(1rem, 4vw, 1.35rem);
     line-height: 1.6;
     margin-bottom: 1.5rem;
   }
+
   body.home-page #ref-journal {
     padding: 52px 0 68px;
   }
+
   body.home-page #ref-journal .container {
     padding: 0 20px;
   }
+
   body.home-page .ref-journal-grid {
     grid-template-columns: 1fr;
     gap: 48px;
   }
+
   body.home-page .ref-journal-card .ref-journal-img-wrap {
     height: auto;
     max-width: 100%;
     aspect-ratio: unset !important;
   }
+
   body.home-page .ref-journal-title {
     font-size: 1rem;
   }
+
   body.home-page #cta-banner {
     padding: 60px 0;
   }
+
   body.home-page .cta-inner h2 {
     font-size: clamp(1.5rem, 6vw, 2.2rem);
   }
+
   body.home-page .cta-inner p {
     font-size: 0.9rem;
     max-width: 90%;
     margin-left: auto;
     margin-right: auto;
   }
+
   body.home-page .btn {
     padding: 13px 28px;
     font-size: 0.75rem;
   }
+
   body.home-page .hs-footer-inner {
     padding: 40px 20px 28px;
     gap: 32px;
     flex-direction: column;
   }
+
   body.home-page .hs-footer-cols {
     flex-direction: column;
     gap: 28px;
   }
+
   body.home-page .hs-footer-bottom {
     padding: 16px 20px;
   }
+
   body.home-page .logo-img--footer {
     height: 90px;
   }
+
   body.home-page .section-pad {
     padding: 52px 0;
   }
+
   body.home-page .container {
     padding: 0 20px;
   }
@@ -5775,37 +6054,47 @@ body.home-page .team-role {
   body.home-page .new-about-top {
     gap: 24px;
   }
+
   body.home-page .about-slideshow {
     height: 180px;
   }
+
   body.home-page .new-about-heading {
     font-size: clamp(1.25rem, 5.5vw, 1.7rem);
   }
+
   body.home-page .new-about-links a {
     font-size: 0.95rem;
   }
+
   body.home-page #quote-banner {
     height: 320px;
     min-height: 320px;
     max-height: 320px;
   }
+
   body.home-page .quote-banner-content h2 {
     font-size: clamp(1rem, 4.5vw, 1.3rem);
     margin-top: 40px;
   }
+
   body.home-page .team-cell.team-photo {
     height: 260px;
     min-height: 260px;
   }
+
   body.home-page .ref-journal-card .ref-journal-img-wrap {
     height: 200px;
   }
+
   body.home-page .testimonials-inner {
     padding: 0 4px;
   }
+
   body.home-page .testimonial-text {
     font-size: clamp(0.95rem, 4.5vw, 1.2rem);
   }
+
   body.home-page #cta-banner {
     padding: 48px 0;
   }
@@ -5816,69 +6105,89 @@ body.home-page .team-role {
   body.home-page #about .container {
     padding: 0 16px;
   }
+
   body.home-page .new-section-label {
     font-size: 0.6rem;
     margin-bottom: 0.9rem;
   }
+
   body.home-page .new-about-heading {
     font-size: clamp(1.15rem, 6vw, 1.5rem);
   }
+
   body.home-page .about-slideshow {
     height: 160px;
   }
+
   body.home-page .acc-container {
     padding: 0 12px;
   }
+
   body.home-page .acc-title {
     font-size: 1.05rem;
   }
+
   body.home-page .acc-text-wrap {
     padding: 20px 14px;
   }
+
   body.home-page #quote-banner {
     height: 280px;
     min-height: 280px;
     max-height: 280px;
   }
+
   body.home-page .quote-banner-content h2 {
     font-size: clamp(0.9rem, 4vw, 1.15rem);
     margin-top: 32px;
     line-height: 1.55;
   }
+
   body.home-page .team-cell.team-photo {
     height: 240px;
     min-height: 240px;
   }
+
   body.home-page .team-cell.team-info {
     padding: 20px 16px 28px;
   }
+
   body.home-page .team-name {
     font-size: 1.05rem;
   }
+
   body.home-page .ref-journal-card .ref-journal-img-wrap {
     height: 180px;
   }
+
   body.home-page .ref-journal-title {
     font-size: 0.92rem;
   }
+
   body.home-page #ref-journal .container {
     padding: 0 16px;
   }
+
   body.home-page #cta-banner {
     padding: 40px 0;
   }
+
   body.home-page .cta-inner h2 {
     font-size: clamp(1.3rem, 7vw, 1.8rem);
   }
+
   body.home-page .cta-inner p {
     font-size: 0.85rem;
   }
+
   body.home-page .container {
     padding: 0 16px;
   }
+
   body.home-page .section-pad {
     padding: 44px 0;
   }
+
   body.home-page .logo-img--footer {
     height: 76px;
   }
@@ -5889,53 +6198,68 @@ body.home-page .team-role {
   body.home-page #sticky-header {
     padding: 0 14px;
   }
+
   body.home-page .logo-img--sticky {
     height: 34px;
   }
+
   body.home-page .center-logo-img {
     max-width: 130px;
   }
+
   body.home-page .vert-text {
     font-size: 0.7rem;
   }
+
   body.home-page .new-about-heading {
     font-size: clamp(1.05rem, 6vw, 1.35rem);
   }
+
   body.home-page .about-slideshow {
     height: 140px;
   }
+
   body.home-page .acc-title {
     font-size: 0.95rem;
   }
+
   body.home-page #quote-banner {
     height: 240px;
     min-height: 240px;
     max-height: 240px;
   }
+
   body.home-page .quote-banner-content h2 {
     font-size: 0.85rem;
     margin-top: 20px;
   }
+
   body.home-page .team-cell.team-photo {
     height: 200px;
     min-height: 200px;
   }
+
   body.home-page .ref-journal-card .ref-journal-img-wrap {
     height: 160px;
   }
+
   body.home-page .cta-inner h2 {
     font-size: 1.25rem;
   }
+
   body.home-page .btn {
     padding: 11px 20px;
     font-size: 0.7rem;
   }
+
   body.home-page .hs-footer-inner {
     padding: 32px 14px 24px;
   }
+
   body.home-page .hs-footer-bottom {
     padding: 14px 14px;
   }
+
   body.home-page .logo-img--footer {
     height: 64px;
   }
@@ -6023,12 +6347,14 @@ body.home-page {
     display: flex !important;
     flex-direction: column !important;
   }
+
   body.home-page .team-cell {
     width: 100% !important;
     max-width: 100% !important;
     grid-column: unset !important;
     grid-row: unset !important;
   }
+
   body.home-page .team-cell.team-photo {
     position: relative;
     overflow: hidden;
@@ -6063,6 +6389,7 @@ body.home-page {
 
 /* ── VERY NARROW PHONES (≤360px) ── */
 @media (max-width: 360px) {
+
   body.home-page .container,
   body.home-page #ref-journal .container,
   body.home-page #about .container {
@@ -6130,20 +6457,21 @@ body.home-page {
 
 /* ── OVERRIDE FOR MOBILE QUOTE BANNER TO MATCH REFERENCE IMAGE ── */
 @media (max-width: 768px) {
+
   #quote-banner,
   body.home-page #quote-banner {
     height: 545px !important;
     min-height: 545px !important;
     max-height: 545px !important;
   }
-  
+
   .quote-banner-content h2,
   body.home-page .quote-banner-content h2 {
     font-family: 'DM Sans', sans-serif !important;
     font-size: 30px !important;
     font-weight: 400 !important;
     line-height: 35px !important;
-    margin-top: 140px !important;
+    margin-top: 130px !important;
   }
 }
 
@@ -6158,7 +6486,14 @@ body.home-page {
   background: #0b0b0b;
   height: 677px;
   padding: 120px 0;
+  margin-top: 120px;
   overflow: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.ow-section::-webkit-scrollbar {
+  display: none;
 }
 
 /* ── Left panel ──────────────────────────────────── */
@@ -6168,7 +6503,7 @@ body.home-page {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 48px 32px 40px 44px;
+  padding: 48px 32px 0 44px;
   position: relative;
   z-index: 10;
   background: #0b0b0b;
@@ -6189,7 +6524,7 @@ body.home-page {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-bottom: 12px;
+  padding-bottom: 0;
 }
 
 .ow-project-name {
@@ -6208,39 +6543,65 @@ body.home-page {
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255, 255, 255, 0.55);
   margin: 0;
   transition: opacity 0.4s ease;
   min-height: 1.5em;
 }
 
 .ow-nav {
+  position: absolute;
+  bottom: 60px;
+  left: min(1026px, 95vw);
   display: flex;
   gap: 18px;
   align-items: center;
-  margin-top: 32px;
+  z-index: 20;
+  -webkit-transform: translate3d(-100%, 50%, 0);
+  transform: translate3d(-100%, 50%, 0);
+  background-color: #0b0b0b !important;
 }
 
 .ow-arrow {
-  background: none;
+  background-color: #0b0b0b !important;
   border: none;
+  outline: none;
   cursor: pointer;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255, 255, 255, 0.65);
   padding: 4px 0;
   transition: color 0.25s ease, transform 0.2s ease;
   display: flex;
   align-items: center;
 }
 
-.ow-arrow:hover { color: #fff; }
-.ow-prev:hover { transform: translateX(-4px) scale(1.1); }
-.ow-next:hover { transform: translateX(4px) scale(1.1); }
+.ow-arrow:hover {
+  color: #fff;
+}
+
+.ow-prev:hover {
+  transform: translateX(-4px) scale(1.1);
+}
+
+.ow-next:hover {
+  transform: translateX(4px) scale(1.1);
+}
 
 /* ── Slider track area ───────────────────────────── */
 .ow-slider-wrap {
   flex: 1 1 0;
   position: relative;
   overflow: hidden;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  background: #0b0b0b !important;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.ow-slider-wrap::-webkit-scrollbar {
+  display: none;
 }
 
 .ow-track {
@@ -6250,6 +6611,15 @@ body.home-page {
   height: 100%;
   transition: transform 0.75s cubic-bezier(0.77, 0, 0.175, 1);
   will-change: transform;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background: #0b0b0b !important;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.ow-track::-webkit-scrollbar {
+  display: none;
 }
 
 /* ── Individual Slides ──────────────────────────── */
@@ -6258,6 +6628,9 @@ body.home-page {
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  background: #0b0b0b !important;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   /* Removed flex transition to rely purely on translateX for sliding */
 }
 
@@ -6280,7 +6653,7 @@ body.home-page {
 }
 
 /* Gap between slides */
-.ow-slide + .ow-slide {
+.ow-slide+.ow-slide {
   margin-left: 6px;
 }
 
@@ -6291,12 +6664,12 @@ body.home-page {
   left: 0;
   right: 0;
   height: 2px;
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .ow-progress-fill {
   height: 100%;
-  background: rgba(255,255,255,0.55);
+  background: rgba(255, 255, 255, 0.55);
   transition: width 0.55s cubic-bezier(0.4, 0, 0.2, 1);
   width: 0%;
 }
@@ -6312,6 +6685,7 @@ body.home-page {
   transform: translateY(6px);
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
+
 .ow-fade-in {
   opacity: 1;
   transform: translateY(0);
@@ -6328,8 +6702,13 @@ body.home-page {
 }
 
 @keyframes ow-shimmer {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* ── Responsive ─────────────────────────────────── */
@@ -6338,6 +6717,7 @@ body.home-page {
     flex-direction: column;
     height: auto;
   }
+
   .ow-left {
     flex: none;
     height: auto;
@@ -6347,25 +6727,33 @@ body.home-page {
     align-items: center;
     gap: 12px;
   }
+
   .ow-info-wrap {
     padding-bottom: 0;
     flex: 1 1 auto;
     justify-content: center;
   }
+
   .ow-nav {
-    margin-top: 0;
-    margin-left: auto;
+    left: auto;
+    right: 5%;
+    transform: translateY(50%);
   }
+
   .ow-slider-wrap {
     height: 300px;
     flex: none;
   }
-  .ow-slide { flex: 0 0 80%; }
+
+  .ow-slide {
+    flex: 0 0 80%;
+  }
+
   .ow-view-all {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255, 255, 255, 0.65);
     text-decoration: none;
     font-family: 'Jost', sans-serif;
     font-size: 11px;
@@ -6374,13 +6762,18 @@ body.home-page {
     background: #0b0b0b;
     transition: color 0.2s;
   }
-  .ow-view-all:hover { color: #fff; }
+
+  .ow-view-all:hover {
+    color: #fff;
+  }
 }
 
 @media (max-width: 560px) {
-  .ow-slide { flex: 0 0 90%; }
-  .ow-slider-wrap { height: 240px; }
+  .ow-slide {
+    flex: 0 0 90%;
+  }
+
+  .ow-slider-wrap {
+    height: 240px;
+  }
 }
-
-
-
