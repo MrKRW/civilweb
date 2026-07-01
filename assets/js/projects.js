@@ -12,6 +12,13 @@
   let activeLocation = 'all';
   let activeType = 'all';
 
+  window.fallbackProjImage = function(img, filename) {
+    if (!img.dataset.fb) {
+      img.dataset.fb = 1;
+      img.src = 'https://civilanka.com/uploads/projects/' + encodeURIComponent(filename);
+    }
+  };
+
   /* ── INIT ──────────────────────────────── */
   document.addEventListener('DOMContentLoaded', () => {
     grid = document.getElementById('pj-grid');
@@ -117,7 +124,7 @@
         <a href="${typeof API_BASE !== 'undefined' ? API_BASE : ''}/projects/${p.id}" style="text-decoration:none; color:inherit; display:block;">
           <article class="pj-card">
             <div class="pj-card-img">
-              <img src="${imgSrc}" alt="${escAttr(p.title)}" loading="lazy" ${p.image_main ? `onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://civilanka.com/uploads/projects/${p.image_main}';}"` : ''} />
+              <img src="${imgSrc}" alt="${escAttr(p.title)}" loading="lazy" ${p.image_main ? `onerror="window.fallbackProjImage(this, '${p.image_main}')"` : ''} />
               <span class="pj-card-badge ${badgeClass}">${p.category}</span>
               ${starHtml}
             </div>

@@ -16,7 +16,7 @@ $gallery = is_array($project['image_gallery']) ? $project['image_gallery'] : [];
 
   <!-- PROJECT HERO -->
   <section class="pj-detail-hero">
-    <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($project['title'] ?? '') ?>" class="pj-detail-hero-img" <?php if(!empty($project['image_main'])) echo 'onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=\'https://civilanka.com/uploads/projects/'.htmlspecialchars($project['image_main']).'\';}"'; ?> />
+    <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($project['title'] ?? '') ?>" class="pj-detail-hero-img" <?php if(!empty($project['image_main'])) echo 'onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src=\'https://civilanka.com/uploads/projects/'.rawurlencode($project['image_main']).'\';}"'; ?> />
     <div class="pj-detail-hero-overlay">
       <div class="container">
         <span class="pj-detail-cat"><?= htmlspecialchars($project['service_type'] ?? '') ?></span>
@@ -53,7 +53,7 @@ $gallery = is_array($project['image_gallery']) ? $project['image_gallery'] : [];
       <div class="pj-detail-gallery">
         <?php foreach ($gallery as $g): ?>
         <div class="pj-gallery-item">
-          <img src="<?= $BASE ?>/uploads/projects/<?= htmlspecialchars($g) ?>" alt="Project gallery image" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://civilanka.com/uploads/projects/<?= htmlspecialchars($g) ?>';}" />
+          <img src="<?= $BASE ?>/uploads/projects/<?= htmlspecialchars($g) ?>" alt="Project gallery image" onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://civilanka.com/uploads/projects/<?= rawurlencode($g) ?>';}" />
         </div>
         <?php endforeach; ?>
       </div>

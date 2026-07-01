@@ -150,7 +150,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
                   $imgSrc = htmlspecialchars($logo['image']);
               } else {
                   $localPath = ROOT_DIR . '/uploads/logos/' . $logo['image'];
-                  if (file_exists($localPath)) {
+                  if (!empty($logo['image']) && file_exists($localPath) && is_file($localPath)) {
                       $imgSrc = $BASE . '/uploads/logos/' . htmlspecialchars($logo['image']);
                   } else {
                       $imgSrc = 'https://civilanka.com/uploads/logos/' . htmlspecialchars($logo['image']);
@@ -170,7 +170,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
                   $imgSrc = htmlspecialchars($logo['image']);
               } else {
                   $localPath = ROOT_DIR . '/uploads/logos/' . $logo['image'];
-                  if (file_exists($localPath)) {
+                  if (!empty($logo['image']) && file_exists($localPath) && is_file($localPath)) {
                       $imgSrc = $BASE . '/uploads/logos/' . htmlspecialchars($logo['image']);
                   } else {
                       $imgSrc = 'https://civilanka.com/uploads/logos/' . htmlspecialchars($logo['image']);
