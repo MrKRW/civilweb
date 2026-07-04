@@ -29,7 +29,9 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Icons -->
+  <!-- Icons & Favicon -->
+  <link rel="icon" href="<?= $BASE ?>/Logos/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="<?= $BASE ?>/Logos/favicon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <!-- Swiper -->
