@@ -203,26 +203,19 @@ document.addEventListener('DOMContentLoaded', () => {
      offsetWidth and inject a @keyframes rule that translates
      by exactly that many pixels. This guarantees a perfect loop
      regardless of image sizes or screen width.
-
-     Drag (mouse) + Swipe (touch) support included.
   ------------------------------------------------------- */
   (function initLogoScroll() {
     const track    = document.querySelector('.hs-logo-track');
-    const firstSet = document.querySelector('.hs-logos');  // first duplicate
+    const firstSet = document.querySelector('.hs-logos');
     if (!track || !firstSet) return;
 
-    let isDragging = false;
-    let startX     = 0;
-    let pausedAt   = 0;
-    let dragDelta  = 0;
-    let loopPx     = 0;   // exact pixel width of one logo set
+    let loopPx = 0;
 
     /* ---- inject pixel-precise keyframes ---- */
     function applyPixelAnimation() {
       loopPx = firstSet.offsetWidth;
       if (loopPx <= 0) return;
 
-      // Remove any old injected style
       const old = document.getElementById('logo-scroll-kf');
       if (old) old.remove();
 
@@ -262,72 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    /* ---- helpers ---- */
-    function liveX() {
-      const mat = new DOMMatrix(window.getComputedStyle(track).transform);
-      return mat.m41;
-    }
-
-    function wrapX(x) {
-      if (loopPx <= 0) return x;
-      x = x % -loopPx;
-      if (x > 0)  x -= loopPx;
-      if (x < -loopPx) x += loopPx;
-      return x;
-    }
-
-    function freeze() {
-      pausedAt = liveX();
-      track.style.animationPlayState = 'paused';
-      track.style.transform = `translateX(${pausedAt}px)`;
-    }
-
-    function resume(fromX) {
-      const dur  = parseFloat(getComputedStyle(track).animationDuration) || 30;
-      const frac = loopPx > 0 ? Math.abs(fromX) / loopPx : 0;
-      track.style.transform          = '';
-      track.style.animationDelay     = `${-(frac * dur)}s`;
-      track.style.animationPlayState = 'running';
-    }
-
-    /* ---- drag / touch handlers ---- */
-    function onDown(e) {
-      if (e.type === 'mousedown' && e.button !== 0) return;
-      isDragging = true;
-      dragDelta  = 0;
-      startX     = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-      freeze();
-      track.style.cursor = 'grabbing';
-      e.preventDefault();
-    }
-
-    function onMove(e) {
-      if (!isDragging) return;
-      const x   = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-      dragDelta  = x - startX;
-      track.style.transform = `translateX(${wrapX(pausedAt + dragDelta)}px)`;
-      e.preventDefault();
-    }
-
-    function onUp() {
-      if (!isDragging) return;
-      isDragging = false;
-      track.style.cursor = 'grab';
-      resume(wrapX(pausedAt + dragDelta));
-    }
-
-    track.addEventListener('mousedown',  onDown, { passive: false });
-    window.addEventListener('mousemove', onMove, { passive: false });
-    window.addEventListener('mouseup',   onUp);
-
-    track.addEventListener('touchstart', onDown, { passive: false });
-    window.addEventListener('touchmove', onMove, { passive: false });
-    window.addEventListener('touchend',  onUp);
-
-    track.style.cursor       = 'grab';
-    track.style.userSelect   = 'none';
-    track.style.webkitUserSelect = 'none';
-
   })();
 
 });
+
