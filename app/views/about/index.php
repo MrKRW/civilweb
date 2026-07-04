@@ -1,5 +1,5 @@
 <?php
-$title     = 'Our Studio — Civilanka Architecture & Design';
+$title     = 'Our Studio — Civilanka Engineering & Consultancy';
 $meta      = "Learn about Civilanka's philosophy, founding architects, and our approach to timeless design.";
 $pageClass = 'about-page';
 $activeNav = 'about';
@@ -129,10 +129,6 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
       <div class="hs-stat-item reveal"><span class="hs-stat-num">200+</span><span class="hs-stat-label">Happy<br>Clients</span></div>
       <div class="hs-stat-divider"></div>
       <div class="hs-stat-item reveal"><span class="hs-stat-num">10</span><span class="hs-stat-label">Years of<br>Practice</span></div>
-      <div class="hs-stat-nav">
-        <button aria-label="Previous stat">&#8592;</button>
-        <button aria-label="Next stat">&#8594;</button>
-      </div>
     </div>
   </section>
 

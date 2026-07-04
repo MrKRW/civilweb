@@ -1,6 +1,6 @@
 <?php
-$title     = 'Blog — Civilanka Architecture & Design';
-$meta      = 'Insights and stories from Civilanka Architecture Studio.';
+$title     = 'Blog — Civilanka Engineering & Consultancy';
+$meta      = 'Insights and stories from Civilanka Engineering & Consultancy.';
 $pageClass = 'blog-page';
 $activeNav = 'blog';
 $extraCss  = ['blog.css'];

@@ -1,5 +1,5 @@
 <?php
-$title     = 'Shop — Civilanka Architecture Studio';
+$title     = 'Shop — Civilanka Engineering & Consultancy';
 $meta      = 'Browse the Civilanka shop — architectural materials, design products and studio collections.';
 $pageClass = 'shop-page';
 $activeNav = 'shop';

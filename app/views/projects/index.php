@@ -1,5 +1,5 @@
 <?php
-$title     = 'Projects — Civilanka Architecture & Design';
+$title     = 'Projects — Civilanka Engineering & Consultancy';
 $meta      = "Explore Civilanka's portfolio of local and international architecture projects.";
 $pageClass = 'projects-page';
 $activeNav = 'projects';

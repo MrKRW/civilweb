@@ -1,6 +1,6 @@
 <?php
-$title     = 'Contact Us — Civilanka Architecture & Design';
-$meta      = 'Get in touch with Civilanka Architecture Studio. Find our offices in Colombo, contact details, and send us a message directly.';
+$title     = 'Contact Us — Civilanka Engineering & Consultancy';
+$meta      = 'Get in touch with Civilanka Engineering & Consultancy. Find our offices in Colombo, contact details, and send us a message directly.';
 $pageClass = 'contact-page';
 $activeNav = 'contact';
 $extraCss  = ['contact.css'];

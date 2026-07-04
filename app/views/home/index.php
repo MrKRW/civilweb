@@ -1,6 +1,6 @@
 <?php
-$title     = 'Civilanka — Architecture & Design Studio';
-$meta      = 'Civilanka is a premier architecture and design studio in Sri Lanka, creating spaces that inspire.';
+$title     = 'Civilanka — Engineering & Consultancy';
+$meta      = 'Civilanka is a premier engineering and consultancy firm in Sri Lanka, creating spaces that inspire.';
 $pageClass = 'home-page';
 $activeNav = 'home';
 $extraJs   = [];

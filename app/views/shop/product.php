@@ -1,6 +1,6 @@
 <?php
 $title     = htmlspecialchars(($item['title'] ?? 'Product') . ' — Civilanka Shop');
-$meta      = htmlspecialchars($item['description'] ?? 'Shop product from Civilanka Architecture Studio.');
+$meta      = htmlspecialchars($item['description'] ?? 'Shop product from Civilanka Engineering & Consultancy.');
 $pageClass = 'shop-product-page';
 $activeNav = 'shop';
 $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',['localhost','127.0.0.1','::1'])?'/civilweb':'');
