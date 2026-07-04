@@ -1238,7 +1238,7 @@
   display: flex;
   flex-wrap: nowrap;
   will-change: transform;
-  animation: scroll-logos 30s linear infinite;
+  animation: scroll-logos 55s linear infinite;
 }
 
 .hs-logo-track:hover {
@@ -1296,7 +1296,7 @@
     margin-bottom: 20px;
   }
   .hs-logo-track {
-    animation-duration: 18s;
+    animation-duration: 40s;
   }
   .hs-logo-item {
     width: 130px;
