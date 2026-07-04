@@ -144,50 +144,52 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <section class="hs-logo-strip">
     <h2 class="hs-partners-heading">OUR PARTNERS</h2>
     <?php if (!empty($logosToDisplay)): ?>
-    <div class="hs-logo-track">
-      <!-- First set of logos -->
-      <div class="hs-logos">
-        <?php foreach ($logosToDisplay as $logo): ?>
-          <div class="hs-logo-item">
-            <?php
-              $imgSrc = '';
-              if (strpos($logo['image'], 'http') === 0) {
-                  $imgSrc = htmlspecialchars($logo['image']);
-              } else {
-                  $localPath = ROOT_DIR . '/uploads/logos/' . $logo['image'];
-                  if (!empty($logo['image']) && file_exists($localPath) && is_file($localPath)) {
-                      $imgSrc = $BASE . '/uploads/logos/' . htmlspecialchars($logo['image']);
-                  } else {
-                      // Fallback to the live site URL if not found locally
-                      $imgSrc = 'https://civilanka.com/uploads/logos/' . htmlspecialchars($logo['image']);
-                  }
-              }
-            ?>
-            <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" onerror="this.onerror=null; this.src='https://placehold.co/150x80/f0f0f0/333333?text='+encodeURIComponent(this.alt);" />
-          </div>
-        <?php endforeach; ?>
-      </div>
-      <!-- Duplicate set for seamless looping -->
-      <div class="hs-logos">
-        <?php foreach ($logosToDisplay as $logo): ?>
-          <div class="hs-logo-item">
-            <?php
-              $imgSrc = '';
-              if (strpos($logo['image'], 'http') === 0) {
-                  $imgSrc = htmlspecialchars($logo['image']);
-              } else {
-                  $localPath = ROOT_DIR . '/uploads/logos/' . $logo['image'];
-                  if (!empty($logo['image']) && file_exists($localPath) && is_file($localPath)) {
-                      $imgSrc = $BASE . '/uploads/logos/' . htmlspecialchars($logo['image']);
-                  } else {
-                      // Fallback to the live site URL if not found locally
-                      $imgSrc = 'https://civilanka.com/uploads/logos/' . htmlspecialchars($logo['image']);
-                  }
-              }
-            ?>
-            <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" onerror="this.onerror=null; this.src='https://placehold.co/150x80/f0f0f0/333333?text='+encodeURIComponent(this.alt);" />
-          </div>
-        <?php endforeach; ?>
+    <div class="hs-logo-track-wrapper">
+      <div class="hs-logo-track">
+        <!-- First set of logos -->
+        <div class="hs-logos">
+          <?php foreach ($logosToDisplay as $logo): ?>
+            <div class="hs-logo-item">
+              <?php
+                $imgSrc = '';
+                if (strpos($logo['image'], 'http') === 0) {
+                    $imgSrc = htmlspecialchars($logo['image']);
+                } else {
+                    $localPath = ROOT_DIR . '/uploads/logos/' . $logo['image'];
+                    if (!empty($logo['image']) && file_exists($localPath) && is_file($localPath)) {
+                        $imgSrc = $BASE . '/uploads/logos/' . htmlspecialchars($logo['image']);
+                    } else {
+                        // Fallback to the live site URL if not found locally
+                        $imgSrc = 'https://civilanka.com/uploads/logos/' . htmlspecialchars($logo['image']);
+                    }
+                }
+              ?>
+              <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" onerror="this.onerror=null; this.src='https://placehold.co/150x80/f0f0f0/333333?text='+encodeURIComponent(this.alt);" />
+            </div>
+          <?php endforeach; ?>
+        </div>
+        <!-- Duplicate set for seamless looping -->
+        <div class="hs-logos">
+          <?php foreach ($logosToDisplay as $logo): ?>
+            <div class="hs-logo-item">
+              <?php
+                $imgSrc = '';
+                if (strpos($logo['image'], 'http') === 0) {
+                    $imgSrc = htmlspecialchars($logo['image']);
+                } else {
+                    $localPath = ROOT_DIR . '/uploads/logos/' . $logo['image'];
+                    if (!empty($logo['image']) && file_exists($localPath) && is_file($localPath)) {
+                        $imgSrc = $BASE . '/uploads/logos/' . htmlspecialchars($logo['image']);
+                    } else {
+                        // Fallback to the live site URL if not found locally
+                        $imgSrc = 'https://civilanka.com/uploads/logos/' . htmlspecialchars($logo['image']);
+                    }
+                }
+              ?>
+              <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($logo['alt_text'] ?: 'Partner Logo') ?>" onerror="this.onerror=null; this.src='https://placehold.co/150x80/f0f0f0/333333?text='+encodeURIComponent(this.alt);" />
+            </div>
+          <?php endforeach; ?>
+        </div>
       </div>
     </div>
     <?php endif; ?>

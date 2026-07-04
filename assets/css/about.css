@@ -1208,11 +1208,12 @@
    SECTION 7B — LOGO STRIP (PARTNERS)
 ============================================================ */
 .hs-logo-strip {
-  background: #f9f9f9; /* lightest gray */
+  background: #f9f9f9;
   padding: 50px 0 60px;
   overflow: hidden;
   position: relative;
-  /* removed flex and align-items so the track starts properly at the left edge */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .hs-partners-heading {
@@ -1226,35 +1227,51 @@
   text-transform: uppercase;
 }
 
+/* The outer wrapper that masks the scroll */
+.hs-logo-track-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* The moving strip — must be wider than the viewport */
 .hs-logo-track {
   display: flex;
-  width: max-content;
-  animation: scroll-logos 40s linear infinite;
+  flex-wrap: nowrap;
+  will-change: transform;
+  animation: scroll-logos 30s linear infinite;
 }
 
 .hs-logo-track:hover {
   animation-play-state: paused;
 }
 
+/* Each duplicated set */
 .hs-logos {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
-  width: max-content;
+  flex-shrink: 0;
+  min-width: max-content;
 }
 
+/* Individual logo slot */
 .hs-logo-item {
-  width: 150px;
-  margin: 0 25px;
+  width: 160px;
+  height: 90px;
+  margin: 0 30px;
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
 }
 
 .hs-logo-item img {
   max-width: 100%;
   max-height: 80px;
+  width: auto;
+  height: auto;
   object-fit: contain;
+  display: block;
   filter: grayscale(100%) opacity(0.8);
   transition: filter 0.3s ease, transform 0.3s ease;
 }
@@ -1265,13 +1282,28 @@
 }
 
 @keyframes scroll-logos {
-  0% { transform: translateX(0); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
+/* ── Mobile: same behaviour, just a little faster ── */
 @media (max-width: 768px) {
-  .hs-logo-strip { padding: 30px 0; }
-  .hs-partners-heading { font-size: 1.2rem; margin-bottom: 20px; }
-  .hs-logo-item { width: 120px; margin: 0 10px; }
-  .hs-logo-track { animation-duration: 15s; }
+  .hs-logo-strip {
+    padding: 30px 0;
+  }
+  .hs-partners-heading {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  .hs-logo-track {
+    animation-duration: 18s;
+  }
+  .hs-logo-item {
+    width: 130px;
+    height: 75px;
+    margin: 0 20px;
+  }
+  .hs-logo-item img {
+    max-height: 65px;
+  }
 }

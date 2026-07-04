@@ -9,8 +9,8 @@
  * $extraJs  array  – additional JS files
  */
 $pageClass = $pageClass ?? '';
-$title     = $title     ?? 'Civilanka — Architecture & Design Studio';
-$meta      = $meta      ?? 'Civilanka is a premier architecture and design studio in Sri Lanka.';
+$title     = $title     ?? 'Civilanka — Engineering and Consultancy';
+$meta      = $meta      ?? 'Civilanka is a premier Engineering & Consultancy studio in Sri Lanka.';
 $extraCss  = $extraCss  ?? [];
 $extraJs   = $extraJs   ?? [];
 $activeNav = $activeNav ?? '';
