@@ -42,7 +42,7 @@ foreach ($tables as $table) {
                 return $db->quote($v);
             }, array_values($row));
             $valsStr = implode(', ', $vals);
-            echo "INSERT IGNORE INTO `$table` (`$cols`) VALUES ($valsStr);\n";
+            echo "REPLACE INTO `$table` (`$cols`) VALUES ($valsStr);\n";
         }
 
         echo "\n";
