@@ -24,6 +24,18 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
   <script>const API_BASE = '<?= $BASE ?>';</script>
   <meta name="description" content="<?= htmlspecialchars($meta) ?>" />
 
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="<?= htmlspecialchars($title) ?>" />
+  <meta property="og:description" content="<?= htmlspecialchars($meta) ?>" />
+  <meta property="og:image" content="https://civilanka.com/Logos/trans.PNG" />
+  <meta property="og:url" content="https://civilanka.com<?= $_SERVER['REQUEST_URI'] ?? '' ?>" />
+  <meta property="og:type" content="website" />
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="<?= htmlspecialchars($title) ?>" />
+  <meta name="twitter:description" content="<?= htmlspecialchars($meta) ?>" />
+  <meta name="twitter:image" content="https://civilanka.com/Logos/trans.PNG" />
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
