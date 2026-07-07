@@ -218,7 +218,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
       <div class="hs-team-card">
         <div class="hs-tc-photo"><img src="<?= $BASE ?>/team%20images/33.png" alt="Aida Belul" /></div>
         <div class="hs-tc-info">
-          <h3 class="hs-tc-name">Dhiyan</h3><p class="hs-tc-role">Senior Structural Engineer</p>
+          <h3 class="hs-tc-name">Dhiyan</h3><p class="hs-tc-role">Structural Engineer</p>
         </div>
       </div>
       <div class="hs-team-card">

@@ -51,7 +51,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
 
   <!-- Core styles -->
   <link rel="stylesheet" href="<?= $BASE ?>/assets/css/style.css?v=<?= time() ?>" />
-  <link rel="stylesheet" href="<?= $BASE ?>/assets/css/services.css" />
+  <link rel="stylesheet" href="<?= $BASE ?>/assets/css/services.css?v=<?= time() ?>" />
 
   <!-- Page-specific styles -->
   <?php foreach ($extraCss as $css): ?>

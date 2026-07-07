@@ -26,9 +26,9 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
           <span class="srv-intl-num">01</span>
           <h3>Design &amp; Visualization</h3>
           <ul class="srv-card-list">
-            <li><strong>Architectural Design</strong></li>
-            <li><strong>3D Modelling &amp; Visualization</strong></li>
-            <li><strong>Landscape &amp; Outdoor Space Design</strong></li>
+            <li>Architectural Design</li>
+            <li>3D Modelling &amp; Visualization</li>
+            <li>Landscape &amp; Outdoor Space Design</li>
           </ul>
         </div>
       </div>
@@ -43,9 +43,9 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
           <span class="srv-intl-num">02</span>
           <h3>Engineering &amp; Infrastructure</h3>
           <ul class="srv-card-list">
-            <li><strong>Structural Engineering Support</strong></li>
-            <li><strong>Civil Engineering &amp; External Works</strong></li>
-            <li><strong>MEP &amp; Building Services Coordination</strong></li>
+            <li>Structural Engineering Support</li>
+            <li>Civil Engineering &amp; External Works</li>
+            <li>MEP &amp; Building Services Coordination</li>
           </ul>
         </div>
       </div>
@@ -60,9 +60,9 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
           <span class="srv-intl-num">03</span>
           <h3>Management, Costing &amp; Consulting</h3>
           <ul class="srv-card-list">
-            <li><strong>Quantity Surveying &amp; Cost Estimation</strong></li>
-            <li><strong>Project Management &amp; Supervision Support</strong></li>
-            <li><strong>Research &amp; Development</strong></li>
+            <li>Quantity Surveying &amp; Cost Estimation</li>
+            <li>Project Management &amp; Supervision Support</li>
+            <li>Research &amp; Development</li>
           </ul>
         </div>
       </div>
@@ -77,8 +77,8 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
           <span class="srv-intl-num">04</span>
           <h3>Project Close-Out</h3>
           <ul class="srv-card-list">
-            <li><strong>Handover Documentation</strong></li>
-            <li><strong>Aftercare</strong></li>
+            <li>Handover Documentation</li>
+            <li>Aftercare</li>
           </ul>
         </div>
       </div>
@@ -94,10 +94,10 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
           <h3>End-to-End Turnkey Construction</h3>
           <p class="srv-card-sub" style="margin-top:-10px; margin-bottom: 10px; color: #555;">Exclusive physical construction, management and delivery services for local clients.</p>
           <ul class="srv-card-list">
-            <li><strong>Turnkey Solutions</strong></li>
-            <li><strong>Building &amp; Renovation</strong></li>
-            <li><strong>Site &amp; Civil Works</strong></li>
-            <li><strong>Building Systems &amp; Finishing</strong></li>
+            <li>Turnkey Solutions</li>
+            <li>Building &amp; Renovation</li>
+            <li>Site &amp; Civil Works</li>
+            <li>Building Systems &amp; Finishing</li>
           </ul>
         </div>
       </div>

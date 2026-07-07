@@ -139,7 +139,7 @@ $BASE = defined('BASE_PATH') ? BASE_PATH : (in_array($_SERVER['HTTP_HOST']??'',[
       <div class="team-cell team-photo"><img src="<?= $BASE ?>/team%20images/29.png" alt="Architect portrait" /></div>
       <div class="team-cell team-info"><h3 class="team-name">Harsha</h3><p class="team-role"><span class="team-role-accent">Draughtsman &amp; 3D Visualizer </span></p></div>
       <div class="team-cell team-photo"><img src="<?= $BASE ?>/team%20images/33.png" alt="Main Contractor portrait" /></div>
-      <div class="team-cell team-info"><h3 class="team-name">Dhiyan</h3><p class="team-role"><span class="team-role-accent">Senior Structural Engineer </span></p></div>
+      <div class="team-cell team-info"><h3 class="team-name">Dhiyan</h3><p class="team-role"><span class="team-role-accent">Structural Engineer </span></p></div>
       <div class="team-cell team-jobs"><a href="https://www.linkedin.com/company/civilanka/jobs/" target="_blank" rel="noopener noreferrer" class="team-jobs-link">careers and internships</a></div>
       <div class="team-cell team-empty"></div>
       <div class="team-cell team-photo"><img src="<?= $BASE ?>/team%20images/32.png" alt="Architect portrait" /></div>
